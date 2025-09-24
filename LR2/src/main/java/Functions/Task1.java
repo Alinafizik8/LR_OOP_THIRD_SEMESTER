@@ -1,4 +1,4 @@
-package Functions;
+package functions;
 
 // Интерфейс MathFunction
 interface MathFunction {
