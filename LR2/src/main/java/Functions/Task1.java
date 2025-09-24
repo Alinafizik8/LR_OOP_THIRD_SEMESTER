@@ -1,4 +1,4 @@
-package org.example;
+package Functions;
 
 // Интерфейс MathFunction
 interface MathFunction {
