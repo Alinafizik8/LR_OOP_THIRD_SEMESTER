@@ -1,4 +1,4 @@
-package function;
+package functions;
 
 class SqrFunction implements MathFunction {
 
