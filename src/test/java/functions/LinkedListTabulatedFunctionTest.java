@@ -1,0 +1,241 @@
+package functions;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class LinkedListTabulatedFunctionTest {
+
+    private static final MathFunction IDENTITY = new IdentityFunction();
+    private static final MathFunction SQUARE = new SqrFunction();
+
+    // =============== Конструктор из массивов ===============
+
+    @Test
+    void constructorFromArrays_validInput_createsCorrectList() {
+        double[] x = {1.0, 2.0, 3.0};
+        double[] y = {1.0, 4.0, 9.0};
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(x, y);
+
+        assertEquals(3, f.getCount());
+        assertEquals(1.0, f.leftBound(), 1e-10);
+        assertEquals(3.0, f.rightBound(), 1e-10);
+        assertEquals(1.0, f.getX(0), 1e-10);
+        assertEquals(4.0, f.getY(1), 1e-10);
+        assertEquals(9.0, f.getY(2), 1e-10);
+    }
+
+    @Test
+    void constructorFromArrays_emptyArrays_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new LinkedListTabulatedFunction(new double[0], new double[0]);
+        });
+    }
+
+    @Test
+    void constructorFromArrays_unequalLengths_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new LinkedListTabulatedFunction(new double[]{1.0}, new double[]{1.0, 2.0});
+        });
+    }
+
+    @Test
+    void constructorFromArrays_nonStrictlyIncreasingX_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new LinkedListTabulatedFunction(new double[]{1.0, 1.0, 2.0}, new double[]{1.0, 1.0, 4.0});
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            new LinkedListTabulatedFunction(new double[]{1.0, 3.0, 2.0}, new double[]{1.0, 9.0, 4.0});
+        });
+    }
+
+    // =============== Конструктор из функции ===============
+
+    @Test
+    void constructorFromFunction_singlePoint_createsOneNode() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(IDENTITY, 5.0, 5.0, 1);
+        assertEquals(1, f.getCount());
+        assertEquals(5.0, f.getX(0), 1e-10);
+        assertEquals(5.0, f.getY(0), 1e-10);
+    }
+
+    @Test
+    void constructorFromFunction_multiplePoints_createsCorrectValues() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(SQUARE, 0.0, 2.0, 3);
+        assertEquals(3, f.getCount());
+        assertEquals(0.0, f.getX(0), 1e-10);
+        assertEquals(1.0, f.getX(1), 1e-10);
+        assertEquals(2.0, f.getX(2), 1e-10);
+        assertEquals(0.0, f.getY(0), 1e-10);
+        assertEquals(1.0, f.getY(1), 1e-10);
+        assertEquals(4.0, f.getY(2), 1e-10);
+    }
+
+    @Test
+    void constructorFromFunction_xFromGreaterThanXTo_swapsThem() {
+        LinkedListTabulatedFunction f1 = new LinkedListTabulatedFunction(IDENTITY, 1.0, 3.0, 2);
+        LinkedListTabulatedFunction f2 = new LinkedListTabulatedFunction(IDENTITY, 3.0, 1.0, 2);
+        assertEquals(f1.getX(0), f2.getX(0), 1e-10);
+        assertEquals(f1.getX(1), f2.getX(1), 1e-10);
+    }
+
+    @Test
+    void constructorFromFunction_countLessThanOne_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new LinkedListTabulatedFunction(IDENTITY, 0.0, 1.0, 0);
+        });
+    }
+
+    // =============== Методы TabulatedFunction ===============
+
+    @Test
+    void getX_and_getY_validIndices_returnCorrectValues() {
+        double[] x = {0.5, 1.5, 2.5};
+        double[] y = {0.25, 2.25, 6.25};
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(x, y);
+
+        for (int i = 0; i < 3; i++) {
+            assertEquals(x[i], f.getX(i), 1e-10);
+            assertEquals(y[i], f.getY(i), 1e-10);
+        }
+    }
+
+    @Test
+    void setY_changesValue() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0}, new double[]{1.0, 4.0});
+        f.setY(1, 100.0);
+        assertEquals(100.0, f.getY(1), 1e-10);
+    }
+
+    @Test
+    void indexOfX_exactMatch_returnsIndex() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0, 3.0}, new double[]{1.0, 4.0, 9.0});
+        assertEquals(1, f.indexOfX(2.0));
+    }
+
+    @Test
+    void indexOfX_noMatch_returnsMinusOne() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0}, new double[]{1.0, 4.0});
+        assertEquals(-1, f.indexOfX(1.5));
+    }
+
+    @Test
+    void indexOfY_exactMatch_returnsIndex() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0}, new double[]{10.0, 20.0});
+        assertEquals(1, f.indexOfY(20.0));
+    }
+
+    @Test
+    void indexOfY_noMatch_returnsMinusOne() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0}, new double[]{10.0, 20.0});
+        assertEquals(-1, f.indexOfY(15.0));
+    }
+
+    // =============== floorIndexOfX ===============
+
+    @Test
+    void floorIndexOfX_xLessThanLeftBound_returnsZero() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0, 3.0}, new double[]{1.0, 4.0, 9.0});
+        assertEquals(0, f.floorIndexOfX(0.5));
+    }
+
+    @Test
+    void floorIndexOfX_xGreaterThanRightBound_returnsCount() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0, 3.0}, new double[]{1.0, 4.0, 9.0});
+        assertEquals(3, f.floorIndexOfX(3.5)); // count = 3
+    }
+
+    @Test
+    void floorIndexOfX_xEqualsRightBound_returnsLastIndex() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0, 3.0}, new double[]{1.0, 4.0, 9.0});
+        assertEquals(2, f.floorIndexOfX(3.0));
+    }
+
+    @Test
+    void floorIndexOfX_insideInterval_returnsCorrectIndex() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{0.0, 1.0, 2.0, 3.0}, new double[]{0.0, 1.0, 4.0, 9.0});
+        assertEquals(1, f.floorIndexOfX(1.7)); // между 1.0 и 2.0 → индекс 1
+    }
+
+    // =============== Интерполяция и экстраполяция ===============
+
+    @Test
+    void interpolate_linearInterpolation_works() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{0.0, 2.0}, new double[]{0.0, 4.0});
+        double result = f.interpolate(1.0, 0);
+        assertEquals(2.0, result, 1e-10);
+    }
+
+    @Test
+    void extrapolateLeft_linearExtrapolation_works() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0}, new double[]{1.0, 4.0});
+        double result = f.extrapolateLeft(0.0); // y = 3x - 2 → y(0) = -2
+        assertEquals(-2.0, result, 1e-10);
+    }
+
+    @Test
+    void extrapolateRight_linearExtrapolation_works() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0}, new double[]{1.0, 4.0});
+        double result = f.extrapolateRight(3.0); // y = 3x - 2 → y(3) = 7
+        assertEquals(7.0, result, 1e-10);
+    }
+
+    @Test
+    void interpolate_countOne_returnsOnlyValue() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{5.0}, new double[]{25.0});
+        assertEquals(25.0, f.interpolate(100.0, 0), 1e-10);
+    }
+
+    // =============== apply() (включая X*) ===============
+
+    @Test
+    void apply_exactX_returnsY() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0, 3.0}, new double[]{1.0, 4.0, 9.0});
+        assertEquals(4.0, f.apply(2.0), 1e-10);
+    }
+
+    @Test
+    void apply_insideInterval_interpolates() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{0.0, 2.0}, new double[]{0.0, 4.0});
+        assertEquals(2.0, f.apply(1.0), 1e-10);
+    }
+
+    @Test
+    void apply_leftOfInterval_extrapolatesLeft() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0}, new double[]{1.0, 4.0});
+        assertEquals(-2.0, f.apply(0.0), 1e-10);
+    }
+
+    @Test
+    void apply_rightOfInterval_extrapolatesRight() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{1.0, 2.0}, new double[]{1.0, 4.0});
+        assertEquals(7.0, f.apply(3.0), 1e-10);
+    }
+
+    @Test
+    void apply_countOne_returnsOnlyValue() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{10.0}, new double[]{100.0});
+        assertEquals(100.0, f.apply(999.0), 1e-10);
+    }
+
+    // =============== Внутренняя структура ===============
+
+    @Test
+    void cyclicList_headPrevIsLastNode() {
+        double[] x = {1.0, 2.0, 3.0};
+        double[] y = {1.0, 4.0, 9.0};
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(x, y);
+        assertEquals(3.0, f.rightBound(), 1e-10);
+        assertEquals(1.0, f.leftBound(), 1e-10);
+    }
+
+    @Test
+    void getNode_optimizedAccess_worksFromBothEnds() {
+        double[] x = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        double[] y = new double[10];
+        for (int i = 0; i < 10; i++) y[i] = i * i;
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(x, y);
+
+        assertEquals(81.0, f.getY(9), 1e-10);
+        assertEquals(0.0, f.getY(0), 1e-10);
+    }
+}

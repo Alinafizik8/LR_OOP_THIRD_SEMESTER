@@ -1,0 +1,252 @@
+package functions;
+
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
+
+    private static class Node {
+        double x;
+        double y;
+        Node next;
+        Node prev;
+
+        Node(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    private int count = 0;
+    private Node head = null; // указатель на голову двусвязного циклического списка
+
+    // <<<<>>>> Добавление узла в конец циклического списка
+    private void addNode(double x, double y) {
+        Node newNode = new Node(x, y);
+        if (head == null) {
+            // Первый узел
+            head = newNode;
+            head.next = head;
+            head.prev = head;
+        } else {
+            // Вставка в конец
+            Node last = head.prev;
+            last.next = newNode;
+            newNode.prev = last;
+            newNode.next = head;
+            head.prev = newNode;
+        }
+        count += 1;
+    }
+
+    // <<<<>>>> Конструктор c двумя параметрами: массивы xValues, yValues
+    public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
+        if (xValues.length != yValues.length || xValues.length == 0) {
+            throw new IllegalArgumentException("Массивы должны быть одинаковой длины и не пустыми");
+        }
+        // Проверка на строгую упорядоченность и уникальность x
+        for (int i = 1; i < xValues.length; i++) {
+            if (xValues[i] <= xValues[i - 1]) {
+                throw new IllegalArgumentException("xValues должны быть строго возрастающими");
+            }
+        }
+
+        this.head = null;
+
+        for (int i = 0; i < xValues.length; i++) {
+            addNode(xValues[i], yValues[i]);
+        }
+    }
+
+    // <<<<>>>> Конструктор с четырьмя параметрами: из функции, интервала и количества точек
+    public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+        if (count < 1) {
+            throw new IllegalArgumentException("Количество точек должно быть >= 1");
+        }
+        if (xFrom > xTo) {
+            double temp = xFrom;
+            xFrom = xTo;
+            xTo = temp;
+        }
+
+        this.head = null;
+
+        if (xFrom == xTo) {
+            // Все точки одинаковые
+            double y = source.apply(xFrom);
+            for (int i = 0; i < count; ++i) {
+                addNode(xFrom, y);
+            }
+        } else {
+            double step = (xTo - xFrom) / (count - 1);
+            for (int i = 0; i < count; ++i) {
+                double x = xFrom + i * step;
+                addNode(x, source.apply(x));
+            }
+        }
+    }
+
+    // <<<<>>>> Реализация методов из TabulatedFunction
+
+    @Override
+    public int getCount() {
+        return count;
+    }
+
+    @Override
+    public double leftBound() {
+        return head.x;
+    }
+
+    @Override
+    public double rightBound() {
+        return head.prev.x;
+    }
+
+    private Node getNode(int index) {
+        if (index < 0 || index >= count) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + count);
+        }
+        Node current;
+        if (index < count / 2) {
+            current = head;
+            for (int i = 0; i < index; ++i) current = current.next;
+        } else {
+            current = head.prev;
+            int steps = count - 1 - index;
+            for (int i = 0; i < steps; ++i) current = current.prev;
+        }
+        return current;
+    }
+
+    @Override
+    public double getX(int index) {
+        return getNode(index).x;
+    }
+
+    @Override
+    public double getY(int index) {
+        return getNode(index).y;
+    }
+
+    @Override
+    public void setY(int index, double value) {
+        getNode(index).y = value;
+    }
+
+    @Override
+    public int indexOfX(double x) {
+        Node current = head;
+        for (int i = 0; i < count; ++i) {
+            if (Math.abs(x - current.x) < 1e-10) {
+                return i;
+            }
+            current = current.next;
+        }
+        return -1;
+    }
+
+    @Override
+    public int indexOfY(double y) {
+        Node current = head;
+        for (int i = 0; i < count; ++i) {
+            if (Math.abs(y - current.y) < 1e-10) {
+                return i;
+            }
+            current = current.next;
+        }
+        return -1;
+    }
+
+    // <<<<>>>> Реализация абстрактных методов из AbstractTabulatedFunction
+
+    @Override
+    protected int floorIndexOfX(double x) {
+        if (x < leftBound()) {
+            return 0;
+        }
+        if (x > rightBound()) {
+            return count; // ← именно count, как требует задание!
+        }
+        // x == rightBound() или внутри интервала
+        Node current = head;
+        for (int i = 0; i < count - 1; i++) {
+            if (current.x <= x && x < current.next.x) {
+                return i;
+            }
+            current = current.next;
+        }
+        // x == rightBound()
+        return count - 1;
+    }
+
+    @Override
+    protected double extrapolateLeft(double x) {
+        if (count == 1) return getY(0);
+        // Линейная экстраполяция по первым двум точкам
+        double x0 = getX(0), y0 = getY(0);
+        double x1 = getX(1), y1 = getY(1);
+        return AbstractTabulatedFunction.interpolate(x, x0, x1, y0, y1);
+    }
+
+    @Override
+    protected double extrapolateRight(double x) {
+        if (count == 1) return getY(0);
+        // Линейная экстраполяция по последним двум точкам
+        double x0 = getX(count - 2), y0 = getY(count - 2);
+        double x1 = getX(count - 1), y1 = getY(count - 1);
+        return AbstractTabulatedFunction.interpolate(x, x0, x1, y0, y1);
+    }
+
+    @Override
+    protected double interpolate(double x, int floorIndex) {
+        if (count == 1) return getY(0);
+        double x0 = getX(floorIndex);
+        double y0 = getY(floorIndex);
+        double x1 = getX(floorIndex + 1);
+        double y1 = getY(floorIndex + 1);
+        return AbstractTabulatedFunction.interpolate(x, x0, x1, y0, y1);
+    }
+
+    // <<<<>>>> X*: Оптимизированный apply() без двойного прохода
+    @Override
+    public double apply(double x) {
+        if (x < leftBound()) {
+            return extrapolateLeft(x);
+        } else if (x > rightBound()) {
+            return extrapolateRight(x);
+        } else {
+            int idx = indexOfX(x);
+            if (idx != -1) {
+                return getY(idx);
+            } else {
+                Node floorNode = floorNodeOfX(x);
+                // floorNode — это узел с индексом floorIndex
+                // следующий узел — floorNode.next
+                return AbstractTabulatedFunction.interpolate(
+                        x,
+                        floorNode.x, floorNode.next.x,
+                        floorNode.y, floorNode.next.y
+                );
+            }
+        }
+    }
+
+    // <<<<>>>> Вспомогательный метод для X*
+    private Node floorNodeOfX(double x) {
+        if (x < leftBound()) {
+            return head;
+        }
+        if (x >= rightBound()) {
+            return head.prev;
+        }
+
+        Node current = head;
+        while (current.next != head) {
+            if (current.x <= x && x < current.next.x) {
+                return current;
+            }
+            current = current.next;
+        }
+
+        // Теоретически невозможно, но на случай ошибок:
+        throw new IllegalStateException("Не удалось найти floorNode для x = " + x);
+    }
+}
