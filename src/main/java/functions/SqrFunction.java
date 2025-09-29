@@ -1,6 +1,6 @@
 package functions;
 
-//return x^2
+//return x*х
 class SqrFunction implements MathFunction {
     private double digit;
     @Override

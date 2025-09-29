@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//x^2
 class SqrFunctionTest {
     @Test
     void apply() {

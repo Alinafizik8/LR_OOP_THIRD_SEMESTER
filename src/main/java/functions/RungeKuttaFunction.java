@@ -1,6 +1,6 @@
 package functions;
 
-// Класс для решения дифференциальных уравнений методом Рунге-Кутты
+//Класс для решения дифференциальных уравнений методом Рунге-Кутты
 class RungeKuttaFunction implements MathFunction {
 
     private final double x0;        // начальное значение x
@@ -27,7 +27,7 @@ class RungeKuttaFunction implements MathFunction {
         // Определяем направление интегрирования
         if (xTarget < x0) h = -h;
 
-        while (Math.abs(x - xTarget) > 1e-10 && Math.abs(h) >= 1e-14) {
+        while (Math.abs(x - xTarget) > 1e-10) {
             // Если следующий шаг выходит за пределы xTarget — корректируем шаг
             if ((x < xTarget && x + h > xTarget) || (x > xTarget && x + h < xTarget)) {
                 h = xTarget - x;
@@ -41,6 +41,9 @@ class RungeKuttaFunction implements MathFunction {
 
             y = y + h * (k1 + 2*k2 + 2*k3 + k4) / 6;
             x = x + h;
+
+            // Защита от бесконечного цикла
+            if (Math.abs(h) < 1e-14) break;
         }
 
         return y;

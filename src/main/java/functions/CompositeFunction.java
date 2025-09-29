@@ -8,8 +8,8 @@ class CompositeFunction implements MathFunction {
     /**
      * Конструктор композиции: h(x) = g(f(x))
      *
-     * @param firstFunction  функция f, применяемая первой
-     * @param secondFunction функция g, применяемая второй
+     * firstFunction  функция f, применяемая первой
+     * secondFunction функция g, применяемая второй
      */
     public CompositeFunction(MathFunction firstFunction, MathFunction secondFunction) {
         if (firstFunction == null || secondFunction == null) {

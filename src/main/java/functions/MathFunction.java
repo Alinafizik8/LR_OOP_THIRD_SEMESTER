@@ -1,9 +1,13 @@
 package functions;
 
-// Интерфейс MathFunction
+import java.util.function.Function;
+
 interface MathFunction {
     double apply(double x);
-    CompositeFunction andThen(MathFunction a, MathFunction b){
-
+    default CompositeFunction andThen(MathFunction afterFunction){
+        if (afterFunction == null) {
+            throw new IllegalArgumentException("Функции не могyт быть null");
+        }
+        return new CompositeFunction(this, afterFunction);
     }
 }

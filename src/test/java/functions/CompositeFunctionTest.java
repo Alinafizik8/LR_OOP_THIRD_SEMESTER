@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CompositeFunctionTest {
 
-    // Вспомогательные функции
+    //Вспомогательные функции
     static class SquareFunction implements MathFunction {
         @Override
         public double apply(double x) {
