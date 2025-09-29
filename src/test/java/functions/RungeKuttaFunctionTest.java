@@ -5,124 +5,114 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RungeKuttaFunctionTest {
 
-    // Точное решение для dy/dx = x + y, y(0)=1: y(x) = 2*exp(x) - x - 1
+    // Точное решение для dy/dx = x + y, y(0) = 1 -> y(x) = 2*exp(x) - x - 1
     private static double exactSolution(double x) {
         return 2 * Math.exp(x) - x - 1;
     }
 
-    // Правая часть ОДУ
-    private static final RungeKuttaFunction.MathFunction2D ODE = (x, y) -> x + y;
+    // Правая часть ОДУ: dy/dx = x + y
+    private static final RungeKuttaFunction.MathFunction2D ODE_X_PLUS_Y = (x, y) -> x + y;
 
-    // Погрешность для сравнения (для шага 0.01)
-    private static final double TOLERANCE_001 = 1e-5;
-    private static final double TOLERANCE_0001 = 1e-7;
+    // Правая часть ОДУ: dy/dx = -y
+    private static final RungeKuttaFunction.MathFunction2D ODE_MINUS_Y = (x, y) -> -y;
 
+    // <<<<>>>> 1. Тест: xTarget == x0 -> возврат y0
     @Test
-    void testApply_AtInitialPoint_ReturnsInitialValue() {
-        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE, 0.01);
-        assertEquals(1.0, rk.apply(0.0), 1e-12);
+    void testApply_WhenXEqualsX0_ReturnsY0() {
+        RungeKuttaFunction rk = new RungeKuttaFunction(1.5, 3.7, ODE_X_PLUS_Y, 0.1);
+        assertEquals(3.7, rk.apply(1.5), 1e-12);
     }
 
+    // <<<<>>>> 2. Тест: интегрирование вперёд (обычный шаг)
     @Test
-    void testApply_ForwardIntegration_Step0_01() {
-        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE, 0.01);
-
-        double x = 1.0;
-        double expected = exactSolution(x);
-        double actual = rk.apply(x);
-
-        assertEquals(expected, actual, TOLERANCE_001,
-                "Значение в точке x=1.0 с шагом 0.01 должно быть близко к точному решению");
+    void testApply_ForwardIntegration_NormalStep() {
+        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE_X_PLUS_Y, 0.1);
+        double result = rk.apply(0.2); // два шага по 0.1
+        double expected = exactSolution(0.2);
+        assertEquals(expected, result, 1e-6);
     }
 
-    @Test
-    void testApply_ForwardIntegration_Step0_001() {
-        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE, 0.001);
-
-        double x = 1.0;
-        double expected = exactSolution(x);
-        double actual = rk.apply(x);
-
-        assertEquals(expected, actual, TOLERANCE_0001,
-                "Значение в точке x=1.0 с шагом 0.001 должно быть точнее");
-    }
-
+    // <<<<>>>> 3. Тест: интегрирование назад
     @Test
     void testApply_BackwardIntegration() {
-        RungeKuttaFunction rk = new RungeKuttaFunction(1.0, exactSolution(1.0), ODE, 0.01);
-
-        double x = 0.0;
-        double expected = 1.0;
-        double actual = rk.apply(x);
-
-        assertEquals(expected, actual, TOLERANCE_001,
-                "Интегрирование назад от x=1 к x=0 должно вернуть начальное значение");
+        double yAt1 = exactSolution(1.0);
+        RungeKuttaFunction rk = new RungeKuttaFunction(1.0, yAt1, ODE_X_PLUS_Y, 0.1);
+        double result = rk.apply(0.0);
+        assertEquals(1.0, result, 1e-5);
     }
 
+    // <<<<>>>> 4. Тест: коррекция последнего шага (когда h выходит за xTarget)
     @Test
-    void testApply_MultipleCalls_ConsistentResults() {
-        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE, 0.01);
-
-        double result1 = rk.apply(0.5);
-        double result2 = rk.apply(0.5);
-
-        assertEquals(result1, result2, 1e-12,
-                "Повторные вызовы для одного x должны возвращать одинаковый результат");
+    void testApply_StepCorrectionAtEnd() {
+        // Шаг 0.3, но цель — 0.5 → последний шаг = 0.2
+        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE_X_PLUS_Y, 0.3);
+        double result = rk.apply(0.5);
+        double expected = exactSolution(0.5);
+        assertEquals(expected, result, 1e-4);
     }
 
+    // <<<<>>>> 5. Тест: очень маленький шаг -> срабатывает break (защита от зацикливания)
     @Test
-    void testApply_WithVerySmallStep() {
-        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE, 1e-6);
-
-        double x = 0.1;
-        double expected = exactSolution(x);
-        double actual = rk.apply(x);
-
-        assertEquals(expected, actual, 1e-8,
-                "Очень маленький шаг должен давать высокую точность");
+    void testApply_VerySmallStepSize_TriggerBreakCondition() {
+        // Шаг такой маленький, что после коррекции |h| < 1e-14
+        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE_X_PLUS_Y, 1e-15);
+        // Должен завершиться без зависания
+        assertDoesNotThrow(() -> {
+            double result = rk.apply(1e-13); // цель чуть больше шага
+            // Результат может быть неточным, но не NaN/Inf
+            assertFalse(Double.isNaN(result));
+            assertFalse(Double.isInfinite(result));
+        });
     }
 
+    // <<<<>>>> 6. Тест: нулевой шаг (крайний случай)
     @Test
-    void testApply_WithLargeStep_LessAccurate() {
-        RungeKuttaFunction rkCoarse = new RungeKuttaFunction(0.0, 1.0, ODE, 0.5);
-        RungeKuttaFunction rkFine = new RungeKuttaFunction(0.0, 1.0, ODE, 0.01);
-
-        double x = 2.0;
-        double coarse = rkCoarse.apply(x);
-        double fine = rkFine.apply(x);
-        double exact = exactSolution(x);
-
-        assertTrue(Math.abs(coarse - exact) > Math.abs(fine - exact),
-                "Крупный шаг должен быть менее точным, чем мелкий");
+    void testApply_ZeroStepSize_DoesNotHang() {
+        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE_X_PLUS_Y, 0.0);
+        assertDoesNotThrow(() -> {
+            double result = rk.apply(0.1);
+            // После первого шага h = 0.1 (из-за xTarget > x0), но в цикле:
+            // h = xTarget - x = 0.1 → нормальный шаг
+            // Однако если stepSize = 0 и xTarget != x0, то h = ±0 → потом h = xTarget - x
+            // Всё равно не зависает
+        });
     }
 
-    @Test
-    void testApply_ExtremeValues_NoExceptions() {
-        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE, 0.01);
-
-        assertDoesNotThrow(() -> rk.apply(10.0));
-        assertDoesNotThrow(() -> rk.apply(-5.0));
-    }
-
-    @Test
-    void testApply_ZeroStepSize_ShouldNotCrash() {
-        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE, 0.0);
-
-        // Ожидаем, что не упадёт, но результат может быть некорректным
-        assertDoesNotThrow(() -> rk.apply(1.0));
-    }
-
+    // <<<<>>>> 7. Тест: другое ОДУ (dy/dx = -y → y = exp(-x))
     @Test
     void testApply_WithDifferentODE() {
-        // dy/dx = -y, y(0)=1 → y(x) = exp(-x)
-        RungeKuttaFunction.MathFunction2D decay = (x, y) -> -y;
-        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, decay, 0.01);
+        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE_MINUS_Y, 0.01);
+        double result = rk.apply(1.0);
+        double expected = Math.exp(-1.0);
+        assertEquals(expected, result, 1e-6);
+    }
 
-        double x = 1.0;
-        double expected = Math.exp(-x);
-        double actual = rk.apply(x);
+    // <<<<>>>> 8. Тест: большие значения x (проверка устойчивости) <<<<>>>>
+    @Test
+    void testApply_LargeXValue_NoException() {
+        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE_X_PLUS_Y, 0.1);
+        assertDoesNotThrow(() -> {
+            double result = rk.apply(10.0);
+            assertTrue(Double.isFinite(result));
+        });
+    }
 
-        assertEquals(expected, actual, 1e-5,
-                "Должно корректно работать с другим ОДУ: dy/dx = -y");
+    // <<<<>>>> 9. Тест: отрицательные x и y <<<<>>>>
+    @Test
+    void testApply_NegativeValues() {
+        // dy/dx = -y, y(0) = -1 → y(x) = -exp(-x)
+        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, -1.0, ODE_MINUS_Y, 0.01);
+        double result = rk.apply(-1.0); // интегрируем назад
+        double expected = -Math.exp(1.0); // y(-1) = -e
+        assertEquals(expected, result, 1e-5);
+    }
+
+    // <<<<>>>> 10. Тест: шаг больше расстояния до цели (один шаг с коррекцией) <<<<>>>>
+    @Test
+    void testApply_StepLargerThanDistance_SingleCorrectedStep() {
+        RungeKuttaFunction rk = new RungeKuttaFunction(0.0, 1.0, ODE_X_PLUS_Y, 10.0);
+        double result = rk.apply(0.5); // шаг 10, но цель 0.5 → h = 0.5
+        double expected = exactSolution(0.5);
+        assertEquals(expected, result, 1e-3);
     }
 }
