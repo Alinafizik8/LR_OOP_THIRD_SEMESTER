@@ -2,7 +2,7 @@ package functions;
 
 public abstract class AbstractTabulatedFunction implements MathFunction {
 
-    //Возвращает количество точек в таблице.
+    //Возвращает количество точек в таблице
     protected abstract int getCount();
 
     //Возвращает значение x по индексу.

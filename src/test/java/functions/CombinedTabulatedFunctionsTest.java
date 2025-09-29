@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CombinedTabulatedFunctionsTest {
 
-    // Простая аналитическая функция: f(x) = x
+    //Простая аналитическая функция: f(x) = x
     private static final MathFunction IDENTITY = x -> x;
 
     // Аналитическая функция: f(x) = x^2

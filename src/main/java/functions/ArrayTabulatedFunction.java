@@ -37,7 +37,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     /**
-     * Конструктор с дискретизацией функции.
+     * Конструктор с дискретизацией функции
      * source функция для табуляции
      * xFrom  левая граница интервала
      * xTo    правая граница интервала
