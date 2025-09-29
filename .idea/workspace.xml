@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="BigUpdate2">
-      <change afterPath="$PROJECT_DIR$/src/main/java/functions/AbstractTabulatedFunction.java" afterDir="false" />
+    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="студент Y, задание 2, AbstractTabulatedFunction">
+      <change afterPath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/LinkedListTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/LinkedListTabulatedFunction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -29,12 +32,12 @@
     &quot;assignee&quot;: &quot;Alinafizik8&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Alinafizik8/LR_OOP_THIRD_SEMESTER.git",
-    "accountId": "1871043b-9ff2-46dc-8682-06d03a79891e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Alinafizik8/LR_OOP_THIRD_SEMESTER.git&quot;,
+    &quot;accountId&quot;: &quot;1871043b-9ff2-46dc-8682-06d03a79891e&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -99,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759169782613</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="студент Y, задание 2, AbstractTabulatedFunction">
+      <option name="closed" value="true" />
+      <created>1759170822708</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1759170822708</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -117,6 +128,7 @@
     <MESSAGE value="firstclass" />
     <MESSAGE value="BigUpdate" />
     <MESSAGE value="BigUpdate2" />
-    <option name="LAST_COMMIT_MESSAGE" value="BigUpdate2" />
+    <MESSAGE value="студент Y, задание 2, AbstractTabulatedFunction" />
+    <option name="LAST_COMMIT_MESSAGE" value="студент Y, задание 2, AbstractTabulatedFunction" />
   </component>
 </project>

@@ -143,7 +143,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         return -1;
     }
 
-    @Override
     public int indexOfY(double y) {
         Node current = head;
         for (int i = 0; i < count; ++i) {
