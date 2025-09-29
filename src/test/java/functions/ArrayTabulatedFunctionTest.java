@@ -271,4 +271,65 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(7.0, f.apply(3.0), 1e-12);
     }
 
+    @Test
+    void testRemoveMiddleElement() {
+        double[] x = {1.0, 2.0, 3.0, 4.0};
+        double[] y = {1.0, 4.0, 9.0, 16.0};
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(x, y);
+
+        f.remove(1); // удаляем x=2.0, y=4.0
+
+        assertEquals(3, f.getCount());
+        assertEquals(1.0, f.getX(0));
+        assertEquals(3.0, f.getX(1));
+        assertEquals(4.0, f.getX(2));
+        assertEquals(1.0, f.getY(0));
+        assertEquals(9.0, f.getY(1));
+        assertEquals(16.0, f.getY(2));
+    }
+
+    @Test
+    void testRemoveFirstElement() {
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(
+                new double[]{1, 2, 3}, new double[]{1, 4, 9});
+        f.remove(0);
+        assertEquals(2, f.getCount());
+        assertEquals(2.0, f.getX(0));
+        assertEquals(3.0, f.getX(1));
+    }
+
+    @Test
+    void testRemoveLastElement() {
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(
+                new double[]{1, 2, 3}, new double[]{1, 4, 9});
+        f.remove(2);
+        assertEquals(2, f.getCount());
+        assertEquals(1.0, f.getX(0));
+        assertEquals(2.0, f.getX(1));
+    }
+
+    @Test
+    void testRemoveInvalidIndex() {
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(
+                new double[]{1, 2}, new double[]{1, 4});
+        assertThrows(IndexOutOfBoundsException.class, () -> f.remove(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> f.remove(2));
+        assertThrows(IndexOutOfBoundsException.class, () -> f.remove(5));
+    }
+
+    @Test
+    void testRemoveLastPointForbidden() {
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(
+                new double[]{5}, new double[]{25});
+        assertThrows(IllegalStateException.class, () -> f.remove(0));
+    }
+
+    @Test
+    void testApplyAfterRemove() {
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(
+                new double[]{0, 1, 2}, new double[]{0, 1, 4});
+        f.remove(1); // осталось [0,2] → y = 2x
+        assertEquals(1.0, f.apply(0.5), 1e-12); // 2 * 0.5 = 1.0
+    }
+
 }

@@ -1,6 +1,6 @@
 package functions;
 
-public abstract class AbstractTabulatedFunction implements MathFunction {
+public abstract class AbstractTabulatedFunction implements MathFunction,Removable {
 
     //Возвращает количество точек в таблице
     protected abstract int getCount();

@@ -14,6 +14,37 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
      * yValues массив значений y
      * IllegalArgumentException если массивы null, разной длины или пустые
      */
+
+    @Override
+    public void remove(int index) {
+        if (index < 0 || index >= count) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + count);
+        }
+        if (count == 1) {
+            // После удаления список станет пустым — но по условию задачи,
+            // табулированная функция не может быть пустой.
+            // Однако, если разрешено, можно обнулить.
+            // Но лучше запретить удаление последнего элемента.
+            throw new IllegalStateException("Cannot remove the last point from a tabulated function");
+        }
+
+        // Создаём новые массивы меньшего размера
+        double[] newX = new double[count - 1];
+        double[] newY = new double[count - 1];
+
+        // Копируем элементы до index
+        System.arraycopy(xValues, 0, newX, 0, index);
+        System.arraycopy(yValues, 0, newY, 0, index);
+
+        // Копируем элементы после index
+        System.arraycopy(xValues, index + 1, newX, index, count - index - 1);
+        System.arraycopy(yValues, index + 1, newY, index, count - index - 1);
+
+        this.xValues = newX;
+        this.yValues = newY;
+        this.count = count - 1;
+    }
+
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
         if (xValues == null || yValues == null) {
             throw new IllegalArgumentException("Arrays must not be null");

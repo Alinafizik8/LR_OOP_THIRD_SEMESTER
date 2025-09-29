@@ -36,6 +36,11 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         count += 1;
     }
 
+    @Override
+    public void remove(int index) {
+
+    }
+
     // <<<<>>>> Конструктор c двумя параметрами: массивы xValues, yValues
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
         if (xValues.length != yValues.length || xValues.length == 0) {
