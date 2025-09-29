@@ -4,19 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Тесты для класса ArrayTabulatedFunction.
- * Покрывают оба конструктора, все публичные и защищённые методы,
- * а также граничные случаи (count=1, xFrom=xTo, экстраполяция и т.д.).
- */
 public class ArrayTabulatedFunctionTest {
 
     // Вспомогательная функция для тестов: f(x) = x^2
     private static final MathFunction SQUARE = x -> x * x;
 
-    // ------------------------------------------------------------
     // Тесты для первого конструктора: ArrayTabulatedFunction(double[], double[])
-    // ------------------------------------------------------------
 
     @Test
     @DisplayName("Конструктор с массивами: корректная инициализация")
@@ -73,9 +66,7 @@ public class ArrayTabulatedFunctionTest {
                 new ArrayTabulatedFunction(new double[]{2, 1}, new double[]{4, 1}));
     }
 
-    // ------------------------------------------------------------
     // Тесты для второго конструктора: ArrayTabulatedFunction(MathFunction, double, double, int)
-    // ------------------------------------------------------------
 
     @Test
     @DisplayName("Конструктор с функцией: равномерная дискретизация")
@@ -119,9 +110,7 @@ public class ArrayTabulatedFunctionTest {
                 new ArrayTabulatedFunction(SQUARE, 0, 1, -1));
     }
 
-    // ------------------------------------------------------------
     // Тесты методов доступа и модификации
-    // ------------------------------------------------------------
 
     @Test
     @DisplayName("Метод setY корректно изменяет значение")
@@ -147,9 +136,7 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(1, func.indexOfY(4.0));
     }
 
-    // ------------------------------------------------------------
     // Тесты floorIndexOfX
-    // ------------------------------------------------------------
 
     @Test
     @DisplayName("floorIndexOfX: возвращает 0, если x меньше всех")
@@ -180,9 +167,7 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(1, func.floorIndexOfX(6.0)); // x > 5 → count = 1
     }
 
-    // ------------------------------------------------------------
     // Тесты apply(), интерполяции и экстраполяции
-    // ------------------------------------------------------------
 
     @Test
     @DisplayName("apply() возвращает точное значение, если x есть в таблице")

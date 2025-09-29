@@ -85,17 +85,14 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     // <<<<>>>> Реализация методов из TabulatedFunction
 
-    @Override
     public int getCount() {
         return count;
     }
 
-    @Override
     public double leftBound() {
         return head.x;
     }
 
-    @Override
     public double rightBound() {
         return head.prev.x;
     }
@@ -116,17 +113,14 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         return current;
     }
 
-    @Override
     public double getX(int index) {
         return getNode(index).x;
     }
 
-    @Override
     public double getY(int index) {
         return getNode(index).y;
     }
 
-    @Override
     public void setY(int index, double value) {
         getNode(index).y = value;
     }
@@ -194,7 +188,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         return AbstractTabulatedFunction.interpolate(x, x0, x1, y0, y1);
     }
 
-    @Override
     protected double interpolate(double x, int floorIndex) {
         if (count == 1) return getY(0);
         double x0 = getX(floorIndex);

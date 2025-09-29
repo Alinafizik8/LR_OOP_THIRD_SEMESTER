@@ -2,9 +2,6 @@ package functions;
 
 import java.util.Arrays;
 
-/**
- * Реализация табулированной функции на основе массивов.
- */
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     private double[] xValues;
     private double[] yValues;
@@ -13,10 +10,9 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     /**
      * Конструктор с двумя массивами.
      * Создаёт копии входных массивов для защиты от внешних изменений.
-     *
-     * @param xValues массив значений x (должен быть строго возрастающим)
-     * @param yValues массив значений y
-     * @throws IllegalArgumentException если массивы null, разной длины или пустые
+     * xValues массив значений x (должен быть строго возрастающим)
+     * yValues массив значений y
+     * IllegalArgumentException если массивы null, разной длины или пустые
      */
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
         if (xValues == null || yValues == null) {
@@ -28,7 +24,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         if (xValues.length == 0) {
             throw new IllegalArgumentException("Arrays must not be empty");
         }
-        // Проверка на строгое возрастание (опционально, но рекомендуется)
+        // Проверка на строгое возрастание
         for (int i = 1; i < xValues.length; i++) {
             if (xValues[i] <= xValues[i - 1]) {
                 throw new IllegalArgumentException("xValues must be strictly increasing");
@@ -42,11 +38,10 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     /**
      * Конструктор с дискретизацией функции.
-     *
-     * @param source функция для табуляции
-     * @param xFrom  левая граница интервала
-     * @param xTo    правая граница интервала
-     * @param count  количество точек
+     * source функция для табуляции
+     * xFrom  левая граница интервала
+     * xTo    правая граница интервала
+     * count  количество точек
      */
     public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
         if (count <= 0) {

@@ -24,7 +24,7 @@ public abstract class AbstractTabulatedFunction implements MathFunction {
      * Вспомогательный метод для линейной интерполяции между двумя точками.
      * Реализация одинакова для всех наследников.
      */
-    protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
+    protected static double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
         // Линейная интерполяция: y = y1 + (x - x1) * (y2 - y1) / (x2 - x1)
         return leftY + (x - leftX) * (rightY - leftY) / (rightX - leftX);
     }
