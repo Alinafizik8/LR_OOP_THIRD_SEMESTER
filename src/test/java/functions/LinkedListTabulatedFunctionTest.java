@@ -302,4 +302,57 @@ public class LinkedListTabulatedFunctionTest {
             assertEquals(expectedX[i], f.getX(i), 1e-10);
         }
     }
+
+    @Test
+    void remove_middleElement_updatesList() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 2.0, 3.0}, new double[]{1.0, 4.0, 9.0}
+        );
+        f.remove(1);
+        assertEquals(2, f.getCount());
+        assertEquals(1.0, f.getX(0), 1e-10);
+        assertEquals(3.0, f.getX(1), 1e-10);
+        assertEquals(9.0, f.getY(1), 1e-10);
+    }
+
+    @Test
+    void remove_firstElement_updatesHead() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 2.0, 3.0}, new double[]{1.0, 4.0, 9.0}
+        );
+        f.remove(0);
+        assertEquals(2, f.getCount());
+        assertEquals(2.0, f.leftBound(), 1e-10);
+        assertEquals(4.0, f.getY(0), 1e-10);
+    }
+
+    @Test
+    void remove_lastElement_updatesTail() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 2.0, 3.0}, new double[]{1.0, 4.0, 9.0}
+        );
+        f.remove(2);
+        assertEquals(2, f.getCount());
+        assertEquals(2.0, f.rightBound(), 1e-10);
+        assertEquals(4.0, f.getY(1), 1e-10);
+    }
+
+    @Test
+    void remove_onlyElement_makesListEmpty() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{5.0}, new double[]{25.0}
+        );
+        f.remove(0);
+        assertEquals(0, f.getCount());
+        // head == null, дальнейшие вызовы недопустимы
+    }
+
+    @Test
+    void remove_invalidIndex_throwsException() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0}, new double[]{1.0}
+        );
+        assertThrows(IndexOutOfBoundsException.class, () -> f.remove(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> f.remove(1));
+    }
 }

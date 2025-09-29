@@ -15,6 +15,46 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
      * IllegalArgumentException если массивы null, разной длины или пустые
      */
 
+    public void insert(double x, double y) {
+        // 1. Проверяем, существует ли x
+        for (int i = 0; i < count; i++) {
+            if (Math.abs(xValues[i] - x) < 1e-10) {
+                yValues[i] = y;
+                return;
+            }
+        }
+
+        // 2. Находим позицию для вставки
+        int insertIndex = count; // по умолчанию — в конец
+        for (int i = 0; i < count; i++) {
+            if (x < xValues[i]) {
+                insertIndex = i;
+                break;
+            }
+        }
+
+        // 3. Создаём новые массивы
+        double[] newX = new double[count + 1];
+        double[] newY = new double[count + 1];
+
+        // 4. Копируем данные до insertIndex
+        System.arraycopy(xValues, 0, newX, 0, insertIndex);
+        System.arraycopy(yValues, 0, newY, 0, insertIndex);
+
+        // 5. Вставляем новое значение
+        newX[insertIndex] = x;
+        newY[insertIndex] = y;
+
+        // 6. Копируем остаток
+        System.arraycopy(xValues, insertIndex, newX, insertIndex + 1, count - insertIndex);
+        System.arraycopy(yValues, insertIndex, newY, insertIndex + 1, count - insertIndex);
+
+        // 7. Обновляем поля
+        this.xValues = newX;
+        this.yValues = newY;
+        this.count++;
+    }
+
     @Override
     public void remove(int index) {
         if (index < 0 || index >= count) {

@@ -38,7 +38,30 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     public void remove(int index) {
+        if (index < 0 || index >= count) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + count);
+        }
 
+        // Получаем узел для удаления
+        Node toRemove = getNode(index);
+
+        // Если в списке только один узел
+        if (count == 1) {
+            head = null;
+            count = 0;
+            return;
+        }
+
+        // Отвязываем узел от соседей
+        toRemove.prev.next = toRemove.next;
+        toRemove.next.prev = toRemove.prev;
+
+        // Если удаляем голову — обновляем head
+        if (toRemove == head) {
+            head = toRemove.next;
+        }
+
+        count--;
     }
 
     // <<<<>>>> Конструктор c двумя параметрами: массивы xValues, yValues

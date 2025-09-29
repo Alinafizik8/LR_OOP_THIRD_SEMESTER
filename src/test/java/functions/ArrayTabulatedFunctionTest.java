@@ -7,6 +7,8 @@ public class ArrayTabulatedFunctionTest {
 
     private static final MathFunction SQUARE = x -> x * x;
 
+
+
     // Тесты первого конструктора: ArrayTabulatedFunction(double[], double[])
 
     @Test
@@ -330,6 +332,41 @@ public class ArrayTabulatedFunctionTest {
                 new double[]{0, 1, 2}, new double[]{0, 1, 4});
         f.remove(1); // осталось [0,2] → y = 2x
         assertEquals(1.0, f.apply(0.5), 1e-12); // 2 * 0.5 = 1.0
+    }
+
+    @Test
+    void insert_existingX_replacesY() {
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1.0, 2.0, 3.0}, new double[]{1.0, 4.0, 9.0});
+        f.insert(2.0, 100.0);
+        assertEquals(3, f.getCount());
+        assertEquals(100.0, f.getY(1), 1e-10);
+    }
+
+    @Test
+    void insert_newX_inMiddle_insertsCorrectly() {
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1.0, 3.0}, new double[]{1.0, 9.0});
+        f.insert(2.0, 4.0);
+        assertEquals(3, f.getCount());
+        assertEquals(2.0, f.getX(1), 1e-10);
+        assertEquals(4.0, f.getY(1), 1e-10);
+    }
+
+    @Test
+    void insert_newX_atBeginning_insertsCorrectly() {
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{2.0, 3.0}, new double[]{4.0, 9.0});
+        f.insert(1.0, 1.0);
+        assertEquals(3, f.getCount());
+        assertEquals(1.0, f.getX(0), 1e-10);
+        assertEquals(1.0, f.getY(0), 1e-10);
+    }
+
+    @Test
+    void insert_newX_atEnd_insertsCorrectly() {
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1.0, 2.0}, new double[]{1.0, 4.0});
+        f.insert(3.0, 9.0);
+        assertEquals(3, f.getCount());
+        assertEquals(3.0, f.getX(2), 1e-10);
+        assertEquals(9.0, f.getY(2), 1e-10);
     }
 
 }
