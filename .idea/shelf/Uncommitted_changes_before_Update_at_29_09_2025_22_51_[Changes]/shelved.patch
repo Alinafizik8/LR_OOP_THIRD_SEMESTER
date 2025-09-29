@@ -1,0 +1,161 @@
+Index: src/test/java/functions/ArrayTabulatedFunctionTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functions;\r\n\r\nimport org.junit.jupiter.api.Test;\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\npublic class ArrayTabulatedFunctionTest {\r\n\r\n    private static final MathFunction SQUARE = x -> x * x;\r\n\r\n    // ============================================================\r\n    // Тесты первого конструктора: ArrayTabulatedFunction(double[], double[])\r\n    // ============================================================\r\n\r\n    @Test\r\n    void testConstructorWithValidArrays() {\r\n        double[] x = {1.0, 2.0, 3.0};\r\n        double[] y = {1.0, 4.0, 9.0};\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(x, y);\r\n        assertEquals(3, f.getCount());\r\n        assertEquals(1.0, f.getX(0));\r\n        assertEquals(4.0, f.getY(1));\r\n    }\r\n\r\n    @Test\r\n    void testConstructorDefensiveCopy() {\r\n        double[] x = {0.0, 1.0};\r\n        double[] y = {0.0, 1.0};\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(x, y);\r\n        x[0] = 999.0;\r\n        y[0] = 888.0;\r\n        assertEquals(0.0, f.getX(0));\r\n        assertEquals(0.0, f.getY(0));\r\n    }\r\n\r\n    @Test\r\n    void testConstructorNullArrays() {\r\n        assertThrows(IllegalArgumentException.class, () ->\r\n                new ArrayTabulatedFunction(null, new double[]{1}));\r\n        assertThrows(IllegalArgumentException.class, () ->\r\n                new ArrayTabulatedFunction(new double[]{1}, null));\r\n    }\r\n\r\n    @Test\r\n    void testConstructorDifferentLengths() {\r\n        assertThrows(IllegalArgumentException.class, () ->\r\n                new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1}));\r\n    }\r\n\r\n    @Test\r\n\r\n    void testConstructorEmptyArrays() {\r\n        assertThrows(IllegalArgumentException.class, () ->\r\n                new ArrayTabulatedFunction(new double[]{}, new double[]{}));\r\n    }\r\n\r\n    @Test\r\n    void testConstructorNonStrictlyIncreasingX() {\r\n        assertThrows(IllegalArgumentException.class, () ->\r\n                new ArrayTabulatedFunction(new double[]{1, 1, 2}, new double[]{1, 1, 4}));\r\n        assertThrows(IllegalArgumentException.class, () ->\r\n                new ArrayTabulatedFunction(new double[]{2, 1}, new double[]{4, 1}));\r\n    }\r\n\r\n    // ============================================================\r\n    // Тесты второго конструктора: ArrayTabulatedFunction(MathFunction, double, double, int)\r\n    // ============================================================\r\n\r\n    @Test\r\n    void testConstructorWithFunction() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(SQUARE, 0.0, 2.0, 3);\r\n        assertEquals(0.0, f.getX(0));\r\n        assertEquals(1.0, f.getX(1));\r\n        assertEquals(2.0, f.getX(2));\r\n        assertEquals(0.0, f.getY(0));\r\n        assertEquals(1.0, f.getY(1));\r\n        assertEquals(4.0, f.getY(2));\r\n    }\r\n\r\n    @Test\r\n    void testConstructorSwapsBounds() {\r\n        ArrayTabulatedFunction f1 = new ArrayTabulatedFunction(SQUARE, 0.0, 2.0, 3);\r\n        ArrayTabulatedFunction f2 = new ArrayTabulatedFunction(SQUARE, 2.0, 0.0, 3);\r\n        assertEquals(f1.getX(0), f2.getX(0));\r\n        assertEquals(f1.getX(2), f2.getX(2));\r\n    }\r\n\r\n    @Test\r\n    void testConstructorSinglePoint() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(SQUARE, 5.0, 5.0, 4);\r\n        for (int i = 0; i < 4; i++) {\r\n            assertEquals(5.0, f.getX(i));\r\n            assertEquals(25.0, f.getY(i));\r\n        }\r\n    }\r\n\r\n    @Test\r\n    void testConstructorInvalidCount() {\r\n        assertThrows(IllegalArgumentException.class, () ->\r\n                new ArrayTabulatedFunction(SQUARE, 0, 1, 0));\r\n        assertThrows(IllegalArgumentException.class, () ->\r\n                new ArrayTabulatedFunction(SQUARE, 0, 1, -1));\r\n    }\r\n\r\n    @Test\r\n    void testConstructorNullSource() {\r\n        assertThrows(IllegalArgumentException.class, () ->\r\n                new ArrayTabulatedFunction(null, 0, 1, 1));\r\n    }\r\n\r\n    // ============================================================\r\n    // Тесты методов доступа\r\n    // ============================================================\r\n\r\n    @Test\r\n    void testGetCount() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1}, new double[]{1});\r\n        assertEquals(1, f.getCount());\r\n    }\r\n\r\n    @Test\r\n    void testGetXInvalidIndex() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1}, new double[]{1});\r\n        assertThrows(IndexOutOfBoundsException.class, () -> f.getX(-1));\r\n        assertThrows(IndexOutOfBoundsException.class, () -> f.getX(1));\r\n    }\r\n\r\n    @Test\r\n    void testGetYInvalidIndex() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1}, new double[]{1});\r\n        assertThrows(IndexOutOfBoundsException.class, () -> f.getY(-1));\r\n        assertThrows(IndexOutOfBoundsException.class, () -> f.getY(1));\r\n    }\r\n\r\n    @Test\r\n    void testSetY() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{0, 1}, new double[]{0, 1});\r\n        f.setY(1, 100.0);\r\n        assertEquals(100.0, f.getY(1));\r\n    }\r\n\r\n    @Test\r\n    void testSetYInvalidIndex() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1}, new double[]{1});\r\n        assertThrows(IndexOutOfBoundsException.class, () -> f.setY(-1, 0));\r\n        assertThrows(IndexOutOfBoundsException.class, () -> f.setY(1, 0));\r\n    }\r\n\r\n    @Test\r\n    void testBounds() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 3}, new double[]{1, 9});\r\n        assertEquals(1.0, f.leftBound());\r\n        assertEquals(3.0, f.rightBound());\r\n    }\r\n\r\n    // ============================================================\r\n    // Тесты поиска\r\n    // ============================================================\r\n\r\n    @Test\r\n    void testIndexOfXFound() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1, 4});\r\n        assertEquals(0, f.indexOfX(1.0));\r\n    }\r\n\r\n    @Test\r\n    void testIndexOfXNotFound() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1, 4});\r\n        assertEquals(-1, f.indexOfX(1.5));\r\n    }\r\n\r\n    @Test\r\n    void testIndexOfYFound() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1, 4});\r\n        assertEquals(1, f.indexOfY(4.0));\r\n    }\r\n\r\n    @Test\r\n    void testIndexOfYNotFound() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1, 4});\r\n        assertEquals(-1, f.indexOfY(2.0));\r\n    }\r\n\r\n    // ============================================================\r\n    // Тесты floorIndexOfX\r\n    // ============================================================\r\n\r\n    @Test\r\n    void testFloorIndexBelowOrEqualFirst() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2, 3}, new double[]{1, 4, 9});\r\n        assertEquals(0, f.floorIndexOfX(0.5));\r\n        assertEquals(0, f.floorIndexOfX(1.0));\r\n    }\r\n\r\n    @Test\r\n    void testFloorIndexAboveLast() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2, 3}, new double[]{1, 4, 9});\r\n        assertEquals(3, f.floorIndexOfX(4.0));\r\n    }\r\n\r\n    @Test\r\n    void testFloorIndexInside() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2, 3}, new double[]{1, 4, 9});\r\n        assertEquals(1, f.floorIndexOfX(2.5));\r\n    }\r\n\r\n    @Test\r\n    void testFloorIndexSinglePoint() {\r\n        double[] x = {3.0, 6.0, 7.0};\r\n        double[] y = {2.0, 4.0, 5.0};\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(x, y);\r\n        assertEquals(0, f.floorIndexOfX(5.0));\r\n    }\r\n\r\n    @Test\r\n    void testFloorIndexOO() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{5}, new double[]{25});\r\n        assertEquals(0, f.floorIndexOfX(4.0));\r\n        assertEquals(1, f.floorIndexOfX(6.0));\r\n    }\r\n\r\n    // ============================================================\r\n    // Тесты интерполяции и экстраполяции\r\n    // ============================================================\r\n\r\n    @Test\r\n    void testInterpolateWithIndex() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{0, 2}, new double[]{0, 4});\r\n        assertEquals(2.0, f.interpolate(1.0, 0), 1e-12);\r\n    }\r\n\r\n    @Test\r\n    void testInterpolateInvalidIndex() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{0, 1}, new double[]{0, 1});\r\n        assertThrows(IndexOutOfBoundsException.class, () -> f.interpolate(0.5, -1));\r\n        assertThrows(IndexOutOfBoundsException.class, () -> f.interpolate(0.5, 1));\r\n    }\r\n\r\n    @Test\r\n    void testExtrapolateLeft() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1, 4});\r\n        // Наклон = 3, y = 3x - 2 → при x=0: y=-2\r\n        assertEquals(-2.0, f.extrapolateLeft(0.0), 1e-12);\r\n    }\r\n\r\n    @Test\r\n    void testExtrapolateRight() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1, 4});\r\n        // При x=3: y = 3*3 - 2 = 7\r\n        assertEquals(7.0, f.extrapolateRight(3.0), 1e-12);\r\n    }\r\n\r\n    @Test\r\n    void testSinglePointInterpolationExtrapolation() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{5}, new double[]{25});\r\n        assertEquals(25.0, f.interpolate(10.0, 0));\r\n        assertEquals(25.0, f.extrapolateLeft(0.0));\r\n        assertEquals(25.0, f.extrapolateRight(10.0));\r\n    }\r\n\r\n    // ============================================================\r\n    // Тест apply() из AbstractTabulatedFunction (неявно)\r\n    // ============================================================\r\n\r\n    @Test\r\n    void testApplyExactMatch() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1, 4});\r\n        assertEquals(1.0, f.apply(1.0));\r\n    }\r\n\r\n    @Test\r\n    void testApplyInterpolation() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{0, 2}, new double[]{0, 4});\r\n        assertEquals(2.0, f.apply(1.0), 1e-12);\r\n    }\r\n\r\n    @Test\r\n    void testApplyExtrapolateLeft() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1, 4});\r\n        assertEquals(-2.0, f.apply(0.0), 1e-12);\r\n    }\r\n\r\n    @Test\r\n    void testApplyExtrapolateRight() {\r\n        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1, 4});\r\n        assertEquals(7.0, f.apply(3.0), 1e-12);\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/functions/ArrayTabulatedFunctionTest.java b/src/test/java/functions/ArrayTabulatedFunctionTest.java
+--- a/src/test/java/functions/ArrayTabulatedFunctionTest.java	(revision 13e61b849a7610086125ca6e587c7f9679b4788d)
++++ b/src/test/java/functions/ArrayTabulatedFunctionTest.java	(date 1759175026168)
+@@ -7,9 +7,7 @@
+ 
+     private static final MathFunction SQUARE = x -> x * x;
+ 
+-    // ============================================================
+     // Тесты первого конструктора: ArrayTabulatedFunction(double[], double[])
+-    // ============================================================
+ 
+     @Test
+     void testConstructorWithValidArrays() {
+@@ -61,9 +59,7 @@
+                 new ArrayTabulatedFunction(new double[]{2, 1}, new double[]{4, 1}));
+     }
+ 
+-    // ============================================================
+     // Тесты второго конструктора: ArrayTabulatedFunction(MathFunction, double, double, int)
+-    // ============================================================
+ 
+     @Test
+     void testConstructorWithFunction() {
+@@ -107,9 +103,7 @@
+                 new ArrayTabulatedFunction(null, 0, 1, 1));
+     }
+ 
+-    // ============================================================
+     // Тесты методов доступа
+-    // ============================================================
+ 
+     @Test
+     void testGetCount() {
+@@ -152,9 +146,7 @@
+         assertEquals(3.0, f.rightBound());
+     }
+ 
+-    // ============================================================
+     // Тесты поиска
+-    // ============================================================
+ 
+     @Test
+     void testIndexOfXFound() {
+@@ -180,9 +172,7 @@
+         assertEquals(-1, f.indexOfY(2.0));
+     }
+ 
+-    // ============================================================
+     // Тесты floorIndexOfX
+-    // ============================================================
+ 
+     @Test
+     void testFloorIndexBelowOrEqualFirst() {
+@@ -218,9 +208,7 @@
+         assertEquals(1, f.floorIndexOfX(6.0));
+     }
+ 
+-    // ============================================================
+     // Тесты интерполяции и экстраполяции
+-    // ============================================================
+ 
+     @Test
+     void testInterpolateWithIndex() {
+@@ -257,9 +245,7 @@
+         assertEquals(25.0, f.extrapolateRight(10.0));
+     }
+ 
+-    // ============================================================
+     // Тест apply() из AbstractTabulatedFunction (неявно)
+-    // ============================================================
+ 
+     @Test
+     void testApplyExactMatch() {
+Index: src/main/java/functions/DoubleFunction.java
+===================================================================
+diff --git a/src/main/java/functions/DoubleFunction.java b/src/main/java/functions/DoubleFunction.java
+deleted file mode 100644
+--- a/src/main/java/functions/DoubleFunction.java	(revision 13e61b849a7610086125ca6e587c7f9679b4788d)
++++ /dev/null	(revision 13e61b849a7610086125ca6e587c7f9679b4788d)
+@@ -1,9 +0,0 @@
+-package functions;
+-
+-// f(x) = х * 2
+-class DoubleFunction implements MathFunction {
+-    @Override
+-    public double apply(double x) {
+-        return 2 * x;
+-    }
+-}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"e1d89212-f98e-421d-8d10-634bc15eaf04\" name=\"Changes\" comment=\"студент Y, задание 2, почти final\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/functions/AbstractTabulatedFunction.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/functions/AbstractTabulatedFunction.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/functions/Functions.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/functions/Functions.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JUnit5 Test Class\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Alinafizik8&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Alinafizik8/LR_OOP_THIRD_SEMESTER.git&quot;,\r\n    &quot;accountId&quot;: &quot;1871043b-9ff2-46dc-8682-06d03a79891e&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"339cV9WCRv4PkByFIMMQtMmo1t1\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"JUnit.All in LR_OOP_THIRD_SEMESTER.executor\": \"Coverage\",\r\n    \"JUnit.ArrayTabulatedFunctionTest.executor\": \"Coverage\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary\": \"JUnit5\",\r\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5\": \"\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/Alina/OneDrive/Рабочий стол/2 семестр/OOP/LR_OOP_THIRD_SEMESTER\",\r\n    \"settings.editor.selected.configurable\": \"copyright.profiles\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateTestDialog.Recents.Supers\">\r\n      <recent name=\"\" />\r\n    </key>\r\n    <key name=\"CreateTestDialog.RecentsKey\">\r\n      <recent name=\"functions\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"JUnit.All in LR_OOP_THIRD_SEMESTER\">\r\n    <configuration name=\"All in LR_OOP_THIRD_SEMESTER\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"TEST_OBJECT\" value=\"package\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ArrayTabulatedFunctionTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"functions.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"functions\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"functions.ArrayTabulatedFunctionTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JUnit.All in LR_OOP_THIRD_SEMESTER\" />\r\n        <item itemvalue=\"JUnit.ArrayTabulatedFunctionTest\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"e1d89212-f98e-421d-8d10-634bc15eaf04\" name=\"Changes\" comment=\"\" />\r\n      <created>1758732749184</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1758732749184</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"firstclass\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1758986254956</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1758986254956</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"BigUpdate\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759169692054</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759169692054</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"BigUpdate2\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759169782613</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759169782613</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"студент Y, задание 2, AbstractTabulatedFunction\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759170822708</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759170822708</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"студент Y, задание 2, готовы пункты 1,2\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759171834272</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759171834272</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"студент Y, задание 2, готовы пункты 1,2\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759172138517</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759172138517</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"студент Y, задание 2, почти final\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759173095584</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759173095584</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"студент Y, задание 2, почти final\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759173153975</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759173153975</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"firstclass\" />\r\n    <MESSAGE value=\"BigUpdate\" />\r\n    <MESSAGE value=\"BigUpdate2\" />\r\n    <MESSAGE value=\"студент Y, задание 2, AbstractTabulatedFunction\" />\r\n    <MESSAGE value=\"студент Y, задание 2, готовы пункты 1,2\" />\r\n    <MESSAGE value=\"студент Y, задание 2, почти final\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"студент Y, задание 2, почти final\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java</url>\r\n          <line>205</line>\r\n          <option name=\"timeStamp\" value=\"3\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic\" NAME=\"All in LR_OOP_THIRD_SEMESTER Coverage Results\" MODIFIED=\"1759174655572\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\" />\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic\" NAME=\"ArrayTabulatedFunctionTest Coverage Results\" MODIFIED=\"1759174168723\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>functions.*</FILTER>\r\n    </SUITE>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 13e61b849a7610086125ca6e587c7f9679b4788d)
++++ b/.idea/workspace.xml	(date 1759175380212)
+@@ -4,14 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="студент Y, задание 2, почти final">
++    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="студент Y, задание 2, сделано, он не все тесты допилены">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/AbstractTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/AbstractTabulatedFunction.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/Functions.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -178,7 +173,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1759173153975</updated>
+     </task>
+-    <option name="localTasksCounter" value="9" />
++    <task id="LOCAL-00009" summary="студент Y, задание 2, сделано, он не все тесты допилены">
++      <option name="closed" value="true" />
++      <created>1759174766683</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1759174766683</updated>
++    </task>
++    <option name="localTasksCounter" value="10" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -199,18 +202,8 @@
+     <MESSAGE value="студент Y, задание 2, AbstractTabulatedFunction" />
+     <MESSAGE value="студент Y, задание 2, готовы пункты 1,2" />
+     <MESSAGE value="студент Y, задание 2, почти final" />
+-    <option name="LAST_COMMIT_MESSAGE" value="студент Y, задание 2, почти final" />
+-  </component>
+-  <component name="XDebuggerManager">
+-    <breakpoint-manager>
+-      <breakpoints>
+-        <line-breakpoint enabled="true" type="java-line">
+-          <url>file://$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java</url>
+-          <line>205</line>
+-          <option name="timeStamp" value="3" />
+-        </line-breakpoint>
+-      </breakpoints>
+-    </breakpoint-manager>
++    <MESSAGE value="студент Y, задание 2, сделано, он не все тесты допилены" />
++    <option name="LAST_COMMIT_MESSAGE" value="студент Y, задание 2, сделано, он не все тесты допилены" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759174655572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

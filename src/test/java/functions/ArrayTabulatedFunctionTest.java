@@ -7,9 +7,7 @@ public class ArrayTabulatedFunctionTest {
 
     private static final MathFunction SQUARE = x -> x * x;
 
-    // ============================================================
     // Тесты первого конструктора: ArrayTabulatedFunction(double[], double[])
-    // ============================================================
 
     @Test
     void testConstructorWithValidArrays() {
@@ -61,9 +59,7 @@ public class ArrayTabulatedFunctionTest {
                 new ArrayTabulatedFunction(new double[]{2, 1}, new double[]{4, 1}));
     }
 
-    // ============================================================
     // Тесты второго конструктора: ArrayTabulatedFunction(MathFunction, double, double, int)
-    // ============================================================
 
     @Test
     void testConstructorWithFunction() {
@@ -107,9 +103,7 @@ public class ArrayTabulatedFunctionTest {
                 new ArrayTabulatedFunction(null, 0, 1, 1));
     }
 
-    // ============================================================
     // Тесты методов доступа
-    // ============================================================
 
     @Test
     void testGetCount() {
@@ -152,9 +146,7 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(3.0, f.rightBound());
     }
 
-    // ============================================================
     // Тесты поиска
-    // ============================================================
 
     @Test
     void testIndexOfXFound() {
@@ -180,9 +172,7 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(-1, f.indexOfY(2.0));
     }
 
-    // ============================================================
     // Тесты floorIndexOfX
-    // ============================================================
 
     @Test
     void testFloorIndexBelowOrEqualFirst() {
@@ -218,9 +208,7 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(1, f.floorIndexOfX(6.0));
     }
 
-    // ============================================================
     // Тесты интерполяции и экстраполяции
-    // ============================================================
 
     @Test
     void testInterpolateWithIndex() {
@@ -257,9 +245,7 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(25.0, f.extrapolateRight(10.0));
     }
 
-    // ============================================================
     // Тест apply() из AbstractTabulatedFunction (неявно)
-    // ============================================================
 
     @Test
     void testApplyExactMatch() {

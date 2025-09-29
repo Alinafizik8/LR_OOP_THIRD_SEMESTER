@@ -241,4 +241,62 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         // Теоретически невозможно, но на случай ошибок:
         throw new IllegalStateException("Не удалось найти floorNode для x = " + x);
     }
+
+    public void insert(double x, double y) {
+        // Если список пуст — просто добавляем узел
+        if (head == null) {
+            addNode(x, y);
+            return;
+        }
+
+        // Проверяем, существует ли уже узел с таким x
+        Node current = head;
+        do {
+            if (Math.abs(current.x - x) < 1e-10) {
+                // Нашли — обновляем y и выходим
+                current.y = y;
+                return;
+            }
+            current = current.next;
+        } while (current != head);
+
+        // x не найден — ищем место для вставки
+        Node prev = head.prev; // последний узел
+        Node next = head;
+
+        // Случай 1: вставка в начало (x < head.x)
+        if (x < head.x) {
+            Node newNode = new Node(x, y);
+            // Вставка перед head
+            newNode.prev = prev;
+            newNode.next = next;
+            prev.next = newNode;
+            next.prev = newNode;
+            head = newNode; // обновляем голову
+            count++;
+            return;
+        }
+
+        // Случай 2: вставка в конец (x > last.x)
+        if (x > head.prev.x) {
+            addNode(x, y); // уже реализовано
+            return;
+        }
+
+        // Случай 3: вставка в середину
+        current = head;
+        while (current.next != head) {
+            if (current.x < x && x < current.next.x) {
+                Node newNode = new Node(x, y);
+                newNode.prev = current;
+                newNode.next = current.next;
+                current.next.prev = newNode;
+                current.next = newNode;
+                count++;
+                return;
+            }
+            current = current.next;
+        }
+
+    }
 }

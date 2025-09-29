@@ -238,4 +238,68 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(81.0, f.getY(9), 1e-10);
         assertEquals(0.0, f.getY(0), 1e-10);
     }
+
+    @Test
+    void testEmptyList() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{}, new double[]{});
+        });
+    }
+
+    @Test
+    void testInsertReplacesYIfExists() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 2.0}, new double[]{1.0, 4.0});
+        f.insert(1.0, 100.0);
+        assertEquals(100.0, f.getY(0));
+        assertEquals(2, f.getCount());
+    }
+
+    @Test
+    void testInsertAtBeginning() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{2.0, 3.0}, new double[]{4.0, 9.0});
+        f.insert(1.0, 1.0);
+        assertEquals(1.0, f.getX(0));
+        assertEquals(2.0, f.getX(1));
+        assertEquals(3.0, f.getX(2));
+        assertEquals(1.0, f.getY(0));
+    }
+
+    @Test
+    void testInsertAtEnd() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 2.0}, new double[]{1.0, 4.0});
+        f.insert(3.0, 9.0);
+        assertEquals(3, f.getCount());
+        assertEquals(3.0, f.getX(2));
+        assertEquals(9.0, f.getY(2));
+    }
+
+    @Test
+    void testInsertInMiddle() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 3.0}, new double[]{1.0, 9.0});
+        f.insert(2.0, 4.0);
+        assertEquals(3, f.getCount());
+        assertEquals(1.0, f.getX(0));
+        assertEquals(2.0, f.getX(1));
+        assertEquals(3.0, f.getX(2));
+        assertEquals(4.0, f.getY(1));
+    }
+
+    @Test
+    void testInsertMaintainsOrder() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 4.0}, new double[]{1.0, 16.0});
+        f.insert(2.0, 4.0);
+        f.insert(3.0, 9.0);
+        f.insert(0.5, 0.25);
+        f.insert(5.0, 25.0);
+
+        double[] expectedX = {0.5, 1.0, 2.0, 3.0, 4.0, 5.0};
+        for (int i = 0; i < expectedX.length; i++) {
+            assertEquals(expectedX[i], f.getX(i), 1e-10);
+        }
+    }
 }
