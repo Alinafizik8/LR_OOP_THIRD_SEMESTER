@@ -125,7 +125,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         getNode(index).y = value;
     }
 
-    @Override
+    
     public int indexOfX(double x) {
         Node current = head;
         for (int i = 0; i < count; ++i) {
@@ -150,7 +150,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     // <<<<>>>> Реализация абстрактных методов из AbstractTabulatedFunction
 
-    @Override
+    
     protected int floorIndexOfX(double x) {
         if (x < leftBound()) {
             return 0;
@@ -170,7 +170,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         return count - 1;
     }
 
-    @Override
+    
     protected double extrapolateLeft(double x) {
         if (count == 1) return getY(0);
         // Линейная экстраполяция по первым двум точкам
@@ -179,7 +179,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
         return AbstractTabulatedFunction.interpolate(x, x0, x1, y0, y1);
     }
 
-    @Override
+    
     protected double extrapolateRight(double x) {
         if (count == 1) return getY(0);
         // Линейная экстраполяция по последним двум точкам
@@ -198,7 +198,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     // <<<<>>>> X*: Оптимизированный apply() без двойного прохода
-    @Override
+    
     public double apply(double x) {
         if (x < leftBound()) {
             return extrapolateLeft(x);
