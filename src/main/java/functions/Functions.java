@@ -13,7 +13,4 @@ public class Functions {
         return x -> outer.apply(inner.apply(x));
     }
 
-    public static MathFunction pow(MathFunction f, double exponent) {
-        return x -> Math.pow(f.apply(x), exponent);
-    }
 }

@@ -169,7 +169,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
                 high = mid - 1;
             }
         }
-        return 0; // fallback (не должно происходить)
+        return 0;
     }
 
     @Override

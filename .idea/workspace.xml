@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="студент Y, задание 2, готовы пункты 1,2">
-      <change afterPath="$PROJECT_DIR$/src/main/java/functions/Functions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/functions/CombinedTabulatedFunctionsTest.java" afterDir="false" />
+    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="студент Y, задание 2, почти final">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/AbstractTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/AbstractTabulatedFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/Functions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +162,23 @@
       <option name="project" value="LOCAL" />
       <updated>1759172138517</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="студент Y, задание 2, почти final">
+      <option name="closed" value="true" />
+      <created>1759173095584</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1759173095584</updated>
+    </task>
+    <task id="LOCAL-00008" summary="студент Y, задание 2, почти final">
+      <option name="closed" value="true" />
+      <created>1759173153975</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1759173153975</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -179,11 +198,23 @@
     <MESSAGE value="BigUpdate2" />
     <MESSAGE value="студент Y, задание 2, AbstractTabulatedFunction" />
     <MESSAGE value="студент Y, задание 2, готовы пункты 1,2" />
-    <option name="LAST_COMMIT_MESSAGE" value="студент Y, задание 2, готовы пункты 1,2" />
+    <MESSAGE value="студент Y, задание 2, почти final" />
+    <option name="LAST_COMMIT_MESSAGE" value="студент Y, задание 2, почти final" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java</url>
+          <line>205</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759172929746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic" NAME="ArrayTabulatedFunctionTest Coverage Results" MODIFIED="1759172551016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759174655572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic" NAME="ArrayTabulatedFunctionTest Coverage Results" MODIFIED="1759174168723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.*</FILTER>
     </SUITE>
   </component>

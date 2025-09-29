@@ -39,10 +39,6 @@ public abstract class AbstractTabulatedFunction implements MathFunction {
     @Override
     public double apply(double x) {
         int count = getCount();
-        if (count == 0) {
-            throw new IllegalStateException("Function has no points");
-        }
-
         double firstX = getX(0);
         double lastX = getX(count - 1);
 
