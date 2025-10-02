@@ -1,6 +1,10 @@
 package functions;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LinkedListTabulatedFunctionTest {
@@ -8,7 +12,7 @@ public class LinkedListTabulatedFunctionTest {
     private static final MathFunction IDENTITY = new IdentityFunction();
     private static final MathFunction SQUARE = new SqrFunction();
 
-    // =============== Конструктор из массивов ===============
+    // <<<<<<>>>>>> Конструктор из массивов
 
     @Test
     void constructorFromArrays_validInput_createsCorrectList() {
@@ -32,6 +36,13 @@ public class LinkedListTabulatedFunctionTest {
     }
 
     @Test
+    void constructorFromArrays_singlePoint_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new LinkedListTabulatedFunction(new double[]{1.0}, new double[]{1.0});
+        });
+    }
+
+    @Test
     void constructorFromArrays_unequalLengths_throwsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             new LinkedListTabulatedFunction(new double[]{1.0}, new double[]{1.0, 2.0});
@@ -48,15 +59,7 @@ public class LinkedListTabulatedFunctionTest {
         });
     }
 
-    // =============== Конструктор из функции ===============
-
-    @Test
-    void constructorFromFunction_singlePoint_createsOneNode() {
-        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(IDENTITY, 5.0, 5.0, 1);
-        assertEquals(1, f.getCount());
-        assertEquals(5.0, f.getX(0), 1e-10);
-        assertEquals(5.0, f.getY(0), 1e-10);
-    }
+    //  <<<<<<>>>>>> Конструктор из функции
 
     @Test
     void constructorFromFunction_multiplePoints_createsCorrectValues() {
@@ -68,6 +71,13 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(0.0, f.getY(0), 1e-10);
         assertEquals(1.0, f.getY(1), 1e-10);
         assertEquals(4.0, f.getY(2), 1e-10);
+    }
+
+    @Test
+    void constructorFromFunction_singlePoint_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new LinkedListTabulatedFunction(IDENTITY, 0.0, 1.0, 1);
+        });
     }
 
     @Test
@@ -85,7 +95,7 @@ public class LinkedListTabulatedFunctionTest {
         });
     }
 
-    // =============== Методы TabulatedFunction ===============
+    // <<<<<<>>>>>> Методы TabulatedFunction
 
     @Test
     void getX_and_getY_validIndices_returnCorrectValues() {
@@ -130,7 +140,7 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(-1, f.indexOfY(15.0));
     }
 
-    // =============== floorIndexOfX ===============
+    // <<<<<<>>>>>> floorIndexOfX
 
     @Test
     void floorIndexOfX_xLessThanLeftBound_returnsZero() {
@@ -156,7 +166,7 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(1, f.floorIndexOfX(1.7)); // между 1.0 и 2.0 → индекс 1
     }
 
-    // =============== Интерполяция и экстраполяция ===============
+    // <<<<<<>>>>>> Интерполяция и экстраполяция
 
     @Test
     void interpolate_linearInterpolation_works() {
@@ -179,13 +189,7 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(7.0, result, 1e-10);
     }
 
-    @Test
-    void interpolate_countOne_returnsOnlyValue() {
-        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{5.0}, new double[]{25.0});
-        assertEquals(25.0, f.interpolate(100.0, 0), 1e-10);
-    }
-
-    // =============== apply() (включая X*) ===============
+    // <<<<<<>>>>>> apply() (включая X*)
 
     @Test
     void apply_exactX_returnsY() {
@@ -211,13 +215,7 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(7.0, f.apply(3.0), 1e-10);
     }
 
-    @Test
-    void apply_countOne_returnsOnlyValue() {
-        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(new double[]{10.0}, new double[]{100.0});
-        assertEquals(100.0, f.apply(999.0), 1e-10);
-    }
-
-    // =============== Внутренняя структура ===============
+    // <<<<<<>>>>>> Внутренняя структура
 
     @Test
     void cyclicList_headPrevIsLastNode() {
@@ -238,6 +236,8 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(81.0, f.getY(9), 1e-10);
         assertEquals(0.0, f.getY(0), 1e-10);
     }
+
+    // <<<<<<>>>>>> Insert
 
     @Test
     void testEmptyList() {
@@ -303,6 +303,8 @@ public class LinkedListTabulatedFunctionTest {
         }
     }
 
+    // <<<<<<>>>>>> Remove
+
     @Test
     void remove_middleElement_updatesList() {
         LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
@@ -340,8 +342,10 @@ public class LinkedListTabulatedFunctionTest {
     @Test
     void remove_onlyElement_makesListEmpty() {
         LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
-                new double[]{5.0}, new double[]{25.0}
+                new double[]{5.0, 6.0}, new double[]{25.0, 26.0}
         );
+        f.remove(0);
+        assertEquals(1, f.getCount());
         f.remove(0);
         assertEquals(0, f.getCount());
         // head == null, дальнейшие вызовы недопустимы
@@ -349,10 +353,110 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     void remove_invalidIndex_throwsException() {
+        // Создаём корректную функцию из 2 точек (минимум по требованиям ЛР №3)
         LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
-                new double[]{1.0}, new double[]{1.0}
+                new double[]{1.0, 2.0},
+                new double[]{1.0, 4.0}
         );
+
+        // Попытка удалить индекс -1 должно выбросить исключение
         assertThrows(IndexOutOfBoundsException.class, () -> f.remove(-1));
-        assertThrows(IndexOutOfBoundsException.class, () -> f.remove(1));
+
+        // Попытка удалить индекс 2 (равен count) тоже недопустимо
+        assertThrows(IndexOutOfBoundsException.class, () -> f.remove(2));
+    }
+
+    @Test
+    void constructorFromFunction_xFromEqualsXTo_createsConstantFunction() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(IDENTITY, 5.0, 5.0, 3);
+        assertEquals(3, f.getCount());
+        for (int i = 0; i < 3; i++) {
+            assertEquals(5.0, f.getX(i), 1e-10);
+            assertEquals(5.0, f.getY(i), 1e-10);
+        }
+    }
+
+    @Test
+    void getX_invalidIndex_throwsIndexOutOfBoundsException() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 2.0}, new double[]{1.0, 4.0}
+        );
+        assertThrows(IndexOutOfBoundsException.class, () -> f.getX(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> f.getX(2));
+    }
+
+    @Test
+    void insert_intoEmptyListAfterRemoval_usesHeadNullBranch() {
+        // Создаём функцию из 2 точек (минимум по требованиям ЛР №3)
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 2.0},
+                new double[]{1.0, 4.0}
+        );
+
+        // Удаляем обе точки → список становится пустым
+        f.remove(0); // остаётся 1 точка
+        f.remove(0); // head == null
+
+        // Теперь вставляем в пустой список
+        f.insert(5.0, 25.0);
+
+        // Проверяем, что вставка прошла успешно
+        assertEquals(1, f.getCount());
+        assertEquals(5.0, f.getX(0), 1e-10);
+        assertEquals(25.0, f.getY(0), 1e-10);
+    }
+
+    @Test
+    void iterator_whileLoop_worksCorrectly() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 2.0, 3.0},
+                new double[]{1.0, 4.0, 9.0}
+        );
+
+        Iterator<Point> iterator = f.iterator();
+        int i = 0;
+        double[] expectedX = {1.0, 2.0, 3.0};
+        double[] expectedY = {1.0, 4.0, 9.0};
+
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(expectedX[i], point.x, 1e-10);
+            assertEquals(expectedY[i], point.y, 1e-10);
+            i++;
+        }
+        assertEquals(3, i);
+    }
+
+    @Test
+    void iterator_forEachLoop_worksCorrectly() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{0.0, 1.0, 2.0},
+                new double[]{0.0, 1.0, 4.0}
+        );
+
+        double[] expectedX = {0.0, 1.0, 2.0};
+        double[] expectedY = {0.0, 1.0, 4.0};
+        int i = 0;
+
+        for (Point point : f) {
+            assertEquals(expectedX[i], point.x, 1e-10);
+            assertEquals(expectedY[i], point.y, 1e-10);
+            i++;
+        }
+        assertEquals(3, i);
+    }
+
+    @Test
+    void iterator_emptyList_throwsNoSuchElementException() {
+        // Создаём из 2 точек и удаляем обе
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 2.0}, new double[]{1.0, 4.0}
+        );
+        f.remove(0);
+        f.remove(0); // теперь head == null
+
+        Iterator<Point> it = f.iterator();
+        assertFalse(it.hasNext());
+        assertThrows(NoSuchElementException.class, it::next);
     }
 }

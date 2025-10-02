@@ -1,6 +1,7 @@
 package functions;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     private double[] xValues;
@@ -53,6 +54,11 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         this.xValues = newX;
         this.yValues = newY;
         this.count++;
+    }
+
+    //@Override
+    public Iterator<Point> iterator() {
+        throw new UnsupportedOperationException();
     }
 
     @Override

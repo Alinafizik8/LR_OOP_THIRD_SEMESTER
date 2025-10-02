@@ -1,6 +1,9 @@
 package functions;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Iterable<Point>{
 
     private static class Node {
         double x;
@@ -66,8 +69,11 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     // <<<<>>>> Конструктор c двумя параметрами: массивы xValues, yValues
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
-        if (xValues.length != yValues.length || xValues.length == 0) {
-            throw new IllegalArgumentException("Массивы должны быть одинаковой длины и не пустыми");
+        if (xValues.length < 2) {
+            throw new IllegalArgumentException("Таблица должна содержать минимум 2 точки");
+        }
+        if (xValues.length != yValues.length) {
+            throw new IllegalArgumentException("Массивы должны быть одинаковой длины");
         }
         // Проверка на строгую упорядоченность и уникальность x
         for (int i = 1; i < xValues.length; i++) {
@@ -85,8 +91,8 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     // <<<<>>>> Конструктор с четырьмя параметрами: из функции, интервала и количества точек
     public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
-        if (count < 1) {
-            throw new IllegalArgumentException("Количество точек должно быть >= 1");
+        if (count < 2) {
+            throw new IllegalArgumentException("Количество точек должно быть >= 2");
         }
         if (xFrom > xTo) {
             double temp = xFrom;
@@ -200,7 +206,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     
     protected double extrapolateLeft(double x) {
-        if (count == 1) return getY(0);
         // Линейная экстраполяция по первым двум точкам
         double x0 = getX(0), y0 = getY(0);
         double x1 = getX(1), y1 = getY(1);
@@ -209,7 +214,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     
     protected double extrapolateRight(double x) {
-        if (count == 1) return getY(0);
         // Линейная экстраполяция по последним двум точкам
         double x0 = getX(count - 2), y0 = getY(count - 2);
         double x1 = getX(count - 1), y1 = getY(count - 1);
@@ -217,7 +221,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     protected double interpolate(double x, int floorIndex) {
-        if (count == 1) return getY(0);
         double x0 = getX(floorIndex);
         double y0 = getY(floorIndex);
         double x1 = getX(floorIndex + 1);
@@ -320,11 +323,37 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
                 newNode.next = current.next;
                 current.next.prev = newNode;
                 current.next = newNode;
-                count++;
+                ++count;
                 return;
             }
             current = current.next;
         }
+    }
 
+    //@Override
+    public Iterator<Point> iterator() {
+        return new Iterator<Point>() {
+            private Node node = head; // начинаем с головы
+
+            @Override
+            public boolean hasNext() {
+                return node != null;
+            }
+
+            @Override
+            public Point next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                Point point = new Point(node.x, node.y);
+                // Если текущий узел — последний, то после него идёт head → завершаем итерацию
+                if (node.next == head) {
+                    node = null; // конец списка
+                } else {
+                    node = node.next;
+                }
+                return point;
+            }
+        };
     }
 }
