@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ArrayTabulatedFunctionTest {
 
     private static final MathFunction SQUARE = x -> x * x;
+    private final ArrayTabulatedFunction function =new ArrayTabulatedFunction(new double[]{1.0, 2.0, 4.0},new double[]{10.0, 20.0, 40.0});
 
     // Тесты первого конструктора: ArrayTabulatedFunction(double[], double[])
 
@@ -225,6 +226,22 @@ public class ArrayTabulatedFunctionTest {
     }
 
     @Test
+    void interpolate_throwsExceptions() {
+        assertThrows(InterpolationException.class, () -> {
+            function.interpolate(0.5, 0);
+        });
+        assertThrows(InterpolationException.class, () -> {
+            function.interpolate(1.0, 0);
+        });
+        assertThrows(InterpolationException.class, () -> {
+            function.interpolate(2.0, 0);
+        });
+        assertThrows(InterpolationException.class, () -> {
+            function.interpolate(2.5, 0);
+        });
+    }
+
+    @Test
     void testExtrapolateLeft() {
         ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1, 4});
         // Наклон = 3, y = 3x - 2 → при x=0: y=-2
@@ -241,7 +258,6 @@ public class ArrayTabulatedFunctionTest {
     @Test
     void testSinglePointInterpolationExtrapolation() {
         ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{5,6}, new double[]{25,26});
-        assertEquals(30.0, f.interpolate(10.0, 0));
         assertEquals(20.0, f.extrapolateLeft(0.0));
         assertEquals(30.0, f.extrapolateRight(10.0));
     }

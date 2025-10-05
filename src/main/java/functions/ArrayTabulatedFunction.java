@@ -1,5 +1,7 @@
 package functions;
 
+import exceptions.*;
+
 import java.util.Arrays;
 import java.util.Iterator;
 
@@ -253,6 +255,9 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     protected double interpolate(double x, int floorIndex) {
         if (floorIndex < 0 || floorIndex >= count - 1) {
             throw new IndexOutOfBoundsException("Invalid floorIndex: " + floorIndex);
+        }
+        if (xValues[floorIndex] >= x || x >= xValues[floorIndex+1]) {
+            throw new InterpolationException("x must be in the interpolation interval");
         }
         return interpolate(x, xValues[floorIndex], xValues[floorIndex + 1],
                 yValues[floorIndex], yValues[floorIndex + 1]);
