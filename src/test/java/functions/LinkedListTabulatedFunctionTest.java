@@ -1,5 +1,6 @@
 package functions;
 
+import exceptions.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
@@ -51,10 +52,10 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     void constructorFromArrays_nonStrictlyIncreasingX_throwsException() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(ArrayIsNotSortedException.class, () -> {
             new LinkedListTabulatedFunction(new double[]{1.0, 1.0, 2.0}, new double[]{1.0, 1.0, 4.0});
         });
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(ArrayIsNotSortedException.class, () -> {
             new LinkedListTabulatedFunction(new double[]{1.0, 3.0, 2.0}, new double[]{1.0, 9.0, 4.0});
         });
     }

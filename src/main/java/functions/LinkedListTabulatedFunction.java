@@ -69,18 +69,14 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     // <<<<>>>> Конструктор c двумя параметрами: массивы xValues, yValues
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
+        if (xValues == null || yValues == null) {
+            throw new IllegalArgumentException("Arrays can not be null");
+        }
         if (xValues.length < 2) {
             throw new IllegalArgumentException("Таблица должна содержать минимум 2 точки");
         }
-        if (xValues.length != yValues.length) {
-            throw new IllegalArgumentException("Массивы должны быть одинаковой длины");
-        }
-        // Проверка на строгую упорядоченность и уникальность x
-        for (int i = 1; i < xValues.length; i++) {
-            if (xValues[i] <= xValues[i - 1]) {
-                throw new IllegalArgumentException("xValues должны быть строго возрастающими");
-            }
-        }
+        checkLengthIsTheSame(xValues,yValues);
+        checkSorted(xValues);
 
         this.head = null;
 
