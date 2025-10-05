@@ -7,8 +7,6 @@ public class ArrayTabulatedFunctionTest {
 
     private static final MathFunction SQUARE = x -> x * x;
 
-
-
     // Тесты первого конструктора: ArrayTabulatedFunction(double[], double[])
 
     @Test
@@ -109,22 +107,22 @@ public class ArrayTabulatedFunctionTest {
 
     @Test
     void testGetCount() {
-        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1}, new double[]{1});
-        assertEquals(1, f.getCount());
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1,2}, new double[]{1,2});
+        assertEquals(2, f.getCount());
     }
 
     @Test
     void testGetXInvalidIndex() {
-        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1}, new double[]{1});
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1,3}, new double[]{1,5});
         assertThrows(IndexOutOfBoundsException.class, () -> f.getX(-1));
-        assertThrows(IndexOutOfBoundsException.class, () -> f.getX(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> f.getX(2));
     }
 
     @Test
     void testGetYInvalidIndex() {
-        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1}, new double[]{1});
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1,2}, new double[]{1,4});
         assertThrows(IndexOutOfBoundsException.class, () -> f.getY(-1));
-        assertThrows(IndexOutOfBoundsException.class, () -> f.getY(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> f.getY(2));
     }
 
     @Test
@@ -136,9 +134,9 @@ public class ArrayTabulatedFunctionTest {
 
     @Test
     void testSetYInvalidIndex() {
-        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1}, new double[]{1});
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1,2}, new double[]{1,3});
         assertThrows(IndexOutOfBoundsException.class, () -> f.setY(-1, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> f.setY(1, 0));
+        assertThrows(IndexOutOfBoundsException.class, () -> f.setY(2, 0));
     }
 
     @Test
@@ -205,9 +203,9 @@ public class ArrayTabulatedFunctionTest {
 
     @Test
     void testFloorIndexOO() {
-        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{5}, new double[]{25});
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{5,6}, new double[]{25,26});
         assertEquals(0, f.floorIndexOfX(4.0));
-        assertEquals(1, f.floorIndexOfX(6.0));
+        assertEquals(0, f.floorIndexOfX(6.0));
     }
 
     // Тесты интерполяции и экстраполяции
@@ -241,10 +239,10 @@ public class ArrayTabulatedFunctionTest {
 
     @Test
     void testSinglePointInterpolationExtrapolation() {
-        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{5}, new double[]{25});
-        assertEquals(25.0, f.interpolate(10.0, 0));
-        assertEquals(25.0, f.extrapolateLeft(0.0));
-        assertEquals(25.0, f.extrapolateRight(10.0));
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{5,6}, new double[]{25,26});
+        assertEquals(30.0, f.interpolate(10.0, 0));
+        assertEquals(20.0, f.extrapolateLeft(0.0));
+        assertEquals(30.0, f.extrapolateRight(10.0));
     }
 
     // Тест apply() из AbstractTabulatedFunction (неявно)
@@ -322,7 +320,7 @@ public class ArrayTabulatedFunctionTest {
     @Test
     void testRemoveLastPointForbidden() {
         ArrayTabulatedFunction f = new ArrayTabulatedFunction(
-                new double[]{5}, new double[]{25});
+                new double[]{5,6}, new double[]{25,3});
         assertThrows(IllegalStateException.class, () -> f.remove(0));
     }
 

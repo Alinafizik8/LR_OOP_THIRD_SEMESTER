@@ -1,5 +1,7 @@
 package functions;
 
+import exceptions.*;
+
 public abstract class AbstractTabulatedFunction implements MathFunction,Removable {
 
     //Возвращает количество точек в таблице
@@ -60,4 +62,23 @@ public abstract class AbstractTabulatedFunction implements MathFunction,Removabl
         // floorIndex гарантированно в диапазоне [0, count - 2]
         return interpolate(x, floorIndex);
     }
+
+    static void checkLengthIsTheSame(double[] xValues, double[] yValues){
+        if (xValues.length != yValues.length){
+            throw new DifferentLengthOfArraysException("The length of the arrays cannot be different!");
+        }
+    };
+
+    static void checkSorted(double[] xValues) {
+        double x_prev = xValues[0];
+        for (int i = 1; i < xValues.length; i++){
+            if (xValues[i] > x_prev){
+                x_prev = xValues[i];
+            }
+            else {
+                throw new ArrayIsNotSortedException("The array must be sorted in ascending order!");
+            }
+        }
+    };
+
 }

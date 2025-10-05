@@ -27,10 +27,11 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
         // 2. Находим позицию для вставки
         int insertIndex = count; // по умолчанию — в конец
-        for (int i = 0; i < count; i++) {
+        boolean A = true;
+        for (int i = 0; i < count && A; i++) {
             if (x < xValues[i]) {
                 insertIndex = i;
-                break;
+                A = false;
             }
         }
 
@@ -66,12 +67,8 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         if (index < 0 || index >= count) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + count);
         }
-        if (count == 1) {
-            // После удаления список станет пустым — но по условию задачи,
-            // табулированная функция не может быть пустой.
-            // Однако, если разрешено, можно обнулить.
-            // Но лучше запретить удаление последнего элемента.
-            throw new IllegalStateException("Cannot remove the last point from a tabulated function");
+        if (count == 2) {
+            throw new IllegalStateException("The length can not be less than 2");
         }
 
         // Создаём новые массивы меньшего размера
@@ -93,13 +90,13 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
         if (xValues == null || yValues == null) {
-            throw new IllegalArgumentException("Arrays must not be null");
+            throw new IllegalArgumentException("Arrays can not be null");
+        }
+        if (xValues.length < 2) {
+            throw new IllegalArgumentException("The length must be more than 2");
         }
         if (xValues.length != yValues.length) {
             throw new IllegalArgumentException("Arrays must have the same length");
-        }
-        if (xValues.length == 0) {
-            throw new IllegalArgumentException("Arrays must not be empty");
         }
         // Проверка на строгое возрастание
         for (int i = 1; i < xValues.length; i++) {
@@ -121,8 +118,8 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
      * count  количество точек
      */
     public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
-        if (count <= 0) {
-            throw new IllegalArgumentException("Count must be positive");
+        if (count < 2) {
+            throw new IllegalArgumentException("The length must be more than 2");
         }
         if (source == null) {
             throw new IllegalArgumentException("Source function must not be null");
@@ -170,7 +167,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     @Override
     protected double getY(int index) {
         if (index < 0 || index >= count) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + count);
+            throw new ArrayIndexOutOfBoundsException("Index: " + index + ", Size: " + count);
         }
         return yValues[index];
     }
@@ -180,7 +177,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
      */
     public void setY(int index, double y) {
         if (index < 0 || index >= count) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + count);
+            throw new ArrayIndexOutOfBoundsException("Index: " + index + ", Size: " + count);
         }
         yValues[index] = y;
     }
@@ -220,10 +217,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected int floorIndexOfX(double x) {
-        if (count == 1) {
-            return x < xValues[0] ? 0 : count; // но count=1, так что 1
-        }
-
         if (x <= xValues[0]) {
             return 0;
         }
@@ -251,18 +244,12 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected double extrapolateLeft(double x) {
-        if (count == 1) {
-            return yValues[0];
-        }
         // Линейная экстраполяция слева через первые две точки
         return interpolate(x, xValues[0], xValues[1], yValues[0], yValues[1]);
     }
 
     @Override
     protected double extrapolateRight(double x) {
-        if (count == 1) {
-            return yValues[0];
-        }
         // Линейная экстраполяция справа через последние две точки
         int lastIndex = count - 1;
         return interpolate(x, xValues[lastIndex - 1], xValues[lastIndex],
@@ -271,9 +258,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected double interpolate(double x, int floorIndex) {
-        if (count == 1) {
-            return yValues[0];
-        }
         if (floorIndex < 0 || floorIndex >= count - 1) {
             throw new IndexOutOfBoundsException("Invalid floorIndex: " + floorIndex);
         }

@@ -83,8 +83,4 @@ public class BSplineTest {
         });
     }
 
-    @Test
-    public void prois(){
-
-    }
 }
