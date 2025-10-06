@@ -210,7 +210,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     @Override
     protected double extrapolateLeft(double x) {
-        // Линейная экстраполяция по первым двум точкам
         double x0 = getX(0), y0 = getY(0);
         double x1 = getX(1), y1 = getY(1);
         return AbstractTabulatedFunction.interpolate(x, x0, x1, y0, y1);
@@ -218,7 +217,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     @Override
     protected double extrapolateRight(double x) {
-        // Линейная экстраполяция по последним двум точкам
         double x0 = getX(count - 2), y0 = getY(count - 2);
         double x1 = getX(count - 1), y1 = getY(count - 1);
         return AbstractTabulatedFunction.interpolate(x, x0, x1, y0, y1);
@@ -230,7 +228,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         double y0 = getY(floorIndex);
         double x1 = getX(floorIndex + 1);
         double y1 = getY(floorIndex + 1);
-        return AbstractTabulatedFunction.interpolate(x, x0, x1, y0, y1);
+        return AbstractTabulatedFunction.interpolateStrict(x, x0, x1, y0, y1);
     }
 
     // <<<<>>>> X*: Оптимизированный apply() без двойного прохода

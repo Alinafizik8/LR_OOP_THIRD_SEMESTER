@@ -212,7 +212,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     @Override
     public int indexOfX(double x) {
         for (int i = 0; i < count; i++) {
-            if (xValues[i] == x) {
+            if (Math.abs(xValues[i] - x) < 1e-10) {
                 return i;
             }
         }
@@ -222,7 +222,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     @Override
     public int indexOfY(double y) {
         for (int i = 0; i < count; i++) {
-            if (yValues[i] == y) {
+            if (Math.abs(yValues[i] - y) < 1e-10) {
                 return i;
             }
         }

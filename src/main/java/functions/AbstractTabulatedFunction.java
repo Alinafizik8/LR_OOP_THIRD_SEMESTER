@@ -34,6 +34,15 @@ public abstract class AbstractTabulatedFunction implements MathFunction,Removabl
         // Линейная интерполяция: y = y1 + (x - x1) * (y2 - y1) / (x2 - x1)
         return leftY + (x - leftX) * (rightY - leftY) / (rightX - leftX);
     }
+    protected static double interpolateStrict(double x, double leftX, double rightX, double leftY, double rightY) {
+        if (leftX >= rightX) {
+            throw new InterpolationException("leftX must be less than rightX");
+        }
+        if (x < leftX || x > rightX) {
+            throw new InterpolationException("x is outside interpolation interval [" + leftX + ", " + rightX + "]");
+        }
+        return leftY + (x - leftX) * (rightY - leftY) / (rightX - leftX);
+    }
 
     /**
      * Реализация метода из интерфейса MathFunction.

@@ -100,4 +100,26 @@ public class AbstractTabulatedFunctionTest {
         assertThrows(ArrayIsNotSortedException.class,
                 () -> AbstractTabulatedFunction.checkSorted(x));
     }
+
+    @Test
+    void interpolateStrict_leftXGreaterOrEqualRightX_throwsInterpolationException() {
+        // Случай 1: leftX == rightX
+        InterpolationException e1 = assertThrows(InterpolationException.class, () ->
+                AbstractTabulatedFunction.interpolateStrict(1.0, 1.0, 1.0, 0.0, 1.0)
+        );
+        assertTrue(e1.getMessage().contains("leftX must be less than rightX"));
+
+        // Случай 2: leftX > rightX
+        InterpolationException e2 = assertThrows(InterpolationException.class, () ->
+                AbstractTabulatedFunction.interpolateStrict(1.0, 2.0, 1.0, 0.0, 1.0)
+        );
+        assertTrue(e2.getMessage().contains("leftX must be less than rightX"));
+    }
+    @Test
+    void interpolateStrict_xOutsideInterval_throwsInterpolationException() {
+        InterpolationException e = assertThrows(InterpolationException.class, () ->
+                AbstractTabulatedFunction.interpolateStrict(3.0, 1.0, 2.0, 1.0, 4.0)
+        );
+        assertTrue(e.getMessage().contains("outside interpolation interval"));
+    }
 }
