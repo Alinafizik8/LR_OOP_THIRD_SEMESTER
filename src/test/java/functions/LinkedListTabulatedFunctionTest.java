@@ -460,4 +460,5 @@ public class LinkedListTabulatedFunctionTest {
         assertFalse(it.hasNext());
         assertThrows(NoSuchElementException.class, it::next);
     }
+
 }
