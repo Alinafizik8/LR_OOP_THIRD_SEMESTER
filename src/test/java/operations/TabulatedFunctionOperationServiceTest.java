@@ -1,5 +1,6 @@
 package operations;
 import functions.*;
+import functions.factory.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,4 +52,73 @@ class TabulatedFunctionOperationServiceTest {
             assertNotNull(p);
         }
     }
+
+    @Test
+    void defaultConstructor_shouldInitializeFactoryWithArrayTabulatedFunctionFactory() {
+        TabulatedFunctionOperationService service = new TabulatedFunctionOperationService();
+        assertNotNull(service.getFactory());
+        // Проверяем, что это именно ArrayTabulatedFunctionFactory
+        assertTrue(service.getFactory() instanceof ArrayTabulatedFunctionFactory);
+    }
+
+    @Test
+    void parameterizedConstructor_shouldSetProvidedFactory() {
+        TabulatedFunctionFactory customFactory = new ArrayTabulatedFunctionFactory();
+        TabulatedFunctionOperationService service = new TabulatedFunctionOperationService(customFactory);
+
+        assertEquals(customFactory, service.getFactory());
+    }
+
+    @Test
+    void parameterizedConstructor_shouldThrowExceptionWhenFactoryIsNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new TabulatedFunctionOperationService((TabulatedFunctionFactory) null);
+        });
+    }
+
+    @Test
+    void setFactory_shouldUpdateFactory() {
+        TabulatedFunctionOperationService service = new TabulatedFunctionOperationService();
+        TabulatedFunctionFactory newFactory = new ArrayTabulatedFunctionFactory();
+
+        service.setFactory(newFactory);
+        assertEquals(newFactory, service.getFactory());
+    }
+
+    @Test
+    void setFactory_shouldThrowExceptionWhenSettingNull() {
+        TabulatedFunctionOperationService service = new TabulatedFunctionOperationService();
+        assertThrows(IllegalArgumentException.class, () -> {
+            service.setFactory(null);
+        });
+    }
+
+    @Test
+    void asPoints_shouldConvertTabulatedFunctionToArray() {
+        double[] x = {1.0, 2.0, 3.0};
+        double[] y = {10.0, 20.0, 30.0};
+        TabulatedFunction func = new ArrayTabulatedFunctionFactory(x, y);
+
+        Point[] points = TabulatedFunctionOperationService.asPoints(func);
+
+        assertEquals(3, points.length);
+        assertEquals(new Point(1.0, 10.0), points[0]);
+        assertEquals(new Point(2.0, 20.0), points[1]);
+        assertEquals(new Point(3.0, 30.0), points[2]);
+    }
+
+    @Test
+    void asPoints_shouldReturnEmptyArrayForEmptyFunction() {
+        TabulatedFunction emptyFunc = new ArrayTabulatedFunctionFactory(new double[0], new double[0]);
+        Point[] points = TabulatedFunctionOperationService.asPoints(emptyFunc);
+        assertEquals(0, points.length);
+    }
+
+    @Test
+    void asPoints_shouldThrowNullPointerExceptionWhenInputIsNull() {
+        assertThrows(NullPointerException.class, () -> {
+            TabulatedFunctionOperationService.asPoints(null);
+        });
+    }
+
 }

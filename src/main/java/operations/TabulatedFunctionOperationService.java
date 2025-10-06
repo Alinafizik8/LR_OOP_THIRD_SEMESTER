@@ -1,10 +1,32 @@
 package operations;
 import functions.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import functions.factory.*;
 
 public class TabulatedFunctionOperationService {
+
+    TabulatedFunctionFactory factory;
+
+    public TabulatedFunctionOperationService() {
+        this.factory = new ArrayTabulatedFunctionFactory();
+    }
+
+    public TabulatedFunctionOperationService(TabulatedFunctionFactory factory) {
+        if (factory == null) {
+            throw new IllegalArgumentException("Factory cannot be null");
+        }
+        this.factory = factory;
+    }
+
+    public TabulatedFunctionFactory getFactory() {
+        return factory;
+    }
+
+    public void setFactory(TabulatedFunctionFactory factory) {
+        if (factory == null) {
+            throw new IllegalArgumentException("Factory cannot be null");
+        }
+        this.factory = factory;
+    }
 
     public static Point[] asPoints(TabulatedFunction tabulatedFunction) {
         if (tabulatedFunction == null) {
@@ -21,4 +43,5 @@ public class TabulatedFunctionOperationService {
         return points;
     }
 
+    //методы сложения и методы вычитания должны быть тут
 }
