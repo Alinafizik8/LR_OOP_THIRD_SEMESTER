@@ -4,6 +4,7 @@ import exceptions.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -391,6 +392,39 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(3, f.getCount());
         assertEquals(3.0, f.getX(2), 1e-10);
         assertEquals(9.0, f.getY(2), 1e-10);
+    }
+
+    //Тесты для итератора
+
+    // Вспомогательный метод для создания тестовой функции
+    @Test
+    void iterator_whileLoop_worksCorrectly() {
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{1.0, 2.0, 3.0}, new double[]{1.0, 4.0, 9.0});
+        Iterator<Point> iterator = f.iterator();
+        int i = 0;
+        double[] expectedX = {1.0, 2.0, 3.0};
+        double[] expectedY = {1.0, 4.0, 9.0};
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(expectedX[i], point.x, 1e-10);
+            assertEquals(expectedY[i], point.y, 1e-10);
+            i++;
+        }
+        assertEquals(3, i);
+    }
+
+    @Test
+    void iterator_forEachLoop_worksCorrectly() {
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(new double[]{0.0, 1.0, 2.0}, new double[]{0.0, 1.0, 4.0});
+        double[] expectedX = {0.0, 1.0, 2.0};
+        double[] expectedY = {0.0, 1.0, 4.0};
+        int i = 0;
+        for (Point point : f) {
+            assertEquals(expectedX[i], point.x, 1e-10);
+            assertEquals(expectedY[i], point.y, 1e-10);
+            i++;
+        }
+        assertEquals(3, i);
     }
 
 }
