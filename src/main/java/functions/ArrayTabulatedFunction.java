@@ -4,8 +4,9 @@ import exceptions.*;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements TabulatedFunction {
     private double[] xValues;
     private double[] yValues;
     private int count;
@@ -57,11 +58,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         this.xValues = newX;
         this.yValues = newY;
         this.count++;
-    }
-
-    //@Override
-    public Iterator<Point> iterator() {
-        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -147,12 +143,12 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     @Override
-    protected int getCount() {
+    public int getCount() {
         return count;
     }
 
     @Override
-    protected double getX(int index) {
+    public double getX(int index) {
         if (index < 0 || index >= count) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + count);
         }
@@ -160,7 +156,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     @Override
-    protected double getY(int index) {
+    public double getY(int index) {
         if (index < 0 || index >= count) {
             throw new ArrayIndexOutOfBoundsException("Index: " + index + ", Size: " + count);
         }
@@ -192,7 +188,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     @Override
-    protected int indexOfX(double x) {
+    public int indexOfX(double x) {
         for (int i = 0; i < count; i++) {
             if (xValues[i] == x) {
                 return i;
@@ -201,7 +197,8 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         return -1;
     }
 
-    protected int indexOfY(double y) {
+    @Override
+    public int indexOfY(double y) {
         for (int i = 0; i < count; i++) {
             if (yValues[i] == y) {
                 return i;

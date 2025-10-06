@@ -5,7 +5,7 @@ import exceptions.InterpolationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Iterable<Point>{
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements TabulatedFunction{
 
     private static class Node {
         double x;
@@ -116,15 +116,17 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     }
 
     // <<<<>>>> Реализация методов из TabulatedFunction
-
+    @Override
     public int getCount() {
         return count;
     }
 
+    @Override
     public double leftBound() {
         return head.x;
     }
 
+    @Override
     public double rightBound() {
         return head.prev.x;
     }
@@ -145,19 +147,22 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return current;
     }
 
+    @Override
     public double getX(int index) {
         return getNode(index).x;
     }
 
+    @Override
     public double getY(int index) {
         return getNode(index).y;
     }
 
+    @Override
     public void setY(int index, double value) {
         getNode(index).y = value;
     }
 
-    
+    @Override
     public int indexOfX(double x) {
         Node current = head;
         for (int i = 0; i < count; ++i) {
@@ -169,6 +174,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return -1;
     }
 
+    @Override
     public int indexOfY(double y) {
         Node current = head;
         for (int i = 0; i < count; ++i) {
@@ -182,7 +188,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     // <<<<>>>> Реализация абстрактных методов из AbstractTabulatedFunction
 
-    
+    @Override
     protected int floorIndexOfX(double x) {
         if (x < leftBound()) {
             return 0;
@@ -202,7 +208,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return count - 1;
     }
 
-    
+    @Override
     protected double extrapolateLeft(double x) {
         // Линейная экстраполяция по первым двум точкам
         double x0 = getX(0), y0 = getY(0);
@@ -210,7 +216,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return AbstractTabulatedFunction.interpolate(x, x0, x1, y0, y1);
     }
 
-    
+    @Override
     protected double extrapolateRight(double x) {
         // Линейная экстраполяция по последним двум точкам
         double x0 = getX(count - 2), y0 = getY(count - 2);
@@ -218,6 +224,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return AbstractTabulatedFunction.interpolate(x, x0, x1, y0, y1);
     }
 
+    @Override
     protected double interpolate(double x, int floorIndex) {
         double x0 = getX(floorIndex);
         double y0 = getY(floorIndex);
@@ -227,7 +234,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     }
 
     // <<<<>>>> X*: Оптимизированный apply() без двойного прохода
-    
+    @Override
     public double apply(double x) {
         if (x < leftBound()) {
             return extrapolateLeft(x);
@@ -328,7 +335,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         }
     }
 
-    //@Override
+    @Override
     public Iterator<Point> iterator() {
         return new Iterator<Point>() {
             private Node node = head; // начинаем с головы

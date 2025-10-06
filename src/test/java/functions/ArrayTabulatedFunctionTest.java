@@ -2,6 +2,9 @@ package functions;
 
 import exceptions.*;
 import org.junit.jupiter.api.Test;
+
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayTabulatedFunctionTest {
@@ -239,6 +242,12 @@ public class ArrayTabulatedFunctionTest {
         assertThrows(InterpolationException.class, () -> {
             function.interpolate(2.5, 0);
         });
+        assertThrows(IllegalArgumentException.class, () -> {
+            ArrayTabulatedFunction check = new ArrayTabulatedFunction(null,4,6,3);
+        });
+//        public Iterator<Point> iterator() {
+//            throw new UnsupportedOperationException();
+//        }
     }
 
     @Test

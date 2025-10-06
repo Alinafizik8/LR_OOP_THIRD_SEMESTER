@@ -2,7 +2,11 @@ package functions;
 
 import exceptions.*;
 
+import java.util.Iterator;
+
 public abstract class AbstractTabulatedFunction implements MathFunction,Removable {
+
+    public abstract Iterator<Point> iterator();
 
     //Возвращает количество точек в таблице
     protected abstract int getCount();
