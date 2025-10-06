@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="First task of third lab without stars">
-      <change afterPath="$PROJECT_DIR$/src/main/java/operations/TabulatedFunctionOperationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/operations/TabulatedFunctionOperationServiceTest.java" afterDir="false" />
+    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="Start second task of third lab, first line Y">
+      <change afterPath="$PROJECT_DIR$/src/test/java/exceptions/ArrayIsNotSortedExceptionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/exceptions/DifferentLengthOfArraysExceptionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +72,7 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="exceptions" />
       <recent name="operations" />
       <recent name="functions" />
     </key>
@@ -300,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759762824226</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Start second task of third lab, first line Y">
+      <option name="closed" value="true" />
+      <created>1759764692442</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1759764692442</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -329,13 +337,14 @@
     <MESSAGE value="Start 3lab almost second part of first task" />
     <MESSAGE value="Almost first task of third lab" />
     <MESSAGE value="First task of third lab without stars" />
-    <option name="LAST_COMMIT_MESSAGE" value="First task of third lab without stars" />
+    <MESSAGE value="Start second task of third lab, first line Y" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start second task of third lab, first line Y" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$AbstractTabulatedFunctionTest.ic" NAME="AbstractTabulatedFunctionTest Coverage Results" MODIFIED="1759651861262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759764379705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759764856663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$functions_in_LR_OOP_THIRD_SEMESTER.ic" NAME="functions in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759762762810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.*</FILTER>
     </SUITE>
