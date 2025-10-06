@@ -2,7 +2,7 @@ package functions;
 
 import java.util.function.Function;
 
-interface MathFunction {
+public interface MathFunction {
     double apply(double x);
     default CompositeFunction andThen(MathFunction afterFunction){
         if (afterFunction == null) {
