@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="Almost second part of first task">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/AbstractTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/AbstractTabulatedFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/LinkedListTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/LinkedListTabulatedFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="Almost first task of third lab" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -277,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759654984542</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Almost first task of third lab">
+      <option name="closed" value="true" />
+      <created>1759759475618</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1759759475618</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,7 +305,8 @@
     <MESSAGE value="Start 3lab first task without Point" />
     <MESSAGE value="Start 3lab first task with Point" />
     <MESSAGE value="Start 3lab almost second part of first task" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start 3lab almost second part of first task" />
+    <MESSAGE value="Almost first task of third lab" />
+    <option name="LAST_COMMIT_MESSAGE" value="Almost first task of third lab" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$AbstractTabulatedFunctionTest.ic" NAME="AbstractTabulatedFunctionTest Coverage Results" MODIFIED="1759651861262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
