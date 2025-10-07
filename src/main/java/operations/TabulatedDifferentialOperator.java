@@ -36,10 +36,6 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
         Point[] points = TabulatedFunctionOperationService.asPoints(function);
         int n = points.length;
 
-        if (n < 2) {
-            throw new IllegalArgumentException("Function must have at least 2 points for differentiation");
-        }
-
         double[] xValues = new double[n];
         double[] yValues = new double[n];
 

@@ -110,14 +110,6 @@ class TabulatedFunctionOperationServiceTest {
         assertEquals(30.0, points[2].y, 1e-10);
     }
 
-    /*@Test
-    void asPoints_shouldReturnEmptyArrayForEmptyFunction() {
-        TabulatedFunctionFactory factory = new ArrayTabulatedFunctionFactory();
-        TabulatedFunction emptyFunc = factory.create(new double[0], new double[0]);
-        Point[] points = TabulatedFunctionOperationService.asPoints(emptyFunc);
-        assertEquals(0, points.length);
-    }*/
-
     @Test
     void asPoints_shouldThrowNullPointerExceptionWhenInputIsNull() {
         assertThrows(NullPointerException.class, () -> {
