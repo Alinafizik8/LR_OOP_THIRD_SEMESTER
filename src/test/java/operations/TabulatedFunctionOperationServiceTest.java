@@ -3,6 +3,7 @@ package operations;
 import exceptions.InconsistentFunctionsException;
 import functions.*;
 import functions.factory.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -178,4 +179,80 @@ class TabulatedFunctionOperationServiceTest {
         assertThrows(InconsistentFunctionsException.class, () -> service.multiply(f, g));
     }
 
+    @Test
+    void testAdd_ArrayWithArray() {
+        double[] x = {1.0, 2.0, 3.0};
+        double[] y1 = {10.0, 20.0, 30.0};
+        double[] y2 = {1.0, 2.0, 3.0};
+
+        TabulatedFunction f1 = new ArrayTabulatedFunction(x, y1);
+        TabulatedFunction f2 = new ArrayTabulatedFunction(x, y2);
+
+        TabulatedFunctionOperationService service = new TabulatedFunctionOperationService();
+        TabulatedFunction result = service.plus(f1, f2);
+
+        assertEquals(3, result.getCount());
+        assertEquals(11.0, result.getY(0), 1e-10); // (1 * 0) = 0
+        assertEquals(22.0, result.getY(1), 1e-10); // (2 * 1) = 2
+        assertEquals(33.0, result.getY(2), 1e-10); // (3 * 4) = 12
+    }
+
+    @Test
+    void testSubtract_LinkedListWithLinkedList() {
+        double[] x = {0.0, 1.0, 2.0};
+        double[] y1 = {5.0, 7.0, 9.0};
+        double[] y2 = {2.0, 3.0, 4.0};
+
+        TabulatedFunction f1 = new LinkedListTabulatedFunction(x, y1);
+        TabulatedFunction f2 = new LinkedListTabulatedFunction(x, y2);
+
+        TabulatedFunctionOperationService service = new TabulatedFunctionOperationService();
+        TabulatedFunction result = service.minus(f1, f2);
+
+        assertEquals(3, result.getCount());
+        assertEquals(3.0, result.getY(0), 1e-10);
+        assertEquals(4.0, result.getY(1), 1e-10);
+        assertEquals(5.0, result.getY(2), 1e-10);
+    }
+
+    @Test
+    void testAdd_ArrayWithLinkedList() {
+        double[] x = {1.5, 2.5, 3.5};
+        double[] y1 = {100.0, 200.0, 300.0};
+        double[] y2 = {10.0, 20.0, 30.0};
+
+        TabulatedFunction f1 = new ArrayTabulatedFunction(x, y1);        // тип 1
+        TabulatedFunction f2 = new LinkedListTabulatedFunction(x, y2);   // тип 2
+
+        // Используем фабрику для Array — результат будет ArrayTabulatedFunction
+        TabulatedFunctionOperationService service = new TabulatedFunctionOperationService();
+        TabulatedFunction result = service.plus(f1, f2);
+
+        assertEquals(3, result.getCount());
+        assertEquals(110.0, result.getY(0), 1e-10);
+        assertEquals(220.0, result.getY(1), 1e-10);
+        assertEquals(330.0, result.getY(2), 1e-10);
+    }
+
+    @Test
+    void testSubtract_InconsistentLength_ThrowsException() {
+        TabulatedFunction f1 = new ArrayTabulatedFunction(new double[]{1, 2}, new double[]{1, 2});
+        TabulatedFunction f2 = new ArrayTabulatedFunction(new double[]{1, 2, 3}, new double[]{1, 2, 3});
+
+        TabulatedFunctionOperationService service = new TabulatedFunctionOperationService();
+        assertThrows(InconsistentFunctionsException.class, () -> service.minus(f1, f2));
+    }
+
+    @Test
+    void testAdd_InconsistentX_ThrowsException() {
+        double[] x1 = {1.0, 2.0, 3.0};
+        double[] x2 = {1.0, 2.1, 3.0}; // отличие во втором элементе
+        double[] y = {1.0, 2.0, 3.0};
+
+        TabulatedFunction f1 = new ArrayTabulatedFunction(x1, y);
+        TabulatedFunction f2 = new LinkedListTabulatedFunction(x2, y);
+
+        TabulatedFunctionOperationService service = new TabulatedFunctionOperationService();
+        assertThrows(InconsistentFunctionsException.class, () -> service.plus(f1, f2));
+    }
 }
