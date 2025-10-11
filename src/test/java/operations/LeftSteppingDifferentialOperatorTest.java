@@ -77,4 +77,17 @@ class LeftSteppingDifferentialOperatorTest {
 
         assertTrue(error2 < error1, "Более мелкий шаг должен давать меньшую погрешность");
     }
+
+    @Test
+    void setStepWorks() {
+        LeftSteppingDifferentialOperator op1 = new LeftSteppingDifferentialOperator();
+        op1.setStep(2.0);
+        assertEquals(2.0,op1.getStep());
+    }
+
+    @Test
+    void ThrowSetWorks() {
+        LeftSteppingDifferentialOperator op1 = new LeftSteppingDifferentialOperator();
+        assertThrows(IllegalArgumentException.class, () -> op1.setStep(0.0));
+    }
 }

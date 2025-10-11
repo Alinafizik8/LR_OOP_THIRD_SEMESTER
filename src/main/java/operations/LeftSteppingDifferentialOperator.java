@@ -8,6 +8,10 @@ public class LeftSteppingDifferentialOperator extends SteppingDifferentialOperat
         super(step1);
     }
 
+    public LeftSteppingDifferentialOperator() {
+        super();
+    }
+
     @Override
     public MathFunction derive(MathFunction function) {
         return new MathFunction() {

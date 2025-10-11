@@ -1,7 +1,5 @@
 package functions;
 
-import java.util.function.Function;
-
 public interface MathFunction {
     double apply(double x);
     default CompositeFunction andThen(MathFunction afterFunction){

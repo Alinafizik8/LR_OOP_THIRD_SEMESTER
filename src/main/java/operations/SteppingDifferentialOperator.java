@@ -7,10 +7,14 @@ public abstract class SteppingDifferentialOperator implements DifferentialOperat
     protected double step;
 
     public SteppingDifferentialOperator(double step1) {
-        if (Double.isInfinite(step) || (step<=0) || (Double.isNaN(step))) {
-            throw new IllegalArgumentException("Invalid argument value");
+        if (Double.isNaN(step1) || Double.isInfinite(step1) || step1 <= 0) {
+            throw new IllegalArgumentException();
         }
         this.step = step1;
+    }
+
+    public SteppingDifferentialOperator() {
+
     }
 
     public double getStep() {
@@ -18,7 +22,7 @@ public abstract class SteppingDifferentialOperator implements DifferentialOperat
     }
 
     public void setStep(double step2) {
-        if ((step <= 0.0) || Double.isInfinite(step) || Double.isNaN(step)) {
+        if ((step2 <= 0.0) || Double.isInfinite(step2) || Double.isNaN(step2)) {
             throw new IllegalArgumentException("Invalid argument value");
         }
         this.step = step2;

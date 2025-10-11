@@ -1,0 +1,5 @@
+/target/
+/output/
+*.class
+.DS_Store
+*.log

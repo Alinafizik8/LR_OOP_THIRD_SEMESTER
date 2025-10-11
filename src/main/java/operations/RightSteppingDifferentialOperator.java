@@ -4,7 +4,7 @@ import functions.MathFunction;
 
 public class RightSteppingDifferentialOperator extends SteppingDifferentialOperator {
 
-    private RightSteppingDifferentialOperator(double step1) {
+    public RightSteppingDifferentialOperator(double step1) {
         super(step1);
     }
 
