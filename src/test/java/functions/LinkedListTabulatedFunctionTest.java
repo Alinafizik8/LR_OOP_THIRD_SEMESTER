@@ -461,4 +461,23 @@ public class LinkedListTabulatedFunctionTest {
         assertThrows(NoSuchElementException.class, it::next);
     }
 
+    @Test
+    void insert_xEqualsHead_updatesHeadY() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 2.0, 3.0}, new double[]{10.0, 20.0, 30.0}
+        );
+        f.insert(1.0, 100.0); // x == head.x
+        assertEquals(100.0, f.getY(0), 1e-10);
+        assertEquals(3, f.getCount());
+    }
+
+    @Test
+    void insert_xEqualsLast_updatesLastY() {
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(
+                new double[]{1.0, 2.0, 3.0}, new double[]{10.0, 20.0, 30.0}
+        );
+        f.insert(3.0, 300.0); // x == last.x
+        assertEquals(300.0, f.getY(2), 1e-10);
+        assertEquals(3, f.getCount());
+    }
 }

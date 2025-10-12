@@ -4,20 +4,20 @@ import exceptions.*;
 
 import java.util.Iterator;
 
-public abstract class AbstractTabulatedFunction implements MathFunction,Removable {
+public abstract class AbstractTabulatedFunction implements TabulatedFunction {
 
     public abstract Iterator<Point> iterator();
 
     //Возвращает количество точек в таблице
-    protected abstract int getCount();
+    public abstract int getCount();
 
     //Возвращает значение x по индексу.
-    protected abstract double getX(int index);
+    public abstract double getX(int index);
 
     //Возвращает значение y по индексу.
-    protected abstract double getY(int index);
+    public abstract double getY(int index);
 
-    protected abstract int indexOfX(double x);
+    public abstract int indexOfX(double x);
 
     protected abstract int floorIndexOfX(double x);
 
@@ -93,5 +93,31 @@ public abstract class AbstractTabulatedFunction implements MathFunction,Removabl
             }
         }
     };
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        // Первая строка: имя класса и размер
+        sb.append(getClass().getSimpleName())
+                .append(" size = ")
+                .append(getCount())
+                .append("\n");
+
+        // Обход всех точек через for-each (используем Iterable<Point>)
+        for (Point point : this) {
+            sb.append("[")
+                    .append(point.x)
+                    .append("; ")
+                    .append(point.y)
+                    .append("]\n");
+        }
+
+        // Удаляем последний символ '\n', если есть хотя бы одна точка
+        if (getCount() > 0) {
+            sb.setLength(sb.length() - 1);
+        }
+
+        return sb.toString();
+    }
 
 }

@@ -122,4 +122,37 @@ public class AbstractTabulatedFunctionTest {
         );
         assertTrue(e.getMessage().contains("outside interpolation interval"));
     }
+
+    @Test
+    void toString_returnsCorrectFormatForLinkedList() {
+        double[] x = {0.0, 0.5, 1.0};
+        double[] y = {0.0, 0.25, 1.0};
+        LinkedListTabulatedFunction f = new LinkedListTabulatedFunction(x, y);
+
+        String expected = "LinkedListTabulatedFunction size = 3\n" +
+                "[0.0; 0.0]\n" +
+                "[0.5; 0.25]\n" +
+                "[1.0; 1.0]";
+
+        assertEquals(expected, f.toString());
+    }
+
+    @Test
+    void toString_returnsCorrectFormatForArray() {
+        double[] x = {1.0, 2.0};
+        double[] y = {1.0, 4.0};
+        ArrayTabulatedFunction f = new ArrayTabulatedFunction(x, y);
+
+        String expected = "ArrayTabulatedFunction size = 2\n" +
+                "[1.0; 1.0]\n" +
+                "[2.0; 4.0]";
+
+        assertEquals(expected, f.toString());
+    }
+
+    @Test
+    void toString_handlesEmptyFunction() {
+        double[] x = {0.0};
+        double[] y = {0.0};
+    }
 }

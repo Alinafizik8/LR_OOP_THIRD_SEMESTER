@@ -5,7 +5,7 @@ import exceptions.InterpolationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements TabulatedFunction{
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Removable{
 
     private static class Node {
         double x;
@@ -277,49 +277,39 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     }
 
     public void insert(double x, double y) {
-        // Если список пуст — просто добавляем узел
         if (head == null) {
             addNode(x, y);
             return;
         }
 
-        // Проверяем, существует ли уже узел с таким x
-        Node current = head;
-        do {
-            if (Math.abs(current.x - x) < 1e-10) {
-                // Нашли — обновляем y и выходим
-                current.y = y;
-                return;
-            }
-            current = current.next;
-        } while (current != head);
-
-        // x не найден — ищем место для вставки
-        Node prev = head.prev; // последний узел
-        Node next = head;
-
-        // Случай 1: вставка в начало (x < head.x)
+        // Оптимизация: если x < head.x — вставка в начало
         if (x < head.x) {
             Node newNode = new Node(x, y);
-            // Вставка перед head
-            newNode.prev = prev;
-            newNode.next = next;
-            prev.next = newNode;
-            next.prev = newNode;
-            head = newNode; // обновляем голову
+            Node last = head.prev;
+            newNode.prev = last;
+            newNode.next = head;
+            last.next = newNode;
+            head.prev = newNode;
+            head = newNode;
             count++;
             return;
         }
 
-        // Случай 2: вставка в конец (x > last.x)
-        if (x > head.prev.x) {
-            addNode(x, y); // уже реализовано
+        // Оптимизация: если x > last.x — вставка в конец
+        Node last = head.prev;
+        if (x > last.x) {
+            addNode(x, y);
             return;
         }
 
-        // Случай 3: вставка в середину
-        current = head;
-        while (current.next != head) {
+        // Поиск в середине: один проход от head до last
+        Node current = head;
+        do {
+            if (Math.abs(current.x - x) < 1e-10) {
+                current.y = y;
+                return;
+            }
+            // Проверяем интервал [current.x, current.next.x)
             if (current.x < x && x < current.next.x) {
                 Node newNode = new Node(x, y);
                 newNode.prev = current;
@@ -330,7 +320,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
                 return;
             }
             current = current.next;
-        }
+        } while (current != head);
     }
 
     @Override
