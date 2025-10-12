@@ -2,11 +2,12 @@ package functions;
 
 import exceptions.*;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements TabulatedFunction {
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements TabulatedFunction, Serializable {
 
     private double[] xValues;
     private double[] yValues;
