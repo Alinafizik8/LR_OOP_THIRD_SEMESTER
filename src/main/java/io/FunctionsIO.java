@@ -94,4 +94,19 @@ public final class FunctionsIO {
         return (TabulatedFunction) objectInputStream.readObject();
     }
 
+    /**
+     * Записывает табулированную функцию в байтовый поток.
+     * Формат: count (int), затем пары (x, y) как double.
+     */
+    public static void writeTabulatedFunction(BufferedOutputStream outputStream, TabulatedFunction function)
+            throws IOException {
+        DataOutputStream dataOut = new DataOutputStream(outputStream);
+        int count = function.getCount();
+        dataOut.writeInt(count);
+        for (functions.Point point : function) {
+            dataOut.writeDouble(point.x);
+            dataOut.writeDouble(point.y);
+        }
+        dataOut.flush(); // сброс буфера, но НЕ закрытие потока
+    }
 }

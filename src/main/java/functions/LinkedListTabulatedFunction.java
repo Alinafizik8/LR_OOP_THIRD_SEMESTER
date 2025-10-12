@@ -5,7 +5,7 @@ import exceptions.InterpolationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Removable{
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements TabulatedFunction, Removable{
 
     private static class Node {
         double x;
@@ -339,7 +339,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
                     throw new NoSuchElementException();
                 }
                 Point point = new Point(node.x, node.y);
-                // Если текущий узел — последний, то после него идёт head → завершаем итерацию
+                // Если текущий узел — последний, то после него идёт head -> завершаем итерацию
                 if (node.next == head) {
                     node = null; // конец списка
                 } else {
