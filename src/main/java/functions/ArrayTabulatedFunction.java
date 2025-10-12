@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements TabulatedFunction {
+
     private double[] xValues;
     private double[] yValues;
     private int count;
@@ -20,19 +21,14 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
      */
 
     public void insert(double x, double y) {
-        // 1. Проверяем, существует ли x
-        for (int i = 0; i < count; i++) {
-            if (Math.abs(xValues[i] - x) < 1e-10) {
-                yValues[i] = y;
-                return;
-            }
-        }
-
-        // 2. Находим позицию для вставки
+        // Проверяем существует ли х или находим позицию для вставки
         int insertIndex = count; // по умолчанию — в конец
         boolean A = true;
         for (int i = 0; i < count && A; i++) {
-            if (x < xValues[i]) {
+            if (Math.abs(xValues[i] - x) < 1e-10) {
+                yValues[i] = y;
+                return;
+            } else if (x < xValues[i]) {
                 insertIndex = i;
                 A = false;
             }
