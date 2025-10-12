@@ -2,10 +2,7 @@ package io;
 import functions.*;
 import functions.factory.*;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -14,6 +11,12 @@ public final class FunctionsIO {
 
     private FunctionsIO() {
         throw new UnsupportedOperationException("Utility class FunctionsIO cannot be instantiated");
+    }
+
+    public static void serialize(BufferedOutputStream stream, TabulatedFunction function) throws IOException {
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(stream);
+        objectOutputStream.writeObject(function);
+        objectOutputStream.flush();
     }
 
     public static void writeTabulatedFunction(BufferedWriter writer, TabulatedFunction function) throws IOException {
