@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="continue doing 3 jab">
+    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="continue doing 3 jab..">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,31 +50,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.TabulatedFunctionFileWriter.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AbstractTabulatedFunctionTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.All in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ArrayTabulatedFunctionTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ArrayTabulatedFunctionTest.testConstructorNullArrays.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FunctionsIOTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.LeftSteppingDifferentialOperatorTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.TabulatedFunctionFileWriterTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.functions in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Alina/OneDrive/Рабочий стол/2 семестр/OOP/LR_OOP_THIRD_SEMESTER&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;copyright.profiles&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TabulatedFunctionFileWriter.executor": "Run",
+    "JUnit.AbstractTabulatedFunctionTest.executor": "Coverage",
+    "JUnit.All in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
+    "JUnit.ArrayTabulatedFunctionTest.executor": "Coverage",
+    "JUnit.ArrayTabulatedFunctionTest.testConstructorNullArrays.executor": "Run",
+    "JUnit.FunctionsIOTest.executor": "Coverage",
+    "JUnit.LeftSteppingDifferentialOperatorTest.executor": "Coverage",
+    "JUnit.TabulatedFunctionFileWriterTest.executor": "Coverage",
+    "JUnit.functions in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Alina/OneDrive/Рабочий стол/2 семестр/OOP/LR_OOP_THIRD_SEMESTER",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "copyright.profiles"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -369,7 +372,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760279766316</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="continue doing 3 jab..">
+      <option name="closed" value="true" />
+      <created>1760280811479</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1760280811479</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -406,7 +417,8 @@
     <MESSAGE value="half of third ex in third task of third lab" />
     <MESSAGE value="third ex in 3 task of 3 jab" />
     <MESSAGE value="continue doing 3 jab" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue doing 3 jab" />
+    <MESSAGE value="continue doing 3 jab.." />
+    <option name="LAST_COMMIT_MESSAGE" value="continue doing 3 jab.." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -425,7 +437,7 @@
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$LeftSteppingDifferentialOperatorTest.ic" NAME="LeftSteppingDifferentialOperatorTest Coverage Results" MODIFIED="1759941650463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>operations.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760279382216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760281213175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$functions_in_LR_OOP_THIRD_SEMESTER.ic" NAME="functions in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759762762810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.*</FILTER>
     </SUITE>
