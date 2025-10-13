@@ -427,4 +427,74 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(3, i);
     }
 
+    // === Тесты для iterator() ===
+
+    @Test
+    void iterator_throwsNoSuchElementException_whenNextCalledAfterEnd() {
+        double[] x = {0.0, 1.0};
+        double[] y = {0.0, 1.0};
+        ArrayTabulatedFunction func = new ArrayTabulatedFunction(x, y);
+
+        Iterator<Point> it = func.iterator();
+        it.next(); // [0.0; 0.0]
+        it.next(); // [1.0; 1.0]
+
+        assertFalse(it.hasNext());
+        assertThrows(NoSuchElementException.class, it::next);
+    }
+
+    // === Тесты для floorIndexOfX() ===
+
+    @Test
+    void floorIndexOfX_returnsZero_whenXLessOrEqualFirstElement() {
+        double[] x = {1.0, 2.0, 3.0};
+        double[] y = {1.0, 4.0, 9.0};
+        ArrayTabulatedFunction func = new ArrayTabulatedFunction(x, y);
+
+        assertEquals(0, func.floorIndexOfX(0.5)); // x < x[0]
+        assertEquals(0, func.floorIndexOfX(1.0)); // x == x[0]
+    }
+
+    @Test
+    void floorIndexOfX_returnsCount_whenXGreaterThanLastElement() {
+        double[] x = {1.0, 2.0, 3.0};
+        double[] y = {1.0, 4.0, 9.0};
+        ArrayTabulatedFunction func = new ArrayTabulatedFunction(x, y);
+
+        assertEquals(3, func.floorIndexOfX(3.5)); // x > x[2]
+        assertEquals(3, func.floorIndexOfX(10.0));
+    }
+
+    @Test
+    void floorIndexOfX_returnsCorrectIndexForInternalValues() {
+        double[] x = {0.0, 1.0, 2.0, 3.0, 4.0};
+        double[] y = {0.0, 1.0, 4.0, 9.0, 16.0};
+        ArrayTabulatedFunction func = new ArrayTabulatedFunction(x, y);
+
+        // Точные совпадения
+        assertEquals(0, func.floorIndexOfX(0.0));
+        assertEquals(0, func.floorIndexOfX(1.0));
+        assertEquals(3, func.floorIndexOfX(4.0));
+
+        // Между точками
+        assertEquals(0, func.floorIndexOfX(0.5)); // [0.0, 1.0)
+        assertEquals(1, func.floorIndexOfX(1.7)); // [1.0, 2.0)
+        assertEquals(3, func.floorIndexOfX(3.9)); // [3.0, 4.0)
+
+        // Последний интервал
+        assertEquals(3, func.floorIndexOfX(3.1));
+    }
+
+    @Test
+    void floorIndexOfX_handlesTwoPointsCorrectly() {
+        double[] x = {0.0, 10.0};
+        double[] y = {0.0, 100.0};
+        ArrayTabulatedFunction func = new ArrayTabulatedFunction(x, y);
+
+        assertEquals(0, func.floorIndexOfX(-1.0));   // < x[0]
+        assertEquals(0, func.floorIndexOfX(0.0));    // == x[0]
+        assertEquals(0, func.floorIndexOfX(5.0));    // между
+        assertEquals(0, func.floorIndexOfX(10.0));   // == x[1]
+        assertEquals(2, func.floorIndexOfX(11.0));   // > x[1]
+    }
 }

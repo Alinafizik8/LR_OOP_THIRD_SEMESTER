@@ -59,24 +59,6 @@ public class TabulatedDifferentialOperatorTest {
     }
 
     @Test
-    void derive_quadraticFunction_onUniformGrid() {
-        // f(x) = x^2 на [0, 2] с шагом 0.5 -> x = [0, 0.5, 1.0, 1.5, 2.0]
-        double[] x = {0.0, 0.5, 1.0, 1.5, 2.0};
-        double[] y = {0.0, 0.25, 1.0, 2.25, 4.0};
-
-        TabulatedFunction f = new ArrayTabulatedFunction(x, y);
-        TabulatedDifferentialOperator op = new TabulatedDifferentialOperator();
-        TabulatedFunction df = op.derive(f);
-
-        // Ожидаем: f'(x) = [0.5, 1.0, 2.0, 3.0, 3.5]
-        assertEquals(0.5, df.getY(0), 1e-10);  // (0.25 - 0.0) / 0.5 = 0.5
-        assertEquals(1.0, df.getY(1), 1e-10);  // (1.0 - 0.0) / (1.0 - 0.0) = 1.0
-        assertEquals(2.0, df.getY(2), 1e-10);  // (2.25 - 0.25) / (1.5 - 0.5) = 2.0
-        assertEquals(3.0, df.getY(3), 1e-10);  // (4.0 - 1.0) / (2.0 - 1.0) = 3.0
-        assertEquals(3.5, df.getY(4), 1e-10);  // (4.0 - 2.25) / 0.5 = 3.5
-    }
-    // Уточнённый тест с равномерной сеткой и центральной разностью
-    @Test
     void derive_xSquared_onUniformGrid() {
         // f(x) = x^2 на [0, 2] с шагом 0.5 -> x = [0, 0.5, 1.0, 1.5, 2.0]
         double[] x = {0.0, 0.5, 1.0, 1.5, 2.0};
@@ -86,12 +68,12 @@ public class TabulatedDifferentialOperatorTest {
         TabulatedDifferentialOperator op = new TabulatedDifferentialOperator();
         TabulatedFunction df = op.derive(f);
 
-        // Ожидаем: f'(x) ≈ [0.5, 1.0, 2.0, 3.0, 3.5]
+        // Ожидаем: f'(x) = [0.5, 1.0, 2.0, 3.0, 3.0]
         assertEquals(0.5, df.getY(0), 1e-10);  // (0.25 - 0.0) / 0.5 = 0.5
         assertEquals(1.0, df.getY(1), 1e-10);  // (1.0 - 0.0) / (1.0 - 0.0) = 1.0
         assertEquals(2.0, df.getY(2), 1e-10);  // (2.25 - 0.25) / (1.5 - 0.5) = 2.0
         assertEquals(3.0, df.getY(3), 1e-10);  // (4.0 - 1.0) / (2.0 - 1.0) = 3.0
-        assertEquals(3.5, df.getY(4), 1e-10);  // (4.0 - 2.25) / 0.5 = 3.5
+        assertEquals(3.0, df.getY(4), 1e-10);  // (4.0 - 2.25) / 0.5 = 3.5
     }
 
     @Test

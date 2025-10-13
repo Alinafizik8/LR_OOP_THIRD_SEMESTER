@@ -199,7 +199,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             return 0;
         }
         if (x > rightBound()) {
-            return count; // ← именно count, как требует задание!
+            return count;
         }
         // x == rightBound() или внутри интервала
         Node current = head;
@@ -269,16 +269,12 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             return head.prev;
         }
 
+        int index = floorIndexOfX(x); // гарантированно 0 <= index < count
         Node current = head;
-        while (current.next != head) {
-            if (current.x <= x && x < current.next.x) {
-                return current;
-            }
+        for (int i = 0; i < index; i++) {
             current = current.next;
         }
-
-        // Теоретически невозможно, но на случай ошибок:
-        throw new IllegalStateException("Не удалось найти floorNode для x = " + x);
+        return current;
     }
 
     public void insert(double x, double y) {

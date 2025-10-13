@@ -88,10 +88,18 @@ public final class FunctionsIO {
         return factory.create(xValues, yValues);
     }
 
+    /**
+     * Десериализует табулированную функцию из буферизованного байтового потока.
+     *
+     * @param stream буферизованный входной поток
+     * @return десериализованная функция
+     * @throws IOException если произошла ошибка ввода-вывода
+     * @throws ClassNotFoundException если класс функции не найден
+     */
     public static TabulatedFunction deserialize(BufferedInputStream stream)
             throws IOException, ClassNotFoundException {
-        ObjectInputStream objectInputStream = new ObjectInputStream(stream);
-        return (TabulatedFunction) objectInputStream.readObject();
+        ObjectInputStream objectIn = new ObjectInputStream(stream);
+        return (TabulatedFunction) objectIn.readObject();
     }
 
     /**

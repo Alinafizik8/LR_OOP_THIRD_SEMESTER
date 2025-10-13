@@ -37,6 +37,35 @@ public class LinkedListTabulatedFunctionTest {
     }
 
     @Test
+    void constructor_throwsIllegalArgumentException_whenXValuesIsNull() {
+        double[] y = {0.0, 1.0};
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> new LinkedListTabulatedFunction(null, y)
+        );
+        assertEquals("Arrays can not be null", exception.getMessage());
+    }
+
+    @Test
+    void constructor_throwsIllegalArgumentException_whenYValuesIsNull() {
+        double[] x = {0.0, 1.0};
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> new LinkedListTabulatedFunction(x, null)
+        );
+        assertEquals("Arrays can not be null", exception.getMessage());
+    }
+
+    @Test
+    void constructor_throwsIllegalArgumentException_whenBothArraysAreNull() {
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> new LinkedListTabulatedFunction(null, null)
+        );
+        assertEquals("Arrays can not be null", exception.getMessage());
+    }
+
+    @Test
     void constructorFromArrays_singlePoint_throwsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             new LinkedListTabulatedFunction(new double[]{1.0}, new double[]{1.0});
