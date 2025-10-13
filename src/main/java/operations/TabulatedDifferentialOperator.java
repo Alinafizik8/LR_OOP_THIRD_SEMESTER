@@ -52,16 +52,14 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
         // Первая точка (правая производная)
         yValues[0] = (points[1].y - points[0].y) / (points[1].x - points[0].x);
 
-        // Последняя точка (левая производная)
-        yValues[n - 1] = (points[n - 1].y - points[n - 2].y) / (points[n - 1].x - points[n - 2].x);
-
         // Внутренние точки (центральная производная)
         for (int i = 1; i < n - 1; i++) {
-            double h1 = points[i].x - points[i - 1].x;
-            double h2 = points[i + 1].x - points[i].x;
-            // Простая центральная разность (при равномерной сетке h1 == h2)
+            // Простая центральная разность
             yValues[i] = (points[i + 1].y - points[i - 1].y) / (points[i + 1].x - points[i - 1].x);
         }
+
+        // Последняя точка (левая производная, т.е. значение такое же, как и предпоследнее)
+        yValues[n - 1] = yValues[n - 2];
 
         return factory.create(xValues, yValues);
     }

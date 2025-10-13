@@ -107,6 +107,21 @@ public final class FunctionsIO {
             dataOut.writeDouble(point.x);
             dataOut.writeDouble(point.y);
         }
-        dataOut.flush(); // сброс буфера, но НЕ закрытие потока
+        dataOut.flush();
+    }
+
+    public static TabulatedFunction readTabulatedFunction(
+            BufferedInputStream inputStream,
+            TabulatedFunctionFactory factory
+    ) throws IOException {
+        DataInputStream dataIn = new DataInputStream(inputStream);
+        int count = dataIn.readInt();
+        double[] xValues = new double[count];
+        double[] yValues = new double[count];
+        for (int i = 0; i < count; i++) {
+            xValues[i] = dataIn.readDouble();
+            yValues[i] = dataIn.readDouble();
+        }
+        return factory.create(xValues, yValues);
     }
 }

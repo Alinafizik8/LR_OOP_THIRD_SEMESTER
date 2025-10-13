@@ -17,10 +17,8 @@ public class TabulatedFunctionFileOutputStream {
         TabulatedFunction linkedFunc = new LinkedListTabulatedFunction(x, y);
 
         try (
-                FileOutputStream fileOut1 = new FileOutputStream("output/array function.bin");
-                FileOutputStream fileOut2 = new FileOutputStream("output/linked list function.bin");
-                BufferedOutputStream bufOut1 = new BufferedOutputStream(fileOut1);
-                BufferedOutputStream bufOut2 = new BufferedOutputStream(fileOut2)
+                BufferedOutputStream bufOut1 = new BufferedOutputStream(new FileOutputStream("output/array function.bin"));
+                BufferedOutputStream bufOut2 = new BufferedOutputStream(new FileOutputStream("output/linked list function.bin"))
         ) {
             FunctionsIO.writeTabulatedFunction(bufOut1, arrayFunc);
             FunctionsIO.writeTabulatedFunction(bufOut2, linkedFunc);

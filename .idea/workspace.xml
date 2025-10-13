@@ -4,12 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="continue doing 3 jab, lord, help me!">
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/TabulatedFunctionFileInputStream.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ArrayTabulatedFunctionSerialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ArrayTabulatedFunctionSerialization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/LinkedListTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/LinkedListTabulatedFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/FunctionsIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/FunctionsIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/TabulatedFunctionFileOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/TabulatedFunctionFileOutputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/operations/TabulatedDifferentialOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/operations/TabulatedDifferentialOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/AbstractTabulatedFunctionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/functions/AbstractTabulatedFunctionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/LinkedListTabulatedFunctionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/functions/LinkedListTabulatedFunctionTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,31 +28,33 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Alinafizik8&quot;
+    &quot;assignee&quot;: &quot;Yoda-bl&quot;
   }
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Alinafizik8/LR_OOP_THIRD_SEMESTER.git&quot;,
-    &quot;accountId&quot;: &quot;1871043b-9ff2-46dc-8682-06d03a79891e&quot;
+    &quot;url&quot;: &quot;https://github.com/Alinafizik8/LR_OOP_THIRD_SEMESTER&quot;,
+    &quot;accountId&quot;: &quot;0cfe8818-cec8-48c5-91b0-2467a8c77caf&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1
+  &quot;associatedIndex&quot;: 2
 }</component>
-  <component name="ProjectId" id="339cV9WCRv4PkByFIMMQtMmo1t1" />
+  <component name="ProjectId" id="33ywucakw3yIo6wOIX62ZRzRrJO" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -51,46 +62,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.TabulatedFunctionFileWriter.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AbstractTabulatedFunctionTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.All in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ArrayTabulatedFunctionTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ArrayTabulatedFunctionTest.testConstructorNullArrays.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FunctionsIOTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.LeftSteppingDifferentialOperatorTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.TabulatedFunctionFileWriterTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.functions in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Alina/OneDrive/Рабочий стол/2 семестр/OOP/LR_OOP_THIRD_SEMESTER&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;copyright.profiles&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TabulatedFunctionFileInputStream.executor": "Run",
+    "Application.TabulatedFunctionFileOutputStream.executor": "Run",
+    "JUnit.java in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "settings.editor.selected.configurable": "Errors"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="io" />
-      <recent name="operations" />
-      <recent name="exceptions" />
-      <recent name="functions" />
-    </key>
-  </component>
-  <component name="RunManager" selected="JUnit.All in LR_OOP_THIRD_SEMESTER">
-    <configuration name="TabulatedFunctionFileWriter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="io.TabulatedFunctionFileWriter" />
+}]]></component>
+  <component name="RunManager" selected="Application.TabulatedFunctionFileInputStream">
+    <configuration name="TabulatedFunctionFileInputStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.TabulatedFunctionFileInputStream" />
       <module name="LR_OOP_THIRD_SEMESTER" />
       <extension name="coverage">
         <pattern>
@@ -102,15 +88,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in LR_OOP_THIRD_SEMESTER" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="LR_OOP_THIRD_SEMESTER" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FunctionsIOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TabulatedFunctionFileOutputStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.TabulatedFunctionFileOutputStream" />
       <module name="LR_OOP_THIRD_SEMESTER" />
       <extension name="coverage">
         <pattern>
@@ -118,286 +97,34 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="io" />
-      <option name="MAIN_CLASS_NAME" value="io.FunctionsIOTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeftSteppingDifferentialOperatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="java in LR_OOP_THIRD_SEMESTER" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="LR_OOP_THIRD_SEMESTER" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="operations.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="operations" />
-      <option name="MAIN_CLASS_NAME" value="operations.LeftSteppingDifferentialOperatorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TabulatedFunctionFileWriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="LR_OOP_THIRD_SEMESTER" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="io" />
-      <option name="MAIN_CLASS_NAME" value="io.TabulatedFunctionFileWriterTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in LR_OOP_THIRD_SEMESTER" />
-        <item itemvalue="JUnit.FunctionsIOTest" />
-        <item itemvalue="JUnit.TabulatedFunctionFileWriterTest" />
-        <item itemvalue="Application.TabulatedFunctionFileWriter" />
-        <item itemvalue="JUnit.LeftSteppingDifferentialOperatorTest" />
+        <item itemvalue="Application.TabulatedFunctionFileInputStream" />
+        <item itemvalue="Application.TabulatedFunctionFileOutputStream" />
+        <item itemvalue="JUnit.java in LR_OOP_THIRD_SEMESTER" />
       </list>
     </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e1d89212-f98e-421d-8d10-634bc15eaf04" name="Changes" comment="" />
-      <created>1758732749184</created>
+      <changelist id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="" />
+      <created>1760302845957</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1758732749184</updated>
+      <updated>1760302845957</updated>
     </task>
-    <task id="LOCAL-00001" summary="firstclass">
-      <option name="closed" value="true" />
-      <created>1758986254956</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1758986254956</updated>
-    </task>
-    <task id="LOCAL-00002" summary="BigUpdate">
-      <option name="closed" value="true" />
-      <created>1759169692054</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1759169692054</updated>
-    </task>
-    <task id="LOCAL-00003" summary="BigUpdate2">
-      <option name="closed" value="true" />
-      <created>1759169782613</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1759169782613</updated>
-    </task>
-    <task id="LOCAL-00004" summary="студент Y, задание 2, AbstractTabulatedFunction">
-      <option name="closed" value="true" />
-      <created>1759170822708</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1759170822708</updated>
-    </task>
-    <task id="LOCAL-00005" summary="студент Y, задание 2, готовы пункты 1,2">
-      <option name="closed" value="true" />
-      <created>1759171834272</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1759171834272</updated>
-    </task>
-    <task id="LOCAL-00006" summary="студент Y, задание 2, готовы пункты 1,2">
-      <option name="closed" value="true" />
-      <created>1759172138517</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1759172138517</updated>
-    </task>
-    <task id="LOCAL-00007" summary="студент Y, задание 2, почти final">
-      <option name="closed" value="true" />
-      <created>1759173095584</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1759173095584</updated>
-    </task>
-    <task id="LOCAL-00008" summary="студент Y, задание 2, почти final">
-      <option name="closed" value="true" />
-      <created>1759173153975</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1759173153975</updated>
-    </task>
-    <task id="LOCAL-00009" summary="студент Y, задание 2, сделано, он не все тесты допилены">
-      <option name="closed" value="true" />
-      <created>1759174766683</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1759174766683</updated>
-    </task>
-    <task id="LOCAL-00010" summary="студент Y, задание 3, сделаны пункты 1,3,4">
-      <option name="closed" value="true" />
-      <created>1759176253164</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1759176253164</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Start 3lab">
-      <option name="closed" value="true" />
-      <created>1759653431403</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1759653431403</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Start 3lab first task without Point">
-      <option name="closed" value="true" />
-      <created>1759654117805</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1759654117805</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Start 3lab first task with Point">
-      <option name="closed" value="true" />
-      <created>1759654139786</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1759654139786</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Start 3lab almost second part of first task">
-      <option name="closed" value="true" />
-      <created>1759654984542</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1759654984542</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Almost first task of third lab">
-      <option name="closed" value="true" />
-      <created>1759759475618</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1759759475618</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Almost first task of third lab">
-      <option name="closed" value="true" />
-      <created>1759759494571</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1759759494571</updated>
-    </task>
-    <task id="LOCAL-00017" summary="First task of third lab without stars">
-      <option name="closed" value="true" />
-      <created>1759762824226</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1759762824226</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Start second task of third lab, first line Y">
-      <option name="closed" value="true" />
-      <created>1759764692442</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1759764692442</updated>
-    </task>
-    <task id="LOCAL-00019" summary="added tests for exceptions">
-      <option name="closed" value="true" />
-      <created>1759765247181</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1759765247181</updated>
-    </task>
-    <task id="LOCAL-00020" summary="half of second task in third lab">
-      <option name="closed" value="true" />
-      <created>1759769873153</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1759769873153</updated>
-    </task>
-    <task id="LOCAL-00021" summary="in process...">
-      <option name="closed" value="true" />
-      <created>1759948860112</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1759948860113</updated>
-    </task>
-    <task id="LOCAL-00022" summary="started 3 task of third lab">
-      <option name="closed" value="true" />
-      <created>1760205377324</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1760205377324</updated>
-    </task>
-    <task id="LOCAL-00023" summary="half of third ex in third task of third lab">
-      <option name="closed" value="true" />
-      <created>1760210192974</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1760210192974</updated>
-    </task>
-    <task id="LOCAL-00024" summary="third ex in 3 task of 3 jab">
-      <option name="closed" value="true" />
-      <created>1760279182914</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1760279182914</updated>
-    </task>
-    <task id="LOCAL-00025" summary="continue doing 3 jab">
-      <option name="closed" value="true" />
-      <created>1760279766316</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1760279766316</updated>
-    </task>
-    <task id="LOCAL-00026" summary="continue doing 3 jab..">
-      <option name="closed" value="true" />
-      <created>1760280811479</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1760280811479</updated>
-    </task>
-    <task id="LOCAL-00027" summary="continue doing 3 jab...">
-      <option name="closed" value="true" />
-      <created>1760302902451</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1760302902451</updated>
-    </task>
-    <task id="LOCAL-00028" summary="continue doing 3 jab, lord, help me!">
-      <option name="closed" value="true" />
-      <created>1760303009470</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1760303009470</updated>
-    </task>
-    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -411,54 +138,26 @@
       </map>
     </option>
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="firstclass" />
-    <MESSAGE value="BigUpdate" />
-    <MESSAGE value="BigUpdate2" />
-    <MESSAGE value="студент Y, задание 2, AbstractTabulatedFunction" />
-    <MESSAGE value="студент Y, задание 2, готовы пункты 1,2" />
-    <MESSAGE value="студент Y, задание 2, почти final" />
-    <MESSAGE value="студент Y, задание 2, сделано, он не все тесты допилены" />
-    <MESSAGE value="студент Y, задание 3, сделаны пункты 1,3,4" />
-    <MESSAGE value="Start 3lab" />
-    <MESSAGE value="Start 3lab first task without Point" />
-    <MESSAGE value="Start 3lab first task with Point" />
-    <MESSAGE value="Start 3lab almost second part of first task" />
-    <MESSAGE value="Almost first task of third lab" />
-    <MESSAGE value="First task of third lab without stars" />
-    <MESSAGE value="Start second task of third lab, first line Y" />
-    <MESSAGE value="added tests for exceptions" />
-    <MESSAGE value="half of second task in third lab" />
-    <MESSAGE value="in process..." />
-    <MESSAGE value="started 3 task of third lab" />
-    <MESSAGE value="half of third ex in third task of third lab" />
-    <MESSAGE value="third ex in 3 task of 3 jab" />
-    <MESSAGE value="continue doing 3 jab" />
-    <MESSAGE value="continue doing 3 jab.." />
-    <MESSAGE value="continue doing 3 jab..." />
-    <MESSAGE value="continue doing 3 jab, lord, help me!" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue doing 3 jab, lord, help me!" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <breakpoint enabled="true" type="java-exception">
-          <properties class="java.io.IOException" package="java.io" />
-          <option name="timeStamp" value="2" />
+          <properties class="java.lang.OutOfMemoryError" package="java.lang" />
+          <option name="timeStamp" value="1" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760279382216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$AbstractTabulatedFunctionTest.ic" NAME="AbstractTabulatedFunctionTest Coverage Results" MODIFIED="1759651861262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$LeftSteppingDifferentialOperatorTest.ic" NAME="LeftSteppingDifferentialOperatorTest Coverage Results" MODIFIED="1759941650463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>operations.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760303495660" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$functions_in_LR_OOP_THIRD_SEMESTER.ic" NAME="functions in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759762762810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionFileWriterTest.ic" NAME="TabulatedFunctionFileWriterTest Coverage Results" MODIFIED="1760274274391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>io.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic" NAME="ArrayTabulatedFunctionTest Coverage Results" MODIFIED="1759654890325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.*</FILTER>
@@ -466,8 +165,9 @@
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$FunctionsIOTest.ic" NAME="FunctionsIOTest Coverage Results" MODIFIED="1760275410789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>io.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionFileWriterTest.ic" NAME="TabulatedFunctionFileWriterTest Coverage Results" MODIFIED="1760274274391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>io.*</FILTER>
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760337020444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$LeftSteppingDifferentialOperatorTest.ic" NAME="LeftSteppingDifferentialOperatorTest Coverage Results" MODIFIED="1759941650463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>operations.*</FILTER>
     </SUITE>
   </component>
 </project>
