@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/LinkedListTabulatedFunctionSerialization.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/concurrent/ReadTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/concurrent/ReadWriteTaskExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/concurrent/WriteTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/LinkedListTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/LinkedListTabulatedFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/FunctionsIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/FunctionsIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/LinkedListTabulatedFunctionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/LinkedListTabulatedFunctionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/operations/TabulatedDifferentialOperatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/operations/TabulatedDifferentialOperatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/ConstantFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/ConstantFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$1.class" afterDir="false" />
@@ -19,6 +17,7 @@
       <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/operations/TabulatedDifferentialOperator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/operations/TabulatedDifferentialOperator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/functions/AbstractTabulatedFunctionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/functions/AbstractTabulatedFunctionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/functions/LinkedListTabulatedFunctionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/functions/LinkedListTabulatedFunctionTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/operations/TabulatedDifferentialOperatorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/operations/TabulatedDifferentialOperatorTest.class" afterDir="false" />
     </list>
@@ -30,8 +29,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -67,8 +66,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ReadWriteTaskExecutor.executor": "Run",
     "Application.TabulatedFunctionFileInputStream.executor": "Run",
     "Application.TabulatedFunctionFileOutputStream.executor": "Run",
+    "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly.executor": "Run",
+    "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues.executor": "Run",
     "JUnit.java in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -87,13 +89,13 @@
       <recent name="io" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in LR_OOP_THIRD_SEMESTER">
-    <configuration name="TabulatedFunctionFileInputStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="io.TabulatedFunctionFileInputStream" />
+  <component name="RunManager" selected="Application.ReadWriteTaskExecutor">
+    <configuration name="ReadWriteTaskExecutor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="concurrent.ReadWriteTaskExecutor" />
       <module name="LR_OOP_THIRD_SEMESTER" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.*" />
+          <option name="PATTERN" value="concurrent.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -101,8 +103,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TabulatedFunctionFileOutputStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="io.TabulatedFunctionFileOutputStream" />
+    <configuration name="TabulatedFunctionFileInputStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.TabulatedFunctionFileInputStream" />
       <module name="LR_OOP_THIRD_SEMESTER" />
       <extension name="coverage">
         <pattern>
@@ -156,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ReadWriteTaskExecutor" />
         <item itemvalue="JUnit.java in LR_OOP_THIRD_SEMESTER" />
         <item itemvalue="JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues" />
         <item itemvalue="JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly" />
         <item itemvalue="Application.TabulatedFunctionFileInputStream" />
-        <item itemvalue="Application.TabulatedFunctionFileOutputStream" />
       </list>
     </recent_temporary>
   </component>
@@ -212,7 +214,7 @@
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$FunctionsIOTest.ic" NAME="FunctionsIOTest Coverage Results" MODIFIED="1760275410789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>io.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760373478726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760452868565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$LeftSteppingDifferentialOperatorTest.ic" NAME="LeftSteppingDifferentialOperatorTest Coverage Results" MODIFIED="1759941650463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>operations.*</FILTER>
     </SUITE>

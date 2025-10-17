@@ -1,6 +1,6 @@
 package functions;
 
-class ConstantFunction implements MathFunction {
+public class ConstantFunction implements MathFunction {
 
     private final double const_digit;
 
