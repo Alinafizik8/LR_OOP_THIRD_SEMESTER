@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/concurrent/ReadTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/concurrent/ReadWriteTaskExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/concurrent/WriteTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/concurrent/SynchronizedTabulatedFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/concurrent/SynchronizedTabulatedFunctionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/ConstantFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/ConstantFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/ConstantFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/ConstantFunction.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$Node.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction.class" afterDir="false" />
@@ -29,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -71,6 +70,8 @@
     "Application.TabulatedFunctionFileOutputStream.executor": "Run",
     "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly.executor": "Run",
     "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues.executor": "Run",
+    "JUnit.SynchronizedTabulatedFunctionTest.executor": "Coverage",
+    "JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
     "JUnit.java in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -86,10 +87,11 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="concurrent" />
       <recent name="io" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ReadWriteTaskExecutor">
+  <component name="RunManager" selected="JUnit.SynchronizedTabulatedFunctionTest">
     <configuration name="ReadWriteTaskExecutor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="concurrent.ReadWriteTaskExecutor" />
       <module name="LR_OOP_THIRD_SEMESTER" />
@@ -99,35 +101,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TabulatedFunctionFileInputStream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="io.TabulatedFunctionFileInputStream" />
-      <module name="LR_OOP_THIRD_SEMESTER" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="LR_OOP_THIRD_SEMESTER" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="functions.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="functions" />
-      <option name="MAIN_CLASS_NAME" value="functions.ArrayTabulatedFunctionTest" />
-      <option name="METHOD_NAME" value="floorIndexOfX_handlesTwoPointsCorrectly" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -148,6 +121,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SynchronizedTabulatedFunctionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LR_OOP_THIRD_SEMESTER" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="concurrent.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="concurrent" />
+      <option name="MAIN_CLASS_NAME" value="concurrent.SynchronizedTabulatedFunctionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="concurrent in LR_OOP_THIRD_SEMESTER" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LR_OOP_THIRD_SEMESTER" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/concurrent" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="java in LR_OOP_THIRD_SEMESTER" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="LR_OOP_THIRD_SEMESTER" />
       <option name="TEST_OBJECT" value="directory" />
@@ -158,11 +154,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SynchronizedTabulatedFunctionTest" />
+        <item itemvalue="JUnit.concurrent in LR_OOP_THIRD_SEMESTER" />
         <item itemvalue="Application.ReadWriteTaskExecutor" />
         <item itemvalue="JUnit.java in LR_OOP_THIRD_SEMESTER" />
         <item itemvalue="JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues" />
-        <item itemvalue="JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly" />
-        <item itemvalue="Application.TabulatedFunctionFileInputStream" />
       </list>
     </recent_temporary>
   </component>
@@ -208,6 +204,10 @@
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionFileWriterTest.ic" NAME="TabulatedFunctionFileWriterTest Coverage Results" MODIFIED="1760274274391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>io.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$SynchronizedTabulatedFunctionTest.ic" NAME="SynchronizedTabulatedFunctionTest Coverage Results" MODIFIED="1760728058410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>concurrent.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$concurrent_in_LR_OOP_THIRD_SEMESTER.ic" NAME="concurrent in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760727535389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic" NAME="ArrayTabulatedFunctionTest Coverage Results" MODIFIED="1759654890325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.*</FILTER>
     </SUITE>
