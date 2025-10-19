@@ -2,7 +2,6 @@ package concurrent;
 
 import functions.TabulatedFunction;
 import functions.Point;
-import functions.factory.TabulatedFunctionFactory;
 import operations.TabulatedFunctionOperationService;
 
 import java.util.Iterator;
@@ -103,4 +102,16 @@ public class SynchronizedTabulatedFunction implements TabulatedFunction {
             }
         };
     }
+
+    @FunctionalInterface
+    public interface Operation<T> {
+        T apply(SynchronizedTabulatedFunction function);
+    }
+
+    public <T> T doSynchronously(Operation<? extends T> operation) {
+        synchronized (this) {
+            return operation.apply(this);
+        }
+    }
+
 }

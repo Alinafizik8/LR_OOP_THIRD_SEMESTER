@@ -1,7 +1,6 @@
 package concurrent;
 
-import functions.ArrayTabulatedFunction;
-import functions.Point;
+import functions.*;
 import org.junit.jupiter.api.Test;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -11,6 +10,7 @@ class SynchronizedTabulatedFunctionTest {
 
     private static final double[] X = {0.0, 1.0, 2.0};
     private static final double[] Y = {0.0, 1.0, 4.0};
+    private SynchronizedTabulatedFunction func;
 
     // <<<<>>>> 1. Конструктор и проверка null
     @Test
@@ -106,4 +106,80 @@ class SynchronizedTabulatedFunctionTest {
 
         assertFalse(it.hasNext());
     }
+
+    @Test
+    void testDoSynchronously_VoidOperation_MultipliesAllYByThree() {
+        func = new SynchronizedTabulatedFunction(new LinkedListTabulatedFunction(new UnitFunction(), 1.0, 10.0, 5));
+        // Выполняем операцию без возврата: умножаем все y на 3
+        func.doSynchronously(f -> {
+            for (int i = 0; i < f.getCount(); i++) {
+                f.setY(i, f.getY(i) * 3);
+            }
+            return null; // Void → null
+        });
+
+        // Проверяем, что все значения стали 3.0
+        for (int i = 0; i < func.getCount(); i++) {
+            assertEquals(3.0, func.getY(i), "y[" + i + "] should be 3.0");
+        }
+    }
+
+    @Test
+    void testDoSynchronously_IntegerOperation_ReturnsCount() {
+        func = new SynchronizedTabulatedFunction(new LinkedListTabulatedFunction(new UnitFunction(), 1.0, 10.0, 5));
+        Integer count = func.doSynchronously(f -> f.getCount());
+        assertEquals(5, count, "Function should have 5 points");
+    }
+
+    @Test
+    void testDoSynchronously_DoubleOperation_ReturnsSumOfY() {
+        func = new SynchronizedTabulatedFunction(new LinkedListTabulatedFunction(new UnitFunction(), 1.0, 10.0, 5));
+        // Сначала умножим все y на 2, чтобы проверить не-единичные значения
+        func.doSynchronously(f -> {
+            for (int i = 0; i < f.getCount(); i++) {
+                f.setY(i, 2.0);
+            }
+            return null;
+        });
+
+        Double sum = func.doSynchronously(f -> {
+            double s = 0;
+            for (int i = 0; i < f.getCount(); i++) {
+                s += f.getY(i);
+            }
+            return s;
+        });
+
+        assertEquals(10.0, sum, "Sum of 5 points with y=2.0 should be 10.0");
+    }
+
+    @Test
+    void testDoSynchronously_StringOperation_ReturnsInfo() {
+        func = new SynchronizedTabulatedFunction(new LinkedListTabulatedFunction(new UnitFunction(), 1.0, 10.0, 5));
+        String info = func.doSynchronously(f ->
+                "Функция содержит " + f.getCount() + " точек."
+        );
+
+        assertEquals("Функция содержит 5 точек.", info);
+    }
+
+    @Test
+    void testDoSynchronously_ComplexOperation_AtomicUpdate() {
+        func = new SynchronizedTabulatedFunction(new LinkedListTabulatedFunction(new UnitFunction(), 1.0, 10.0, 5));
+        // Атомарно: если y[0] == 1.0, установить все y в 100.0
+        func.doSynchronously(f -> {
+            if (f.getY(0) == 1.0) {
+                for (int i = 0; i < f.getCount(); i++) {
+                    f.setY(i, 100.0);
+                }
+            }
+            return null;
+        });
+
+        // Проверяем, что всё обновилось
+        for (int i = 0; i < func.getCount(); i++) {
+            assertEquals(100.0, func.getY(i), "All y should be 100.0");
+        }
+    }
+
 }
