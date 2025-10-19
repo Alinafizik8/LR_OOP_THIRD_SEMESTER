@@ -1,11 +1,44 @@
 package operations;
 
+import concurrent.SynchronizedTabulatedFunction;
 import functions.*;
 import functions.factory.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TabulatedDifferentialOperatorTest {
+
+    public static class QuadraticFunction implements MathFunction {
+        private final double a;
+        private final double b;
+        private final double c;
+
+        public QuadraticFunction(double a, double b, double c) {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+
+        @Override
+        public double apply(double x) {
+            return a * x * x + b * x + c;
+        }
+    }
+
+    public static class LinearFunction implements MathFunction {
+        private final double k;
+        private final double b;
+
+        public LinearFunction(double k, double b) {
+            this.k = k;
+            this.b = b;
+        }
+
+        @Override
+        public double apply(double x) {
+            return k * x + b;
+        }
+    }
 
     // <<<<<>>>>> Конструкторы и геттер/сеттер
 
@@ -126,4 +159,71 @@ public class TabulatedDifferentialOperatorTest {
         assertEquals(2.0, df.getY(0), 1e-10); // (4-0)/(2-0) = 2 — первая точка
         assertEquals(2.0, df.getY(1), 1e-10); // (4-0)/(2-0) = 2 — последняя точка
     }
+
+    @Test
+    void deriveSynchronously_withRegularFunction_returnsSameAsDerive() {
+        TabulatedDifferentialOperator operator = new TabulatedDifferentialOperator();
+
+        TabulatedFunction base = new LinkedListTabulatedFunction(
+                new LinearFunction(2.0, 1.0), // f(x) = 2x + 1 → f'(x) = 2
+                0.0, 5.0, 6
+        );
+
+        TabulatedFunction derived1 = operator.derive(base);
+        TabulatedFunction derived2 = operator.deriveSynchronously(base);
+
+        // Проверяем, что результаты совпадают
+        assertEquals(derived1.getCount(), derived2.getCount());
+        for (int i = 0; i < derived1.getCount(); i++) {
+            // Для линейной функции производная постоянна = 2
+            assertEquals(2.0, derived2.getY(i), 1e-10);
+        }
+    }
+
+    @Test
+    void deriveSynchronously_withSynchronizedFunction_worksCorrectly() {
+        TabulatedDifferentialOperator operator = new TabulatedDifferentialOperator();
+
+        TabulatedFunction base = new LinkedListTabulatedFunction(
+                new LinearFunction(3.0, 0.0), // f(x) = 3x → f'(x) = 3
+                1.0, 4.0, 4
+        );
+        SynchronizedTabulatedFunction syncBase = new SynchronizedTabulatedFunction(base);
+
+        TabulatedFunction derived = operator.deriveSynchronously(syncBase);
+
+        for (int i = 0; i < derived.getCount(); i++) {
+            assertEquals(3.0, derived.getY(i), 1e-10);
+        }
+    }
+
+    @Test
+    void derive_and_deriveSynchronously_produceEqualResults() {
+        TabulatedDifferentialOperator operator = new TabulatedDifferentialOperator();
+
+        TabulatedFunction func = new LinkedListTabulatedFunction(
+                new QuadraticFunction(1.0, 0.0, 0.0), // f(x) = x^2
+                0.0, 3.0, 4
+        );
+
+        TabulatedFunction d1 = operator.derive(func);
+        TabulatedFunction d2 = operator.deriveSynchronously(func);
+
+        assertEquals(d1.getCount(), d2.getCount());
+
+        // Проверяем, что ОБА метода дают одинаковый результат
+        for (int i = 0; i < d1.getCount(); i++) {
+            assertEquals(d1.getY(i), d2.getY(i), 1e-10,
+                    "Результаты derive() и deriveSynchronously() должны совпадать");
+        }
+
+        // Опционально: проверяем приближение к точной производной с учётом погрешности
+        // (только для внутренних точек, если используется центральная разность)
+        for (int i = 1; i < d2.getCount() - 1; i++) {
+            // Предположим, что x[i] = i (шаг = 1)
+            double expectedDerivative = 2.0 * i; // f'(x) = 2x
+            assertEquals(expectedDerivative, d2.getY(i), 0.1);
+        }
+    }
+
 }
