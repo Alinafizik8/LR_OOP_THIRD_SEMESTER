@@ -13,7 +13,6 @@ public class WriteTask implements Runnable {
 
     @Override
     public void run() {
-        int count = function.getCount();
         for (int i = 0; i < function.getCount(); ++i) {
             synchronized (function) {
                 function.setY(i, value);

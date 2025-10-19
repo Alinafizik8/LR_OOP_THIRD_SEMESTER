@@ -11,7 +11,6 @@ public class ReadTask implements Runnable {
 
     @Override
     public void run() {
-        int count = function.getCount();
         for (int i = 0; i < function.getCount(); ++i) {
             synchronized (function) {
                 double x = function.getX(i);

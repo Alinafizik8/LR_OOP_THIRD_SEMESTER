@@ -7,12 +7,7 @@ import functions.TabulatedFunction;
 public class ReadWriteTaskExecutor {
     public static void main(String[] args) {
         // Создаём табулированную функцию на основе ConstantFunction(-1)
-        TabulatedFunction function = new LinkedListTabulatedFunction(
-                new ConstantFunction(-1.0),
-                1.0,      // xFrom
-                1000.0,   // xTo
-                1000      // count
-        );
+        TabulatedFunction function = new LinkedListTabulatedFunction(new ConstantFunction(-1.0), 1.0, 1000.0, 1000);
 
         // Создаём задачи
         ReadTask readTask = new ReadTask(function);
