@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/concurrent/MultiplyingTask.java" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="start Y 4.0 lab">
       <change afterPath="$PROJECT_DIR$/src/main/java/concurrent/MultiplyingTaskExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/concurrent/ReadTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/concurrent/ReadTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/concurrent/ReadWriteTaskExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/concurrent/ReadWriteTaskExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/concurrent/WriteTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/concurrent/WriteTask.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,9 +78,9 @@
       <recent name="io" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SynchronizedTabulatedFunctionTest">
-    <configuration name="ReadWriteTaskExecutor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="concurrent.ReadWriteTaskExecutor" />
+  <component name="RunManager" selected="Application.MultiplyingTaskExecutor">
+    <configuration name="MultiplyingTaskExecutor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="concurrent.MultiplyingTaskExecutor" />
       <module name="LR_OOP_THIRD_SEMESTER" />
       <extension name="coverage">
         <pattern>
@@ -97,18 +92,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ReadWriteTaskExecutor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="concurrent.ReadWriteTaskExecutor" />
       <module name="LR_OOP_THIRD_SEMESTER" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="functions.*" />
+          <option name="PATTERN" value="concurrent.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="functions" />
-      <option name="MAIN_CLASS_NAME" value="functions.ArrayTabulatedFunctionTest" />
-      <option name="METHOD_NAME" value="floorIndexOfX_returnsCorrectIndexForInternalValues" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -146,11 +138,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MultiplyingTaskExecutor" />
         <item itemvalue="JUnit.SynchronizedTabulatedFunctionTest" />
         <item itemvalue="JUnit.concurrent in LR_OOP_THIRD_SEMESTER" />
         <item itemvalue="Application.ReadWriteTaskExecutor" />
         <item itemvalue="JUnit.java in LR_OOP_THIRD_SEMESTER" />
-        <item itemvalue="JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues" />
       </list>
     </recent_temporary>
   </component>
@@ -162,6 +154,15 @@
       <option name="presentableId" value="Default" />
       <updated>1760302845957</updated>
     </task>
+    <task id="LOCAL-00001" summary="start Y 4.0 lab">
+      <option name="closed" value="true" />
+      <created>1760865354867</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1760865354867</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,6 +175,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="start Y 4.0 lab" />
+    <option name="LAST_COMMIT_MESSAGE" value="start Y 4.0 lab" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
