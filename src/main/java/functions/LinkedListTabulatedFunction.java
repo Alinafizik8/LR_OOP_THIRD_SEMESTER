@@ -1,6 +1,8 @@
 package functions;
 
 import exceptions.InterpolationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -8,9 +10,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements TabulatedFunction, Removable, Serializable{
-
     @Serial
     private static final long serialVersionUID = -8254753437457798923L;
+
+    private static final Logger logger = LoggerFactory.getLogger(LinkedListTabulatedFunction.class);
 
     private static class Node {
         double x;
@@ -80,6 +83,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             throw new IllegalArgumentException("Arrays can not be null");
         }
         if (xValues.length < 2) {
+            logger.error("Invalid array lengths for LinkedListTabulatedFunction: x length = {}, y length = {}", xValues.length, yValues.length);
             throw new IllegalArgumentException("Таблица должна содержать минимум 2 точки");
         }
         checkLengthIsTheSame(xValues,yValues);
@@ -95,6 +99,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     // <<<<>>>> Конструктор с четырьмя параметрами: из функции, интервала и количества точек
     public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
         if (count < 2) {
+            logger.error("Invalid parameters for tabulation: count = {}, xFrom = {}, xTo = {}", count, xFrom, xTo);
             throw new IllegalArgumentException("Количество точек должно быть >= 2");
         }
         if (xFrom > xTo) {
@@ -118,6 +123,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
                 addNode(x, source.apply(x));
             }
         }
+        logger.info("Created LinkedListTabulatedFunction from {} with {} points on [{}, {}]", source.getClass().getSimpleName(), count, xFrom, xTo);
     }
 
     // <<<<>>>> Реализация методов из TabulatedFunction
@@ -138,6 +144,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
 
     private Node getNode(int index) {
         if (index < 0 || index >= count) {
+            logger.error("Index {} is out of bounds for LinkedListTabulatedFunction of size {}", index, count);
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + count);
         }
         Node current;

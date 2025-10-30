@@ -1,6 +1,8 @@
 package functions;
 
 import exceptions.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,17 +15,11 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
     @Serial
     private static final long serialVersionUID = 1817051781617987771L;
 
+    private static final Logger logger = LoggerFactory.getLogger(ArrayTabulatedFunction.class);
+
     private double[] xValues;
     private double[] yValues;
     private int count;
-
-    /**
-     * Конструктор с двумя массивами.
-     * Создаёт копии входных массивов для защиты от внешних изменений.
-     * xValues массив значений x (должен быть строго возрастающим)
-     * yValues массив значений y
-     * IllegalArgumentException если массивы null, разной длины или пустые
-     */
 
     public void insert(double x, double y) {
         // Проверяем существует ли х или находим позицию для вставки
@@ -109,8 +105,17 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         this.count = count - 1;
     }
 
+    /**
+     * Конструктор с двумя массивами.
+     * Создаёт копии входных массивов для защиты от внешних изменений.
+     * xValues массив значений x (должен быть строго возрастающим)
+     * yValues массив значений y
+     * IllegalArgumentException если массивы null, разной длины или пустые
+     */
+
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
         if (xValues == null || yValues == null) {
+            logger.error("Invalid array lengths for ArrayTabulatedFunction: x length = {}, y length = {}", xValues.length, yValues.length);
             throw new IllegalArgumentException("Arrays can not be null");
         }
         if (xValues.length < 2) {
@@ -133,6 +138,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
      */
     public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
         if (count < 2) {
+            logger.error("Invalid parameters for tabulation: count = {}, xFrom = {}, xTo = {}", count, xFrom, xTo);
             throw new IllegalArgumentException("The length must be more than 2");
         }
         if (source == null) {
