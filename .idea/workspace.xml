@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/scripts/crud_functions.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760866770553</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="...">
+      <option name="closed" value="true" />
+      <created>1762713176690</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1762713176690</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -207,7 +214,8 @@
     <MESSAGE value="start Y 4.0 lab" />
     <MESSAGE value="continue start Y 4.0 lab" />
     <MESSAGE value="continue Y 4.0 lab" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue Y 4.0 lab" />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
