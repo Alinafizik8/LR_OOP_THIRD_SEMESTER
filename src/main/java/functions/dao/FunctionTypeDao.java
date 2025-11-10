@@ -2,7 +2,6 @@ package functions.dao;
 
 import functions.dto.FunctionTypeDTO;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +11,6 @@ public interface FunctionTypeDao {
     Optional<FunctionTypeDTO> findByName(String name);
     List<FunctionTypeDTO> findAll();
     List<FunctionTypeDTO> findAllSortedByPriority();
-    void update(LocalDateTime type);
+    void update(FunctionTypeDTO type);
     void deleteById(Long id);
 }

@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="dead inside 1.0">
-      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dto/FunctionTypeDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dto/UserDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractTabulatedFunctionDaoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractUserDaoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDAOTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +38,12 @@
     &quot;assignee&quot;: &quot;Yoda-bl&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Alinafizik8/LR_OOP_THIRD_SEMESTER.git",
-    "accountId": "1871043b-9ff2-46dc-8682-06d03a79891e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Alinafizik8/LR_OOP_THIRD_SEMESTER.git&quot;,
+    &quot;accountId&quot;: &quot;1871043b-9ff2-46dc-8682-06d03a79891e&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
