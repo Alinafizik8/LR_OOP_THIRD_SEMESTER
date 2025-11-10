@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="dead inside 1.21">
+      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractFunctionTypeDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractFunctionTypeDaoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractTabulatedFunctionDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractTabulatedFunctionDaoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractUserDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractUserDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
