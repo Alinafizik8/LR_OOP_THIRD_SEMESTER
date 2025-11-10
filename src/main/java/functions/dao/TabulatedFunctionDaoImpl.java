@@ -21,7 +21,32 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
 
     @Override
     public Long save(TabulatedFunctionDTO function) {
-        return 0L;
+        logger.debug("[SAVE] Сохранение функции '{}' для пользователя {}", function.getName(), function.getOwnerId());
+        String sql = """
+        INSERT INTO tabulated_functions (owner_id, function_type_id, serialized_data, name, created_at, updated_at) 
+        VALUES (?, ?, ?, ?, NOW(), NOW()) RETURNING id
+        """;
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, function.getOwnerId());
+            ps.setLong(2, function.getFunctionTypeId());
+            ps.setBytes(3, function.getSerializedData());
+            ps.setString(4, function.getName());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Long id = rs.getLong(1);
+                    logger.debug("Функция сохранена с id={}", id);
+                    return id;
+                } else {
+                    throw new RuntimeException("Не удалось получить ID сохраненной функции");
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("[SAVE] Ошибка сохранения функции '{}'", function.getName(), e);
+            throw new RuntimeException("Сохранение функции не удалось", e);
+        }
     }
 
     // === 1. ОДИНОЧНЫЙ ПОИСК ===

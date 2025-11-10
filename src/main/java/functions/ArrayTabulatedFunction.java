@@ -137,7 +137,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
      */
     public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
         if (count < 2) {
-            logger.error("Invalid parameters for tabulation: count = {}, xFrom = {}, xTo = {}", count, xFrom, xTo);
             throw new IllegalArgumentException("The length must be more than 2");
         }
         if (source == null) {

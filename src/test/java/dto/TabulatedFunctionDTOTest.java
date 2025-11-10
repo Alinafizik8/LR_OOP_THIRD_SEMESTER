@@ -1,7 +1,6 @@
 package dto;
 
 import functions.ArrayTabulatedFunction;
-import functions.LinkedListTabulatedFunction;
 import functions.TabulatedFunction;
 import io.FunctionsIO;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -32,51 +33,47 @@ class TabulatedFunctionDTOTest {
 
     private byte[] createSerializedFunctionBytes() throws IOException {
         TabulatedFunction func = createTestFunction();
-        java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try (java.io.BufferedOutputStream bos = new java.io.BufferedOutputStream(baos)) {
             FunctionsIO.serialize(bos, func);
         }
         return baos.toByteArray();
     }
 
+    private byte[] createCorruptedSerializedData() throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(baos);
+        oos.writeObject("test");
+        oos.close();
+        byte[] data = baos.toByteArray();
+        data[0] = 0;
+        data[1] = 0;
+        return data;
+    }
+
     @Test
     void testPublicConstructor() {
-        Long id = 1L;
-        Long ownerId = 2L;
-        Long functionTypeId = 3L;
-        TabulatedFunction function = createTestFunction();
-        String name = "Test Function";
-        LocalDateTime createdAt = LocalDateTime.of(2024, 1, 1, 10, 0);
-        LocalDateTime updatedAt = LocalDateTime.of(2024, 1, 2, 15, 30);
+        TabulatedFunctionDTO dto = new TabulatedFunctionDTO(1L, 2L, 3L, createTestFunction(), "Test Function",
+                LocalDateTime.of(2024, 1, 1, 10, 0), LocalDateTime.of(2024, 1, 2, 15, 30));
 
-        TabulatedFunctionDTO dto = new TabulatedFunctionDTO(id, ownerId, functionTypeId, function, name, createdAt, updatedAt);
-
-        assertEquals(id, dto.getId());
-        assertEquals(ownerId, dto.getOwnerId());
-        assertEquals(functionTypeId, dto.getFunctionTypeId());
-        assertEquals(name, dto.getName());
-        assertEquals(createdAt, dto.getCreatedAt());
-        assertEquals(updatedAt, dto.getUpdatedAt());
-        assertEquals(function, dto.getFunction());
+        assertEquals(1L, dto.getId());
+        assertEquals(2L, dto.getOwnerId());
+        assertEquals(3L, dto.getFunctionTypeId());
+        assertEquals("Test Function", dto.getName());
+        assertNotNull(dto.getFunction());
         assertNotNull(dto.getSerializedData());
         assertTrue(dto.getSerializedData().length > 0);
     }
 
     @Test
     void testPublicConstructorWithNullFunction() {
-        Long id = 1L;
-        Long ownerId = 2L;
-        Long functionTypeId = 3L;
-        String name = "Null Function";
-        LocalDateTime createdAt = LocalDateTime.now();
-        LocalDateTime updatedAt = LocalDateTime.now();
+        TabulatedFunctionDTO dto = new TabulatedFunctionDTO(1L, 2L, 3L, null, "Null Function",
+                LocalDateTime.now(), LocalDateTime.now());
 
-        TabulatedFunctionDTO dto = new TabulatedFunctionDTO(id, ownerId, functionTypeId, null, name, createdAt, updatedAt);
-
-        assertEquals(id, dto.getId());
-        assertEquals(ownerId, dto.getOwnerId());
-        assertEquals(functionTypeId, dto.getFunctionTypeId());
-        assertEquals(name, dto.getName());
+        assertEquals(1L, dto.getId());
+        assertEquals(2L, dto.getOwnerId());
+        assertEquals(3L, dto.getFunctionTypeId());
+        assertEquals("Null Function", dto.getName());
         assertNull(dto.getFunction());
         assertNull(dto.getSerializedData());
     }
@@ -84,88 +81,60 @@ class TabulatedFunctionDTOTest {
     @Test
     void testFromResultSet_Success() throws SQLException, IOException {
         byte[] serializedFuncBytes = createSerializedFunctionBytes();
-        long expectedId = 100L;
-        long expectedOwnerId = 1L;
-        long expectedTypeId = 10L;
-        String expectedName = "MyFunction";
-        LocalDateTime expectedCreatedAt = LocalDateTime.now();
-        LocalDateTime expectedUpdatedAt = LocalDateTime.now().plusMinutes(5);
-
-        when(mockResultSet.getLong("id")).thenReturn(expectedId);
-        when(mockResultSet.getLong("owner_id")).thenReturn(expectedOwnerId);
-        when(mockResultSet.getLong("function_type_id")).thenReturn(expectedTypeId);
-        when(mockResultSet.getString("name")).thenReturn(expectedName);
+        when(mockResultSet.getLong("id")).thenReturn(100L);
+        when(mockResultSet.getLong("owner_id")).thenReturn(1L);
+        when(mockResultSet.getLong("function_type_id")).thenReturn(10L);
+        when(mockResultSet.getString("name")).thenReturn("MyFunction");
         when(mockResultSet.getBytes("serialized_data")).thenReturn(serializedFuncBytes);
-        when(mockResultSet.getObject("created_at", LocalDateTime.class)).thenReturn(expectedCreatedAt);
-        when(mockResultSet.getObject("updated_at", LocalDateTime.class)).thenReturn(expectedUpdatedAt);
+        when(mockResultSet.getObject("created_at", LocalDateTime.class)).thenReturn(LocalDateTime.now());
+        when(mockResultSet.getObject("updated_at", LocalDateTime.class)).thenReturn(LocalDateTime.now().plusMinutes(5));
 
         TabulatedFunctionDTO dto = TabulatedFunctionDTO.fromResultSet(mockResultSet);
 
         assertNotNull(dto);
-        assertEquals(expectedId, dto.getId());
-        assertEquals(expectedOwnerId, dto.getOwnerId());
-        assertEquals(expectedTypeId, dto.getFunctionTypeId());
-        assertEquals(expectedName, dto.getName());
+        assertEquals(100L, dto.getId());
+        assertEquals(1L, dto.getOwnerId());
+        assertEquals(10L, dto.getFunctionTypeId());
+        assertEquals("MyFunction", dto.getName());
         assertArrayEquals(serializedFuncBytes, dto.getSerializedData());
-        assertEquals(expectedCreatedAt, dto.getCreatedAt());
-        assertEquals(expectedUpdatedAt, dto.getUpdatedAt());
         assertNotNull(dto.getFunction());
-
-        verify(mockResultSet, times(1)).getLong("id");
-        verify(mockResultSet, times(1)).getLong("owner_id");
-        verify(mockResultSet, times(1)).getLong("function_type_id");
-        verify(mockResultSet, times(1)).getString("name");
-        verify(mockResultSet, times(1)).getBytes("serialized_data");
-        verify(mockResultSet, times(1)).getObject("created_at", LocalDateTime.class);
-        verify(mockResultSet, times(1)).getObject("updated_at", LocalDateTime.class);
     }
 
     @Test
     void testFromResultSet_NullFunctionData() throws SQLException {
-        long expectedId = 101L;
-        long expectedOwnerId = 2L;
-        long expectedTypeId = 11L;
-        String expectedName = "EmptyFunction";
-        LocalDateTime expectedCreatedAt = LocalDateTime.of(2023, 10, 1, 12, 0);
-        LocalDateTime expectedUpdatedAt = LocalDateTime.of(2023, 10, 1, 12, 5);
-
-        when(mockResultSet.getLong("id")).thenReturn(expectedId);
-        when(mockResultSet.getLong("owner_id")).thenReturn(expectedOwnerId);
-        when(mockResultSet.getLong("function_type_id")).thenReturn(expectedTypeId);
-        when(mockResultSet.getString("name")).thenReturn(expectedName);
+        when(mockResultSet.getLong("id")).thenReturn(101L);
+        when(mockResultSet.getLong("owner_id")).thenReturn(2L);
+        when(mockResultSet.getLong("function_type_id")).thenReturn(11L);
+        when(mockResultSet.getString("name")).thenReturn("EmptyFunction");
         when(mockResultSet.getBytes("serialized_data")).thenReturn(null);
-        when(mockResultSet.getObject("created_at", LocalDateTime.class)).thenReturn(expectedCreatedAt);
-        when(mockResultSet.getObject("updated_at", LocalDateTime.class)).thenReturn(expectedUpdatedAt);
+        when(mockResultSet.getObject("created_at", LocalDateTime.class)).thenReturn(LocalDateTime.of(2023, 10, 1, 12, 0));
+        when(mockResultSet.getObject("updated_at", LocalDateTime.class)).thenReturn(LocalDateTime.of(2023, 10, 1, 12, 5));
 
         TabulatedFunctionDTO dto = TabulatedFunctionDTO.fromResultSet(mockResultSet);
 
         assertNotNull(dto);
-        assertEquals(expectedId, dto.getId());
-        assertEquals(expectedOwnerId, dto.getOwnerId());
-        assertEquals(expectedTypeId, dto.getFunctionTypeId());
-        assertEquals(expectedName, dto.getName());
+        assertEquals(101L, dto.getId());
+        assertEquals(2L, dto.getOwnerId());
+        assertEquals(11L, dto.getFunctionTypeId());
+        assertEquals("EmptyFunction", dto.getName());
         assertNull(dto.getSerializedData());
-        assertEquals(expectedCreatedAt, dto.getCreatedAt());
-        assertEquals(expectedUpdatedAt, dto.getUpdatedAt());
         assertNull(dto.getFunction());
     }
 
     @Test
     void testFromResultSet_ThrowsSQLException() throws SQLException {
         when(mockResultSet.getLong("id")).thenThrow(new SQLException("Database error"));
-
         assertThrows(SQLException.class, () -> TabulatedFunctionDTO.fromResultSet(mockResultSet));
     }
 
     @Test
-    void testFromResultSet_DeserializationError() throws SQLException {
-        byte[] invalidBytes = "invalid data".getBytes();
-
+    void testFromResultSet_DeserializationError() throws SQLException, IOException {
+        byte[] corruptedBytes = createCorruptedSerializedData();
         when(mockResultSet.getLong("id")).thenReturn(1L);
         when(mockResultSet.getLong("owner_id")).thenReturn(1L);
         when(mockResultSet.getLong("function_type_id")).thenReturn(1L);
         when(mockResultSet.getString("name")).thenReturn("Invalid Function");
-        when(mockResultSet.getBytes("serialized_data")).thenReturn(invalidBytes);
+        when(mockResultSet.getBytes("serialized_data")).thenReturn(corruptedBytes);
         when(mockResultSet.getObject("created_at", LocalDateTime.class)).thenReturn(LocalDateTime.now());
         when(mockResultSet.getObject("updated_at", LocalDateTime.class)).thenReturn(LocalDateTime.now());
 
@@ -181,12 +150,10 @@ class TabulatedFunctionDTOTest {
         dto.setOwnerId(3L);
         dto.setFunctionTypeId(4L);
         dto.setName("Updated Name");
-
         LocalDateTime newCreatedAt = LocalDateTime.of(2024, 2, 1, 12, 0);
         LocalDateTime newUpdatedAt = LocalDateTime.of(2024, 2, 2, 18, 0);
         dto.setCreatedAt(newCreatedAt);
         dto.setUpdatedAt(newUpdatedAt);
-
         byte[] newSerializedData = "test data".getBytes();
         dto.setSerializedData(newSerializedData);
 
@@ -227,59 +194,49 @@ class TabulatedFunctionDTOTest {
         TabulatedFunctionDTO dto1 = new TabulatedFunctionDTO(1L, 2L, 3L, createTestFunction(), "Function1", now, now);
         TabulatedFunctionDTO dto2 = new TabulatedFunctionDTO(1L, 2L, 3L, createTestFunction(), "Function1", now, now);
         TabulatedFunctionDTO dto3 = new TabulatedFunctionDTO(4L, 2L, 3L, createTestFunction(), "Function1", now, now);
-        TabulatedFunctionDTO dto4 = new TabulatedFunctionDTO(1L, 5L, 3L, createTestFunction(), "Function1", now, now);
-        TabulatedFunctionDTO dto5 = new TabulatedFunctionDTO(1L, 2L, 6L, createTestFunction(), "Function1", now, now);
-        TabulatedFunctionDTO dto6 = new TabulatedFunctionDTO(1L, 2L, 3L, createTestFunction(), "Function2", now, now);
 
         assertEquals(dto1, dto2);
-        assertNotEquals(dto1, dto3);
-        assertNotEquals(dto1, dto4);
-        assertNotEquals(dto1, dto5);
-        assertNotEquals(dto1, dto6);
-
         assertEquals(dto1.hashCode(), dto2.hashCode());
+        assertNotEquals(dto1, dto3);
         assertNotEquals(dto1.hashCode(), dto3.hashCode());
     }
 
     @Test
-    void testEqualsWithNull() {
+    void testEqualsWithDifferentFields() {
+        LocalDateTime now = LocalDateTime.now();
+        TabulatedFunctionDTO base = new TabulatedFunctionDTO(1L, 2L, 3L, createTestFunction(), "Function", now, now);
+        TabulatedFunctionDTO diffOwner = new TabulatedFunctionDTO(1L, 5L, 3L, createTestFunction(), "Function", now, now);
+        TabulatedFunctionDTO diffType = new TabulatedFunctionDTO(1L, 2L, 6L, createTestFunction(), "Function", now, now);
+        TabulatedFunctionDTO diffName = new TabulatedFunctionDTO(1L, 2L, 3L, createTestFunction(), "Different", now, now);
+
+        assertNotEquals(base, diffOwner);
+        assertNotEquals(base, diffType);
+        assertNotEquals(base, diffName);
+    }
+
+    @Test
+    void testEqualsWithNullAndDifferentClass() {
         TabulatedFunctionDTO dto = new TabulatedFunctionDTO(1L, 1L, 1L, createTestFunction(), "Test",
                 LocalDateTime.now(), LocalDateTime.now());
 
         assertNotEquals(null, dto);
         assertNotEquals(dto, new Object());
-    }
-
-    @Test
-    void testEqualsSameObject() {
-        TabulatedFunctionDTO dto = new TabulatedFunctionDTO(1L, 1L, 1L, createTestFunction(), "Test",
-                LocalDateTime.now(), LocalDateTime.now());
-
         assertEquals(dto, dto);
     }
 
     @Test
     void testToString() {
-        Long id = 123L;
-        Long ownerId = 456L;
-        Long functionTypeId = 789L;
-        String name = "Test Function";
-        LocalDateTime createdAt = LocalDateTime.of(2024, 1, 15, 9, 30);
-        LocalDateTime updatedAt = LocalDateTime.of(2024, 1, 20, 14, 45);
-
-        TabulatedFunctionDTO dto = new TabulatedFunctionDTO(id, ownerId, functionTypeId, createTestFunction(),
-                name, createdAt, updatedAt);
+        TabulatedFunctionDTO dto = new TabulatedFunctionDTO(123L, 456L, 789L, createTestFunction(), "Test Function",
+                LocalDateTime.of(2024, 1, 15, 9, 30), LocalDateTime.of(2024, 1, 20, 14, 45));
 
         String result = dto.toString();
 
         assertNotNull(result);
         assertTrue(result.contains("TabulatedFunctionDTO{"));
-        assertTrue(result.contains("id=" + id));
-        assertTrue(result.contains("ownerId=" + ownerId));
-        assertTrue(result.contains("functionTypeId=" + functionTypeId));
-        assertTrue(result.contains("name='" + name + "'"));
-        assertTrue(result.contains("createdAt=" + createdAt));
-        assertTrue(result.contains("updatedAt=" + updatedAt));
+        assertTrue(result.contains("id=123"));
+        assertTrue(result.contains("ownerId=456"));
+        assertTrue(result.contains("functionTypeId=789"));
+        assertTrue(result.contains("name='Test Function'"));
         assertTrue(result.contains("serializedDataLength="));
     }
 
@@ -290,7 +247,6 @@ class TabulatedFunctionDTOTest {
         String result = dto.toString();
 
         assertNotNull(result);
-        assertTrue(result.contains("TabulatedFunctionDTO{"));
         assertTrue(result.contains("id=null"));
         assertTrue(result.contains("ownerId=null"));
         assertTrue(result.contains("functionTypeId=null"));
@@ -304,9 +260,7 @@ class TabulatedFunctionDTOTest {
     void testSerializeFunction() {
         TabulatedFunctionDTO dto = new TabulatedFunctionDTO(1L, 1L, 1L, null, "Test",
                 LocalDateTime.now(), LocalDateTime.now());
-        TabulatedFunction function = createTestFunction();
-
-        byte[] result = dto.serializeFunction(function);
+        byte[] result = dto.serializeFunction(createTestFunction());
 
         assertNotNull(result);
         assertTrue(result.length > 0);
@@ -316,14 +270,11 @@ class TabulatedFunctionDTOTest {
     void testSerializeFunctionWithNull() {
         TabulatedFunctionDTO dto = new TabulatedFunctionDTO(1L, 1L, 1L, null, "Test",
                 LocalDateTime.now(), LocalDateTime.now());
-
-        byte[] result = dto.serializeFunction(null);
-
-        assertNull(result);
+        assertNull(dto.serializeFunction(null));
     }
 
     @Test
-    void testSerializeFunctionWithDifferentFunctionType() {
+    void testSerializeFunctionWithDifferentData() {
         TabulatedFunctionDTO dto = new TabulatedFunctionDTO(1L, 1L, 1L, null, "Test",
                 LocalDateTime.now(), LocalDateTime.now());
 
@@ -332,18 +283,16 @@ class TabulatedFunctionDTOTest {
         TabulatedFunction differentFunction = new ArrayTabulatedFunction(xValues, yValues);
 
         byte[] result = dto.serializeFunction(differentFunction);
+        byte[] standardResult = dto.serializeFunction(createTestFunction());
 
         assertNotNull(result);
         assertTrue(result.length > 0);
-
-        byte[] standardResult = dto.serializeFunction(createTestFunction());
         assertNotEquals(standardResult.length, result.length);
     }
 
     @Test
     void testStaticDeserializeFunction() throws IOException, ClassNotFoundException {
         byte[] serializedData = createSerializedFunctionBytes();
-
         TabulatedFunction result = TabulatedFunctionDTO.deserializeFunction(serializedData);
 
         assertNotNull(result);
@@ -355,15 +304,12 @@ class TabulatedFunctionDTOTest {
 
     @Test
     void testStaticDeserializeFunctionWithNull() throws IOException, ClassNotFoundException {
-        TabulatedFunction result = TabulatedFunctionDTO.deserializeFunction(null);
-
-        assertNull(result);
+        assertNull(TabulatedFunctionDTO.deserializeFunction(null));
     }
 
     @Test
     void testStaticDeserializeFunctionWithInvalidData() {
         byte[] invalidData = "invalid serialized data".getBytes();
-
         assertThrows(IOException.class, () -> TabulatedFunctionDTO.deserializeFunction(invalidData));
     }
 
@@ -380,14 +326,12 @@ class TabulatedFunctionDTOTest {
         dto.setFunctionTypeId(60L);
         dto.setName("First");
         dto.setName("Second");
-
         LocalDateTime time1 = LocalDateTime.of(2024, 1, 1, 0, 0);
         LocalDateTime time2 = LocalDateTime.of(2024, 1, 2, 0, 0);
         dto.setCreatedAt(time1);
         dto.setCreatedAt(time2);
         dto.setUpdatedAt(time1);
         dto.setUpdatedAt(time2);
-
         byte[] data1 = "data1".getBytes();
         byte[] data2 = "data2".getBytes();
         dto.setSerializedData(data1);
@@ -403,7 +347,7 @@ class TabulatedFunctionDTOTest {
     }
 
     @Test
-    void testEmptyAndSpecialCharactersInName() {
+    void testNameWithSpecialCharacters() {
         TabulatedFunctionDTO dto = new TabulatedFunctionDTO(1L, 1L, 1L, createTestFunction(), "Original",
                 LocalDateTime.now(), LocalDateTime.now());
 

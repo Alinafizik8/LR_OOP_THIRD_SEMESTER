@@ -51,35 +51,52 @@ class TabulatedFunctionDaoSortingTest {
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement()) {
             stmt.execute("""
-                CREATE TABLE users (
-                    id BIGSERIAL PRIMARY KEY,
-                    email VARCHAR(255) UNIQUE NOT NULL,
-                    username VARCHAR(100) UNIQUE NOT NULL,
-                    password_hash TEXT NOT NULL,
-                    role VARCHAR(20) DEFAULT 'USER'
-                );
-                CREATE TABLE function_types (
-                    id BIGSERIAL PRIMARY KEY,
-                    name VARCHAR(100) UNIQUE NOT NULL,
-                    localized_name VARCHAR(255) NOT NULL,
-                    priority INT DEFAULT 0
-                );
-                CREATE TABLE tabulated_functions (
-                    id BIGSERIAL PRIMARY KEY,
-                    owner_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-                    function_type_id BIGINT NOT NULL REFERENCES function_types(id) ON DELETE CASCADE,
-                    serialized_data BYTEA NOT NULL,
-                    name VARCHAR(255) NOT NULL,
-                    created_at TIMESTAMP DEFAULT NOW(),
-                    updated_at TIMESTAMP DEFAULT NOW()
-                );
-                INSERT INTO function_types (name, localized_name, priority)
-                VALUES ('TABULATED', 'Табулированная', 1), ('SIN', 'Синус', 2), ('COS', 'Косинус', 3);
-                """);
+            CREATE TABLE users (
+                id BIGSERIAL PRIMARY KEY,
+                email VARCHAR(255) UNIQUE NOT NULL,
+                username VARCHAR(100) UNIQUE NOT NULL,
+                password_hash TEXT NOT NULL,
+                role VARCHAR(20) DEFAULT 'USER',
+                created_at TIMESTAMP DEFAULT NOW(),
+                updated_at TIMESTAMP DEFAULT NOW()
+            );
+            CREATE TABLE function_types (
+                id BIGSERIAL PRIMARY KEY,
+                name VARCHAR(100) UNIQUE NOT NULL,
+                localized_name VARCHAR(255) NOT NULL,
+                priority INT DEFAULT 0,
+                created_at TIMESTAMP DEFAULT NOW(),
+                updated_at TIMESTAMP DEFAULT NOW()
+            );
+            CREATE TABLE tabulated_functions (
+                id BIGSERIAL PRIMARY KEY,
+                owner_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+                function_type_id BIGINT NOT NULL REFERENCES function_types(id) ON DELETE CASCADE,
+                serialized_data BYTEA NOT NULL,
+                name VARCHAR(255) NOT NULL,
+                created_at TIMESTAMP DEFAULT NOW(),
+                updated_at TIMESTAMP DEFAULT NOW()
+            );
+            """);
+
+            stmt.execute("""
+            INSERT INTO users (id, email, username, password_hash, role) VALUES 
+            (1, 'user1@test.com', 'user1', 'hash1', 'USER'),
+            (2, 'user2@test.com', 'user2', 'hash2', 'USER'),
+            (3, 'user3@test.com', 'user3', 'hash3', 'USER');
+            """);
+
+            stmt.execute("""
+            INSERT INTO function_types (id, name, localized_name, priority) VALUES 
+            (1, 'TABULATED', 'Табулированная', 1),
+            (2, 'SIN', 'Синус', 2),
+            (3, 'COS', 'Косинус', 3);
+            """);
+
+            stmt.execute("SELECT setval('users_id_seq', 3);");
+            stmt.execute("SELECT setval('function_types_id_seq', 3);");
         }
 
-        userDao = new UserDaoImpl(dataSource);
-        typeDao = new FunctionTypeDaoImpl(dataSource);
         dao = new TabulatedFunctionDaoImpl(dataSource);
 
         logger.info("DAO и БД инициализированы");
