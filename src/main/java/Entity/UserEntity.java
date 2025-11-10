@@ -98,10 +98,6 @@ public class UserEntity {
         this.updatedAt = updatedAt;
     }
 
-    // Важно: перед сохранением в БД (при INSERT) убедитесь, что createdAt и updatedAt установлены
-    // Это можно сделать в слое Service или с помощью JPA Callbacks (@PrePersist, @PreUpdate),
-    // но часто это делает сама БД (например, через DEFAULT CURRENT_TIMESTAMP).
-    // Если вы хотите управлять этим в Java, можно добавить:
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();

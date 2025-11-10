@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "functions")
-public class FunctionEntity {
+public class TabulatedFunctionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,10 +34,10 @@ public class FunctionEntity {
     private LocalDateTime updatedAt;
 
     // Конструктор по умолчанию
-    protected FunctionEntity() {}
+    protected TabulatedFunctionEntity() {}
 
     // Основной конструктор
-    public FunctionEntity(UserEntity owner, FunctionTypeEntity functionType, byte[] serializedData, String name) {
+    public TabulatedFunctionEntity(UserEntity owner, FunctionTypeEntity functionType, byte[] serializedData, String name) {
         this.owner = owner;
         this.functionType = functionType;
         this.serializedData = serializedData;
