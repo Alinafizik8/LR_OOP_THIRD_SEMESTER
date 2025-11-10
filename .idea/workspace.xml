@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="dead inside">
-      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="dead inside 1.0">
+      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dto/FunctionTypeDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDAOTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dto/TabulatedFunctionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dto/TabulatedFunctionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762788657761</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="dead inside 1.0">
+      <option name="closed" value="true" />
+      <created>1762790209930</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1762790209930</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -227,7 +238,8 @@
     <MESSAGE value="continue Y 4.0 lab" />
     <MESSAGE value="(" />
     <MESSAGE value="dead inside" />
-    <option name="LAST_COMMIT_MESSAGE" value="dead inside" />
+    <MESSAGE value="dead inside 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="dead inside 1.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
