@@ -115,7 +115,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
         if (xValues == null || yValues == null) {
-            logger.error("Invalid array lengths for ArrayTabulatedFunction: x length = {}, y length = {}", xValues.length, yValues.length);
             throw new IllegalArgumentException("Arrays can not be null");
         }
         if (xValues.length < 2) {
