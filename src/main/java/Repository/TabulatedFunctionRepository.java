@@ -1,5 +1,6 @@
 package Repository;
 
+import Entity.FunctionTypeEntity;
 import Entity.TabulatedFunctionEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
