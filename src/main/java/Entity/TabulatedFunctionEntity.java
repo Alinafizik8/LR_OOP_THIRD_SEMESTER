@@ -34,7 +34,7 @@ public class TabulatedFunctionEntity {
     private LocalDateTime updatedAt;
 
     // Конструктор по умолчанию
-    protected TabulatedFunctionEntity() {}
+    public TabulatedFunctionEntity() {}
 
     // Основной конструктор
     public TabulatedFunctionEntity(UserEntity owner, FunctionTypeEntity functionType, byte[] serializedData, String name) {
