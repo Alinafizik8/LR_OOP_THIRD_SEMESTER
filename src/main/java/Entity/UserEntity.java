@@ -2,10 +2,22 @@ package Entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class UserEntity {
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<TabulatedFunctionEntity> functions = new ArrayList<>();
+
+    public List<TabulatedFunctionEntity> getFunctions() {
+        return functions;
+    }
+
+    public void setFunctions(List<TabulatedFunctionEntity> functions) {
+        this.functions = functions;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Используем IDENTITY для PostgreSQL
@@ -30,8 +42,8 @@ public class UserEntity {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    // Конструктор по умолчанию (необходим для JPA)
-    protected UserEntity() {}
+    // Конструктор по умолчанию
+    public UserEntity() {}
 
     // Основной конструктор (без id, createdAt, updatedAt - они управляются БД)
     public UserEntity(String email, String username, String passwordHash, String role) {

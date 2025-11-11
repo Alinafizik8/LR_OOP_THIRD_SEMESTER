@@ -29,7 +29,7 @@ public class FunctionTypeEntity {
     private LocalDateTime updatedAt;
 
     // Конструктор по умолчанию
-    protected FunctionTypeEntity() {}
+    public FunctionTypeEntity() {}
 
     // Основной конструктор
     public FunctionTypeEntity(String name, String localizedName, Integer priority) {

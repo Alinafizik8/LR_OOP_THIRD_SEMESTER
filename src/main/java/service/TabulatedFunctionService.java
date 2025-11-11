@@ -2,6 +2,7 @@ package service;
 
 import Repository.TabulatedFunctionRepository;
 import Entity.TabulatedFunctionEntity;
+import Entity.UserEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
