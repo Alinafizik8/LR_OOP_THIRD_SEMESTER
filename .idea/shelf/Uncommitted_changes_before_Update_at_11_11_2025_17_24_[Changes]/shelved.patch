@@ -1,0 +1,620 @@
+Index: src/main/java/functions/dao/TabulatedFunctionDaoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functions.dao;\r\n\r\nimport functions.dto.TabulatedFunctionDTO;\r\nimport org.slf4j.Logger;\r\nimport org.slf4j.LoggerFactory;\r\n\r\nimport javax.sql.DataSource;\r\nimport java.sql.*;\r\nimport java.time.LocalDateTime;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Optional;\r\n\r\npublic class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {\r\n    private final DataSource dataSource;\r\n    private final Logger logger = LoggerFactory.getLogger(TabulatedFunctionDaoImpl.class);\r\n\r\n    public TabulatedFunctionDaoImpl(DataSource dataSource) {\r\n        this.dataSource = dataSource;\r\n    }\r\n\r\n    @Override\r\n    public Long save(TabulatedFunctionDTO function) {\r\n        logger.debug(\"[SAVE] Сохранение функции '{}' для пользователя {}\", function.getName(), function.getOwnerId());\r\n        String sql = \"\"\"\r\n        INSERT INTO tabulated_functions (owner_id, function_type_id, serialized_data, name, created_at, updated_at) \r\n        VALUES (?, ?, ?, ?, NOW(), NOW()) RETURNING id\r\n        \"\"\";\r\n\r\n        try (Connection conn = dataSource.getConnection();\r\n             PreparedStatement ps = conn.prepareStatement(sql)) {\r\n            ps.setLong(1, function.getOwnerId());\r\n            ps.setLong(2, function.getFunctionTypeId());\r\n            ps.setBytes(3, function.getSerializedData());\r\n            ps.setString(4, function.getName());\r\n\r\n            try (ResultSet rs = ps.executeQuery()) {\r\n                if (rs.next()) {\r\n                    Long id = rs.getLong(1);\r\n                    logger.debug(\"Функция сохранена с id={}\", id);\r\n                    return id;\r\n                } else {\r\n                    throw new RuntimeException(\"Не удалось получить ID сохраненной функции\");\r\n                }\r\n            }\r\n        } catch (SQLException e) {\r\n            logger.error(\"[SAVE] Ошибка сохранения функции '{}'\", function.getName(), e);\r\n            throw new RuntimeException(\"Сохранение функции не удалось\", e);\r\n        }\r\n    }\r\n\r\n    // === 1. ОДИНОЧНЫЙ ПОИСК ===\r\n    @Override\r\n    public Optional<TabulatedFunctionDTO> findByIdAndOwnerId(Long id, Long ownerId) {\r\n        logger.debug(\"[SINGLE] Поиск функции id={} у пользователя {}\", id, ownerId);\r\n        String sql = \"SELECT * FROM tabulated_functions WHERE id = ? AND owner_id = ?\";\r\n        try (Connection conn = dataSource.getConnection();\r\n             PreparedStatement ps = conn.prepareStatement(sql)) {\r\n            ps.setLong(1, id);\r\n            ps.setLong(2, ownerId);\r\n\r\n            try (ResultSet rs = ps.executeQuery()) {\r\n                if (rs.next()) {\r\n                    TabulatedFunctionDTO dto = map(rs);\r\n                    logger.trace(\"Найдена функция: id={}, имя='{}', владелец={}\", dto.getId(), dto.getName(), ownerId);\r\n                    return Optional.of(dto);\r\n                } else {\r\n                    logger.debug(\"Функция id={} не найдена у пользователя {}\", id, ownerId);\r\n                    return Optional.empty();\r\n                }\r\n            }\r\n        } catch (SQLException e) {\r\n            logger.error(\"[SINGLE] Ошибка поиска: id={}, owner={}\", id, ownerId, e);\r\n            throw new RuntimeException(\"Поиск функции не удался\", e);\r\n        }\r\n    }\r\n\r\n    // === 2. МНОЖЕСТВЕННЫЙ ПОИСК ===\r\n    @Override\r\n    public List<TabulatedFunctionDTO> findByOwnerId(Long ownerId) {\r\n        logger.debug(\"[MULTI] Загрузка ВСЕХ функций пользователя {}\", ownerId);\r\n        String sql = \"SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY created_at DESC\";\r\n        return queryList(sql, ownerId);\r\n    }\r\n\r\n    // === 3. СОРТИРОВКА ===\r\n    @Override\r\n    public List<TabulatedFunctionDTO> findByOwnerIdSortedByNameAsc(Long ownerId) {\r\n        logger.debug(\"[SORT] Функции пользователя {} → сортировка по имени (A→Я)\", ownerId);\r\n        String sql = \"SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY name ASC\";\r\n        return queryList(sql, ownerId);\r\n    }\r\n\r\n    @Override\r\n    public List<TabulatedFunctionDTO> findByOwnerIdSortedByCreatedAtDesc(Long ownerId) {\r\n        logger.debug(\"[SORT] Функции пользователя {} → сортировка по дате создания (новые→старые)\", ownerId);\r\n        String sql = \"SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY created_at DESC\";\r\n        return queryList(sql, ownerId);\r\n    }\r\n\r\n    // === 4. ФИЛЬТРАЦИЯ + СОРТИРОВКА ===\r\n    @Override\r\n    public List<TabulatedFunctionDTO> findByOwnerIdAndTypeId(Long ownerId, Long typeId) {\r\n        logger.debug(\"[FILTER] Пользователь={}, тип={} → сортировка по дате\", ownerId, typeId);\r\n        String sql = \"\"\"\r\n            SELECT * FROM tabulated_functions \r\n            WHERE owner_id = ? AND function_type_id = ? \r\n            ORDER BY created_at DESC\r\n            \"\"\";\r\n        return queryList(sql, ownerId, typeId);\r\n    }\r\n\r\n    @Override\r\n    public List<TabulatedFunctionDTO> findByOwnerIdAndTypeIdSortedByNameAsc(Long ownerId, Long typeId) {\r\n        logger.debug(\"[FILTER+SORT] Пользователь={}, тип={} → сортировка по имени\", ownerId, typeId);\r\n        String sql = \"\"\"\r\n            SELECT * FROM tabulated_functions \r\n            WHERE owner_id = ? AND function_type_id = ? \r\n            ORDER BY name ASC\r\n            \"\"\";\r\n        return queryList(sql, ownerId, typeId);\r\n    }\r\n\r\n    @Override\r\n    public void updateName(Long id, Long ownerId, String newName) {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void updateDataAndName(Long id, Long ownerId, TabulatedFunctionDTO newData) {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void deleteByIdAndOwnerId(Long id, Long ownerId) {\r\n\r\n    }\r\n\r\n    // === ВСПОМОГАТЕЛЬНЫЙ МЕТОД ===\r\n    private List<TabulatedFunctionDTO> queryList(String sql, Object... params) {\r\n        List<TabulatedFunctionDTO> list = new ArrayList<>();\r\n        try (Connection conn = dataSource.getConnection();\r\n             PreparedStatement ps = conn.prepareStatement(sql)) {\r\n            for (int i = 0; i < params.length; i++) {\r\n                ps.setObject(i + 1, params[i]);\r\n            }\r\n            try (ResultSet rs = ps.executeQuery()) {\r\n                while (rs.next()) {\r\n                    list.add(map(rs));\r\n                }\r\n            }\r\n        } catch (SQLException e) {\r\n            logger.error(\"Ошибка выполнения запроса: {}\", sql.substring(0, Math.min(50, sql.length())) + \"...\", e);\r\n            throw new RuntimeException(\"Запрос не удался\", e);\r\n        }\r\n        logger.info(\"Загружено {} функций\", list.size());\r\n        return list;\r\n    }\r\n\r\n    // === МАППИНГ ResultSet → DTO ===\r\n    private TabulatedFunctionDTO map(ResultSet rs) throws SQLException {\r\n        TabulatedFunctionDTO dto = new TabulatedFunctionDTO();\r\n        dto.setId(rs.getLong(\"id\"));\r\n        dto.setOwnerId(rs.getLong(\"owner_id\"));\r\n        dto.setFunctionTypeId(rs.getLong(\"function_type_id\"));\r\n        dto.setSerializedData(rs.getBytes(\"serialized_data\"));\r\n        dto.setName(rs.getString(\"name\"));\r\n        dto.setCreatedAt(rs.getTimestamp(\"created_at\").toLocalDateTime());\r\n        dto.setUpdatedAt(rs.getTimestamp(\"updated_at\").toLocalDateTime());\r\n        return dto;\r\n    }\r\n\r\n    //вспомогательный метод для тестов\r\n    public TabulatedFunctionDTO saveAndReturn(TabulatedFunctionDTO dto) {\r\n        Long id = save(dto);\r\n        return findByIdAndOwnerId(id, dto.getOwnerId()).orElseThrow();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java b/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java
+--- a/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
++++ b/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java	(date 1762867871922)
+@@ -1,6 +1,184 @@
++//package functions.dao;
++//
++//import dto.TabulatedFunctionDTO;
++//import org.slf4j.Logger;
++//import org.slf4j.LoggerFactory;
++//
++//import javax.sql.DataSource;
++//import java.sql.*;
++//import java.time.LocalDateTime;
++//import java.util.ArrayList;
++//import java.util.List;
++//import java.util.Optional;
++//
++//public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
++//    private final DataSource dataSource;
++//    private final Logger logger = LoggerFactory.getLogger(TabulatedFunctionDaoImpl.class);
++//
++//    public TabulatedFunctionDaoImpl(DataSource dataSource) {
++//        this.dataSource = dataSource;
++//    }
++//
++//    @Override
++//    public Long save(TabulatedFunctionDTO function) {
++//        logger.debug("[SAVE] Сохранение функции '{}' для пользователя {}", function.getName(), function.getOwnerId());
++//        String sql = """
++//        INSERT INTO tabulated_functions (owner_id, function_type_id, serialized_data, name, created_at, updated_at)
++//        VALUES (?, ?, ?, ?, NOW(), NOW()) RETURNING id
++//        """;
++//
++//        try (Connection conn = dataSource.getConnection();
++//             PreparedStatement ps = conn.prepareStatement(sql)) {
++//            ps.setLong(1, function.getOwnerId());
++//            ps.setLong(2, function.getFunctionTypeId());
++//            ps.setBytes(3, function.getSerializedData());
++//            ps.setString(4, function.getName());
++//
++//            try (ResultSet rs = ps.executeQuery()) {
++//                if (rs.next()) {
++//                    Long id = rs.getLong(1);
++//                    logger.debug("Функция сохранена с id={}", id);
++//                    return id;
++//                } else {
++//                    throw new RuntimeException("Не удалось получить ID сохраненной функции");
++//                }
++//            }
++//        } catch (SQLException e) {
++//            logger.error("[SAVE] Ошибка сохранения функции '{}'", function.getName(), e);
++//            throw new RuntimeException("Сохранение функции не удалось", e);
++//        }
++//    }
++//
++//    // === 1. ОДИНОЧНЫЙ ПОИСК ===
++//    @Override
++//    public Optional<TabulatedFunctionDTO> findByIdAndOwnerId(Long id, Long ownerId) {
++//        logger.debug("[SINGLE] Поиск функции id={} у пользователя {}", id, ownerId);
++//        String sql = "SELECT * FROM tabulated_functions WHERE id = ? AND owner_id = ?";
++//        try (Connection conn = dataSource.getConnection();
++//             PreparedStatement ps = conn.prepareStatement(sql)) {
++//            ps.setLong(1, id);
++//            ps.setLong(2, ownerId);
++//
++//            try (ResultSet rs = ps.executeQuery()) {
++//                if (rs.next()) {
++//                    TabulatedFunctionDTO dto = map(rs);
++//                    logger.trace("Найдена функция: id={}, имя='{}', владелец={}", dto.getId(), dto.getName(), ownerId);
++//                    return Optional.of(dto);
++//                } else {
++//                    logger.debug("Функция id={} не найдена у пользователя {}", id, ownerId);
++//                    return Optional.empty();
++//                }
++//            }
++//        } catch (SQLException e) {
++//            logger.error("[SINGLE] Ошибка поиска: id={}, owner={}", id, ownerId, e);
++//            throw new RuntimeException("Поиск функции не удался", e);
++//        }
++//    }
++//
++//    // === 2. МНОЖЕСТВЕННЫЙ ПОИСК ===
++//    @Override
++//    public List<TabulatedFunctionDTO> findByOwnerId(Long ownerId) {
++//        logger.debug("[MULTI] Загрузка ВСЕХ функций пользователя {}", ownerId);
++//        String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY created_at DESC";
++//        return queryList(sql, ownerId);
++//    }
++//
++//    // === 3. СОРТИРОВКА ===
++//    @Override
++//    public List<TabulatedFunctionDTO> findByOwnerIdSortedByNameAsc(Long ownerId) {
++//        logger.debug("[SORT] Функции пользователя {} → сортировка по имени (A→Я)", ownerId);
++//        String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY name ASC";
++//        return queryList(sql, ownerId);
++//    }
++//
++//    @Override
++//    public List<TabulatedFunctionDTO> findByOwnerIdSortedByCreatedAtDesc(Long ownerId) {
++//        logger.debug("[SORT] Функции пользователя {} → сортировка по дате создания (новые→старые)", ownerId);
++//        String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY created_at DESC";
++//        return queryList(sql, ownerId);
++//    }
++//
++//    // === 4. ФИЛЬТРАЦИЯ + СОРТИРОВКА ===
++//    @Override
++//    public List<TabulatedFunctionDTO> findByOwnerIdAndTypeId(Long ownerId, Long typeId) {
++//        logger.debug("[FILTER] Пользователь={}, тип={} → сортировка по дате", ownerId, typeId);
++//        String sql = """
++//            SELECT * FROM tabulated_functions
++//            WHERE owner_id = ? AND function_type_id = ?
++//            ORDER BY created_at DESC
++//            """;
++//        return queryList(sql, ownerId, typeId);
++//    }
++//
++//    @Override
++//    public List<TabulatedFunctionDTO> findByOwnerIdAndTypeIdSortedByNameAsc(Long ownerId, Long typeId) {
++//        logger.debug("[FILTER+SORT] Пользователь={}, тип={} → сортировка по имени", ownerId, typeId);
++//        String sql = """
++//            SELECT * FROM tabulated_functions
++//            WHERE owner_id = ? AND function_type_id = ?
++//            ORDER BY name ASC
++//            """;
++//        return queryList(sql, ownerId, typeId);
++//    }
++//
++//    @Override
++//    public void updateName(Long id, Long ownerId, String newName) {
++//
++//    }
++//
++//    @Override
++//    public void updateDataAndName(Long id, Long ownerId, TabulatedFunctionDTO newData) {
++//
++//    }
++//
++//    @Override
++//    public void deleteByIdAndOwnerId(Long id, Long ownerId) {
++//
++//    }
++//
++//    // === ВСПОМОГАТЕЛЬНЫЙ МЕТОД ===
++//    private List<TabulatedFunctionDTO> queryList(String sql, Object... params) {
++//        List<TabulatedFunctionDTO> list = new ArrayList<>();
++//        try (Connection conn = dataSource.getConnection();
++//             PreparedStatement ps = conn.prepareStatement(sql)) {
++//            for (int i = 0; i < params.length; i++) {
++//                ps.setObject(i + 1, params[i]);
++//            }
++//            try (ResultSet rs = ps.executeQuery()) {
++//                while (rs.next()) {
++//                    list.add(map(rs));
++//                }
++//            }
++//        } catch (SQLException e) {
++//            logger.error("Ошибка выполнения запроса: {}", sql.substring(0, Math.min(50, sql.length())) + "...", e);
++//            throw new RuntimeException("Запрос не удался", e);
++//        }
++//        logger.info("Загружено {} функций", list.size());
++//        return list;
++//    }
++//
++//    // === МАППИНГ ResultSet → DTO ===
++//    private TabulatedFunctionDTO map(ResultSet rs) throws SQLException {
++//        TabulatedFunctionDTO dto = new TabulatedFunctionDTO();
++//        dto.setId(rs.getLong("id"));
++//        dto.setOwnerId(rs.getLong("owner_id"));
++//        dto.setFunctionTypeId(rs.getLong("function_type_id"));
++//        dto.setSerializedData(rs.getBytes("serialized_data"));
++//        dto.setName(rs.getString("name"));
++//        dto.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
++//        dto.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
++//        return dto;
++//    }
++//
++//    //вспомогательный метод для тестов
++//    public TabulatedFunctionDTO saveAndReturn(TabulatedFunctionDTO dto) {
++//        Long id = save(dto);
++//        return findByIdAndOwnerId(id, dto.getOwnerId()).orElseThrow();
++//    }
++//}
+ package functions.dao;
+ 
+-import functions.dto.TabulatedFunctionDTO;
++import dto.TabulatedFunctionDTO;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+ 
+@@ -19,160 +197,205 @@
+         this.dataSource = dataSource;
+     }
+ 
++    // ========== CREATE ========== //
+     @Override
+-    public Long save(TabulatedFunctionDTO function) {
+-        logger.debug("[SAVE] Сохранение функции '{}' для пользователя {}", function.getName(), function.getOwnerId());
++    public Long save(TabulatedFunctionDTO dto) {
++        logger.info("💾 Saving function '{}' for owner id={}", dto.getName(), dto.getOwnerId());
+         String sql = """
+-        INSERT INTO tabulated_functions (owner_id, function_type_id, serialized_data, name, created_at, updated_at) 
+-        VALUES (?, ?, ?, ?, NOW(), NOW()) RETURNING id
+-        """;
+-
+-        try (Connection conn = dataSource.getConnection();
+-             PreparedStatement ps = conn.prepareStatement(sql)) {
+-            ps.setLong(1, function.getOwnerId());
+-            ps.setLong(2, function.getFunctionTypeId());
+-            ps.setBytes(3, function.getSerializedData());
+-            ps.setString(4, function.getName());
++            INSERT INTO tabulated_functions (owner_id, function_type_id, serialized_data, name)
++            VALUES (?, ?, ?, ?)
++            RETURNING id, created_at, updated_at
++            """;
++        try (Connection conn = dataSource.getConnection()) {
++            conn.setAutoCommit(false);
++            try (PreparedStatement ps = conn.prepareStatement(sql)) {
++                ps.setLong(1, dto.getOwnerId());
++                ps.setLong(2, dto.getFunctionTypeId());
++                ps.setBytes(3, dto.getSerializedData());
++                ps.setString(4, dto.getName());
+ 
+-            try (ResultSet rs = ps.executeQuery()) {
+-                if (rs.next()) {
+-                    Long id = rs.getLong(1);
+-                    logger.debug("Функция сохранена с id={}", id);
+-                    return id;
+-                } else {
+-                    throw new RuntimeException("Не удалось получить ID сохраненной функции");
++                try (ResultSet rs = ps.executeQuery()) {
++                    if (rs.next()) {
++                        Long id = rs.getLong("id");
++                        LocalDateTime createdAt = rs.getObject("created_at", LocalDateTime.class);
++                        LocalDateTime updatedAt = rs.getObject("updated_at", LocalDateTime.class);
++
++                        dto.setId(id);
++                        dto.setCreatedAt(createdAt);
++                        dto.setUpdatedAt(updatedAt);
++
++                        conn.commit();
++                        logger.debug("✅ Function saved: id={}, name='{}', size={}B, createdAt={}",
++                                id, dto.getName(), dto.getSerializedData() != null ? dto.getSerializedData().length : 0, createdAt);
++                        return id;
++                    }
+                 }
++            } catch (SQLException e) {
++                conn.rollback();
++                logger.error("❌ Save failed for function '{}' (owner={})", dto.getName(), dto.getOwnerId(), e);
++                throw new RuntimeException("Save failed", e);
+             }
+         } catch (SQLException e) {
+-            logger.error("[SAVE] Ошибка сохранения функции '{}'", function.getName(), e);
+-            throw new RuntimeException("Сохранение функции не удалось", e);
++            logger.error("❌ DB connection error", e);
++            throw new RuntimeException("DB error", e);
+         }
++        throw new RuntimeException("Insert returned no ID");
+     }
+ 
+-    // === 1. ОДИНОЧНЫЙ ПОИСК ===
++    // ========== READ (single) ========== //
+     @Override
+     public Optional<TabulatedFunctionDTO> findByIdAndOwnerId(Long id, Long ownerId) {
+-        logger.debug("[SINGLE] Поиск функции id={} у пользователя {}", id, ownerId);
++        logger.debug("🔍 Finding function id={} for owner id={}", id, ownerId);
+         String sql = "SELECT * FROM tabulated_functions WHERE id = ? AND owner_id = ?";
+         try (Connection conn = dataSource.getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql)) {
+             ps.setLong(1, id);
+             ps.setLong(2, ownerId);
+-
+             try (ResultSet rs = ps.executeQuery()) {
+                 if (rs.next()) {
+-                    TabulatedFunctionDTO dto = map(rs);
+-                    logger.trace("Найдена функция: id={}, имя='{}', владелец={}", dto.getId(), dto.getName(), ownerId);
++                    TabulatedFunctionDTO dto = TabulatedFunctionDTO.fromResultSet(rs);
++                    logger.trace("✅ Found: {}", dto);
+                     return Optional.of(dto);
+                 } else {
+-                    logger.debug("Функция id={} не найдена у пользователя {}", id, ownerId);
++                    logger.debug("⚠️ Function id={} not found for owner id={}", id, ownerId);
+                     return Optional.empty();
+                 }
+             }
+         } catch (SQLException e) {
+-            logger.error("[SINGLE] Ошибка поиска: id={}, owner={}", id, ownerId, e);
+-            throw new RuntimeException("Поиск функции не удался", e);
++            logger.error("❌ Find failed: id={}, owner_id={}", id, ownerId, e);
++            throw new RuntimeException("Find by ID failed", e);
+         }
+     }
+ 
+-    // === 2. МНОЖЕСТВЕННЫЙ ПОИСК ===
++    // ========== READ (list) ========== //
+     @Override
+     public List<TabulatedFunctionDTO> findByOwnerId(Long ownerId) {
+-        logger.debug("[MULTI] Загрузка ВСЕХ функций пользователя {}", ownerId);
+-        String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY created_at DESC";
+-        return queryList(sql, ownerId);
++        return findBy("owner_id = ?", ownerId, "ORDER BY created_at DESC");
+     }
+ 
+-    // === 3. СОРТИРОВКА ===
+     @Override
+     public List<TabulatedFunctionDTO> findByOwnerIdSortedByNameAsc(Long ownerId) {
+-        logger.debug("[SORT] Функции пользователя {} → сортировка по имени (A→Я)", ownerId);
+-        String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY name ASC";
+-        return queryList(sql, ownerId);
++        return findBy("owner_id = ?", ownerId, "ORDER BY name ASC");
+     }
+ 
+     @Override
+     public List<TabulatedFunctionDTO> findByOwnerIdSortedByCreatedAtDesc(Long ownerId) {
+-        logger.debug("[SORT] Функции пользователя {} → сортировка по дате создания (новые→старые)", ownerId);
+-        String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY created_at DESC";
+-        return queryList(sql, ownerId);
++        return findBy("owner_id = ?", ownerId, "ORDER BY created_at DESC");
+     }
+ 
+-    // === 4. ФИЛЬТРАЦИЯ + СОРТИРОВКА ===
++    // ========== READ (filtered + sorted) ========== //
+     @Override
+     public List<TabulatedFunctionDTO> findByOwnerIdAndTypeId(Long ownerId, Long typeId) {
+-        logger.debug("[FILTER] Пользователь={}, тип={} → сортировка по дате", ownerId, typeId);
+-        String sql = """
+-            SELECT * FROM tabulated_functions 
+-            WHERE owner_id = ? AND function_type_id = ? 
+-            ORDER BY created_at DESC
+-            """;
+-        return queryList(sql, ownerId, typeId);
++        return findBy("owner_id = ? AND function_type_id = ?", ownerId, typeId, "ORDER BY created_at DESC");
+     }
+ 
+     @Override
+     public List<TabulatedFunctionDTO> findByOwnerIdAndTypeIdSortedByNameAsc(Long ownerId, Long typeId) {
+-        logger.debug("[FILTER+SORT] Пользователь={}, тип={} → сортировка по имени", ownerId, typeId);
+-        String sql = """
+-            SELECT * FROM tabulated_functions 
+-            WHERE owner_id = ? AND function_type_id = ? 
+-            ORDER BY name ASC
+-            """;
+-        return queryList(sql, ownerId, typeId);
++        return findBy("owner_id = ? AND function_type_id = ?", ownerId, typeId, "ORDER BY name ASC");
+     }
+ 
++    // ========== UPDATE ========== //
+     @Override
+     public void updateName(Long id, Long ownerId, String newName) {
+-
++        logger.info("✏️ Updating name of function id={} → '{}'", id, newName);
++        String sql = "UPDATE tabulated_functions SET name = ?, updated_at = NOW() WHERE id = ? AND owner_id = ?";
++        try (Connection conn = dataSource.getConnection();
++             PreparedStatement ps = conn.prepareStatement(sql)) {
++            ps.setString(1, newName);
++            ps.setLong(2, id);
++            ps.setLong(3, ownerId);
++            int rows = ps.executeUpdate();
++            if (rows == 0) {
++                logger.warn("⚠️ Update skipped: function id={} not found for owner id={}", id, ownerId);
++                throw new RuntimeException("Function not found or access denied");
++            }
++            logger.debug("✅ Name updated for function id={}", id);
++        } catch (SQLException e) {
++            logger.error("❌ Update name failed: id={}, owner_id={}", id, ownerId, e);
++            throw new RuntimeException("Update name failed", e);
++        }
+     }
+ 
+     @Override
+     public void updateDataAndName(Long id, Long ownerId, TabulatedFunctionDTO newData) {
+-
++        logger.info("✏️ Updating function & name for id={}", id);
++        String sql = """
++            UPDATE tabulated_functions
++            SET serialized_data = ?, name = ?, updated_at = NOW()
++            WHERE id = ? AND owner_id = ?
++            """;
++        try (Connection conn = dataSource.getConnection();
++             PreparedStatement ps = conn.prepareStatement(sql)) {
++            ps.setBytes(1, newData.getSerializedData());
++            ps.setString(2, newData.getName());
++            ps.setLong(3, id);
++            ps.setLong(4, ownerId);
++            int rows = ps.executeUpdate();
++            if (rows == 0) {
++                logger.warn("⚠️ Update skipped: function id={} not found for owner id={}", id, ownerId);
++                throw new RuntimeException("Function not found or access denied");
++            }
++            logger.debug("✅ Data & name updated for function id={}", id);
++        } catch (SQLException e) {
++            logger.error("❌ Update function failed: id={}, owner_id={}", id, ownerId, e);
++            throw new RuntimeException("Update function failed", e);
++        }
+     }
+ 
++    // ========== DELETE ========== //
+     @Override
+     public void deleteByIdAndOwnerId(Long id, Long ownerId) {
+-
++        logger.info("🗑️ Deleting function id={} for owner id={}", id, ownerId);
++        String sql = "DELETE FROM tabulated_functions WHERE id = ? AND owner_id = ?";
++        try (Connection conn = dataSource.getConnection();
++             PreparedStatement ps = conn.prepareStatement(sql)) {
++            ps.setLong(1, id);
++            ps.setLong(2, ownerId);
++            int rows = ps.executeUpdate();
++            logger.debug("✅ Deleted {} row(s) (id={}, owner={})", rows, id, ownerId);
++        } catch (SQLException e) {
++            logger.error("❌ Delete failed: id={}, owner_id={}", id, ownerId, e);
++            throw new RuntimeException("Delete failed", e);
++        }
+     }
+ 
+-    // === ВСПОМОГАТЕЛЬНЫЙ МЕТОД ===
+-    private List<TabulatedFunctionDTO> queryList(String sql, Object... params) {
+-        List<TabulatedFunctionDTO> list = new ArrayList<>();
++    // ========== Helper ========== //
++    private List<TabulatedFunctionDTO> findBy(String condition, Object param1, Object param2, String orderBy) {
++        String sql = "SELECT * FROM tabulated_functions WHERE " + condition + " " + orderBy;
++        try (Connection conn = dataSource.getConnection();
++             PreparedStatement ps = conn.prepareStatement(sql)) {
++            ps.setObject(1, param1);
++            ps.setObject(2, param2);
++            try (ResultSet rs = ps.executeQuery()) {
++                List<TabulatedFunctionDTO> list = new ArrayList<>();
++                while (rs.next()) {
++                    list.add(TabulatedFunctionDTO.fromResultSet(rs));
++                }
++                logger.info("✅ Loaded {} functions for condition '{}'", list.size(), condition);
++                return list;
++            }
++        } catch (SQLException e) {
++            logger.error("❌ Query failed: {}", sql, e);
++            throw new RuntimeException("Query failed", e);
++        }
++    }
++
++    private List<TabulatedFunctionDTO> findBy(String condition, Object param, String orderBy) {
++        String sql = "SELECT * FROM tabulated_functions WHERE " + condition + " " + orderBy;
+         try (Connection conn = dataSource.getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql)) {
+-            for (int i = 0; i < params.length; i++) {
+-                ps.setObject(i + 1, params[i]);
+-            }
++            ps.setObject(1, param);
+             try (ResultSet rs = ps.executeQuery()) {
++                List<TabulatedFunctionDTO> list = new ArrayList<>();
+                 while (rs.next()) {
+-                    list.add(map(rs));
++                    list.add(TabulatedFunctionDTO.fromResultSet(rs));
+                 }
++                logger.info("✅ Loaded {} functions for condition '{}'", list.size(), condition);
++                return list;
+             }
+         } catch (SQLException e) {
+-            logger.error("Ошибка выполнения запроса: {}", sql.substring(0, Math.min(50, sql.length())) + "...", e);
+-            throw new RuntimeException("Запрос не удался", e);
++            logger.error("❌ Query failed: {}", sql, e);
++            throw new RuntimeException("Query failed", e);
+         }
+-        logger.info("Загружено {} функций", list.size());
+-        return list;
+     }
+-
+-    // === МАППИНГ ResultSet → DTO ===
+-    private TabulatedFunctionDTO map(ResultSet rs) throws SQLException {
+-        TabulatedFunctionDTO dto = new TabulatedFunctionDTO();
+-        dto.setId(rs.getLong("id"));
+-        dto.setOwnerId(rs.getLong("owner_id"));
+-        dto.setFunctionTypeId(rs.getLong("function_type_id"));
+-        dto.setSerializedData(rs.getBytes("serialized_data"));
+-        dto.setName(rs.getString("name"));
+-        dto.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+-        dto.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
+-        return dto;
+-    }
+-
+-    //вспомогательный метод для тестов
+-    public TabulatedFunctionDTO saveAndReturn(TabulatedFunctionDTO dto) {
+-        Long id = save(dto);
+-        return findByIdAndOwnerId(id, dto.getOwnerId()).orElseThrow();
+-    }
+ }
+\ No newline at end of file
+Index: src/main/java/functions/dao/TabulatedFunctionDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functions.dao;\r\n\r\nimport functions.dto.TabulatedFunctionDTO;\r\n\r\nimport java.util.List;\r\nimport java.util.Optional;\r\n\r\npublic interface TabulatedFunctionDao {\r\n\r\n    Long save(TabulatedFunctionDTO function);\r\n    // === 1. Одиночный поиск (с изоляцией) ===\r\n    Optional<TabulatedFunctionDTO> findByIdAndOwnerId(Long id, Long ownerId);\r\n    // === 2. Множественный поиск (все функции пользователя) ===\r\n    List<TabulatedFunctionDTO> findByOwnerId(Long ownerId);\r\n    // === 3. Сортировка ===\r\n    List<TabulatedFunctionDTO> findByOwnerIdSortedByNameAsc(Long ownerId);\r\n    List<TabulatedFunctionDTO> findByOwnerIdSortedByCreatedAtDesc(Long ownerId);\r\n    // === 4. Фильтрация + сортировка ===\r\n    List<TabulatedFunctionDTO> findByOwnerIdAndTypeId(Long ownerId, Long typeId);\r\n    List<TabulatedFunctionDTO> findByOwnerIdAndTypeIdSortedByNameAsc(Long ownerId, Long typeId);\r\n    void updateName(Long id, Long ownerId, String newName);\r\n    void updateDataAndName(Long id, Long ownerId, TabulatedFunctionDTO newData);\r\n    void deleteByIdAndOwnerId(Long id, Long ownerId);\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/functions/dao/TabulatedFunctionDao.java b/src/main/java/functions/dao/TabulatedFunctionDao.java
+--- a/src/main/java/functions/dao/TabulatedFunctionDao.java	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
++++ b/src/main/java/functions/dao/TabulatedFunctionDao.java	(date 1762867871928)
+@@ -1,6 +1,6 @@
+ package functions.dao;
+ 
+-import functions.dto.TabulatedFunctionDTO;
++import dto.TabulatedFunctionDTO;
+ 
+ import java.util.List;
+ import java.util.Optional;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9d963179-3ba6-4afc-88be-04d8c54cf60e\" name=\"Changes\" comment=\"dead inside 1.21\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JUnit5 Test Class\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"framework\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"RESET_MODE\" value=\"HARD\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Yoda-bl&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Alinafizik8/LR_OOP_THIRD_SEMESTER.git&quot;,\r\n    &quot;accountId&quot;: &quot;1871043b-9ff2-46dc-8682-06d03a79891e&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 2\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"33ywucakw3yIo6wOIX62ZRzRrJO\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.MultiplyingTaskExecutor.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.ReadWriteTaskExecutor.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.TabulatedFunctionFileInputStream.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.TabulatedFunctionFileOutputStream.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.All in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,\r\n    &quot;JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.SynchronizedTabulatedFunctionTest.executor&quot;: &quot;Coverage&quot;,\r\n    &quot;JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,\r\n    &quot;JUnit.java in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,\r\n    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;manual&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.43908045&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateTestDialog.Recents.Supers\">\r\n      <recent name=\"\" />\r\n    </key>\r\n    <key name=\"CreateTestDialog.RecentsKey\">\r\n      <recent name=\"concurrent\" />\r\n      <recent name=\"io\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.ReadWriteTaskExecutor\">\r\n    <configuration name=\"MultiplyingTaskExecutor\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"concurrent.MultiplyingTaskExecutor\" />\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"concurrent.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ReadWriteTaskExecutor\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"concurrent.ReadWriteTaskExecutor\" />\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"concurrent.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"All in LR_OOP_THIRD_SEMESTER\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"TEST_OBJECT\" value=\"package\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"SynchronizedTabulatedFunctionTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"concurrent.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"concurrent\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"concurrent.SynchronizedTabulatedFunctionTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"java in LR_OOP_THIRD_SEMESTER\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <option name=\"TEST_OBJECT\" value=\"directory\" />\r\n      <dir value=\"$PROJECT_DIR$/src/test/java\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.ReadWriteTaskExecutor\" />\r\n        <item itemvalue=\"JUnit.java in LR_OOP_THIRD_SEMESTER\" />\r\n        <item itemvalue=\"JUnit.All in LR_OOP_THIRD_SEMESTER\" />\r\n        <item itemvalue=\"Application.MultiplyingTaskExecutor\" />\r\n        <item itemvalue=\"JUnit.SynchronizedTabulatedFunctionTest\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9d963179-3ba6-4afc-88be-04d8c54cf60e\" name=\"Changes\" comment=\"\" />\r\n      <created>1760302845957</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1760302845957</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"start Y 4.0 lab\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760865354867</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760865354867</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"continue start Y 4.0 lab\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760865616967</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760865616967</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"continue Y 4.0 lab\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760866770553</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760866770553</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"(\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762760081800</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762760081800</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"dead inside\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762788657761</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762788657761</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"dead inside 1.0\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762790209930</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762790209930</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"dead inside 1.2\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762792756774</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762792756774</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"dead inside 1.21\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762793977069</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762793977069</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"start Y 4.0 lab\" />\r\n    <MESSAGE value=\"continue start Y 4.0 lab\" />\r\n    <MESSAGE value=\"continue Y 4.0 lab\" />\r\n    <MESSAGE value=\"(\" />\r\n    <MESSAGE value=\"dead inside\" />\r\n    <MESSAGE value=\"dead inside 1.0\" />\r\n    <MESSAGE value=\"dead inside 1.2\" />\r\n    <MESSAGE value=\"dead inside 1.21\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"dead inside 1.21\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.OutOfMemoryError\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic\" NAME=\"All in LR_OOP_THIRD_SEMESTER Coverage Results\" MODIFIED=\"1760867471265\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\" />\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$AbstractTabulatedFunctionTest.ic\" NAME=\"AbstractTabulatedFunctionTest Coverage Results\" MODIFIED=\"1759651861262\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>functions.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$functions_in_LR_OOP_THIRD_SEMESTER.ic\" NAME=\"functions in LR_OOP_THIRD_SEMESTER Coverage Results\" MODIFIED=\"1759762762810\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>functions.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$SynchronizedTabulatedFunctionTest.ic\" NAME=\"SynchronizedTabulatedFunctionTest Coverage Results\" MODIFIED=\"1760728058410\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>concurrent.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionFileWriterTest.ic\" NAME=\"TabulatedFunctionFileWriterTest Coverage Results\" MODIFIED=\"1760274274391\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>io.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$concurrent_in_LR_OOP_THIRD_SEMESTER.ic\" NAME=\"concurrent in LR_OOP_THIRD_SEMESTER Coverage Results\" MODIFIED=\"1760727535389\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\" />\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic\" NAME=\"ArrayTabulatedFunctionTest Coverage Results\" MODIFIED=\"1759654890325\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>functions.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$FunctionsIOTest.ic\" NAME=\"FunctionsIOTest Coverage Results\" MODIFIED=\"1760275410789\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>io.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic\" NAME=\"java in LR_OOP_THIRD_SEMESTER Coverage Results\" MODIFIED=\"1761741623550\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\" />\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$LeftSteppingDifferentialOperatorTest.ic\" NAME=\"LeftSteppingDifferentialOperatorTest Coverage Results\" MODIFIED=\"1759941650463\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>operations.*</FILTER>\r\n    </SUITE>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
++++ b/.idea/workspace.xml	(date 1762870791264)
+@@ -5,11 +5,16 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="dead inside 1.21">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/FunctionTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/FunctionTypeDao.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/UserDao.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dto/FunctionTypeDTO.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dto/TabulatedFunctionDTO.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dto/UserDTO.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractFunctionTypeDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractFunctionTypeDaoTest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -268,29 +273,33 @@
+     </breakpoint-manager>
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760867471265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$AbstractTabulatedFunctionTest.ic" NAME="AbstractTabulatedFunctionTest Coverage Results" MODIFIED="1759651861262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+-      <FILTER>functions.*</FILTER>
+-    </SUITE>
++    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762864578139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
++    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762860597074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$functions_in_LR_OOP_THIRD_SEMESTER.ic" NAME="functions in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759762762810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+       <FILTER>functions.*</FILTER>
+     </SUITE>
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$SynchronizedTabulatedFunctionTest.ic" NAME="SynchronizedTabulatedFunctionTest Coverage Results" MODIFIED="1760728058410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+-      <FILTER>concurrent.*</FILTER>
++    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$FunctionTypeDaoTest.ic" NAME="FunctionTypeDaoTest Coverage Results" MODIFIED="1762863963060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
++      <FILTER>functions.dao.*</FILTER>
++    </SUITE>
++    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$FunctionsIOTest.ic" NAME="FunctionsIOTest Coverage Results" MODIFIED="1760275410789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
++      <FILTER>io.*</FILTER>
+     </SUITE>
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionFileWriterTest.ic" NAME="TabulatedFunctionFileWriterTest Coverage Results" MODIFIED="1760274274391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+       <FILTER>io.*</FILTER>
+     </SUITE>
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$concurrent_in_LR_OOP_THIRD_SEMESTER.ic" NAME="concurrent in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760727535389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic" NAME="ArrayTabulatedFunctionTest Coverage Results" MODIFIED="1759654890325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
++    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$AbstractTabulatedFunctionTest.ic" NAME="AbstractTabulatedFunctionTest Coverage Results" MODIFIED="1759651861262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+       <FILTER>functions.*</FILTER>
+     </SUITE>
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$FunctionsIOTest.ic" NAME="FunctionsIOTest Coverage Results" MODIFIED="1760275410789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+-      <FILTER>io.*</FILTER>
+-    </SUITE>
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1761741623550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$LeftSteppingDifferentialOperatorTest.ic" NAME="LeftSteppingDifferentialOperatorTest Coverage Results" MODIFIED="1759941650463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+       <FILTER>operations.*</FILTER>
++    </SUITE>
++    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$SynchronizedTabulatedFunctionTest.ic" NAME="SynchronizedTabulatedFunctionTest Coverage Results" MODIFIED="1760728058410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
++      <FILTER>concurrent.*</FILTER>
++    </SUITE>
++    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$dao_in_LR_OOP_THIRD_SEMESTER.ic" NAME="dao in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762866716659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
++    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic" NAME="ArrayTabulatedFunctionTest Coverage Results" MODIFIED="1759654890325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
++      <FILTER>functions.*</FILTER>
+     </SUITE>
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/test/java/functions/dao/AbstractFunctionTypeDaoTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functions.dao;\r\n\r\nimport functions.dto.FunctionTypeDTO;\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.slf4j.Logger;\r\nimport org.slf4j.LoggerFactory;\r\n\r\nimport java.util.List;\r\nimport java.util.Optional;\r\n\r\nimport static org.assertj.core.api.Assertions.*;\r\n\r\npublic abstract class AbstractFunctionTypeDaoTest {\r\n\r\n    private static final Logger logger = LoggerFactory.getLogger(AbstractFunctionTypeDaoTest.class);\r\n    protected FunctionTypeDao dao;\r\n\r\n    protected abstract void setupDatabase();\r\n    protected abstract FunctionTypeDao createDao();\r\n\r\n    @BeforeEach\r\n    void setUp() {\r\n        logger.debug(\"Initializing test context for FunctionTypeDao\");\r\n        setupDatabase();\r\n        dao = createDao();\r\n        logger.debug(\"DAO initialized: {}\", dao.getClass().getSimpleName());\r\n    }\r\n\r\n    @Test\r\n    void save_and_findById_works() {\r\n        logger.info(\"Test: save_and_findById_works\");\r\n\r\n        FunctionTypeDTO type = new FunctionTypeDTO(\"TEST\", \"Тест\", 99);\r\n        Long id = dao.save(type);\r\n        logger.debug(\"Saved function type: id={}, name='{}', priority={}\", id, type.getName(), type.getPriority());\r\n\r\n        Optional<FunctionTypeDTO> found = dao.findById(id);\r\n        assertThat(found).isPresent();\r\n        FunctionTypeDTO f = found.get();\r\n        assertThat(f.getName()).isEqualTo(\"TEST\");\r\n        logger.debug(\"Found type: id={}, name='{}', localized='{}'\", f.getId(), f.getName(), f.getLocalizedName());\r\n\r\n        logger.info(\"Test passed: save_and_findById_works\");\r\n    }\r\n\r\n    @Test\r\n    void unique_name_enforced() {\r\n        logger.info(\"Test: unique_name_enforced\");\r\n\r\n        dao.save(new FunctionTypeDTO(\"UNIQ\", \"Уник\", 1));\r\n        logger.debug(\"First type 'UNIQ' saved\");\r\n\r\n        RuntimeException ex = catchThrowableOfType(() ->\r\n                        dao.save(new FunctionTypeDTO(\"UNIQ\", \"Другой\", 2)),\r\n                RuntimeException.class\r\n        );\r\n        assertThat(ex).isNotNull();\r\n        logger.warn(\"Duplicate name 'UNIQ' rejected as expected\");\r\n\r\n        logger.info(\"Test passed: unique_name_enforced\");\r\n    }\r\n\r\n    @Test\r\n    void findByName_works() {\r\n        logger.info(\"Test: findByName_works\");\r\n\r\n        dao.save(new FunctionTypeDTO(\"FIND\", \"Найти\", 1));\r\n        logger.debug(\"Type 'FIND' created\");\r\n\r\n        Optional<FunctionTypeDTO> found = dao.findByName(\"FIND\");\r\n        assertThat(found).isPresent();\r\n        logger.debug(\"Found by name: '{}'\", found.get().getName());\r\n\r\n        Optional<FunctionTypeDTO> missing = dao.findByName(\"MISS\");\r\n        assertThat(missing).isEmpty();\r\n        logger.debug(\"Type 'MISS' not found (as expected)\");\r\n\r\n        logger.info(\"Test passed: findByName_works\");\r\n    }\r\n\r\n    @Test\r\n    void findAll_sortedByPriority_works() {\r\n        logger.info(\"Test: findAll_sortedByPriority_works\");\r\n\r\n        dao.save(new FunctionTypeDTO(\"Z\", \"Zeta\", 10));\r\n        dao.save(new FunctionTypeDTO(\"A\", \"Alpha\", 1));\r\n        dao.save(new FunctionTypeDTO(\"B\", \"Beta\", 1));\r\n        logger.debug(\"Created 3 function types\");\r\n\r\n        List<FunctionTypeDTO> list = dao.findAllSortedByPriority();\r\n        assertThat(list).hasSize(3);\r\n        List<String> names = list.stream().map(FunctionTypeDTO::getName).toList();\r\n        assertThat(names).containsExactly(\"A\", \"B\", \"Z\");\r\n        logger.debug(\"Sorted list: {}\", names);\r\n\r\n        logger.info(\"Test passed: findAll_sortedByPriority_works\");\r\n    }\r\n\r\n    @Test\r\n    void update_works() {\r\n        logger.info(\"Test: update_works\");\r\n\r\n        Long id = dao.save(new FunctionTypeDTO(\"OLD\", \"Старое\", 5));\r\n        logger.debug(\"Type id={} saved with name='OLD', priority=5\", id);\r\n\r\n        FunctionTypeDTO updated = new FunctionTypeDTO(\"NEW\", \"Новое\", 6);\r\n        updated.setId(id);\r\n        dao.update(updated);\r\n        logger.debug(\"Updated type id={} → name='{}', priority={}\", id, updated.getName(), updated.getPriority());\r\n\r\n        FunctionTypeDTO f = dao.findById(id).get();\r\n        assertThat(f.getName()).isEqualTo(\"NEW\");\r\n        assertThat(f.getPriority()).isEqualTo(6);\r\n        logger.debug(\"Verified: name='{}', priority={}\", f.getName(), f.getPriority());\r\n\r\n        logger.info(\"Test passed: update_works\");\r\n    }\r\n\r\n    @Test\r\n    void delete_works() {\r\n        logger.info(\"Test: delete_works\");\r\n\r\n        Long id = dao.save(new FunctionTypeDTO(\"DEL\", \"Удалить\", 0));\r\n        logger.debug(\"Type id={} created for deletion\", id);\r\n\r\n        dao.deleteById(id);\r\n        logger.debug(\"\uD83D\uDDD1Deleted type id={}\", id);\r\n\r\n        Optional<FunctionTypeDTO> found = dao.findById(id);\r\n        assertThat(found).isEmpty();\r\n        logger.debug(\"Confirmed: type id={} no longer exists\", id);\r\n\r\n        logger.info(\"Test passed: delete_works\");\r\n    }\r\n}
+===================================================================
+diff --git a/src/test/java/functions/dao/AbstractFunctionTypeDaoTest.java b/src/test/java/functions/dao/AbstractFunctionTypeDaoTest.java
+--- a/src/test/java/functions/dao/AbstractFunctionTypeDaoTest.java	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
++++ b/src/test/java/functions/dao/AbstractFunctionTypeDaoTest.java	(date 1762868331531)
+@@ -1,6 +1,6 @@
+ package functions.dao;
+ 
+-import functions.dto.FunctionTypeDTO;
++import dto.FunctionTypeDTO;
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
+ import org.slf4j.Logger;
+Index: src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functions.dao;\r\n\r\nimport functions.dto.TabulatedFunctionDTO;\r\nimport functions.dto.UserDTO;\r\nimport functions.dto.FunctionTypeDTO;\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.DisplayName;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.slf4j.Logger;\r\nimport org.slf4j.LoggerFactory;\r\nimport org.testcontainers.containers.PostgreSQLContainer;\r\nimport org.testcontainers.junit.jupiter.Container;\r\nimport org.testcontainers.junit.jupiter.Testcontainers;\r\n\r\nimport javax.sql.DataSource;\r\nimport java.nio.charset.StandardCharsets;\r\nimport java.sql.Connection;\r\nimport java.sql.Statement;\r\nimport java.time.LocalDateTime;\r\nimport java.util.List;\r\nimport java.util.stream.Collectors;\r\n\r\nimport static org.assertj.core.api.Assertions.*;\r\n\r\n@Testcontainers\r\nclass TabulatedFunctionDaoSortingTest {\r\n\r\n    private static final Logger logger = LoggerFactory.getLogger(TabulatedFunctionDaoSortingTest.class);\r\n\r\n    @Container\r\n    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(\"postgres:15\")\r\n            .withDatabaseName(\"testdb\")\r\n            .withUsername(\"test\")\r\n            .withPassword(\"test\");\r\n\r\n    private DataSource dataSource;\r\n    private TabulatedFunctionDao dao;\r\n    private UserDao userDao;\r\n    private FunctionTypeDao typeDao;\r\n\r\n    @BeforeEach\r\n    void setUp() throws Exception {\r\n        logger.info(\"Инициализация БД для тестов сортировки\");\r\n\r\n        var config = new com.zaxxer.hikari.HikariConfig();\r\n        config.setJdbcUrl(postgres.getJdbcUrl());\r\n        config.setUsername(postgres.getUsername());\r\n        config.setPassword(postgres.getPassword());\r\n        dataSource = new com.zaxxer.hikari.HikariDataSource(config);\r\n\r\n        try (Connection conn = dataSource.getConnection();\r\n             Statement stmt = conn.createStatement()) {\r\n            stmt.execute(\"\"\"\r\n            CREATE TABLE users (\r\n                id BIGSERIAL PRIMARY KEY,\r\n                email VARCHAR(255) UNIQUE NOT NULL,\r\n                username VARCHAR(100) UNIQUE NOT NULL,\r\n                password_hash TEXT NOT NULL,\r\n                role VARCHAR(20) DEFAULT 'USER',\r\n                created_at TIMESTAMP DEFAULT NOW(),\r\n                updated_at TIMESTAMP DEFAULT NOW()\r\n            );\r\n            CREATE TABLE function_types (\r\n                id BIGSERIAL PRIMARY KEY,\r\n                name VARCHAR(100) UNIQUE NOT NULL,\r\n                localized_name VARCHAR(255) NOT NULL,\r\n                priority INT DEFAULT 0,\r\n                created_at TIMESTAMP DEFAULT NOW(),\r\n                updated_at TIMESTAMP DEFAULT NOW()\r\n            );\r\n            CREATE TABLE tabulated_functions (\r\n                id BIGSERIAL PRIMARY KEY,\r\n                owner_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,\r\n                function_type_id BIGINT NOT NULL REFERENCES function_types(id) ON DELETE CASCADE,\r\n                serialized_data BYTEA NOT NULL,\r\n                name VARCHAR(255) NOT NULL,\r\n                created_at TIMESTAMP DEFAULT NOW(),\r\n                updated_at TIMESTAMP DEFAULT NOW()\r\n            );\r\n            \"\"\");\r\n\r\n            stmt.execute(\"\"\"\r\n            INSERT INTO users (id, email, username, password_hash, role) VALUES \r\n            (1, 'user1@test.com', 'user1', 'hash1', 'USER'),\r\n            (2, 'user2@test.com', 'user2', 'hash2', 'USER'),\r\n            (3, 'user3@test.com', 'user3', 'hash3', 'USER');\r\n            \"\"\");\r\n\r\n            stmt.execute(\"\"\"\r\n            INSERT INTO function_types (id, name, localized_name, priority) VALUES \r\n            (1, 'TABULATED', 'Табулированная', 1),\r\n            (2, 'SIN', 'Синус', 2),\r\n            (3, 'COS', 'Косинус', 3);\r\n            \"\"\");\r\n\r\n            stmt.execute(\"SELECT setval('users_id_seq', 3);\");\r\n            stmt.execute(\"SELECT setval('function_types_id_seq', 3);\");\r\n        }\r\n\r\n        dao = new TabulatedFunctionDaoImpl(dataSource);\r\n\r\n        logger.info(\"DAO и БД инициализированы\");\r\n    }\r\n\r\n    private byte[] data(String s) {\r\n        return s.getBytes(StandardCharsets.UTF_8);\r\n    }\r\n\r\n    @Test\r\n    @DisplayName(\"Сортировка по имени (A→Я): findByOwnerIdSortedByNameAsc\")\r\n    void sortingByNameAsc_works() {\r\n        logger.info(\"Тест: сортировка по имени (A→Я)\");\r\n\r\n        Long userId = userDao.save(new UserDTO(\"u@u.com\", \"user\", \"hash\"));\r\n        Long typeId = typeDao.findByName(\"TABULATED\").get().getId();\r\n\r\n        // Создаём в \"перемешанном\" порядке\r\n        dao.save(new TabulatedFunctionDTO(userId, typeId, data(\"z\"), \"Zeta\"));\r\n        dao.save(new TabulatedFunctionDTO(userId, typeId, data(\"alpha\"), \"Alpha\"));\r\n        dao.save(new TabulatedFunctionDTO(userId, typeId, data(\"beta\"), \"Beta\"));\r\n\r\n        List<TabulatedFunctionDTO> list = dao.findByOwnerIdSortedByNameAsc(userId);\r\n        List<String> names = list.stream().map(TabulatedFunctionDTO::getName).collect(Collectors.toList());\r\n\r\n        assertThat(names).containsExactly(\"Alpha\", \"Beta\", \"Zeta\");\r\n        logger.debug(\"Результат сортировки по имени: {}\", names);\r\n        logger.info(\"Тест пройден\");\r\n    }\r\n\r\n    @Test\r\n    @DisplayName(\"Сортировка по дате создания (новые→старые): findByOwnerIdSortedByCreatedAtDesc\")\r\n    void sortingByCreatedAtDesc_works() {\r\n        logger.info(\"\uD83E\uDDEA Тест: сортировка по дате (новые → старые)\");\r\n\r\n        Long userId = userDao.save(new UserDTO(\"u2@u.com\", \"u2\", \"h\"));\r\n        Long typeId = typeDao.findByName(\"SIN\").get().getId();\r\n\r\n        // Сохраняем в порядке: сначала старая, потом новая\r\n        Long old = dao.save(\r\n                new TabulatedFunctionDTO(userId, typeId, data(\"old\"), \"Old\"));\r\n        sleep(100); // даём 100 мс, чтобы created_at точно различался\r\n        Long recent = dao.save(\r\n                new TabulatedFunctionDTO(userId, typeId, data(\"new\"), \"Recent\"));\r\n\r\n        List<TabulatedFunctionDTO> list = dao.findByOwnerIdSortedByCreatedAtDesc(userId);\r\n        List<String> names = list.stream().map(TabulatedFunctionDTO::getName).collect(Collectors.toList());\r\n\r\n        assertThat(names).containsExactly(\"Recent\", \"Old\");\r\n        assertThat(list.get(0).getCreatedAt()).isAfter(list.get(1).getCreatedAt());\r\n        logger.debug(\"Результат: новые выше — {}\", names);\r\n        logger.info(\"Тест пройден\");\r\n    }\r\n\r\n    @Test\r\n    @DisplayName(\"Фильтрация + сортировка: findByOwnerIdAndFunctionTypeIdSortedByNameAsc\")\r\n    void filteringAndSorting_works() {\r\n        logger.info(\"Тест: фильтрация по типу + сортировка по имени\");\r\n\r\n        Long userId = userDao.save(new UserDTO(\"u3@u.com\", \"u3\", \"h\"));\r\n        Long tabId = typeDao.findByName(\"TABULATED\").get().getId();\r\n        Long sinId = typeDao.findByName(\"SIN\").get().getId();\r\n\r\n        // Создаём смешанные данные\r\n        dao.save(new TabulatedFunctionDTO(userId, sinId, data(\"z\"), \"SIN-Z\"));\r\n        dao.save(new TabulatedFunctionDTO(userId, tabId, data(\"a\"), \"TAB-A\"));\r\n        dao.save(new TabulatedFunctionDTO(userId, sinId, data(\"a\"), \"SIN-A\"));\r\n\r\n        List<TabulatedFunctionDTO> sinFunctions = dao.findByOwnerIdAndTypeIdSortedByNameAsc(userId, sinId);\r\n        List<String> names = sinFunctions.stream().map(TabulatedFunctionDTO::getName).collect(Collectors.toList());\r\n\r\n        assertThat(sinFunctions).hasSize(2);\r\n        assertThat(names).containsExactly(\"SIN-A\", \"SIN-Z\");\r\n        logger.debug(\"Только SIN-функции, отсортированы по имени: {}\", names);\r\n        logger.info(\"Тест пройден\");\r\n    }\r\n\r\n    @Test\r\n    @DisplayName(\"Изоляция сохраняется при сортировке\")\r\n    void isolation_preserved_in_sorted_search() {\r\n        logger.info(\"Тест: изоляция + сортировка\");\r\n\r\n        Long u1 = userDao.save(new UserDTO(\"a@a.com\", \"a\", \"h\"));\r\n        Long u2 = userDao.save(new UserDTO(\"b@b.com\", \"b\", \"h\"));\r\n        Long typeId = typeDao.findByName(\"COS\").get().getId();\r\n\r\n        dao.save(new TabulatedFunctionDTO(u1, typeId, data(\"u1\"), \"Func-U1\"));\r\n        dao.save(new TabulatedFunctionDTO(u2, typeId, data(\"u2\"), \"Alpha-U2\")); // раньше в алфавите\r\n\r\n        List<TabulatedFunctionDTO> u1List = dao.findByOwnerIdSortedByNameAsc(u1);\r\n        assertThat(u1List).hasSize(1);\r\n        assertThat(u1List.get(0).getName()).isEqualTo(\"Func-U1\");\r\n\r\n        List<TabulatedFunctionDTO> u2List = dao.findByOwnerIdSortedByNameAsc(u2);\r\n        assertThat(u2List).hasSize(1);\r\n        assertThat(u2List.get(0).getName()).isEqualTo(\"Alpha-U2\");\r\n\r\n        logger.debug(\"Пользователи видят только свои функции, даже при сортировке\");\r\n        logger.info(\"Тест пройден\");\r\n    }\r\n\r\n    // Вспомогательный метод для тестов с created_at\r\n    private TabulatedFunctionDTO saveAndReturn(TabulatedFunctionDTO dto) {\r\n        Long id = dao.save(dto);\r\n        return dao.findByIdAndOwnerId(id, dto.getOwnerId()).get();\r\n    }\r\n\r\n    private void sleep(long ms) {\r\n        try { Thread.sleep(ms); } catch (InterruptedException e) { }\r\n    }\r\n}
+===================================================================
+diff --git a/src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java b/src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java
+--- a/src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
++++ b/src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java	(date 1762868331535)
+@@ -1,8 +1,7 @@
+ package functions.dao;
+ 
+-import functions.dto.TabulatedFunctionDTO;
+-import functions.dto.UserDTO;
+-import functions.dto.FunctionTypeDTO;
++import dto.TabulatedFunctionDTO;
++import dto.UserDTO;
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.api.Test;

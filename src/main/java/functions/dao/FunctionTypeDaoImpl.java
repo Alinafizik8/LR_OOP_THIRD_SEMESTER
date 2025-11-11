@@ -19,27 +19,58 @@ public class FunctionTypeDaoImpl implements FunctionTypeDao {
         this.dataSource = dataSource;
     }
 
+//    @Override
+//    public Long save(FunctionTypeDTO type) {
+//        logger.info("Saving function type: '{}'", type.getName());
+//        String sql = """
+//            INSERT INTO function_types (name, localized_name, priority)
+//            VALUES (?, ?, ?) RETURNING id, created_at, updated_at
+//            """;
+//        try (Connection conn = dataSource.getConnection();
+//             PreparedStatement ps = conn.prepareStatement(sql)) {
+//            ps.setString(1, type.getName());
+//            ps.setString(2, type.getLocalizedName());
+//            ps.setInt(3, type.getPriority());
+//
+//            try (ResultSet rs = ps.executeQuery()) {
+//                if (rs.next()) {
+//                    Long id = rs.getLong("id");
+//                    LocalDateTime createdAt = rs.getTimestamp("created_at").toLocalDateTime();
+//                    LocalDateTime updatedAt = rs.getTimestamp("updated_at").toLocalDateTime();
+//
+//                    logger.debug("Saved: id={}, name='{}', createdAt={}, updatedAt={}",
+//                            id, type.getName(), createdAt, updatedAt);
+//                    return id;
+//                }
+//            }
+//        } catch (SQLException e) {
+//            logger.error("Save failed for function type '{}'", type.getName(), e);
+//            throw new RuntimeException("Failed to save function type", e);
+//        }
+//        throw new RuntimeException("Insert returned no ID");
+//    }
     @Override
     public Long save(FunctionTypeDTO type) {
         logger.info("Saving function type: '{}'", type.getName());
         String sql = """
-            INSERT INTO function_types (name, localized_name, priority)
-            VALUES (?, ?, ?) RETURNING id, created_at, updated_at
-            """;
+        INSERT INTO function_types (name, localized_name, priority)
+        VALUES (?, ?, ?)
+        """;
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) { // ← Получаем сгенерированный ID
             ps.setString(1, type.getName());
             ps.setString(2, type.getLocalizedName());
             ps.setInt(3, type.getPriority());
 
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    Long id = rs.getLong("id");
-                    LocalDateTime createdAt = rs.getTimestamp("created_at").toLocalDateTime();
-                    LocalDateTime updatedAt = rs.getTimestamp("updated_at").toLocalDateTime();
+            int rows = ps.executeUpdate();
+            if (rows == 0) {
+                throw new RuntimeException("Insert failed");
+            }
 
-                    logger.debug("Saved: id={}, name='{}', createdAt={}, updatedAt={}",
-                            id, type.getName(), createdAt, updatedAt);
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    Long id = generatedKeys.getLong(1);
+                    logger.debug("✅ Saved: id={}, name='{}'", id, type.getName());
                     return id;
                 }
             }

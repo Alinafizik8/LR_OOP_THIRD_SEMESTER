@@ -1,0 +1,187 @@
+Index: src/main/java/functions/dao/FunctionTypeDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functions.dao;\r\n\r\nimport functions.dto.FunctionTypeDTO;\r\n\r\nimport java.util.List;\r\nimport java.util.Optional;\r\n\r\npublic interface FunctionTypeDao {\r\n    Long save(FunctionTypeDTO type);\r\n    Optional<FunctionTypeDTO> findById(Long id);\r\n    Optional<FunctionTypeDTO> findByName(String name);\r\n    List<FunctionTypeDTO> findAll();\r\n    List<FunctionTypeDTO> findAllSortedByPriority();\r\n    void update(FunctionTypeDTO type);\r\n    void deleteById(Long id);\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/functions/dao/FunctionTypeDao.java b/src/main/java/functions/dao/FunctionTypeDao.java
+--- a/src/main/java/functions/dao/FunctionTypeDao.java	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
++++ b/src/main/java/functions/dao/FunctionTypeDao.java	(date 1762867871931)
+@@ -1,6 +1,6 @@
+ package functions.dao;
+ 
+-import functions.dto.FunctionTypeDTO;
++import dto.FunctionTypeDTO;
+ 
+ import java.util.List;
+ import java.util.Optional;
+Index: src/main/java/functions/dto/FunctionTypeDTO.java
+===================================================================
+diff --git a/src/main/java/functions/dto/FunctionTypeDTO.java b/src/main/java/functions/dto/FunctionTypeDTO.java
+deleted file mode 100644
+--- a/src/main/java/functions/dto/FunctionTypeDTO.java	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
++++ /dev/null	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
+@@ -1,30 +0,0 @@
+-package functions.dto;
+-
+-public class FunctionTypeDTO {
+-    private Long id;
+-    private String name;           // напр. "SIN"
+-    private String localizedName;  // напр. "Синус"
+-    private int priority;
+-
+-    public FunctionTypeDTO() {}
+-    public FunctionTypeDTO(String name, String localizedName, int priority) {
+-        this.name = name;
+-        this.localizedName = localizedName;
+-        this.priority = priority;
+-    }
+-
+-    // Getters & Setters
+-    public Long getId() { return id; }
+-    public void setId(Long id) { this.id = id; }
+-    public String getName() { return name; }
+-    public void setName(String name) { this.name = name; }
+-    public String getLocalizedName() { return localizedName; }
+-    public void setLocalizedName(String localizedName) { this.localizedName = localizedName; }
+-    public int getPriority() { return priority; }
+-    public void setPriority(int priority) { this.priority = priority; }
+-
+-    @Override
+-    public String toString() {
+-        return "FunctionTypeDTO{id=" + id + ", name='" + name + "', localizedName='" + localizedName + "'}";
+-    }
+-}
+\ No newline at end of file
+Index: src/main/java/functions/dto/TabulatedFunctionDTO.java
+===================================================================
+diff --git a/src/main/java/functions/dto/TabulatedFunctionDTO.java b/src/main/java/functions/dto/TabulatedFunctionDTO.java
+deleted file mode 100644
+--- a/src/main/java/functions/dto/TabulatedFunctionDTO.java	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
++++ /dev/null	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
+@@ -1,54 +0,0 @@
+-package functions.dto;
+-
+-import java.time.LocalDateTime;
+-
+-/**
+- * DTO для таблицы tabulated_functions.
+- * Используется для передачи данных между DAO и сервлетами (лаба №6).
+- */
+-public class TabulatedFunctionDTO {
+-    private Long id;
+-    private Long ownerId;
+-    private Long functionTypeId;
+-    private byte[] serializedData;
+-    private String name;
+-    private LocalDateTime createdAt;
+-    private LocalDateTime updatedAt;
+-
+-    // Конструктор по умолчанию (для Jackson/Gson)
+-    public TabulatedFunctionDTO() {}
+-
+-    public TabulatedFunctionDTO(Long ownerId, Long functionTypeId, byte[] serializedData, String name) {
+-        this.ownerId = ownerId;
+-        this.functionTypeId = functionTypeId;
+-        this.serializedData = serializedData;
+-        this.name = name;
+-    }
+-
+-    // Геттеры и сеттеры (обязательны для сериализации)
+-    public Long getId() { return id; }
+-    public void setId(Long id) { this.id = id; }
+-
+-    public Long getOwnerId() { return ownerId; }
+-    public void setOwnerId(Long ownerId) { this.ownerId = ownerId; }
+-
+-    public Long getFunctionTypeId() { return functionTypeId; }
+-    public void setFunctionTypeId(Long functionTypeId) { this.functionTypeId = functionTypeId; }
+-
+-    public byte[] getSerializedData() { return serializedData; }
+-    public void setSerializedData(byte[] serializedData) { this.serializedData = serializedData; }
+-
+-    public String getName() { return name; }
+-    public void setName(String name) { this.name = name; }
+-
+-    public LocalDateTime getCreatedAt() { return createdAt; }
+-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+-
+-    public LocalDateTime getUpdatedAt() { return updatedAt; }
+-    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+-
+-    @Override
+-    public String toString() {
+-        return "TabulatedFunctionDTO{id=" + id + ", name='" + name + "', ownerId=" + ownerId + "}";
+-    }
+-}
+\ No newline at end of file
+Index: src/main/java/functions/dto/UserDTO.java
+===================================================================
+diff --git a/src/main/java/functions/dto/UserDTO.java b/src/main/java/functions/dto/UserDTO.java
+deleted file mode 100644
+--- a/src/main/java/functions/dto/UserDTO.java	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
++++ /dev/null	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
+@@ -1,43 +0,0 @@
+-package functions.dto;
+-
+-import java.time.LocalDateTime;
+-
+-public class UserDTO {
+-    private Long id;
+-    private String email;
+-    private String username;
+-    private String passwordHash;
+-    private String role; // "USER", "ADMIN"
+-    private LocalDateTime createdAt;
+-    private LocalDateTime updatedAt;
+-
+-    // Constructors
+-    public UserDTO() {}
+-    public UserDTO(String email, String username, String passwordHash) {
+-        this.email = email;
+-        this.username = username;
+-        this.passwordHash = passwordHash;
+-        this.role = "USER";
+-    }
+-
+-    // Getters & Setters
+-    public Long getId() { return id; }
+-    public void setId(Long id) { this.id = id; }
+-    public String getEmail() { return email; }
+-    public void setEmail(String email) { this.email = email; }
+-    public String getUsername() { return username; }
+-    public void setUsername(String username) { this.username = username; }
+-    public String getPasswordHash() { return passwordHash; }
+-    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
+-    public String getRole() { return role; }
+-    public void setRole(String role) { this.role = role; }
+-    public LocalDateTime getCreatedAt() { return createdAt; }
+-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+-    public LocalDateTime getUpdatedAt() { return updatedAt; }
+-    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+-
+-    @Override
+-    public String toString() {
+-        return "UserDTO{id=" + id + ", username='" + username + "', role='" + role + "'}";
+-    }
+-}
+\ No newline at end of file
+Index: src/main/java/functions/dao/UserDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package functions.dao;\r\n\r\nimport functions.dto.UserDTO;\r\n\r\nimport java.util.List;\r\nimport java.util.Optional;\r\n\r\npublic interface UserDao {\r\n    Long save(UserDTO user);\r\n    Optional<UserDTO> findById(Long id);\r\n    Optional<UserDTO> findByUsername(String username);\r\n    Optional<UserDTO> findByEmail(String email);\r\n    List<UserDTO> findAll();\r\n    void updatePassword(Long id, String newPasswordHash);\r\n    void updateRole(Long id, String newRole);\r\n    void deleteById(Long id);\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/functions/dao/UserDao.java b/src/main/java/functions/dao/UserDao.java
+--- a/src/main/java/functions/dao/UserDao.java	(revision 01107e89b4c33ab0a35bcd8eac38038715859b09)
++++ b/src/main/java/functions/dao/UserDao.java	(date 1762867871926)
+@@ -1,6 +1,6 @@
+ package functions.dao;
+ 
+-import functions.dto.UserDTO;
++import dto.UserDTO;
+ 
+ import java.util.List;
+ import java.util.Optional;
