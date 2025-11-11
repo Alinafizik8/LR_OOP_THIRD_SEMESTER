@@ -2,6 +2,8 @@ package Repository;
 
 import Entity.FunctionTypeEntity;
 import Entity.TabulatedFunctionEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +14,7 @@ import java.util.Optional;
 
 public interface TabulatedFunctionRepository extends JpaRepository<TabulatedFunctionEntity, Long> {
 
-    // 🔒 Изоляция по owner_id
+    // Изоляция по owner_id
     List<TabulatedFunctionEntity> findByOwnerId(Long ownerId);
     Optional<TabulatedFunctionEntity> findByIdAndOwnerId(Long id, Long ownerId);
     List<TabulatedFunctionEntity> findByOwnerIdAndFunctionTypeId(Long ownerId, Long typeId);
@@ -41,4 +43,26 @@ public interface TabulatedFunctionRepository extends JpaRepository<TabulatedFunc
 
     // Удаление — только своего
     void deleteByIdAndOwnerId(Long id, Long ownerId);
+
+    // Множественный поиск с сортировкой по имени
+    List<TabulatedFunctionEntity> findByOwnerIdOrderByNameAsc(Long ownerId);
+
+    // Множественный поиск с сортировкой по дате создания
+    List<TabulatedFunctionEntity> findByOwnerIdOrderByCreatedAtDesc(Long ownerId);
+
+    // Множественный поиск с пагинацией и сортировкой
+    Page<TabulatedFunctionEntity> findByOwnerId(Long ownerId, Pageable pageable);
+
+    // Поиск по фрагменту имени
+    List<TabulatedFunctionEntity> findByNameContainingIgnoreCaseAndOwnerId(String nameFragment, Long ownerId);
+
+    // Поиск по фрагменту имени с сортировкой
+    List<TabulatedFunctionEntity> findByNameContainingIgnoreCaseAndOwnerIdOrderByCreatedAtDesc(String nameFragment, Long ownerId);
+
+    // Поиск по связанным сущностям (аналог иерархии)
+    // Найти функции по ID типа функции
+    List<TabulatedFunctionEntity> findByFunctionTypeId(Long typeId);
+
+    // Найти функции по ID типа функции и отсортировать
+    List<TabulatedFunctionEntity> findByFunctionTypeIdOrderByCreatedAtDesc(Long typeId);
 }
