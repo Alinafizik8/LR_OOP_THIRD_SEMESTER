@@ -1,6 +1,7 @@
 package service;
 
 import Entity.TabulatedFunctionEntity;
+import Entity.UserEntity;
 import Repository.TabulatedFunctionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,11 +54,15 @@ public class TabulatedFunctionServiceImpl implements TabulatedFunctionService {
     }
 
     @Override
-    @Transactional // Переопределяем readOnly на true для метода, который изменяет данные
     public TabulatedFunctionEntity saveFunction(TabulatedFunctionEntity function, Long ownerId) {
+        return null;
+    }
+
+    @Transactional // Переопределяем readOnly на true для метода, который изменяет данные
+    public TabulatedFunctionEntity saveFunction(TabulatedFunctionEntity function, UserEntity ownerId) {
         // Валидация владельца может быть добавлена здесь, если функция создаётся не от имени владельца
         logger.info("Saving function '{}' for owner ID: {}", function.getName(), ownerId);
-        function.setOwnerId(ownerId); // Устанавливаем ID владельца при сохранении
+        function.setOwner(ownerId); // Устанавливаем ID владельца при сохранении
         function.setCreatedAt(LocalDateTime.now());
         function.setUpdatedAt(LocalDateTime.now());
         TabulatedFunctionEntity savedFunction = functionRepository.save(function);

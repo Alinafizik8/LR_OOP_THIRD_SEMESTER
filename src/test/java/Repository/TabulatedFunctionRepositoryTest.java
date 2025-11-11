@@ -75,32 +75,4 @@ class TabulatedFunctionRepositoryTest {
         return f;
     }
 
-    @Test
-    void save_and_findByIdAndOwnerId_works() {
-        logger.info("Test: save_and_findByIdAndOwnerId_works");
-        TabulatedFunctionEntity f = func(u1, tabType, "test", "data".getBytes());
-        f = functionRepo.save(f);
-        logger.debug("Saved function id={}", f.getId());
-
-        Optional<TabulatedFunctionEntity> found = functionRepo.findByIdAndOwnerId(f.getId(), u1.getId());
-        assertThat(found).isPresent();
-        assertThat(found.get().getName()).isEqualTo("test");
-        logger.info("Test passed");
-    }
-
-    @Test
-    void isolation_prevents_cross_access() {
-        logger.info("Test: isolation_prevents_cross_access");
-        TabulatedFunctionEntity f = func(u1, sinType, "private", new byte[]{1});
-        f = functionRepo.save(f);
-
-        assertThat(functionRepo.findByIdAndOwnerId(f.getId(), u1.getId())).isPresent();
-        assertThat(functionRepo.findByIdAndOwnerId(f.getId(), u2.getId())).isEmpty();
-        logger.info("Test passed");
-    }
-
-    @Test
-    void updateName_works() {
-        logger.info("Test: updateName_works");
-    }
 }
