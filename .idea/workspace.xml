@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="pognali">
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="pognali narod">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/UserDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/dao/UserDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dto/TabulatedFunctionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dto/TabulatedFunctionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +70,7 @@
     "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues.executor": "Run",
     "JUnit.FunctionTypeDaoTest.executor": "Coverage",
     "JUnit.SynchronizedTabulatedFunctionTest.executor": "Coverage",
+    "JUnit.TabulatedFunctionDaoTest.executor": "Coverage",
     "JUnit.TabulatedFunctionDaoTest.save_and_findByIdAndOwnerId_works.executor": "Run",
     "JUnit.UserDaoTest.executor": "Coverage",
     "JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
@@ -95,20 +97,7 @@
       <recent name="io" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserDaoTest">
-    <configuration name="ReadWriteTaskExecutor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="concurrent.ReadWriteTaskExecutor" />
-      <module name="LR_OOP_THIRD_SEMESTER" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="concurrent.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.TabulatedFunctionDaoTest">
     <configuration name="FunctionTypeDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="LR_OOP_THIRD_SEMESTER" />
       <extension name="coverage">
@@ -119,6 +108,21 @@
       </extension>
       <option name="PACKAGE_NAME" value="functions.dao" />
       <option name="MAIN_CLASS_NAME" value="functions.dao.FunctionTypeDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TabulatedFunctionDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LR_OOP_THIRD_SEMESTER" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="functions.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="functions.dao" />
+      <option name="MAIN_CLASS_NAME" value="functions.dao.TabulatedFunctionDaoTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -165,11 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TabulatedFunctionDaoTest" />
         <item itemvalue="JUnit.UserDaoTest" />
         <item itemvalue="JUnit.FunctionTypeDaoTest" />
         <item itemvalue="JUnit.TabulatedFunctionDaoTest.save_and_findByIdAndOwnerId_works" />
         <item itemvalue="JUnit.dao in LR_OOP_THIRD_SEMESTER" />
-        <item itemvalue="Application.ReadWriteTaskExecutor" />
       </list>
     </recent_temporary>
   </component>
@@ -261,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762873157171</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="pognali narod">
+      <option name="closed" value="true" />
+      <created>1762873720713</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1762873720713</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -286,7 +298,8 @@
     <MESSAGE value="dead inside 1.21" />
     <MESSAGE value="still alive" />
     <MESSAGE value="pognali" />
-    <option name="LAST_COMMIT_MESSAGE" value="pognali" />
+    <MESSAGE value="pognali narod" />
+    <option name="LAST_COMMIT_MESSAGE" value="pognali narod" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -300,7 +313,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762864578139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$UserDaoTest.ic" NAME="UserDaoTest Coverage Results" MODIFIED="1762873538762" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$UserDaoTest.ic" NAME="UserDaoTest Coverage Results" MODIFIED="1762873670702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.dao.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762860597074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
@@ -329,6 +342,9 @@
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$dao_in_LR_OOP_THIRD_SEMESTER.ic" NAME="dao in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762871165320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic" NAME="ArrayTabulatedFunctionTest Coverage Results" MODIFIED="1759654890325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionDaoTest.ic" NAME="TabulatedFunctionDaoTest Coverage Results" MODIFIED="1762875196910" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>functions.dao.*</FILTER>
     </SUITE>
   </component>
 </project>

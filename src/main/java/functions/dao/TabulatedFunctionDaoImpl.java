@@ -23,28 +23,25 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
     public Long save(TabulatedFunctionDTO dto) {
         logger.info("💾 Saving function '{}' for owner id={}", dto.getName(), dto.getOwnerId());
         String sql = """
-            INSERT INTO tabulated_functions (owner_id, function_type_id, serialized_data, name)
-            VALUES (?, ?, ?, ?) RETURNING id, created_at, updated_at
-            """;
+        INSERT INTO tabulated_functions (owner_id, function_type_id, serialized_data, name)
+        VALUES (?, ?, ?, ?)
+        """;
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) { // ← Получаем сгенерированный ID
             ps.setLong(1, dto.getOwnerId());
             ps.setLong(2, dto.getFunctionTypeId());
             ps.setBytes(3, dto.getSerializedData());
             ps.setString(4, dto.getName());
 
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    Long id = rs.getLong("id");
-                    LocalDateTime createdAt = rs.getObject("created_at", LocalDateTime.class);
-                    LocalDateTime updatedAt = rs.getObject("updated_at", LocalDateTime.class);
+            int rows = ps.executeUpdate();
+            if (rows == 0) {
+                throw new RuntimeException("Insert failed");
+            }
 
-                    dto.setId(id);
-                    dto.setCreatedAt(createdAt);
-                    dto.setUpdatedAt(updatedAt);
-
-                    logger.debug("✅ Saved: id={}, name='{}', size={}B, createdAt={}",
-                            id, dto.getName(), dto.getSerializedData() != null ? dto.getSerializedData().length : 0, createdAt);
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    Long id = generatedKeys.getLong(1);
+                    logger.debug("✅ Saved: id={}, name='{}'", id, dto.getName());
                     return id;
                 }
             }
@@ -57,7 +54,7 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
 
     @Override
     public Optional<TabulatedFunctionDTO> findByIdAndOwnerId(Long id, Long ownerId) {
-        logger.debug("🔍 Finding function id={} for owner id={}", id, ownerId);
+        logger.debug("Finding function id={} for owner id={}", id, ownerId);
         String sql = "SELECT * FROM tabulated_functions WHERE id = ? AND owner_id = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -66,36 +63,36 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     TabulatedFunctionDTO dto = TabulatedFunctionDTO.fromResultSet(rs);
-                    logger.trace("✅ Found: {}", dto);
+                    logger.trace("Found: {}", dto);
                     return Optional.of(dto);
                 } else {
-                    logger.debug("⚠️ Not found: id={}, owner={}", id, ownerId);
+                    logger.debug("Not found: id={}, owner={}", id, ownerId);
                     return Optional.empty();
                 }
             }
         } catch (SQLException e) {
-            logger.error("❌ Find failed: id={}, owner_id={}", id, ownerId, e);
+            logger.error("Find failed: id={}, owner_id={}", id, ownerId, e);
             throw new RuntimeException("Find failed", e);
         }
     }
 
     @Override
     public List<TabulatedFunctionDTO> findByOwnerId(Long ownerId) {
-        logger.debug("🔍 Loading all functions for owner id={}", ownerId);
+        logger.debug("Loading all functions for owner id={}", ownerId);
         String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY created_at DESC";
         return extractList(sql, ownerId);
     }
 
     @Override
     public List<TabulatedFunctionDTO> findByOwnerIdAndTypeId(Long ownerId, Long typeId) {
-        logger.debug("🔍 Loading functions for owner id={} and type id={}", ownerId, typeId);
+        logger.debug("Loading functions for owner id={} and type id={}", ownerId, typeId);
         String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? AND function_type_id = ? ORDER BY name ASC";
         return extractListWithParam(sql, ownerId, typeId);
     }
 
     @Override
     public void updateName(Long id, Long ownerId, String newName) {
-        logger.info("✏️ Updating name of function id={} → '{}'", id, newName);
+        logger.info("Updating name of function id={} → '{}'", id, newName);
         String sql = "UPDATE tabulated_functions SET name = ?, updated_at = NOW() WHERE id = ? AND owner_id = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -104,19 +101,19 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
             ps.setLong(3, ownerId);
             int rows = ps.executeUpdate();
             if (rows == 0) {
-                logger.warn("⚠️ Update skipped: function id={} not found for owner id={}", id, ownerId);
+                logger.warn("Update skipped: function id={} not found for owner id={}", id, ownerId);
                 throw new RuntimeException("Function not found or access denied");
             }
-            logger.debug("✅ Name updated for function id={}", id);
+            logger.debug("Name updated for function id={}", id);
         } catch (SQLException e) {
-            logger.error("❌ Update name failed: id={}, owner_id={}", id, ownerId, e);
+            logger.error("Update name failed: id={}, owner_id={}", id, ownerId, e);
             throw new RuntimeException("Update name failed", e);
         }
     }
 
     @Override
     public void updateFunctionAndName(Long id, Long ownerId, TabulatedFunctionDTO newDto) {
-        logger.info("✏️ Updating function & name for id={}", id);
+        logger.info("Updating function & name for id={}", id);
         String sql = """
             UPDATE tabulated_functions 
             SET serialized_data = ?, name = ?, updated_at = NOW() 
@@ -131,28 +128,28 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
 
             int rows = ps.executeUpdate();
             if (rows == 0) {
-                logger.warn("⚠️ Update skipped: function id={} not found for owner id={}", id, ownerId);
+                logger.warn("Update skipped: function id={} not found for owner id={}", id, ownerId);
                 throw new RuntimeException("Function not found or access denied");
             }
-            logger.debug("✅ Function & name updated for id={}", id);
+            logger.debug("Function & name updated for id={}", id);
         } catch (SQLException e) {
-            logger.error("❌ Update function failed: id={}, owner_id={}", id, ownerId, e);
+            logger.error("Update function failed: id={}, owner_id={}", id, ownerId, e);
             throw new RuntimeException("Update function failed", e);
         }
     }
 
     @Override
     public void deleteByIdAndOwnerId(Long id, Long ownerId) {
-        logger.info("🗑️ Deleting function id={} for owner id={}", id, ownerId);
+        logger.info("Deleting function id={} for owner id={}", id, ownerId);
         String sql = "DELETE FROM tabulated_functions WHERE id = ? AND owner_id = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setLong(1, id);
             ps.setLong(2, ownerId);
             int rows = ps.executeUpdate();
-            logger.debug("✅ Deleted {} row(s) (id={}, owner={})", rows, id, ownerId);
+            logger.debug("Deleted {} row(s) (id={}, owner={})", rows, id, ownerId);
         } catch (SQLException e) {
-            logger.error("❌ Delete failed: id={}, owner_id={}", id, ownerId, e);
+            logger.error("Delete failed: id={}, owner_id={}", id, ownerId, e);
             throw new RuntimeException("Delete failed", e);
         }
     }
@@ -164,7 +161,7 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
             ps.setLong(1, param);
             return extractFromResultSet(ps);
         } catch (SQLException e) {
-            logger.error("❌ Query failed: {}", sql, e);
+            logger.error("Query failed: {}", sql, e);
             throw new RuntimeException("Query failed", e);
         }
     }
@@ -176,7 +173,7 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
             ps.setLong(2, p2);
             return extractFromResultSet(ps);
         } catch (SQLException e) {
-            logger.error("❌ Query failed: {}", sql, e);
+            logger.error("Query failed: {}", sql, e);
             throw new RuntimeException("Query failed", e);
         }
     }
@@ -187,7 +184,7 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
             while (rs.next()) {
                 list.add(TabulatedFunctionDTO.fromResultSet(rs));
             }
-            logger.info("✅ Loaded {} functions", list.size());
+            logger.info("Loaded {} functions", list.size());
             return list;
         }
     }
