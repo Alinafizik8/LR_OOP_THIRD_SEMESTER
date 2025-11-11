@@ -20,6 +20,7 @@ public interface TabulatedFunctionDao {
     /**
      * Находит функцию по ID и владельцу (гарантирует изоляцию).
      */
+    // === Множественный поиск ===
     Optional<TabulatedFunctionDTO> findByIdAndOwnerId(Long id, Long ownerId);
 
     /**
@@ -30,6 +31,7 @@ public interface TabulatedFunctionDao {
     /**
      * Возвращает функции пользователя указанного типа.
      */
+    // === Одиночный поиск ===
     List<TabulatedFunctionDTO> findByOwnerIdAndTypeId(Long ownerId, Long typeId);
 
     /**
@@ -46,4 +48,15 @@ public interface TabulatedFunctionDao {
      * Удаляет функцию (только свою).
      */
     void deleteByIdAndOwnerId(Long id, Long ownerId);
+
+    // === Сортировка ===
+    List<TabulatedFunctionDTO> findByOwnerIdSortedByNameAsc(Long ownerId);
+    List<TabulatedFunctionDTO> findByOwnerIdSortedByCreatedAtDesc(Long ownerId);
+
+    // === Фильтрация + сортировка ===
+    List<TabulatedFunctionDTO> findByOwnerIdAndTypeIdSortedByNameAsc(Long ownerId, Long typeId);
+    List<TabulatedFunctionDTO> findByOwnerIdAndTypeIdSortedByCreatedAtDesc(Long ownerId, Long typeId);
+
+    // === Поиск по имени (LIKE, case-insensitive) ===
+    List<TabulatedFunctionDTO> findByOwnerIdAndNameContaining(Long ownerId, String nameFragment);
 }

@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +20,7 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
 
     @Override
     public Long save(TabulatedFunctionDTO dto) {
-        logger.info("💾 Saving function '{}' for owner id={}", dto.getName(), dto.getOwnerId());
+        logger.info("Saving function '{}' for owner id={}", dto.getName(), dto.getOwnerId());
         String sql = """
         INSERT INTO tabulated_functions (owner_id, function_type_id, serialized_data, name)
         VALUES (?, ?, ?, ?)
@@ -41,12 +40,12 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     Long id = generatedKeys.getLong(1);
-                    logger.debug("✅ Saved: id={}, name='{}'", id, dto.getName());
+                    logger.debug("Saved: id={}, name='{}'", id, dto.getName());
                     return id;
                 }
             }
         } catch (SQLException e) {
-            logger.error("❌ Save failed for function '{}' (owner={})", dto.getName(), dto.getOwnerId(), e);
+            logger.error("Save failed for function '{}' (owner={})", dto.getName(), dto.getOwnerId(), e);
             throw new RuntimeException("Save failed", e);
         }
         throw new RuntimeException("Insert returned no ID");
@@ -87,7 +86,7 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
     public List<TabulatedFunctionDTO> findByOwnerIdAndTypeId(Long ownerId, Long typeId) {
         logger.debug("Loading functions for owner id={} and type id={}", ownerId, typeId);
         String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? AND function_type_id = ? ORDER BY name ASC";
-        return extractListWithParam(sql, ownerId, typeId);
+        return extractListWithParams(sql, ownerId, typeId);
     }
 
     @Override
@@ -151,6 +150,75 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
         } catch (SQLException e) {
             logger.error("Delete failed: id={}, owner_id={}", id, ownerId, e);
             throw new RuntimeException("Delete failed", e);
+        }
+    }
+
+    @Override
+    public List<TabulatedFunctionDTO> findByOwnerIdSortedByNameAsc(Long ownerId) {
+        logger.debug("Searching functions for owner id={} sorted by name ASC", ownerId);
+        String sql = """
+        SELECT * FROM tabulated_functions 
+        WHERE owner_id = ? 
+        ORDER BY name ASC
+        """;
+        return extractList(sql, ownerId);
+    }
+
+    @Override
+    public List<TabulatedFunctionDTO> findByOwnerIdSortedByCreatedAtDesc(Long ownerId) {
+        logger.debug("Searching functions for owner id={} sorted by created_at DESC", ownerId);
+        String sql = """
+        SELECT * FROM tabulated_functions 
+        WHERE owner_id = ? 
+        ORDER BY created_at DESC
+        """;
+        return extractList(sql, ownerId);
+    }
+
+    @Override
+    public List<TabulatedFunctionDTO> findByOwnerIdAndTypeIdSortedByNameAsc(Long ownerId, Long typeId) {
+        logger.debug("Searching functions for owner id={} and type id={} sorted by name ASC", ownerId, typeId);
+        String sql = """
+        SELECT * FROM tabulated_functions 
+        WHERE owner_id = ? AND function_type_id = ? 
+        ORDER BY name ASC
+        """;
+        return extractListWithParams(sql, ownerId, typeId);
+    }
+
+    @Override
+    public List<TabulatedFunctionDTO> findByOwnerIdAndTypeIdSortedByCreatedAtDesc(Long ownerId, Long typeId) {
+        logger.debug("Searching functions for owner id={} and type id={} sorted by created_at DESC", ownerId, typeId);
+        String sql = """
+        SELECT * FROM tabulated_functions 
+        WHERE owner_id = ? AND function_type_id = ? 
+        ORDER BY created_at DESC
+        """;
+        return extractListWithParams(sql, ownerId, typeId);
+    }
+
+    @Override
+    public List<TabulatedFunctionDTO> findByOwnerIdAndNameContaining(Long ownerId, String nameFragment) {
+        logger.info("Full-text search: owner={} name LIKE '%{}%'", ownerId, nameFragment);
+        String sql = """
+        SELECT * FROM tabulated_functions 
+        WHERE owner_id = ? AND LOWER(name) LIKE LOWER(?)
+        ORDER BY created_at DESC
+        """;
+        String pattern = "%" + nameFragment + "%";
+        return extractListWithParams(sql, ownerId, pattern);
+    }
+
+    private List<TabulatedFunctionDTO> extractListWithParams(String sql, Object... params) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            for (int i = 0; i < params.length; i++) {
+                ps.setObject(i + 1, params[i]);
+            }
+            return extractFromResultSet(ps);
+        } catch (SQLException e) {
+            logger.error("Parameterized query failed: {}", sql, e);
+            throw new RuntimeException("Query failed", e);
         }
     }
 

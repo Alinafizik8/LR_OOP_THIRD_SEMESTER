@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="pognali narod vpered">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="almost final">
+      <change beforePath="$PROJECT_DIR$/src/main/java/dto/TabulatedFunctionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dto/TabulatedFunctionDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/dto/TabulatedFunctionDTOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/dto/TabulatedFunctionDTOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +75,7 @@
     "JUnit.UserDaoTest.executor": "Coverage",
     "JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
     "JUnit.dao in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
-    "JUnit.java in LR_OOP_THIRD_SEMESTER.executor": "Run",
+    "JUnit.java in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
@@ -279,7 +280,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762876298998</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="almost final">
+      <option name="closed" value="true" />
+      <created>1762876777243</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1762876777243</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -306,7 +315,8 @@
     <MESSAGE value="pognali" />
     <MESSAGE value="pognali narod" />
     <MESSAGE value="pognali narod vpered" />
-    <option name="LAST_COMMIT_MESSAGE" value="pognali narod vpered" />
+    <MESSAGE value="almost final" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost final" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -319,8 +329,8 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762864578139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionDTOTest.ic" NAME="TabulatedFunctionDTOTest Coverage Results" MODIFIED="1762876372200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762876746803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionDTOTest.ic" NAME="TabulatedFunctionDTOTest Coverage Results" MODIFIED="1762876725000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>dto.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$UserDaoTest.ic" NAME="UserDaoTest Coverage Results" MODIFIED="1762873670702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
