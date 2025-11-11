@@ -21,34 +21,32 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Long save(UserDTO dto) {
-        logger.info("💾 Saving user: username='{}', email='{}'", dto.getUsername(), dto.getEmail());
+        logger.info("Saving user: username='{}', email='{}'", dto.getUsername(), dto.getEmail());
         String sql = """
-            INSERT INTO users (username, password_hash, email, role)
-            VALUES (?, ?, ?, ?) RETURNING id, created_at, updated_at
-            """;
+        INSERT INTO users (username, password_hash, email, role)
+        VALUES (?, ?, ?, ?)
+        """;
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) { // ← Получаем сгенерированный ID
             ps.setString(1, dto.getUsername());
             ps.setString(2, dto.getPasswordHash());
             ps.setString(3, dto.getEmail());
             ps.setString(4, dto.getRole());
 
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    Long id = rs.getLong("id");
-                    LocalDateTime createdAt = rs.getObject("created_at", LocalDateTime.class);
-                    LocalDateTime updatedAt = rs.getObject("updated_at", LocalDateTime.class);
+            int rows = ps.executeUpdate();
+            if (rows == 0) {
+                throw new RuntimeException("Insert failed");
+            }
 
-                    dto.setId(id);
-                    dto.setCreatedAt(createdAt);
-                    dto.setUpdatedAt(updatedAt);
-
-                    logger.debug("✅ Saved: id={}, username='{}', createdAt={}", id, dto.getUsername(), createdAt);
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    Long id = generatedKeys.getLong(1);
+                    logger.debug("Saved: id={}, username='{}'", id, dto.getUsername());
                     return id;
                 }
             }
         } catch (SQLException e) {
-            logger.error("❌ Save failed for user '{}'", dto.getUsername(), e);
+            logger.error("Save failed for user '{}'", dto.getUsername(), e);
             throw new RuntimeException("Failed to save user", e);
         }
         throw new RuntimeException("Insert returned no ID");
@@ -56,19 +54,19 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<UserDTO> findById(Long id) {
-        logger.debug("🔍 Finding user by id={}", id);
+        logger.debug("Finding user by id={}", id);
         return findBy("id = ?", id);
     }
 
     @Override
     public Optional<UserDTO> findByEmail(String email) {
-        logger.debug("🔍 Finding user by email='{}'", email);
+        logger.debug("Finding user by email='{}'", email);
         return findBy("email = ?", email);
     }
 
     @Override
     public Optional<UserDTO> findByUsername(String username) {
-        logger.debug("🔍 Finding user by username='{}'", username);
+        logger.debug("Finding user by username='{}'", username);
         return findBy("username = ?", username);
     }
 
@@ -80,22 +78,22 @@ public class UserDaoImpl implements UserDao {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     UserDTO dto = mapResultSet(rs);
-                    logger.trace("✅ Found: {}", dto);
+                    logger.trace("Found: {}", dto);
                     return Optional.of(dto);
                 } else {
-                    logger.debug("⚠️ Not found by {}: {}", condition, param);
+                    logger.debug("Not found by {}: {}", condition, param);
                     return Optional.empty();
                 }
             }
         } catch (SQLException e) {
-            logger.error("❌ Find by {} = {} failed", condition, param, e);
+            logger.error("Find by {} = {} failed", condition, param, e);
             throw new RuntimeException("Find failed", e);
         }
     }
 
     @Override
     public List<UserDTO> findAll() {
-        logger.debug("🔍 Loading all users");
+        logger.debug("Loading all users");
         String sql = "SELECT * FROM users ORDER BY created_at DESC";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -104,23 +102,23 @@ public class UserDaoImpl implements UserDao {
             while (rs.next()) {
                 list.add(mapResultSet(rs));
             }
-            logger.info("✅ Loaded {} users", list.size());
+            logger.info("Loaded {} users", list.size());
             return list;
         } catch (SQLException e) {
-            logger.error("❌ Find all users failed", e);
+            logger.error("Find all users failed", e);
             throw new RuntimeException("Find all failed", e);
         }
     }
 
     @Override
     public void updatePassword(Long id, String newPasswordHash) {
-        logger.info("✏️ Updating password for user id={}", id);
+        logger.info("Updating password for user id={}", id);
         updateField("password_hash = ?", newPasswordHash, id);
     }
 
     @Override
     public void updateRole(Long id, String newRole) {
-        logger.info("✏️ Updating role to '{}' for user id={}", newRole, id);
+        logger.info("Updating role to '{}' for user id={}", newRole, id);
         updateField("role = ?", newRole, id);
     }
 
@@ -132,27 +130,27 @@ public class UserDaoImpl implements UserDao {
             ps.setLong(2, id);
             int rows = ps.executeUpdate();
             if (rows == 0) {
-                logger.warn("⚠️ Update skipped: user id={} not found", id);
+                logger.warn("Update skipped: user id={} not found", id);
                 throw new RuntimeException("User not found");
             }
-            logger.debug("✅ Updated {} for user id={}", fieldSet.split(" = ")[0], id);
+            logger.debug("Updated {} for user id={}", fieldSet.split(" = ")[0], id);
         } catch (SQLException e) {
-            logger.error("❌ Update failed for user id={}", id, e);
+            logger.error("Update failed for user id={}", id, e);
             throw new RuntimeException("Update failed", e);
         }
     }
 
     @Override
     public void deleteById(Long id) {
-        logger.info("🗑️ Deleting user id={}", id);
+        logger.info("Delete user id={}", id);
         String sql = "DELETE FROM users WHERE id = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setLong(1, id);
             int rows = ps.executeUpdate();
-            logger.debug("✅ Deleted {} user(s) with id={}", rows, id);
+            logger.debug("Deleted {} user(s) with id={}", rows, id);
         } catch (SQLException e) {
-            logger.error("❌ Delete failed for user id={}", id, e);
+            logger.error("Delete failed for user id={}", id, e);
             throw new RuntimeException("Delete failed", e);
         }
     }
