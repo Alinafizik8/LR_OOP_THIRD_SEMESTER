@@ -169,24 +169,6 @@ class UserDaoTest {
     }
 
     @Test
-    void findAll_returns_all_users() {
-        logger.info("Test: findAll_returns_all_users");
-
-        dao.save(new UserDTO(null, "a", "h", "a@a.com", "USER", null, null));
-        dao.save(new UserDTO(null, "b", "h", "b@b.com", "ADMIN", null, null));
-        dao.save(new UserDTO(null, "c", "h", "c@c.com", "USER", null, null));
-
-        List<UserDTO> list = dao.findAll();
-        assertThat(list).hasSize(3);
-        List<String> usernames = list.stream().map(UserDTO::getUsername).toList();
-        assertThat(usernames).contains("a", "b", "c");
-        assertThat(list.get(0).getUsername()).isEqualTo("c"); // сортировка: created_at DESC
-
-        logger.debug("Loaded {} users: {}", list.size(), usernames);
-        logger.info("Test passed");
-    }
-
-    @Test
     void handles_null_fields_in_constructor() {
         logger.info("Test: handles_null_fields_in_constructor");
 

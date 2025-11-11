@@ -25,7 +25,7 @@ class TabulatedFunctionDaoTest {
 
     @BeforeEach
     void setUp() throws SQLException {
-        logger.info("🔧 Initializing test context for TabulatedFunctionDao");
+        logger.info("Initializing test context for TabulatedFunctionDao");
 
         // H2 in-memory DB (режим PostgreSQL)
         var config = new com.zaxxer.hikari.HikariConfig();
@@ -60,7 +60,7 @@ class TabulatedFunctionDaoTest {
         dao = new TabulatedFunctionDaoImpl(dataSource);
         userId = 1L;
         tabTypeId = 1L;
-        logger.debug("✅ Test environment ready");
+        logger.debug("Test environment ready");
     }
 
     // Генерация тестовых данных как byte[] (мимикрия сериализованной функции)
@@ -92,7 +92,7 @@ class TabulatedFunctionDaoTest {
 
     @Test
     void save_and_findByIdAndOwnerId_works() {
-        logger.info("🧪 Test: save_and_findByIdAndOwnerId_works");
+        logger.info("Test: save_and_findByIdAndOwnerId_works");
 
         byte[] data = generateFunctionData(3); // 3 точки: (0,0), (1,1), (2,4)
         TabulatedFunctionDTO dto = new TabulatedFunctionDTO(
@@ -101,7 +101,7 @@ class TabulatedFunctionDaoTest {
         dto.setSerializedData(data); // ← вручную устанавливаем байты
 
         Long id = dao.save(dto);
-        logger.debug("💾 Saved function id={}, data size={}B", id, data.length);
+        logger.debug("Saved function id={}, data size={}B", id, data.length);
 
         Optional<TabulatedFunctionDTO> found = dao.findByIdAndOwnerId(id, userId);
         assertThat(found).isPresent();
@@ -114,22 +114,22 @@ class TabulatedFunctionDaoTest {
         assertThat(f.getSerializedData()).hasSize(data.length);
         assertThat(f.getSerializedData()).isEqualTo(data);
 
-        logger.info("✅ Test passed");
+        logger.info("Test passed");
     }
 
     @Test
     void isolation_prevents_cross_access() {
-        logger.info("🧪 Test: isolation_prevents_cross_access");
+        logger.info("Test: isolation_prevents_cross_access");
 
         byte[] data = generateFunctionData(1);
         TabulatedFunctionDTO dto = new TabulatedFunctionDTO(null, userId, tabTypeId, null, "private", null, null);
         dto.setSerializedData(data);
         Long id = dao.save(dto);
 
-        assertThat(dao.findByIdAndOwnerId(id, userId)).isPresent();   // ✅ свой
-        assertThat(dao.findByIdAndOwnerId(id, 2L)).isEmpty();         // ❌ чужой
+        assertThat(dao.findByIdAndOwnerId(id, userId)).isPresent();
+        assertThat(dao.findByIdAndOwnerId(id, 2L)).isEmpty();
 
-        logger.info("✅ Test passed");
+        logger.info("Test passed");
     }
 
     @Test
@@ -145,12 +145,12 @@ class TabulatedFunctionDaoTest {
         TabulatedFunctionDTO updated = dao.findByIdAndOwnerId(id, userId).get();
         assertThat(updated.getName()).isEqualTo("new_name");
 
-        logger.info("✅ Test passed");
+        logger.info("Test passed");
     }
 
     @Test
     void updateFunctionAndName_works() {
-        logger.info("🧪 Test: updateFunctionAndName_works");
+        logger.info("Test: updateFunctionAndName_works");
 
         // Исходная функция: 2 точки
         byte[] oldData = generateFunctionData(2);
@@ -170,12 +170,12 @@ class TabulatedFunctionDaoTest {
         assertThat(updated.getSerializedData()).hasSize(newData.length);
         assertThat(updated.getSerializedData()).isEqualTo(newData);
 
-        logger.info("✅ Test passed");
+        logger.info("Test passed");
     }
 
     @Test
     void deleteByIdAndOwnerId_works() {
-        logger.info("🧪 Test: deleteByIdAndOwnerId_works");
+        logger.info("Test: deleteByIdAndOwnerId_works");
 
         byte[] data = generateFunctionData(1);
         TabulatedFunctionDTO dto = new TabulatedFunctionDTO(null, userId, tabTypeId, null, "to_del", null, null);
@@ -185,13 +185,13 @@ class TabulatedFunctionDaoTest {
         dao.deleteByIdAndOwnerId(id, userId);
         assertThat(dao.findByIdAndOwnerId(id, userId)).isEmpty();
 
-        logger.debug("✅ Confirmed deletion");
-        logger.info("✅ Test passed");
+        logger.debug("Confirmed deletion");
+        logger.info("Test passed");
     }
 
     @Test
     void findByOwnerId_returns_own_functions() {
-        logger.info("🧪 Test: findByOwnerId_returns_own_functions");
+        logger.info("Test: findByOwnerId_returns_own_functions");
 
         byte[] data = generateFunctionData(1);
         dao.save(createDTO(userId, tabTypeId, data, "f1"));
@@ -202,12 +202,12 @@ class TabulatedFunctionDaoTest {
         assertThat(list).hasSize(2);
         assertThat(list).extracting(TabulatedFunctionDTO::getName).contains("f1", "f2");
 
-        logger.info("✅ Test passed");
+        logger.info("Test passed");
     }
 
     @Test
     void findByOwnerIdAndTypeId_filters_correctly() {
-        logger.info("🧪 Test: findByOwnerIdAndTypeId_filters_correctly");
+        logger.info("Test: findByOwnerIdAndTypeId_filters_correctly");
 
         byte[] data = generateFunctionData(1);
         dao.save(createDTO(userId, tabTypeId, data, "tab"));
@@ -217,12 +217,12 @@ class TabulatedFunctionDaoTest {
         assertThat(tabs).hasSize(1);
         assertThat(tabs.get(0).getName()).isEqualTo("tab");
 
-        logger.info("✅ Test passed");
+        logger.info("Test passed");
     }
 
     @Test
     void handles_null_serialized_data() {
-        logger.info("🧪 Test: handles_null_serialized_data");
+        logger.info("Test: handles_null_serialized_data");
 
         TabulatedFunctionDTO dto = new TabulatedFunctionDTO(null, userId, tabTypeId, null, "null_func", null, null);
         dto.setSerializedData(null); // ← явный null
@@ -231,8 +231,8 @@ class TabulatedFunctionDaoTest {
         TabulatedFunctionDTO saved = dao.findByIdAndOwnerId(id, userId).get();
         assertThat(saved.getSerializedData()).isNull();
 
-        logger.debug("✅ Null serialized_data saved and loaded");
-        logger.info("✅ Test passed");
+        logger.debug("Null serialized_data saved and loaded");
+        logger.info("Test passed");
     }
 
     // Вспомогательный метод
