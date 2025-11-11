@@ -1,6 +1,6 @@
 package functions.dao;
 
-import functions.dto.TabulatedFunctionDTO;
+import dto.TabulatedFunctionDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,159 +20,175 @@ public class TabulatedFunctionDaoImpl implements TabulatedFunctionDao {
     }
 
     @Override
-    public Long save(TabulatedFunctionDTO function) {
-        logger.debug("[SAVE] Сохранение функции '{}' для пользователя {}", function.getName(), function.getOwnerId());
+    public Long save(TabulatedFunctionDTO dto) {
+        logger.info("💾 Saving function '{}' for owner id={}", dto.getName(), dto.getOwnerId());
         String sql = """
-        INSERT INTO tabulated_functions (owner_id, function_type_id, serialized_data, name, created_at, updated_at) 
-        VALUES (?, ?, ?, ?, NOW(), NOW()) RETURNING id
-        """;
-
+            INSERT INTO tabulated_functions (owner_id, function_type_id, serialized_data, name)
+            VALUES (?, ?, ?, ?) RETURNING id, created_at, updated_at
+            """;
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setLong(1, function.getOwnerId());
-            ps.setLong(2, function.getFunctionTypeId());
-            ps.setBytes(3, function.getSerializedData());
-            ps.setString(4, function.getName());
+            ps.setLong(1, dto.getOwnerId());
+            ps.setLong(2, dto.getFunctionTypeId());
+            ps.setBytes(3, dto.getSerializedData());
+            ps.setString(4, dto.getName());
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    Long id = rs.getLong(1);
-                    logger.debug("Функция сохранена с id={}", id);
+                    Long id = rs.getLong("id");
+                    LocalDateTime createdAt = rs.getObject("created_at", LocalDateTime.class);
+                    LocalDateTime updatedAt = rs.getObject("updated_at", LocalDateTime.class);
+
+                    dto.setId(id);
+                    dto.setCreatedAt(createdAt);
+                    dto.setUpdatedAt(updatedAt);
+
+                    logger.debug("✅ Saved: id={}, name='{}', size={}B, createdAt={}",
+                            id, dto.getName(), dto.getSerializedData() != null ? dto.getSerializedData().length : 0, createdAt);
                     return id;
-                } else {
-                    throw new RuntimeException("Не удалось получить ID сохраненной функции");
                 }
             }
         } catch (SQLException e) {
-            logger.error("[SAVE] Ошибка сохранения функции '{}'", function.getName(), e);
-            throw new RuntimeException("Сохранение функции не удалось", e);
+            logger.error("❌ Save failed for function '{}' (owner={})", dto.getName(), dto.getOwnerId(), e);
+            throw new RuntimeException("Save failed", e);
         }
+        throw new RuntimeException("Insert returned no ID");
     }
 
-    // === 1. ОДИНОЧНЫЙ ПОИСК ===
     @Override
     public Optional<TabulatedFunctionDTO> findByIdAndOwnerId(Long id, Long ownerId) {
-        logger.debug("[SINGLE] Поиск функции id={} у пользователя {}", id, ownerId);
+        logger.debug("🔍 Finding function id={} for owner id={}", id, ownerId);
         String sql = "SELECT * FROM tabulated_functions WHERE id = ? AND owner_id = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setLong(1, id);
             ps.setLong(2, ownerId);
-
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    TabulatedFunctionDTO dto = map(rs);
-                    logger.trace("Найдена функция: id={}, имя='{}', владелец={}", dto.getId(), dto.getName(), ownerId);
+                    TabulatedFunctionDTO dto = TabulatedFunctionDTO.fromResultSet(rs);
+                    logger.trace("✅ Found: {}", dto);
                     return Optional.of(dto);
                 } else {
-                    logger.debug("Функция id={} не найдена у пользователя {}", id, ownerId);
+                    logger.debug("⚠️ Not found: id={}, owner={}", id, ownerId);
                     return Optional.empty();
                 }
             }
         } catch (SQLException e) {
-            logger.error("[SINGLE] Ошибка поиска: id={}, owner={}", id, ownerId, e);
-            throw new RuntimeException("Поиск функции не удался", e);
+            logger.error("❌ Find failed: id={}, owner_id={}", id, ownerId, e);
+            throw new RuntimeException("Find failed", e);
         }
     }
 
-    // === 2. МНОЖЕСТВЕННЫЙ ПОИСК ===
     @Override
     public List<TabulatedFunctionDTO> findByOwnerId(Long ownerId) {
-        logger.debug("[MULTI] Загрузка ВСЕХ функций пользователя {}", ownerId);
+        logger.debug("🔍 Loading all functions for owner id={}", ownerId);
         String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY created_at DESC";
-        return queryList(sql, ownerId);
+        return extractList(sql, ownerId);
     }
 
-    // === 3. СОРТИРОВКА ===
-    @Override
-    public List<TabulatedFunctionDTO> findByOwnerIdSortedByNameAsc(Long ownerId) {
-        logger.debug("[SORT] Функции пользователя {} → сортировка по имени (A→Я)", ownerId);
-        String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY name ASC";
-        return queryList(sql, ownerId);
-    }
-
-    @Override
-    public List<TabulatedFunctionDTO> findByOwnerIdSortedByCreatedAtDesc(Long ownerId) {
-        logger.debug("[SORT] Функции пользователя {} → сортировка по дате создания (новые→старые)", ownerId);
-        String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? ORDER BY created_at DESC";
-        return queryList(sql, ownerId);
-    }
-
-    // === 4. ФИЛЬТРАЦИЯ + СОРТИРОВКА ===
     @Override
     public List<TabulatedFunctionDTO> findByOwnerIdAndTypeId(Long ownerId, Long typeId) {
-        logger.debug("[FILTER] Пользователь={}, тип={} → сортировка по дате", ownerId, typeId);
-        String sql = """
-            SELECT * FROM tabulated_functions 
-            WHERE owner_id = ? AND function_type_id = ? 
-            ORDER BY created_at DESC
-            """;
-        return queryList(sql, ownerId, typeId);
-    }
-
-    @Override
-    public List<TabulatedFunctionDTO> findByOwnerIdAndTypeIdSortedByNameAsc(Long ownerId, Long typeId) {
-        logger.debug("[FILTER+SORT] Пользователь={}, тип={} → сортировка по имени", ownerId, typeId);
-        String sql = """
-            SELECT * FROM tabulated_functions 
-            WHERE owner_id = ? AND function_type_id = ? 
-            ORDER BY name ASC
-            """;
-        return queryList(sql, ownerId, typeId);
+        logger.debug("🔍 Loading functions for owner id={} and type id={}", ownerId, typeId);
+        String sql = "SELECT * FROM tabulated_functions WHERE owner_id = ? AND function_type_id = ? ORDER BY name ASC";
+        return extractListWithParam(sql, ownerId, typeId);
     }
 
     @Override
     public void updateName(Long id, Long ownerId, String newName) {
-
+        logger.info("✏️ Updating name of function id={} → '{}'", id, newName);
+        String sql = "UPDATE tabulated_functions SET name = ?, updated_at = NOW() WHERE id = ? AND owner_id = ?";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, newName);
+            ps.setLong(2, id);
+            ps.setLong(3, ownerId);
+            int rows = ps.executeUpdate();
+            if (rows == 0) {
+                logger.warn("⚠️ Update skipped: function id={} not found for owner id={}", id, ownerId);
+                throw new RuntimeException("Function not found or access denied");
+            }
+            logger.debug("✅ Name updated for function id={}", id);
+        } catch (SQLException e) {
+            logger.error("❌ Update name failed: id={}, owner_id={}", id, ownerId, e);
+            throw new RuntimeException("Update name failed", e);
+        }
     }
 
     @Override
-    public void updateDataAndName(Long id, Long ownerId, TabulatedFunctionDTO newData) {
+    public void updateFunctionAndName(Long id, Long ownerId, TabulatedFunctionDTO newDto) {
+        logger.info("✏️ Updating function & name for id={}", id);
+        String sql = """
+            UPDATE tabulated_functions 
+            SET serialized_data = ?, name = ?, updated_at = NOW() 
+            WHERE id = ? AND owner_id = ?
+            """;
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setBytes(1, newDto.getSerializedData());
+            ps.setString(2, newDto.getName());
+            ps.setLong(3, id);
+            ps.setLong(4, ownerId);
 
+            int rows = ps.executeUpdate();
+            if (rows == 0) {
+                logger.warn("⚠️ Update skipped: function id={} not found for owner id={}", id, ownerId);
+                throw new RuntimeException("Function not found or access denied");
+            }
+            logger.debug("✅ Function & name updated for id={}", id);
+        } catch (SQLException e) {
+            logger.error("❌ Update function failed: id={}, owner_id={}", id, ownerId, e);
+            throw new RuntimeException("Update function failed", e);
+        }
     }
 
     @Override
     public void deleteByIdAndOwnerId(Long id, Long ownerId) {
-
-    }
-
-    // === ВСПОМОГАТЕЛЬНЫЙ МЕТОД ===
-    private List<TabulatedFunctionDTO> queryList(String sql, Object... params) {
-        List<TabulatedFunctionDTO> list = new ArrayList<>();
+        logger.info("🗑️ Deleting function id={} for owner id={}", id, ownerId);
+        String sql = "DELETE FROM tabulated_functions WHERE id = ? AND owner_id = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            for (int i = 0; i < params.length; i++) {
-                ps.setObject(i + 1, params[i]);
-            }
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    list.add(map(rs));
-                }
-            }
+            ps.setLong(1, id);
+            ps.setLong(2, ownerId);
+            int rows = ps.executeUpdate();
+            logger.debug("✅ Deleted {} row(s) (id={}, owner={})", rows, id, ownerId);
         } catch (SQLException e) {
-            logger.error("Ошибка выполнения запроса: {}", sql.substring(0, Math.min(50, sql.length())) + "...", e);
-            throw new RuntimeException("Запрос не удался", e);
+            logger.error("❌ Delete failed: id={}, owner_id={}", id, ownerId, e);
+            throw new RuntimeException("Delete failed", e);
         }
-        logger.info("Загружено {} функций", list.size());
-        return list;
     }
 
-    // === МАППИНГ ResultSet → DTO ===
-    private TabulatedFunctionDTO map(ResultSet rs) throws SQLException {
-        TabulatedFunctionDTO dto = new TabulatedFunctionDTO();
-        dto.setId(rs.getLong("id"));
-        dto.setOwnerId(rs.getLong("owner_id"));
-        dto.setFunctionTypeId(rs.getLong("function_type_id"));
-        dto.setSerializedData(rs.getBytes("serialized_data"));
-        dto.setName(rs.getString("name"));
-        dto.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
-        dto.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
-        return dto;
+    // ===== Вспомогательные методы =====
+    private List<TabulatedFunctionDTO> extractList(String sql, Long param) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, param);
+            return extractFromResultSet(ps);
+        } catch (SQLException e) {
+            logger.error("❌ Query failed: {}", sql, e);
+            throw new RuntimeException("Query failed", e);
+        }
     }
 
-    //вспомогательный метод для тестов
-    public TabulatedFunctionDTO saveAndReturn(TabulatedFunctionDTO dto) {
-        Long id = save(dto);
-        return findByIdAndOwnerId(id, dto.getOwnerId()).orElseThrow();
+    private List<TabulatedFunctionDTO> extractListWithParam(String sql, Long p1, Long p2) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, p1);
+            ps.setLong(2, p2);
+            return extractFromResultSet(ps);
+        } catch (SQLException e) {
+            logger.error("❌ Query failed: {}", sql, e);
+            throw new RuntimeException("Query failed", e);
+        }
+    }
+
+    private List<TabulatedFunctionDTO> extractFromResultSet(PreparedStatement ps) throws SQLException {
+        try (ResultSet rs = ps.executeQuery()) {
+            List<TabulatedFunctionDTO> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(TabulatedFunctionDTO.fromResultSet(rs));
+            }
+            logger.info("✅ Loaded {} functions", list.size());
+            return list;
+        }
     }
 }

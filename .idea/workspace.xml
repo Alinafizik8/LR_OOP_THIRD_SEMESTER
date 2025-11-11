@@ -5,11 +5,83 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="dead inside 1.21">
-      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dao/FunctionTypeDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/functions/dao/UserDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/functions/dao/FunctionTypeDaoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/functions/dao/UserDaoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/FunctionTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/FunctionTypeDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/TabulatedFunctionDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dto/FunctionTypeDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dto/TabulatedFunctionDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dto/UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractFunctionTypeDaoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractTabulatedFunctionDaoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/AbstractUserDaoTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/TabulatedFunctionDaoSortingTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/ArrayIsNotSortedException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/exceptions/ArrayIsNotSortedException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/DifferentLengthOfArraysException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/exceptions/DifferentLengthOfArraysException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/InconsistentFunctionsException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/exceptions/InconsistentFunctionsException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/InterpolationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/exceptions/InterpolationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/BSpline.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/BSpline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/CompositeFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/CompositeFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/ConstantFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/ConstantFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/Functions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/IdentityFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/IdentityFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/Insertable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/Insertable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/MathFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/MathFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/Point.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/Point.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/Removable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/Removable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/RungeKuttaFunction$MathFunction2D.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/RungeKuttaFunction$MathFunction2D.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/RungeKuttaFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/RungeKuttaFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/SqrFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/SqrFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/TabulatedFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/TabulatedFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/UnitFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/UnitFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/ZeroFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/ZeroFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/factory/ArrayTabulatedFunctionFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/factory/ArrayTabulatedFunctionFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/factory/LinkedListTabulatedFunctionFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/factory/LinkedListTabulatedFunctionFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/factory/TabulatedFunctionFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/functions/factory/TabulatedFunctionFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/operations/DifferentialOperator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/operations/DifferentialOperator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/operations/TabulatedDifferentialOperator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/operations/TabulatedDifferentialOperator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/operations/TabulatedFunctionOperationService$BiOperation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/operations/TabulatedFunctionOperationService$BiOperation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/operations/TabulatedFunctionOperationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/operations/TabulatedFunctionOperationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/exceptions/ArrayIsNotSortedExceptionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/exceptions/DifferentLengthOfArraysExceptionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/exceptions/InconsistentFunctionsExceptionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/exceptions/InterpolationExceptionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/AbstractTabulatedFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/BSplineTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/CombinedTabulatedFunctionsTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/CompositeFunctionTest$AddOneFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/CompositeFunctionTest$DoubleFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/CompositeFunctionTest$SquareFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/CompositeFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/ConstantFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/IdentityFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/LinkedListTabulatedFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest$AbsFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest$AddOneFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest$DoubleFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest$SinFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest$SquareFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/RungeKuttaFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/SqrFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/UnitFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/ZeroFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/factory/TabulatedFunctionFactoryTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/operations/TabulatedDifferentialOperatorTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/operations/TabulatedFunctionOperationServiceTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +118,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
+    <option name="autoscrollToSource" value="true" />
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
@@ -59,30 +132,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.MultiplyingTaskExecutor.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ReadWriteTaskExecutor.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TabulatedFunctionFileInputStream.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TabulatedFunctionFileOutputStream.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SynchronizedTabulatedFunctionTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.java in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;manual&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.43908045&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MultiplyingTaskExecutor.executor": "Run",
+    "Application.ReadWriteTaskExecutor.executor": "Run",
+    "Application.TabulatedFunctionFileInputStream.executor": "Run",
+    "Application.TabulatedFunctionFileOutputStream.executor": "Run",
+    "JUnit.All in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
+    "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly.executor": "Run",
+    "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues.executor": "Run",
+    "JUnit.FunctionTypeDaoTest.executor": "Coverage",
+    "JUnit.SynchronizedTabulatedFunctionTest.executor": "Coverage",
+    "JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
+    "JUnit.dao in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
+    "JUnit.java in LR_OOP_THIRD_SEMESTER.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "manual",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.43908045",
+    "settings.editor.selected.configurable": "Errors"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -92,20 +167,7 @@
       <recent name="io" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ReadWriteTaskExecutor">
-    <configuration name="MultiplyingTaskExecutor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="concurrent.MultiplyingTaskExecutor" />
-      <module name="LR_OOP_THIRD_SEMESTER" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="concurrent.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.dao in LR_OOP_THIRD_SEMESTER">
     <configuration name="ReadWriteTaskExecutor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="concurrent.ReadWriteTaskExecutor" />
       <module name="LR_OOP_THIRD_SEMESTER" />
@@ -127,17 +189,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SynchronizedTabulatedFunctionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FunctionTypeDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="LR_OOP_THIRD_SEMESTER" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="concurrent.*" />
+          <option name="PATTERN" value="functions.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="concurrent" />
-      <option name="MAIN_CLASS_NAME" value="concurrent.SynchronizedTabulatedFunctionTest" />
+      <option name="PACKAGE_NAME" value="functions.dao" />
+      <option name="MAIN_CLASS_NAME" value="functions.dao.FunctionTypeDaoTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dao in LR_OOP_THIRD_SEMESTER" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LR_OOP_THIRD_SEMESTER" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/functions/dao" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -152,11 +222,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.dao in LR_OOP_THIRD_SEMESTER" />
+        <item itemvalue="JUnit.FunctionTypeDaoTest" />
         <item itemvalue="Application.ReadWriteTaskExecutor" />
         <item itemvalue="JUnit.java in LR_OOP_THIRD_SEMESTER" />
         <item itemvalue="JUnit.All in LR_OOP_THIRD_SEMESTER" />
-        <item itemvalue="Application.MultiplyingTaskExecutor" />
-        <item itemvalue="JUnit.SynchronizedTabulatedFunctionTest" />
       </list>
     </recent_temporary>
   </component>
@@ -232,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762793977069</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="still alive">
+      <option name="closed" value="true" />
+      <created>1762860658508</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1762860658508</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -255,7 +333,8 @@
     <MESSAGE value="dead inside 1.0" />
     <MESSAGE value="dead inside 1.2" />
     <MESSAGE value="dead inside 1.21" />
-    <option name="LAST_COMMIT_MESSAGE" value="dead inside 1.21" />
+    <MESSAGE value="still alive" />
+    <option name="LAST_COMMIT_MESSAGE" value="still alive" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -268,29 +347,29 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760867471265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$concurrent_in_LR_OOP_THIRD_SEMESTER.ic" NAME="concurrent in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760727535389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1761741623550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$AbstractTabulatedFunctionTest.ic" NAME="AbstractTabulatedFunctionTest Coverage Results" MODIFIED="1759651861262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$functions_in_LR_OOP_THIRD_SEMESTER.ic" NAME="functions in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759762762810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>functions.*</FILTER>
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$LeftSteppingDifferentialOperatorTest.ic" NAME="LeftSteppingDifferentialOperatorTest Coverage Results" MODIFIED="1759941650463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>operations.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$SynchronizedTabulatedFunctionTest.ic" NAME="SynchronizedTabulatedFunctionTest Coverage Results" MODIFIED="1760728058410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>concurrent.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionFileWriterTest.ic" NAME="TabulatedFunctionFileWriterTest Coverage Results" MODIFIED="1760274274391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>io.*</FILTER>
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762860597074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$functions_in_LR_OOP_THIRD_SEMESTER.ic" NAME="functions in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759762762810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>functions.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$concurrent_in_LR_OOP_THIRD_SEMESTER.ic" NAME="concurrent in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760727535389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic" NAME="ArrayTabulatedFunctionTest Coverage Results" MODIFIED="1759654890325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>functions.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$FunctionsIOTest.ic" NAME="FunctionsIOTest Coverage Results" MODIFIED="1760275410789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>io.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1761741623550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$LeftSteppingDifferentialOperatorTest.ic" NAME="LeftSteppingDifferentialOperatorTest Coverage Results" MODIFIED="1759941650463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>operations.*</FILTER>
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionFileWriterTest.ic" NAME="TabulatedFunctionFileWriterTest Coverage Results" MODIFIED="1760274274391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>io.*</FILTER>
     </SUITE>
   </component>
 </project>
