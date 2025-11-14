@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,36 +18,6 @@ public class FunctionTypeDaoImpl implements FunctionTypeDao {
         this.dataSource = dataSource;
     }
 
-//    @Override
-//    public Long save(FunctionTypeDTO type) {
-//        logger.info("Saving function type: '{}'", type.getName());
-//        String sql = """
-//            INSERT INTO function_types (name, localized_name, priority)
-//            VALUES (?, ?, ?) RETURNING id, created_at, updated_at
-//            """;
-//        try (Connection conn = dataSource.getConnection();
-//             PreparedStatement ps = conn.prepareStatement(sql)) {
-//            ps.setString(1, type.getName());
-//            ps.setString(2, type.getLocalizedName());
-//            ps.setInt(3, type.getPriority());
-//
-//            try (ResultSet rs = ps.executeQuery()) {
-//                if (rs.next()) {
-//                    Long id = rs.getLong("id");
-//                    LocalDateTime createdAt = rs.getTimestamp("created_at").toLocalDateTime();
-//                    LocalDateTime updatedAt = rs.getTimestamp("updated_at").toLocalDateTime();
-//
-//                    logger.debug("Saved: id={}, name='{}', createdAt={}, updatedAt={}",
-//                            id, type.getName(), createdAt, updatedAt);
-//                    return id;
-//                }
-//            }
-//        } catch (SQLException e) {
-//            logger.error("Save failed for function type '{}'", type.getName(), e);
-//            throw new RuntimeException("Failed to save function type", e);
-//        }
-//        throw new RuntimeException("Insert returned no ID");
-//    }
     @Override
     public Long save(FunctionTypeDTO type) {
         logger.info("Saving function type: '{}'", type.getName());
