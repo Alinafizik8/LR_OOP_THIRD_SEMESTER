@@ -1,8 +1,7 @@
-package Repository;
+package repository;
 
-import Entity.*;
+import entity.*;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,7 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Optional;
 import java.util.Random;
-
-import static org.assertj.core.api.Assertions.*;
 
 @DataJpaTest
 class TabulatedFunctionRepositoryTest {

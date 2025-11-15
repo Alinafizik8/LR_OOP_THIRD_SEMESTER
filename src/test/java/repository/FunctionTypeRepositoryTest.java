@@ -1,8 +1,6 @@
-package Repository;
+package repository;
 
-import Entity.*;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +9,11 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertThrows;
 
 @DataJpaTest
-class UserRepositoryTest {
-    private static final Logger logger = LoggerFactory.getLogger(UserRepositoryTest.class);
+class FunctionTypeRepositoryTest {
+    private static final Logger logger = LoggerFactory.getLogger(FunctionTypeRepositoryTest.class);
     private static final PostgreSQLContainer<?> postgres =
             new PostgreSQLContainer<>("postgres:15");
 
@@ -33,13 +28,13 @@ class UserRepositoryTest {
         registry.add("spring.datasource.password", postgres::getPassword);
     }
 
-    @Autowired private UserRepository userRepo;
+    @Autowired private FunctionTypeRepository typeRepo;
 
     @BeforeEach
     void setUp() {
-        logger.info("Initializing UserRepository test context");
-        userRepo.deleteAll();
-        logger.debug("Cleared all users");
+        logger.info("Initializing FunctionTypeRepository test context");
+        typeRepo.deleteAll();
+        logger.debug("Cleared all function types");
     }
 
 }

@@ -1,8 +1,7 @@
 package service;
 
-import Repository.TabulatedFunctionRepository;
-import Entity.TabulatedFunctionEntity;
-import Entity.UserEntity;
+import repository.TabulatedFunctionRepository;
+import entity.TabulatedFunctionEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,5 +103,18 @@ public class TabulatedFunctionService {
         List<TabulatedFunctionEntity> functions = functionRepository.findByFunctionTypeIdOrderByCreatedAtDesc(typeId);
         logger.debug("Найдено {} функций с типом ID: {}, отсортированных по дате создания DESC", functions.size(), typeId);
         return functions;
+    }
+
+    // Сохранение
+    public TabulatedFunctionEntity save(TabulatedFunctionEntity entity) {
+        return functionRepository.save(entity);
+    }
+
+    // Удаление с проверкой владельца
+    public void deleteById(Long id, Long ownerId) {
+        boolean deleted = functionRepository.deleteByIdAndOwnerId(id, ownerId);
+        if (!deleted) {
+            throw new IllegalArgumentException("Функция ID=" + id + " не найдена или не принадлежит владельцу");
+        }
     }
 }

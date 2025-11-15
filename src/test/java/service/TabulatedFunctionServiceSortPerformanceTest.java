@@ -1,11 +1,11 @@
 package service;
 
-import Entity.FunctionTypeEntity;
-import Entity.TabulatedFunctionEntity;
-import Entity.UserEntity;
-import Repository.FunctionTypeRepository;
-import Repository.TabulatedFunctionRepository;
-import Repository.UserRepository;
+import entity.FunctionTypeEntity;
+import entity.TabulatedFunctionEntity;
+import entity.UserEntity;
+import repository.FunctionTypeRepository;
+import repository.TabulatedFunctionRepository;
+import repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

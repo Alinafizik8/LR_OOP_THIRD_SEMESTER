@@ -1,7 +1,7 @@
 package service;
 
-import Entity.UserEntity;
-import Repository.UserRepository;
+import entity.UserEntity;
+import repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

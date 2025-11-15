@@ -1,7 +1,6 @@
-package Repository;
+package repository;
 
-import Entity.FunctionTypeEntity;
-import Entity.TabulatedFunctionEntity;
+import entity.TabulatedFunctionEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -42,7 +41,9 @@ public interface TabulatedFunctionRepository extends JpaRepository<TabulatedFunc
     );
 
     // Удаление — только своего
-    void deleteByIdAndOwnerId(Long id, Long ownerId);
+    @Modifying
+    @Query("DELETE FROM TabulatedFunctionEntity f WHERE f.id = :id AND f.ownerId = :ownerId")
+    boolean deleteByIdAndOwnerId(Long id, Long ownerId);
 
     // Множественный поиск с сортировкой по имени
     List<TabulatedFunctionEntity> findByOwnerIdOrderByNameAsc(Long ownerId);

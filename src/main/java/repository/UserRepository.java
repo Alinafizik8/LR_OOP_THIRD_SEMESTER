@@ -1,6 +1,6 @@
-package Repository;
+package repository;
 
-import Entity.UserEntity;
+import entity.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,6 +25,9 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     // Множественный поиск с сортировкой по дате создания
     List<UserEntity> findAllByOrderByCreatedAtDesc();
+
+    @Query("SELECT u FROM UserEntity u WHERE u.username = :param OR u.email = :param")
+    Optional<UserEntity> findByUsernameOrEmail(@Param("param") String param);
 
     // поиск по связанным сущностям (аналог иерархии)
     @Query("SELECT DISTINCT u FROM UserEntity u JOIN u.functions f WHERE f.functionType.id = :typeId")

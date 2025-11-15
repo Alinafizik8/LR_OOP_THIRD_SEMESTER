@@ -1,7 +1,7 @@
 package service;
 
-import Entity.FunctionTypeEntity;
-import Repository.FunctionTypeRepository;
+import entity.FunctionTypeEntity;
+import repository.FunctionTypeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
