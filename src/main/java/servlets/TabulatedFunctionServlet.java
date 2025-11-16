@@ -20,7 +20,7 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/api/functions/*")
+@WebServlet("/api/v1/functions/*")
 public class TabulatedFunctionServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(TabulatedFunctionServlet.class);
     private final TabulatedFunctionDao tabulatedFunctionDao = new TabulatedFunctionDaoImpl(getDataSource());

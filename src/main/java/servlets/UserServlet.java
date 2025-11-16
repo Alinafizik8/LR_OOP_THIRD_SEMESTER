@@ -19,7 +19,7 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/api/users/*")
+@WebServlet("/api/v1/users/*")
 public class UserServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(UserServlet.class);
     private final UserDao userDao = new UserDaoImpl(getDataSource());
