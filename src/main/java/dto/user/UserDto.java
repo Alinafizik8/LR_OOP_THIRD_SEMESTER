@@ -1,9 +1,7 @@
 package dto.user;
 
-import lombok.Data;
 import java.time.Instant;
 
-@Data
 public class UserDto {
 
     public Long id;
