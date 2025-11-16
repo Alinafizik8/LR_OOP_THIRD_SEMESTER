@@ -1,0 +1,263 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9d963179-3ba6-4afc-88be-04d8c54cf60e\" name=\"Changes\" comment=\"start_lab_6_Y\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JUnit5 Test Class\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"framework\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"RESET_MODE\" value=\"HARD\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Yoda-bl&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Alinafizik8/LR_OOP_THIRD_SEMESTER.git&quot;,\r\n    &quot;accountId&quot;: &quot;1871043b-9ff2-46dc-8682-06d03a79891e&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"autoscrollToSource\" value=\"true\" />\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 2\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"33ywucakw3yIo6wOIX62ZRzRrJO\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.MultiplyingTaskExecutor.executor\": \"Run\",\r\n    \"Application.ReadWriteTaskExecutor.executor\": \"Run\",\r\n    \"Application.TabulatedFunctionFileInputStream.executor\": \"Run\",\r\n    \"Application.TabulatedFunctionFileOutputStream.executor\": \"Run\",\r\n    \"JUnit.All in LR_OOP_THIRD_SEMESTER.executor\": \"Coverage\",\r\n    \"JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly.executor\": \"Run\",\r\n    \"JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues.executor\": \"Run\",\r\n    \"JUnit.FunctionTypeDaoTest.executor\": \"Coverage\",\r\n    \"JUnit.SynchronizedTabulatedFunctionTest.executor\": \"Coverage\",\r\n    \"JUnit.TabulatedFunctionDTOTest.executor\": \"Coverage\",\r\n    \"JUnit.TabulatedFunctionDaoSearchTest.executor\": \"Coverage\",\r\n    \"JUnit.TabulatedFunctionDaoTest.executor\": \"Coverage\",\r\n    \"JUnit.TabulatedFunctionDaoTest.save_and_findByIdAndOwnerId_works.executor\": \"Run\",\r\n    \"JUnit.UserDaoTest.executor\": \"Coverage\",\r\n    \"JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor\": \"Coverage\",\r\n    \"JUnit.dao in LR_OOP_THIRD_SEMESTER.executor\": \"Coverage\",\r\n    \"JUnit.java in LR_OOP_THIRD_SEMESTER.executor\": \"Coverage\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary\": \"JUnit5\",\r\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5\": \"\",\r\n    \"git-widget-placeholder\": \"manual\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.43908045\",\r\n    \"settings.editor.selected.configurable\": \"Errors\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateTestDialog.Recents.Supers\">\r\n      <recent name=\"\" />\r\n    </key>\r\n    <key name=\"CreateTestDialog.RecentsKey\">\r\n      <recent name=\"concurrent\" />\r\n      <recent name=\"io\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"JUnit.java in LR_OOP_THIRD_SEMESTER\">\r\n    <configuration name=\"TabulatedFunctionDTOTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"dto.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"dto\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"dto.TabulatedFunctionDTOTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TabulatedFunctionDaoSearchTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"functions.dao.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"functions.dao\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"functions.dao.TabulatedFunctionDaoSearchTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TabulatedFunctionDaoTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"functions.dao.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"functions.dao\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"functions.dao.TabulatedFunctionDaoTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserDaoTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"functions.dao.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"functions.dao\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"functions.dao.UserDaoTest\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"java in LR_OOP_THIRD_SEMESTER\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"LR_OOP_THIRD_SEMESTER\" />\r\n      <option name=\"TEST_OBJECT\" value=\"directory\" />\r\n      <dir value=\"$PROJECT_DIR$/src/test/java\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JUnit.java in LR_OOP_THIRD_SEMESTER\" />\r\n        <item itemvalue=\"JUnit.TabulatedFunctionDaoSearchTest\" />\r\n        <item itemvalue=\"JUnit.TabulatedFunctionDTOTest\" />\r\n        <item itemvalue=\"JUnit.TabulatedFunctionDaoTest\" />\r\n        <item itemvalue=\"JUnit.UserDaoTest\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9d963179-3ba6-4afc-88be-04d8c54cf60e\" name=\"Changes\" comment=\"\" />\r\n      <created>1760302845957</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1760302845957</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"start Y 4.0 lab\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760865354867</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760865354867</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"continue start Y 4.0 lab\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760865616967</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760865616967</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"continue Y 4.0 lab\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760866770553</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760866770553</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"(\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762760081800</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762760081800</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"dead inside\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762788657761</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762788657761</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"dead inside 1.0\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762790209930</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762790209930</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"dead inside 1.2\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762792756774</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762792756774</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"dead inside 1.21\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762793977069</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762793977069</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"still alive\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762860658508</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762860658508</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"pognali\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762873157171</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762873157171</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"pognali narod\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762873720713</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762873720713</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"pognali narod vpered\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762876298998</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762876298998</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"almost final\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762876777243</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762876777243</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"almost final228\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762877370149</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762877370149</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"LE SHANS FINAl\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762878492998</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762878492998</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"fin\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762880065803</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762880065803</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"start_lab_6_Y\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1763144419095</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1763144419095</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"18\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"start Y 4.0 lab\" />\r\n    <MESSAGE value=\"continue start Y 4.0 lab\" />\r\n    <MESSAGE value=\"continue Y 4.0 lab\" />\r\n    <MESSAGE value=\"(\" />\r\n    <MESSAGE value=\"dead inside\" />\r\n    <MESSAGE value=\"dead inside 1.0\" />\r\n    <MESSAGE value=\"dead inside 1.2\" />\r\n    <MESSAGE value=\"dead inside 1.21\" />\r\n    <MESSAGE value=\"still alive\" />\r\n    <MESSAGE value=\"pognali\" />\r\n    <MESSAGE value=\"pognali narod\" />\r\n    <MESSAGE value=\"pognali narod vpered\" />\r\n    <MESSAGE value=\"almost final\" />\r\n    <MESSAGE value=\"almost final228\" />\r\n    <MESSAGE value=\"LE SHANS FINAl\" />\r\n    <MESSAGE value=\"fin\" />\r\n    <MESSAGE value=\"start_lab_6_Y\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"start_lab_6_Y\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.OutOfMemoryError\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic\" NAME=\"java in LR_OOP_THIRD_SEMESTER Coverage Results\" MODIFIED=\"1762878952709\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\" />\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionDTOTest.ic\" NAME=\"TabulatedFunctionDTOTest Coverage Results\" MODIFIED=\"1762876725000\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>dto.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$UserDaoTest.ic\" NAME=\"UserDaoTest Coverage Results\" MODIFIED=\"1762873670702\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>functions.dao.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic\" NAME=\"All in LR_OOP_THIRD_SEMESTER Coverage Results\" MODIFIED=\"1762860597074\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\" />\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$functions_in_LR_OOP_THIRD_SEMESTER.ic\" NAME=\"functions in LR_OOP_THIRD_SEMESTER Coverage Results\" MODIFIED=\"1759762762810\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>functions.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$FunctionTypeDaoTest.ic\" NAME=\"FunctionTypeDaoTest Coverage Results\" MODIFIED=\"1762873026869\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>functions.dao.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$FunctionsIOTest.ic\" NAME=\"FunctionsIOTest Coverage Results\" MODIFIED=\"1760275410789\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>io.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionFileWriterTest.ic\" NAME=\"TabulatedFunctionFileWriterTest Coverage Results\" MODIFIED=\"1760274274391\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>io.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$concurrent_in_LR_OOP_THIRD_SEMESTER.ic\" NAME=\"concurrent in LR_OOP_THIRD_SEMESTER Coverage Results\" MODIFIED=\"1760727535389\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\" />\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionDaoSearchTest.ic\" NAME=\"TabulatedFunctionDaoSearchTest Coverage Results\" MODIFIED=\"1762878314531\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>functions.dao.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$AbstractTabulatedFunctionTest.ic\" NAME=\"AbstractTabulatedFunctionTest Coverage Results\" MODIFIED=\"1759651861262\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>functions.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$LeftSteppingDifferentialOperatorTest.ic\" NAME=\"LeftSteppingDifferentialOperatorTest Coverage Results\" MODIFIED=\"1759941650463\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>operations.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$SynchronizedTabulatedFunctionTest.ic\" NAME=\"SynchronizedTabulatedFunctionTest Coverage Results\" MODIFIED=\"1760728058410\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>concurrent.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$dao_in_LR_OOP_THIRD_SEMESTER.ic\" NAME=\"dao in LR_OOP_THIRD_SEMESTER Coverage Results\" MODIFIED=\"1762871165320\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\" />\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic\" NAME=\"ArrayTabulatedFunctionTest Coverage Results\" MODIFIED=\"1759654890325\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>functions.*</FILTER>\r\n    </SUITE>\r\n    <SUITE FILE_PATH=\"coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionDaoTest.ic\" NAME=\"TabulatedFunctionDaoTest Coverage Results\" MODIFIED=\"1762876364707\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\">\r\n      <FILTER>functions.dao.*</FILTER>\r\n    </SUITE>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 71e55cbd8b4ba3b67244c108161a7cc577f83eab)
++++ b/.idea/workspace.xml	(date 1763316387598)
+@@ -4,10 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="start_lab_6_Y">
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
++    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="dead inside 1.21">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -69,16 +67,10 @@
+     "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues.executor": "Run",
+     "JUnit.FunctionTypeDaoTest.executor": "Coverage",
+     "JUnit.SynchronizedTabulatedFunctionTest.executor": "Coverage",
+-    "JUnit.TabulatedFunctionDTOTest.executor": "Coverage",
+-    "JUnit.TabulatedFunctionDaoSearchTest.executor": "Coverage",
+-    "JUnit.TabulatedFunctionDaoTest.executor": "Coverage",
+-    "JUnit.TabulatedFunctionDaoTest.save_and_findByIdAndOwnerId_works.executor": "Run",
+-    "JUnit.UserDaoTest.executor": "Coverage",
+     "JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
+     "JUnit.dao in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
+     "JUnit.java in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+     "RunOnceActivity.git.unshallow": "true",
+     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+@@ -100,37 +92,28 @@
+     </key>
+   </component>
+   <component name="RunManager" selected="JUnit.java in LR_OOP_THIRD_SEMESTER">
+-    <configuration name="TabulatedFunctionDTOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="ReadWriteTaskExecutor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="concurrent.ReadWriteTaskExecutor" />
+       <module name="LR_OOP_THIRD_SEMESTER" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="dto.*" />
++          <option name="PATTERN" value="concurrent.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+-      <option name="PACKAGE_NAME" value="dto" />
+-      <option name="MAIN_CLASS_NAME" value="dto.TabulatedFunctionDTOTest" />
+-      <option name="TEST_OBJECT" value="class" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="TabulatedFunctionDaoSearchTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="All in LR_OOP_THIRD_SEMESTER" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="LR_OOP_THIRD_SEMESTER" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="functions.dao.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <option name="PACKAGE_NAME" value="functions.dao" />
+-      <option name="MAIN_CLASS_NAME" value="functions.dao.TabulatedFunctionDaoSearchTest" />
+-      <option name="TEST_OBJECT" value="class" />
++      <option name="PACKAGE_NAME" value="" />
++      <option name="TEST_OBJECT" value="package" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="TabulatedFunctionDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="FunctionTypeDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="LR_OOP_THIRD_SEMESTER" />
+       <extension name="coverage">
+         <pattern>
+@@ -139,23 +122,16 @@
+         </pattern>
+       </extension>
+       <option name="PACKAGE_NAME" value="functions.dao" />
+-      <option name="MAIN_CLASS_NAME" value="functions.dao.TabulatedFunctionDaoTest" />
++      <option name="MAIN_CLASS_NAME" value="functions.dao.FunctionTypeDaoTest" />
+       <option name="TEST_OBJECT" value="class" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="UserDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="dao in LR_OOP_THIRD_SEMESTER" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="LR_OOP_THIRD_SEMESTER" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="functions.dao.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <option name="PACKAGE_NAME" value="functions.dao" />
+-      <option name="MAIN_CLASS_NAME" value="functions.dao.UserDaoTest" />
+-      <option name="TEST_OBJECT" value="class" />
++      <option name="TEST_OBJECT" value="directory" />
++      <dir value="$PROJECT_DIR$/src/test/java/functions/dao" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+@@ -171,10 +147,10 @@
+     <recent_temporary>
+       <list>
+         <item itemvalue="JUnit.java in LR_OOP_THIRD_SEMESTER" />
+-        <item itemvalue="JUnit.TabulatedFunctionDaoSearchTest" />
+-        <item itemvalue="JUnit.TabulatedFunctionDTOTest" />
+-        <item itemvalue="JUnit.TabulatedFunctionDaoTest" />
+-        <item itemvalue="JUnit.UserDaoTest" />
++        <item itemvalue="JUnit.dao in LR_OOP_THIRD_SEMESTER" />
++        <item itemvalue="JUnit.FunctionTypeDaoTest" />
++        <item itemvalue="Application.ReadWriteTaskExecutor" />
++        <item itemvalue="JUnit.All in LR_OOP_THIRD_SEMESTER" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -258,71 +234,7 @@
+       <option name="project" value="LOCAL" />
+       <updated>1762860658508</updated>
+     </task>
+-    <task id="LOCAL-00010" summary="pognali">
+-      <option name="closed" value="true" />
+-      <created>1762873157171</created>
+-      <option name="number" value="00010" />
+-      <option name="presentableId" value="LOCAL-00010" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1762873157171</updated>
+-    </task>
+-    <task id="LOCAL-00011" summary="pognali narod">
+-      <option name="closed" value="true" />
+-      <created>1762873720713</created>
+-      <option name="number" value="00011" />
+-      <option name="presentableId" value="LOCAL-00011" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1762873720713</updated>
+-    </task>
+-    <task id="LOCAL-00012" summary="pognali narod vpered">
+-      <option name="closed" value="true" />
+-      <created>1762876298998</created>
+-      <option name="number" value="00012" />
+-      <option name="presentableId" value="LOCAL-00012" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1762876298998</updated>
+-    </task>
+-    <task id="LOCAL-00013" summary="almost final">
+-      <option name="closed" value="true" />
+-      <created>1762876777243</created>
+-      <option name="number" value="00013" />
+-      <option name="presentableId" value="LOCAL-00013" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1762876777243</updated>
+-    </task>
+-    <task id="LOCAL-00014" summary="almost final228">
+-      <option name="closed" value="true" />
+-      <created>1762877370149</created>
+-      <option name="number" value="00014" />
+-      <option name="presentableId" value="LOCAL-00014" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1762877370149</updated>
+-    </task>
+-    <task id="LOCAL-00015" summary="LE SHANS FINAl">
+-      <option name="closed" value="true" />
+-      <created>1762878492998</created>
+-      <option name="number" value="00015" />
+-      <option name="presentableId" value="LOCAL-00015" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1762878492998</updated>
+-    </task>
+-    <task id="LOCAL-00016" summary="fin">
+-      <option name="closed" value="true" />
+-      <created>1762880065803</created>
+-      <option name="number" value="00016" />
+-      <option name="presentableId" value="LOCAL-00016" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1762880065803</updated>
+-    </task>
+-    <task id="LOCAL-00017" summary="start_lab_6_Y">
+-      <option name="closed" value="true" />
+-      <created>1763144419095</created>
+-      <option name="number" value="00017" />
+-      <option name="presentableId" value="LOCAL-00017" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1763144419095</updated>
+-    </task>
+-    <option name="localTasksCounter" value="18" />
++    <option name="localTasksCounter" value="10" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -346,15 +258,7 @@
+     <MESSAGE value="dead inside 1.2" />
+     <MESSAGE value="dead inside 1.21" />
+     <MESSAGE value="still alive" />
+-    <MESSAGE value="pognali" />
+-    <MESSAGE value="pognali narod" />
+-    <MESSAGE value="pognali narod vpered" />
+-    <MESSAGE value="almost final" />
+-    <MESSAGE value="almost final228" />
+-    <MESSAGE value="LE SHANS FINAl" />
+-    <MESSAGE value="fin" />
+-    <MESSAGE value="start_lab_6_Y" />
+-    <option name="LAST_COMMIT_MESSAGE" value="start_lab_6_Y" />
++    <option name="LAST_COMMIT_MESSAGE" value="still alive" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+@@ -367,18 +271,12 @@
+     </breakpoint-manager>
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762878952709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionDTOTest.ic" NAME="TabulatedFunctionDTOTest Coverage Results" MODIFIED="1762876725000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+-      <FILTER>dto.*</FILTER>
+-    </SUITE>
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$UserDaoTest.ic" NAME="UserDaoTest Coverage Results" MODIFIED="1762873670702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+-      <FILTER>functions.dao.*</FILTER>
+-    </SUITE>
++    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1761741623550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$All_in_LR_OOP_THIRD_SEMESTER.ic" NAME="All in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762860597074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$functions_in_LR_OOP_THIRD_SEMESTER.ic" NAME="functions in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1759762762810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+       <FILTER>functions.*</FILTER>
+     </SUITE>
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$FunctionTypeDaoTest.ic" NAME="FunctionTypeDaoTest Coverage Results" MODIFIED="1762873026869" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
++    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$FunctionTypeDaoTest.ic" NAME="FunctionTypeDaoTest Coverage Results" MODIFIED="1762863963060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+       <FILTER>functions.dao.*</FILTER>
+     </SUITE>
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$FunctionsIOTest.ic" NAME="FunctionsIOTest Coverage Results" MODIFIED="1760275410789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+@@ -388,9 +286,6 @@
+       <FILTER>io.*</FILTER>
+     </SUITE>
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$concurrent_in_LR_OOP_THIRD_SEMESTER.ic" NAME="concurrent in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1760727535389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionDaoSearchTest.ic" NAME="TabulatedFunctionDaoSearchTest Coverage Results" MODIFIED="1762878314531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+-      <FILTER>functions.dao.*</FILTER>
+-    </SUITE>
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$AbstractTabulatedFunctionTest.ic" NAME="AbstractTabulatedFunctionTest Coverage Results" MODIFIED="1759651861262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+       <FILTER>functions.*</FILTER>
+     </SUITE>
+@@ -400,12 +295,9 @@
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$SynchronizedTabulatedFunctionTest.ic" NAME="SynchronizedTabulatedFunctionTest Coverage Results" MODIFIED="1760728058410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+       <FILTER>concurrent.*</FILTER>
+     </SUITE>
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$dao_in_LR_OOP_THIRD_SEMESTER.ic" NAME="dao in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762871165320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
++    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$dao_in_LR_OOP_THIRD_SEMESTER.ic" NAME="dao in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762863917216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$ArrayTabulatedFunctionTest.ic" NAME="ArrayTabulatedFunctionTest Coverage Results" MODIFIED="1759654890325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+       <FILTER>functions.*</FILTER>
+-    </SUITE>
+-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionDaoTest.ic" NAME="TabulatedFunctionDaoTest Coverage Results" MODIFIED="1762876364707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+-      <FILTER>functions.dao.*</FILTER>
+     </SUITE>
+   </component>
+ </project>
+\ No newline at end of file
