@@ -1,12 +1,14 @@
 package controller.api;
 
 import dto.function.TabulatedFunctionDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-        import service.TabulatedFunctionService;
+import service.TabulatedFunctionService;
 
 import java.util.List;
 
@@ -14,15 +16,18 @@ import java.util.List;
 @RequestMapping("/api/v1/tabulated-functions")
 public class TabulatedFunctionController {
 
+    private static final Logger logger = LoggerFactory.getLogger(TabulatedFunctionController.class);
+
     private final TabulatedFunctionService service;
 
     public TabulatedFunctionController(TabulatedFunctionService service) {
         this.service = service;
     }
 
-    // Утилита: получение ownerId из заголовка (замените на вашу логику auth)
+    // Утилита: получение ownerId из заголовка
     private Long getOwnerId(@RequestHeader(value = "X-User-Id", required = false) Long ownerId) {
         if (ownerId == null) {
+            logger.warn("Missing required header X-User-Id in request");
             throw new IllegalArgumentException("X-User-Id header is required");
         }
         return ownerId;
@@ -89,6 +94,7 @@ public class TabulatedFunctionController {
             @RequestHeader("X-User-Id") Long ownerId,
             @RequestBody TabulatedFunctionDto dto) {
         TabulatedFunctionDto created = service.create(ownerId, dto);
+        logger.info("Created TabulatedFunction ID={} for user {}", created.getId(), ownerId);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
@@ -99,6 +105,7 @@ public class TabulatedFunctionController {
             @PathVariable Long id,
             @RequestBody NameUpdateRequest request) {
         TabulatedFunctionDto updated = service.updateName(id, ownerId, request.getName());
+        logger.info("Updated name for TabulatedFunction ID={} for user {}", id, ownerId);
         return ResponseEntity.ok(updated);
     }
 
@@ -108,12 +115,12 @@ public class TabulatedFunctionController {
             @RequestHeader("X-User-Id") Long ownerId,
             @PathVariable Long id,
             @RequestBody DataAndNameUpdateRequest request) {
-        // В реальном коде: request.getData() → byte[]
         TabulatedFunctionDto updated = service.updateDataAndName(
                 id, ownerId,
-                request.getData(), // ← byte[]
+                request.getData(), // byte[]
                 request.getName()
         );
+        logger.info("Updated data and name for TabulatedFunction ID={} for user {}", id, ownerId);
         return ResponseEntity.ok(updated);
     }
 
@@ -123,6 +130,7 @@ public class TabulatedFunctionController {
             @RequestHeader("X-User-Id") Long ownerId,
             @PathVariable Long id) {
         service.deleteByIdAndOwner(id, ownerId);
+        logger.info("Deleted TabulatedFunction ID={} for user {}", id, ownerId);
         return ResponseEntity.noContent().build();
     }
 
@@ -136,7 +144,7 @@ public class TabulatedFunctionController {
 
     public static class DataAndNameUpdateRequest {
         private String name;
-        private byte[] data; // ← JSON или бинарные данные, закодированные в Base64
+        private byte[] data; // JSON или бинарные данные
 
         public String getName() { return name; }
         public void setName(String name) { this.name = name; }

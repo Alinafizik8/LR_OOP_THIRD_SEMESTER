@@ -96,7 +96,7 @@ public class UserEntity {
         this.role = role;
     }
 
-    public Instant getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 

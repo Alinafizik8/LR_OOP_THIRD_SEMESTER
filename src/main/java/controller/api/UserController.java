@@ -1,6 +1,8 @@
 package controller.api;
 
 import dto.user.UserDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private final UserService userService;
 
@@ -86,6 +90,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto dto) {
         UserDto created = userService.create(dto);
+        logger.info("Created User ID={}", created.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
@@ -104,6 +109,7 @@ public class UserController {
             @PathVariable Long id,
             @RequestBody PasswordUpdateRequest request) {
         userService.updatePassword(id, request.getPasswordHash());
+        logger.info("Updated password for User ID={}", id);
         return ResponseEntity.noContent().build();
     }
 
@@ -113,6 +119,7 @@ public class UserController {
             @PathVariable Long id,
             @RequestBody RoleUpdateRequest request) {
         userService.updateRole(id, request.getRole());
+        logger.info("The role for the user with ID {} has been successfully updated", id);
         return ResponseEntity.noContent().build();
     }
 
@@ -120,6 +127,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
+        logger.info("Deleted User ID={}", id);
         return ResponseEntity.noContent().build();
     }
 
