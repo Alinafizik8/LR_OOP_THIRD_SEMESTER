@@ -1,4 +1,3 @@
-// package service.impl;
 package service;
 
 import dto.function.TabulatedFunctionDto;
@@ -187,18 +186,6 @@ public class TabulatedFunctionServiceImpl implements TabulatedFunctionService {
         return dto;
     }
 
-//    private static TabulatedFunctionEntity toEntity(TabulatedFunctionDto dto) {
-//        TabulatedFunctionEntity e = new TabulatedFunctionEntity();
-//        e.setName(dto.getName());
-//        e.setType(dto.getType());
-//        e.setLocalizedTypeName(dto.getLocalizedTypeName());
-//        e.setXMin(dto.getXMin());
-//        e.setXMax(dto.getXMax());
-//        e.setPointCount(dto.getPointCount());
-//        e.setInterpolationMethod(dto.getInterpolationMethod());
-//        // ownerId, createdAt, updatedAt — проставляются в create/update
-//        return e;
-//    }
     private static TabulatedFunctionEntity toEntity(TabulatedFunctionDto dto) {
         TabulatedFunctionEntity e = new TabulatedFunctionEntity();
         e.setName(dto.getName());
