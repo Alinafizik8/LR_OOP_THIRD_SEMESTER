@@ -4,7 +4,73 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="end3task_lab_6_Y" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="end3task_lab_6_Y">
+      <change beforePath="$PROJECT_DIR$/src/test/java/service/FunctionTypeServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/service/TabulatedFunctionServiceSortPerformanceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/service/TabulatedFunctionServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/service/UserServiceSortPerformanceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/service/UserServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/ArrayIsNotSortedException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/DifferentLengthOfArraysException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/InconsistentFunctionsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/exceptions/InterpolationException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/AbstractTabulatedFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/ArrayTabulatedFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/BSpline.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/CompositeFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/ConstantFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/Functions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/IdentityFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/Insertable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction$Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/LinkedListTabulatedFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/MathFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/Point.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/Removable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/RungeKuttaFunction$MathFunction2D.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/RungeKuttaFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/SqrFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/TabulatedFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/UnitFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/ZeroFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/factory/ArrayTabulatedFunctionFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/factory/LinkedListTabulatedFunctionFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/functions/factory/TabulatedFunctionFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/operations/DifferentialOperator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/operations/TabulatedDifferentialOperator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/operations/TabulatedFunctionOperationService$BiOperation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/operations/TabulatedFunctionOperationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/exceptions/ArrayIsNotSortedExceptionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/exceptions/DifferentLengthOfArraysExceptionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/exceptions/InconsistentFunctionsExceptionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/exceptions/InterpolationExceptionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/AbstractTabulatedFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/ArrayTabulatedFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/BSplineTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/CombinedTabulatedFunctionsTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/CompositeFunctionTest$AddOneFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/CompositeFunctionTest$DoubleFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/CompositeFunctionTest$SquareFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/CompositeFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/ConstantFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/IdentityFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/LinkedListTabulatedFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest$AbsFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest$AddOneFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest$DoubleFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest$SinFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest$SquareFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/MathFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/RungeKuttaFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/SqrFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/UnitFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/ZeroFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/functions/factory/TabulatedFunctionFactoryTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/operations/TabulatedDifferentialOperatorTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/operations/TabulatedFunctionOperationServiceTest.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -335,7 +401,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763325602237</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="4taskstart_lab_6_Y">
+      <option name="closed" value="true" />
+      <created>1763328771617</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1763328771617</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -369,7 +443,8 @@
     <MESSAGE value="start_lab_6_Y" />
     <MESSAGE value="3task_lab_6_Y_" />
     <MESSAGE value="star_lab_6_Y" />
-    <option name="LAST_COMMIT_MESSAGE" value="star_lab_6_Y" />
+    <MESSAGE value="4taskstart_lab_6_Y" />
+    <option name="LAST_COMMIT_MESSAGE" value="4taskstart_lab_6_Y" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

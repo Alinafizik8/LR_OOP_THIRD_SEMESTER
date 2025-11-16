@@ -1,0 +1,184 @@
+<changelist name="Uncommitted_changes_before_Update_at_17_11_2025_0_34_[Changes]" date="1763328868081" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_11_2025_0_34_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 17.11.2025 0:34 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/BSplineTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/MathFunctionTest$SquareFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/Insertable.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/MathFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/IdentityFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/LinkedListTabulatedFunctionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/Point.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/CombinedTabulatedFunctionsTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/factory/LinkedListTabulatedFunctionFactory.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/CompositeFunctionTest$DoubleFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/CompositeFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/RungeKuttaFunctionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/MathFunctionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/Removable.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/exceptions/InterpolationException.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/factory/TabulatedFunctionFactoryTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/exceptions/ArrayIsNotSortedException.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/AbstractTabulatedFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/TabulatedFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/operations/TabulatedDifferentialOperatorTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/AbstractTabulatedFunctionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/exceptions/DifferentLengthOfArraysExceptionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/LinkedListTabulatedFunction$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/ConstantFunctionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/operations/TabulatedFunctionOperationService$BiOperation.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/IdentityFunctionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/exceptions/InconsistentFunctionsException.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/MathFunctionTest$SinFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/MathFunctionTest$DoubleFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/LinkedListTabulatedFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/ConstantFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/exceptions/ArrayIsNotSortedExceptionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/exceptions/InconsistentFunctionsExceptionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/exceptions/InterpolationExceptionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/UnitFunctionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/ArrayTabulatedFunction$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/CompositeFunctionTest$SquareFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/Functions.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/LinkedListTabulatedFunction$Node.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/factory/TabulatedFunctionFactory.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/ArrayTabulatedFunctionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/RungeKuttaFunction$MathFunction2D.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/ArrayTabulatedFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/exceptions/DifferentLengthOfArraysException.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/BSpline.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/ZeroFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/operations/TabulatedFunctionOperationServiceTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/operations/DifferentialOperator.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/ZeroFunctionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/UnitFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/SqrFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/RungeKuttaFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/operations/TabulatedDifferentialOperator.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/CompositeFunctionTest$AddOneFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/MathFunctionTest$AbsFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/MathFunctionTest$AddOneFunction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/operations/TabulatedFunctionOperationService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/SqrFunctionTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/functions/factory/ArrayTabulatedFunctionFactory.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/functions/CompositeFunctionTest.class" />
+  </binary>
+</changelist>
