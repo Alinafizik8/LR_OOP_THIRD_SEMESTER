@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="end3task_lab_6_Y">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,8 +38,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Alinafizik8/LR_OOP_THIRD_SEMESTER&quot;,
-    &quot;accountId&quot;: &quot;0cfe8818-cec8-48c5-91b0-2467a8c77caf&quot;
+    &quot;url&quot;: &quot;https://github.com/Alinafizik8/LR_OOP_THIRD_SEMESTER.git&quot;,
+    &quot;accountId&quot;: &quot;1871043b-9ff2-46dc-8682-06d03a79891e&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -65,7 +63,7 @@
     "Application.ReadWriteTaskExecutor.executor": "Run",
     "Application.TabulatedFunctionFileInputStream.executor": "Run",
     "Application.TabulatedFunctionFileOutputStream.executor": "Run",
-    "JUnit.All in LR_OOP_THIRD_SEMESTER.executor": "Run",
+    "JUnit.All in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
     "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly.executor": "Run",
     "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues.executor": "Run",
     "JUnit.FunctionTypeDaoTest.executor": "Coverage",
@@ -77,10 +75,9 @@
     "JUnit.UserDaoTest.executor": "Coverage",
     "JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
     "JUnit.dao in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
-    "JUnit.java in LR_OOP_THIRD_SEMESTER.executor": "Run",
+    "JUnit.java in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
@@ -89,7 +86,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.43908045",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -102,14 +99,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.java in LR_OOP_THIRD_SEMESTER">
-    <configuration name="All in LR_OOP_THIRD_SEMESTER" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="LR_OOP_THIRD_SEMESTER" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TabulatedFunctionDTOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="LR_OOP_THIRD_SEMESTER" />
       <extension name="coverage">
@@ -155,6 +144,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="LR_OOP_THIRD_SEMESTER" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="functions.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="functions.dao" />
+      <option name="MAIN_CLASS_NAME" value="functions.dao.UserDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="java in LR_OOP_THIRD_SEMESTER" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="LR_OOP_THIRD_SEMESTER" />
       <option name="TEST_OBJECT" value="directory" />
@@ -166,10 +170,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.java in LR_OOP_THIRD_SEMESTER" />
-        <item itemvalue="JUnit.All in LR_OOP_THIRD_SEMESTER" />
         <item itemvalue="JUnit.TabulatedFunctionDaoSearchTest" />
         <item itemvalue="JUnit.TabulatedFunctionDTOTest" />
         <item itemvalue="JUnit.TabulatedFunctionDaoTest" />
+        <item itemvalue="JUnit.UserDaoTest" />
       </list>
     </recent_temporary>
   </component>
