@@ -3,6 +3,7 @@ package controller.api;
 import dto.function.FunctionTypeDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import service.FunctionTypeService;
 import org.slf4j.Logger;
@@ -75,6 +76,7 @@ public class FunctionTypeController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("@tabulatedFunctionService.canModify(authentication, #id)")
     public ResponseEntity<Void> deleteFunctionType(@PathVariable Long id) {
         functionTypeService.deleteById(id);
         logger.info("Deleted FunctionType ID={}", id);

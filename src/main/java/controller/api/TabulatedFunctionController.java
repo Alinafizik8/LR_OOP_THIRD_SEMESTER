@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import service.TabulatedFunctionService;
 
@@ -126,6 +127,7 @@ public class TabulatedFunctionController {
 
     // DELETE /api/v1/tabulated-functions/1
     @DeleteMapping("/{id}")
+    @PreAuthorize("@tabulatedFunctionService.canModify(authentication, #id)")
     public ResponseEntity<Void> delete(
             @RequestHeader("X-User-Id") Long ownerId,
             @PathVariable Long id) {

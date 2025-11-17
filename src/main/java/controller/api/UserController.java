@@ -4,11 +4,11 @@ import dto.user.CreateUserRequest;
 import dto.user.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import service.UserService;
 
@@ -21,13 +21,16 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // GET /api/v1/users
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserDto>> getAllUsers() {
         return ResponseEntity.ok(userService.findAll());
     }
@@ -46,6 +49,7 @@ public class UserController {
 
     // GET /api/v1/users/1
     @GetMapping("/{id}")
+    @PreAuthorize("@userService.canAccessUser(authentication, #id)")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         return userService.findById(id)
                 .map(ResponseEntity::ok)
@@ -109,13 +113,6 @@ public class UserController {
         return ResponseEntity.status(201).body(created);
     }
 
-    private final PasswordEncoder passwordEncoder;
-
-    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
-        this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
-    }
-
     // PUT /api/v1/users/1
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> updateUser(
@@ -137,6 +134,7 @@ public class UserController {
 
     // PATCH /api/v1/users/1/role
     @PatchMapping("/{id}/role")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> updateRole(
             @PathVariable Long id,
             @RequestBody RoleUpdateRequest request) {
@@ -147,6 +145,7 @@ public class UserController {
 
     // DELETE /api/v1/users/1
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.id")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
         logger.info("Deleted User ID={}", id);
