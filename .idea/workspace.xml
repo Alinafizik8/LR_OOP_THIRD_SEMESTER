@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="end3task_lab_6_Y">
-      <change afterPath="$PROJECT_DIR$/src/main/java/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/CustomUserDetailsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/user/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dto/user/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,38 +57,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MultiplyingTaskExecutor.executor": "Run",
-    "Application.ReadWriteTaskExecutor.executor": "Run",
-    "Application.TabulatedFunctionFileInputStream.executor": "Run",
-    "Application.TabulatedFunctionFileOutputStream.executor": "Run",
-    "JUnit.All in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
-    "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly.executor": "Run",
-    "JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues.executor": "Run",
-    "JUnit.FunctionTypeDaoTest.executor": "Coverage",
-    "JUnit.SynchronizedTabulatedFunctionTest.executor": "Coverage",
-    "JUnit.TabulatedFunctionDTOTest.executor": "Coverage",
-    "JUnit.TabulatedFunctionDaoSearchTest.executor": "Coverage",
-    "JUnit.TabulatedFunctionDaoTest.executor": "Coverage",
-    "JUnit.TabulatedFunctionDaoTest.save_and_findByIdAndOwnerId_works.executor": "Run",
-    "JUnit.UserDaoTest.executor": "Coverage",
-    "JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
-    "JUnit.dao in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
-    "JUnit.java in LR_OOP_THIRD_SEMESTER.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "framework",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.43908045",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MultiplyingTaskExecutor.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ReadWriteTaskExecutor.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TabulatedFunctionFileInputStream.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TabulatedFunctionFileOutputStream.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_handlesTwoPointsCorrectly.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ArrayTabulatedFunctionTest.floorIndexOfX_returnsCorrectIndexForInternalValues.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FunctionTypeDaoTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.SynchronizedTabulatedFunctionTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.TabulatedFunctionDTOTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.TabulatedFunctionDaoSearchTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.TabulatedFunctionDaoTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.TabulatedFunctionDaoTest.save_and_findByIdAndOwnerId_works.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserDaoTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.dao in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.java in LR_OOP_THIRD_SEMESTER.executor&quot;: &quot;Coverage&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;framework&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.43908045&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
