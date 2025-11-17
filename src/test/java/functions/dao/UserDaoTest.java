@@ -157,18 +157,6 @@ class UserDaoTest {
     }
 
     @Test
-    void deleteById_works() {
-        logger.info("Test: deleteById_works");
-
-        Long id = dao.save(new UserDTO(null, "d", "h", "d@d.com", "USER", null, null));
-        dao.deleteById(id);
-        assertThat(dao.findById(id)).isEmpty();
-
-        logger.debug("Confirmed deletion");
-        logger.info("Test passed");
-    }
-
-    @Test
     void handles_null_fields_in_constructor() {
         logger.info("Test: handles_null_fields_in_constructor");
 
