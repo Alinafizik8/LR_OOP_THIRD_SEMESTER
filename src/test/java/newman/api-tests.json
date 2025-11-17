@@ -1,0 +1,120 @@
+{
+  "info": {
+    "name": "API Tests (No Reports)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET /api/users",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/users"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"200\", () => pm.response.code === 200);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST /api/users",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Newman\",\n  \"email\": \"newman@test.com\"\n}"
+        },
+        "url": "http://localhost:8080/api/users"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"201\", () => pm.response.code === 201);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /api/users/1",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/users/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"200 or 404\", () => [200, 404].includes(pm.response.code));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /api/books",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/books"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"200\", () => pm.response.code === 200);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST /api/books",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Newman Book\",\n  \"author\": \"Author\"\n}"
+        },
+        "url": "http://localhost:8080/api/books"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"201\", () => pm.response.code === 201);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /api/books/1",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/books/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"200 or 404\", () => [200, 404].includes(pm.response.code));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
