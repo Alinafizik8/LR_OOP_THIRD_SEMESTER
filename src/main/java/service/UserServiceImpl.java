@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import repository.UserRepository;
 import service.UserService;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -92,8 +93,8 @@ public class UserServiceImpl implements UserService {
         }
 
         UserEntity entity = toEntity(dto);
-        entity.setCreatedAt(LocalDateTime.from(java.time.Instant.now()));
-        // ⚠️ passwordHash должен устанавливаться отдельно (например, через registration flow)
+        entity.setCreatedAt(Instant.from(java.time.Instant.now()));
+        // passwordHash должен устанавливаться отдельно (например, через registration flow)
         UserEntity saved = userRepository.save(entity);
         return toDto(saved);
     }
@@ -170,6 +171,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public Optional<UserEntity> findUserEntityByUsername(String username) {
+        return Optional.empty();
     }
 
     // ─── MAPPING ────────────────────────────────────────────────────

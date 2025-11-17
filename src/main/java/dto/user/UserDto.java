@@ -1,6 +1,7 @@
 package dto.user;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 public class UserDto {
 
@@ -24,5 +25,4 @@ public class UserDto {
 
     public Instant getCreatedAt() { return createdAt; }
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
-
 }

@@ -1,6 +1,7 @@
 package service;
 
 import dto.user.UserDto;
+import entity.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -36,4 +37,6 @@ public interface UserService {
     // Validation helpers
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
+
+    Optional<UserEntity> findUserEntityByUsername(String username);
 }
