@@ -36,6 +36,7 @@ public class TabulatedFunctionController {
 
     // GET /api/v1/tabulated-functions
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<TabulatedFunctionDto>> getAll(
             @RequestHeader("X-User-Id") Long ownerId) {
         return ResponseEntity.ok(service.findAllByOwner(ownerId));
@@ -43,6 +44,7 @@ public class TabulatedFunctionController {
 
     // GET /api/v1/tabulated-functions/page?page=0&size=10
     @GetMapping("/page")
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<Page<TabulatedFunctionDto>> getPage(
             @RequestHeader("X-User-Id") Long ownerId,
             Pageable pageable) {
@@ -51,6 +53,7 @@ public class TabulatedFunctionController {
 
     // GET /api/v1/tabulated-functions/sorted/name
     @GetMapping("/sorted/name")
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<TabulatedFunctionDto>> getAllSortedByName(
             @RequestHeader("X-User-Id") Long ownerId) {
         return ResponseEntity.ok(service.findAllByOwnerSortedByNameAsc(ownerId));
@@ -58,6 +61,7 @@ public class TabulatedFunctionController {
 
     // GET /api/v1/tabulated-functions/sorted/created
     @GetMapping("/sorted/created")
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<TabulatedFunctionDto>> getAllSortedByCreatedAt(
             @RequestHeader("X-User-Id") Long ownerId) {
         return ResponseEntity.ok(service.findAllByOwnerSortedByCreatedAtDesc(ownerId));
@@ -65,6 +69,7 @@ public class TabulatedFunctionController {
 
     // GET /api/v1/tabulated-functions/1
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<TabulatedFunctionDto> getById(
             @RequestHeader("X-User-Id") Long ownerId,
             @PathVariable Long id) {
@@ -75,6 +80,7 @@ public class TabulatedFunctionController {
 
     // GET /api/v1/tabulated-functions/search?q=sin
     @GetMapping("/search")
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<TabulatedFunctionDto>> search(
             @RequestHeader("X-User-Id") Long ownerId,
             @RequestParam String q) {
@@ -83,6 +89,7 @@ public class TabulatedFunctionController {
 
     // GET /api/v1/tabulated-functions/by-type/5
     @GetMapping("/by-type/{typeId}")
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<TabulatedFunctionDto>> getByFunctionType(
             @RequestHeader("X-User-Id") Long ownerId,
             @PathVariable Long typeId) {
@@ -91,6 +98,7 @@ public class TabulatedFunctionController {
 
     // POST /api/v1/tabulated-functions
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<TabulatedFunctionDto> create(
             @RequestHeader("X-User-Id") Long ownerId,
             @RequestBody TabulatedFunctionDto dto) {
@@ -101,6 +109,7 @@ public class TabulatedFunctionController {
 
     // PATCH /api/v1/tabulated-functions/1/name
     @PatchMapping("/{id}/name")
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<TabulatedFunctionDto> updateName(
             @RequestHeader("X-User-Id") Long ownerId,
             @PathVariable Long id,
@@ -112,6 +121,7 @@ public class TabulatedFunctionController {
 
     // PATCH /api/v1/tabulated-functions/1/data-and-name
     @PatchMapping("/{id}/data-and-name")
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<TabulatedFunctionDto> updateDataAndName(
             @RequestHeader("X-User-Id") Long ownerId,
             @PathVariable Long id,

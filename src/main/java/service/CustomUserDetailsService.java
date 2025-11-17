@@ -2,6 +2,7 @@ package service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService, Serializable {
@@ -26,11 +28,12 @@ public class CustomUserDetailsService implements UserDetailsService, Serializabl
         return userService.findUserEntityByUsername(username)
                 .map(entity -> {
                     logger.debug("Authenticated: '{}', role={}", entity.getUsername(), entity.getRole());
-                    return User.builder()
-                            .username(entity.getUsername())
-                            .password(entity.getPasswordHash())
-                            .authorities("ROLE_" + entity.getRole().toUpperCase())
-                            .build();
+                    return new CustomUserDetails(
+                            entity.getId(),
+                            entity.getUsername(),
+                            entity.getPasswordHash(),
+                            List.of(new SimpleGrantedAuthority("ROLE_" + entity.getRole().toUpperCase()))
+                    );
                 })
                 .orElseThrow(() -> {
                     logger.warn("Authentication failed for user: '{}'", username);

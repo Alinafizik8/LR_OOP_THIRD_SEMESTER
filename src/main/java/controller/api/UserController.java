@@ -37,12 +37,14 @@ public class UserController {
 
     // GET /api/v1/users/page?page=0&size=10&sort=createdAt,desc
     @GetMapping("/page")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<UserDto>> getUsersPage(Pageable pageable) {
         return ResponseEntity.ok(userService.findAll(pageable));
     }
 
     // GET /api/v1/users/sorted
     @GetMapping("/sorted")
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<UserDto>> getUsersSortedByCreatedAt() {
         return ResponseEntity.ok(userService.findAllSortedByCreatedAtDesc());
     }
@@ -58,6 +60,7 @@ public class UserController {
 
     // GET /api/v1/users/by-username/{username}
     @GetMapping("/by-username/{username}")
+    @PreAuthorize("hasRole('ADMIN') or #username == authentication.principal.username")
     public ResponseEntity<UserDto> getUserByUsername(@PathVariable String username) {
         return userService.findByUsername(username)
                 .map(ResponseEntity::ok)
@@ -66,6 +69,7 @@ public class UserController {
 
     // GET /api/v1/users/by-email/{email}
     @GetMapping("/by-email/{email}")
+    @PreAuthorize("hasRole('ADMIN') or @userService.findByEmail(#email)?.get()?.username == authentication.principal.username")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable String email) {
         return userService.findByEmail(email)
                 .map(ResponseEntity::ok)
@@ -74,6 +78,7 @@ public class UserController {
 
     // GET /api/v1/users/by-param/{param}
     @GetMapping("/by-param/{param}")
+    @PreAuthorize("hasRole('ADMIN') or @userService.findByUsernameOrEmail(#param)?.get()?.username == authentication.principal.username")
     public ResponseEntity<UserDto> getUserByUsernameOrEmail(@PathVariable String param) {
         return userService.findByUsernameOrEmail(param)
                 .map(ResponseEntity::ok)
@@ -82,12 +87,14 @@ public class UserController {
 
     // GET /api/v1/users/search?q=john
     @GetMapping("/search")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserDto>> searchUsers(@RequestParam String q) {
         return ResponseEntity.ok(userService.searchByUsernameFragment(q));
     }
 
     // GET /api/v1/users/by-function-type/5
     @GetMapping("/by-function-type/{typeId}")
+    @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<UserDto>> getUsersByFunctionType(@PathVariable Long typeId) {
         return ResponseEntity.ok(userService.findUsersByFunctionTypeId(typeId));
     }
@@ -115,6 +122,7 @@ public class UserController {
 
     // PUT /api/v1/users/1
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or #id == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<UserDto> updateUser(
             @PathVariable Long id,
             @RequestBody UserDto dto) {

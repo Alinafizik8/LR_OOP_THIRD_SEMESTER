@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import repository.TabulatedFunctionRepository;
+import repository.UserRepository;
 import service.TabulatedFunctionService;
 
 import java.time.Instant;
@@ -21,9 +22,25 @@ import java.util.stream.Collectors;
 public class TabulatedFunctionServiceImpl implements TabulatedFunctionService {
 
     private final TabulatedFunctionRepository repository;
+    private final UserRepository userRepository;
 
-    public TabulatedFunctionServiceImpl(TabulatedFunctionRepository repository) {
+    public TabulatedFunctionServiceImpl(TabulatedFunctionRepository repository, UserRepository userRepository) {
         this.repository = repository;
+        this.userRepository = userRepository;
+    }
+
+    public boolean canModify(org.springframework.security.core.Authentication authentication, Long functionId) {
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof CustomUserDetails userDetails) {
+            Long currentUserId = userDetails.getId();
+            boolean isAdmin = authentication.getAuthorities().stream()
+                    .anyMatch(a -> "ROLE_ADMIN".equals(a.getAuthority()));
+            if (isAdmin) return true;
+
+            // Проверяем через репозиторий напрямую
+            return repository.findByIdAndOwnerId(functionId, currentUserId).isPresent();
+        }
+        return false;
     }
 
     // ─── READ (owner-scoped) ───────────────────────────────────────

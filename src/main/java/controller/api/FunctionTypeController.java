@@ -60,6 +60,7 @@ public class FunctionTypeController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<FunctionTypeDto> createFunctionType(@RequestBody FunctionTypeDto dto) {
         FunctionTypeDto created = functionTypeService.create(dto);
         logger.info("Created FunctionType with ID={}", created.getId());
@@ -67,6 +68,7 @@ public class FunctionTypeController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<FunctionTypeDto> updateFunctionType(
             @PathVariable Long id,
             @RequestBody FunctionTypeDto dto) {

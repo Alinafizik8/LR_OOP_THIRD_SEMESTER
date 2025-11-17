@@ -29,4 +29,5 @@ public interface TabulatedFunctionService {
     List<TabulatedFunctionDto> findByFunctionTypeId(Long typeId);
     List<TabulatedFunctionDto> findByFunctionTypeIdSortedByCreatedAtDesc(Long typeId);
     List<TabulatedFunctionDto> findByFunctionTypeIdAndOwner(Long typeId, Long ownerId);
+
 }
