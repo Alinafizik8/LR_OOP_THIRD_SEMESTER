@@ -173,11 +173,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.existsByEmail(email);
     }
 
-    @Override
-    public Optional<UserEntity> findUserEntityByUsername(String username) {
-        return Optional.empty();
-    }
-
     // ─── MAPPING ────────────────────────────────────────────────────
 
     private static UserDto toDto(UserEntity e) {
@@ -197,5 +192,25 @@ public class UserServiceImpl implements UserService {
         e.setRole(dto.getRole());
         // createdAt будет проставлен в create()
         return e;
+    }
+
+    @Override
+    public Optional<UserEntity> findUserEntityByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Transactional
+    @Override
+    public UserDto createWithPassword(UserDto dto, String passwordHash) {
+        // валидация
+        UserEntity entity = new UserEntity(
+                dto.getEmail(),
+                dto.getUsername(),
+                passwordHash,
+                dto.getRole() != null ? dto.getRole() : "USER"
+        );
+        entity.setCreatedAt(Instant.now());
+        UserEntity saved = userRepository.save(entity);
+        return toDto(saved);
     }
 }

@@ -1,5 +1,6 @@
 package controller.api;
 
+import dto.user.CreateUserRequest;
 import dto.user.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import service.UserService;
 
@@ -88,10 +90,30 @@ public class UserController {
 
     // POST /api/v1/users
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto dto) {
-        UserDto created = userService.create(dto);
-        logger.info("Created User ID={}", created.getId());
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    public ResponseEntity<UserDto> createUser(@RequestBody CreateUserRequest req) {
+        if (userService.existsByUsername(req.getUsername())) {
+            throw new IllegalArgumentException("Username taken");
+        }
+        if (userService.existsByEmail(req.getEmail())) {
+            throw new IllegalArgumentException("Email taken");
+        }
+
+        String hashed = passwordEncoder.encode(req.getPassword());
+        UserDto dto = new UserDto();
+        dto.setUsername(req.getUsername());
+        dto.setEmail(req.getEmail());
+        dto.setRole("USER");
+
+        UserDto created = userService.createWithPassword(dto, hashed);
+        logger.info("User registered: ID={}, username='{}'", created.getId(), created.getUsername());
+        return ResponseEntity.status(201).body(created);
+    }
+
+    private final PasswordEncoder passwordEncoder;
+
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // PUT /api/v1/users/1
