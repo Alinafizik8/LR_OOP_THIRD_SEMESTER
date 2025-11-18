@@ -51,7 +51,7 @@
     <!-- 4. Servlet mappings -->
     <servlet>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>com.example.demo.servlet.UserServlet</servlet-class>
+        <servlet-class>servlet.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
@@ -61,7 +61,7 @@
 
     <servlet>
         <servlet-name>BookServlet</servlet-name>
-        <servlet-class>com.example.demo.servlet.BookServlet</servlet-class>
+        <servlet-class>servlet.BookServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BookServlet</servlet-name>
@@ -71,7 +71,7 @@
 
     <servlet>
         <servlet-name>AdminServlet</servlet-name>
-        <servlet-class>com.example.demo.servlet.AdminServlet</servlet-class>
+        <servlet-class>servlet.AdminServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
