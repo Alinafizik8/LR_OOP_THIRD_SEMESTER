@@ -235,7 +235,7 @@ public class UserServlet extends HttpServlet {
         try {
             javax.naming.Context initCtx = new javax.naming.InitialContext();
             javax.naming.Context envCtx = (javax.naming.Context) initCtx.lookup("java:comp/env");
-            DataSource ds = (javax.sql.DataSource) envCtx.lookup("jdbc/LR_OOP_THIRD_SEMESTER");
+            DataSource ds = (javax.sql.DataSource) envCtx.lookup("jdbc/lr-oop");
             logger.info("DataSource initialized successfully");
             return ds;
         } catch (Exception e) {
