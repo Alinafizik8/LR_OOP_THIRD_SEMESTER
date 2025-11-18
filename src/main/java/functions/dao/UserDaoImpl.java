@@ -235,10 +235,6 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    // endregion
-
-    // region --- Helpers ---
-
     private UserDTO mapResultSet(ResultSet rs) throws SQLException {
         return new UserDTO(
                 rs.getLong("id"),
@@ -251,5 +247,4 @@ public class UserDaoImpl implements UserDao {
         );
     }
 
-    // endregion
 }

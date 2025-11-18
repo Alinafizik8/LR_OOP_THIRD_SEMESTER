@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="chinim_lab_6_Y">
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/UserServlet.java" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="chinim1_lab_6_Y">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/functions/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/functions/dao/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/functions/dao/UserDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/functions/dao/UserDaoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -361,7 +364,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763473621382</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="chinim0_lab_6_Y">
+      <option name="closed" value="true" />
+      <created>1763473789633</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1763473789633</updated>
+    </task>
+    <task id="LOCAL-00024" summary="chinim1_lab_6_Y">
+      <option name="closed" value="true" />
+      <created>1763474071030</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1763474071030</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -398,7 +417,9 @@
     <MESSAGE value="4taskstart_lab_6_Y" />
     <MESSAGE value="betweenpastandpresent_lab_6_Y" />
     <MESSAGE value="chinim_lab_6_Y" />
-    <option name="LAST_COMMIT_MESSAGE" value="chinim_lab_6_Y" />
+    <MESSAGE value="chinim0_lab_6_Y" />
+    <MESSAGE value="chinim1_lab_6_Y" />
+    <option name="LAST_COMMIT_MESSAGE" value="chinim1_lab_6_Y" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

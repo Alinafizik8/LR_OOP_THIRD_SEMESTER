@@ -114,7 +114,7 @@ class UserDaoTest {
 
     @Test
     void findByEmail_and_findByUsername_work() {
-        logger.info("🧪 Test: findByEmail_and_findByUsername_work");
+        logger.info("Test: findByEmail_and_findByUsername_work");
 
         dao.save(new UserDTO(null, "xuser", "h", "x@x.com", "USER", null, null));
         logger.debug("User 'xuser' created");
