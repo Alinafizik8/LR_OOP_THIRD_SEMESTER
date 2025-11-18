@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/lr-oop"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxTotal="20"
+              maxIdle="10"
+              maxWaitMillis="10000"
+              username="privet"
+              password="M1r"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://db:5432/functions_db"/>
+</Context>

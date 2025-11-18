@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:15
+    container_name: functions-db
+    environment:
+      POSTGRES_DB: functions_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/main/resources/scripts:/docker-entrypoint-initdb.d:ro
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: functions-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/functions_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    # Ждём поднятие БД (для Spring Boot приложения)
+    command: >
+      sh -c "
+        echo 'Waiting for PostgreSQL...';
+        while ! nc -z db 5432; do sleep 1; done;
+        echo 'PostgreSQL is up';
+        java -jar /app/app.jar  # ← или ваш способ запуска Spring Boot
+      "
+
+volumes:
+  postgres_data:
+    driver: local

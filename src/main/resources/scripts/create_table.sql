@@ -1,3 +1,7 @@
+CREATE TABLE IF NOT EXISTS users (...);
+CREATE TABLE IF NOT EXISTS function_types (...);
+CREATE TABLE IF NOT EXISTS tabulated_functions (...);
+
 CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -30,3 +34,12 @@ CREATE TABLE tabulated_functions (
 -- Индексы
 CREATE INDEX idx_tabulated_functions_owner_id ON tabulated_functions(owner_id);
 CREATE INDEX idx_tabulated_functions_function_type_id ON tabulated_functions(function_type_id);
+
+DO $$ BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_indexes WHERE indexname = 'idx_tabulated_functions_owner_id') THEN
+        CREATE INDEX idx_tabulated_functions_owner_id ON tabulated_functions(owner_id);
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_indexes WHERE indexname = 'idx_tabulated_functions_function_type_id') THEN
+        CREATE INDEX idx_tabulated_functions_function_type_id ON tabulated_functions(function_type_id);
+    END IF;
+END $$;
