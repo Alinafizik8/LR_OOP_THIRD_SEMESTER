@@ -26,7 +26,7 @@ public class FunctionTypeDaoImpl implements FunctionTypeDao {
         VALUES (?, ?, ?)
         """;
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) { // ← Получаем сгенерированный ID
+             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) { // Получаем сгенерированный ID
             ps.setString(1, type.getName());
             ps.setString(2, type.getLocalizedName());
             ps.setInt(3, type.getPriority());
@@ -39,7 +39,7 @@ public class FunctionTypeDaoImpl implements FunctionTypeDao {
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     Long id = generatedKeys.getLong(1);
-                    logger.debug("✅ Saved: id={}, name='{}'", id, type.getName());
+                    logger.debug("Saved: id={}, name='{}'", id, type.getName());
                     return id;
                 }
             }
