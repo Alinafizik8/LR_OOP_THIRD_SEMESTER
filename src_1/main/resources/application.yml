@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: lr-oop-spring
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lr_oop_db
+    username: lr_user
+    password: lr_pass
+    driver-class-name: org.postgresql.Driver
+
+  sql:
+    init:
+      mode: always  # выполнить schema.sql при старте
+      # schema-locations: classpath:schema.sql  # по умолчанию
+
+  jackson:
+    default-property-inclusion: non_null
+
+logging:
+  level:
+    com.example.lr: DEBUG
+    org.springframework.jdbc: DEBUG  # логировать SQL (опционально)
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
