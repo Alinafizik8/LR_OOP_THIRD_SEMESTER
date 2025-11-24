@@ -1,13 +1,13 @@
 package com.example.alina.service;
 
 import com.example.alina.dto.user.UserDto;
-import entity.UserEntity;
+import com.example.alina.entity.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repository.UserRepository;
-import service.UserService;
+import com.example.alina.repository.UserRepository;
+import com.example.alina.service.UserService;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

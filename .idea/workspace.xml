@@ -4,121 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="end3task_lab_6_Y">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="feat: add spring boot generated from initializer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/concurrent/MultiplyingTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/concurrent/MultiplyingTaskExecutor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/concurrent/ReadTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/concurrent/ReadWriteTaskExecutor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/concurrent/SynchronizedTabulatedFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/concurrent/WriteTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/config/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/api/FunctionTypeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/api/TabulatedFunctionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/api/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/ErrorResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/PagedResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/UserResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/auth/AuthResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/auth/LoginRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/function/BinaryOperationRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/function/CreateFunctionFromMathRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/function/CreateFunctionFromPointsRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/function/FullFunctionResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/function/FunctionMetadataResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/function/FunctionTypeDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/function/TabulatedFunctionDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/function/UnaryOperationRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/function/UpdateFunctionRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/user/CreateUserRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/user/UserDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/FunctionTypeEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/TabulatedFunctionEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/UserEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/exceptions/ArrayIsNotSortedException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/exceptions/DifferentLengthOfArraysException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/exceptions/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/exceptions/InconsistentFunctionsException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/exceptions/InterpolationException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/AbstractTabulatedFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/ArrayTabulatedFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/BSpline.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/CompositeFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/ConstantFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/Functions.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/IdentityFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/Insertable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/LinkedListTabulatedFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/MathFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/Point.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/Removable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/RungeKuttaFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/SqrFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/TabulatedFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/UnitFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/ZeroFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/factory/ArrayTabulatedFunctionFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/factory/LinkedListTabulatedFunctionFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/functions/factory/TabulatedFunctionFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ArrayTabulatedFunctionSerialization.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/FunctionsIO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/LinkedListTabulatedFunctionSerialization.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/TabulatedFunctionFileInputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/TabulatedFunctionFileOutputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/TabulatedFunctionFileReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/TabulatedFunctionFileWriter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/operations/DifferentialOperator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/operations/LeftSteppingDifferentialOperator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/operations/RightSteppingDifferentialOperator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/operations/SteppingDifferentialOperator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/operations/TabulatedDifferentialOperator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/operations/TabulatedFunctionOperationService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/FunctionTypeRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/TabulatedFunctionRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/Application.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/CustomUserDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/CustomUserDetailsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/FunctionTypeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/FunctionTypeServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/TabulatedFunctionService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/TabulatedFunctionServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/concurrent/SynchronizedTabulatedFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/exceptions/ArrayIsNotSortedExceptionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/exceptions/DifferentLengthOfArraysExceptionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/exceptions/InconsistentFunctionsExceptionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/exceptions/InterpolationExceptionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/AbstractTabulatedFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/ArrayTabulatedFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/BSplineTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/CombinedTabulatedFunctionsTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/CompositeFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/ConstantFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/IdentityFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/LinkedListTabulatedFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/MathFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/RungeKuttaFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/SqrFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/UnitFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/ZeroFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functions/factory/TabulatedFunctionFactoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/newman/api-tests.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/newman/results.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/operations/LeftSteppingDifferentialOperatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/operations/RightSteppingDifferentialOperatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/operations/TabulatedDifferentialOperatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/operations/TabulatedFunctionOperationServiceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/repository/FunctionTypeRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/repository/TabulatedFunctionRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/repository/UserRepositoryTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -453,7 +340,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763328771617</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="feat: add spring boot generated from initializer">
+      <option name="closed" value="true" />
+      <created>1763758436433</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1763758436433</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -488,7 +383,8 @@
     <MESSAGE value="3task_lab_6_Y_" />
     <MESSAGE value="star_lab_6_Y" />
     <MESSAGE value="4taskstart_lab_6_Y" />
-    <option name="LAST_COMMIT_MESSAGE" value="4taskstart_lab_6_Y" />
+    <MESSAGE value="feat: add spring boot generated from initializer" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add spring boot generated from initializer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

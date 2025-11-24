@@ -29,9 +29,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AuthenticationCredentialsNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleAuthMissing(AuthenticationCredentialsNotFoundException e) {
         logger.warn("Authentication required but missing");
-        ErrorResponse error = new ErrorResponse(
-                Instant.now(), 401, "Unauthorized", "Authentication required", "/...", null
-        );
+        ErrorResponse error = new ErrorResponse(Instant.now(), 401, "Unauthorized", "Authentication required", "/...", null);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
     }
 
