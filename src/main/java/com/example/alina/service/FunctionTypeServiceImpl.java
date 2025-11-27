@@ -1,11 +1,11 @@
 package com.example.alina.service;
 
-import dto.function.FunctionTypeDto;
-import entity.FunctionTypeEntity;
+import com.example.alina.dto.function.FunctionTypeDto;
+import com.example.alina.entity.FunctionTypeEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repository.FunctionTypeRepository;
-import service.FunctionTypeService;
+import com.example.alina.repository.FunctionTypeRepository;
+import com.example.alina.service.FunctionTypeService;
 
 import java.time.Instant;
 import java.util.List;

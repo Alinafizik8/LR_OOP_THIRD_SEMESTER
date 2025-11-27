@@ -1,6 +1,6 @@
 package com.example.alina.io;
 
-import functions.*;
+import com.example.alina.functions.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

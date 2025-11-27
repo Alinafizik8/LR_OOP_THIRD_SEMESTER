@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.alina.repository.UserRepository;
-import com.example.alina.service.UserService;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

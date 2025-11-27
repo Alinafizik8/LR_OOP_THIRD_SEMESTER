@@ -1,6 +1,6 @@
 package com.example.alina.repository;
 
-import entity.UserEntity;
+import com.example.alina.entity.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

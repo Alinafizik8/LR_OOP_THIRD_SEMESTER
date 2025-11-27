@@ -123,7 +123,7 @@ public final class FunctionsIO {
         DataOutputStream dataOut = new DataOutputStream(outputStream);
         int count = function.getCount();
         dataOut.writeInt(count);
-        for (functions.Point point : function) {
+        for (com.example.alina.functions.Point point : function) {
             dataOut.writeDouble(point.x);
             dataOut.writeDouble(point.y);
         }

@@ -1,6 +1,6 @@
 package com.example.alina.functions;
 
-import exceptions.InterpolationException;
+import com.example.alina.exceptions.InterpolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

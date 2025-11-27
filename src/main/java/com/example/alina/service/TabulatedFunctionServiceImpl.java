@@ -1,16 +1,16 @@
 package com.example.alina.service;
 
-import dto.function.TabulatedFunctionDto;
-import entity.TabulatedFunctionEntity;
-import entity.UserEntity;
+import com.example.alina.dto.function.TabulatedFunctionDto;
+import com.example.alina.entity.TabulatedFunctionEntity;
+import com.example.alina.entity.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repository.TabulatedFunctionRepository;
-import repository.UserRepository;
-import service.TabulatedFunctionService;
+import com.example.alina.repository.TabulatedFunctionRepository;
+import com.example.alina.repository.UserRepository;
+import com.example.alina.service.TabulatedFunctionService;
 
 import java.time.Instant;
 import java.util.List;

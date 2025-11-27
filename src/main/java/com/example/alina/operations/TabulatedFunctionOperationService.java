@@ -1,7 +1,7 @@
 package com.example.alina.operations;
-import functions.*;
-import functions.factory.*;
-import exceptions.*;
+import com.example.alina.functions.*;
+import com.example.alina.functions.factory.*;
+import com.example.alina.exceptions.*;
 
 public class TabulatedFunctionOperationService {
 

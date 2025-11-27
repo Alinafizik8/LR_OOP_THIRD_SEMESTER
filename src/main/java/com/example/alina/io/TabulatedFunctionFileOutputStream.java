@@ -1,8 +1,8 @@
 package com.example.alina.io;
 
-import functions.ArrayTabulatedFunction;
-import functions.LinkedListTabulatedFunction;
-import functions.TabulatedFunction;
+import com.example.alina.functions.ArrayTabulatedFunction;
+import com.example.alina.functions.LinkedListTabulatedFunction;
+import com.example.alina.functions.TabulatedFunction;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

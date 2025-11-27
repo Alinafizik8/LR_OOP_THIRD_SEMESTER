@@ -4,8 +4,63 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="feat: add spring boot generated from initializer">
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue repare">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/concurrent/SynchronizedTabulatedFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/exceptions/ArrayIsNotSortedExceptionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/exceptions/DifferentLengthOfArraysExceptionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/exceptions/InconsistentFunctionsExceptionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/exceptions/InterpolationExceptionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/AbstractTabulatedFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/ArrayTabulatedFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/BSplineTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/CombinedTabulatedFunctionsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/CompositeFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/ConstantFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/IdentityFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/LinkedListTabulatedFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/MathFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/RungeKuttaFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/SqrFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/UnitFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/ZeroFunctionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/functions/factory/TabulatedFunctionFactoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/newman/api-tests.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/newman/results.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/operations/LeftSteppingDifferentialOperatorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/operations/RightSteppingDifferentialOperatorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/operations/TabulatedDifferentialOperatorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/operations/TabulatedFunctionOperationServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/repository/FunctionTypeRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/repository/TabulatedFunctionRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/repository/UserRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_11_2025_14_23__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_11_2025_15_27__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2025_21_05__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2025_21_13__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2025_21_24__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2025_21_24__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2025_22_17__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2025_23_45__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_11_2025_20_13_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_11_2025_20_13__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_11_2025_0_34__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_11_2025_21_57_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_11_2025_21_57__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/functions/LinkedListTabulatedFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/functions/LinkedListTabulatedFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/io/FunctionsIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/io/FunctionsIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/io/TabulatedFunctionFileOutputStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/io/TabulatedFunctionFileOutputStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/io/TabulatedFunctionFileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/io/TabulatedFunctionFileReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/io/TabulatedFunctionFileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/io/TabulatedFunctionFileWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/operations/DifferentialOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/operations/DifferentialOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/operations/TabulatedFunctionOperationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/operations/TabulatedFunctionOperationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/repository/FunctionTypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/repository/FunctionTypeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/service/FunctionTypeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/service/FunctionTypeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/service/TabulatedFunctionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/service/TabulatedFunctionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/service/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +133,7 @@
     "JUnit.concurrent in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
     "JUnit.dao in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
     "JUnit.java in LR_OOP_THIRD_SEMESTER.executor": "Coverage",
+    "Maven.alina [package].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -85,6 +141,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "framework",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Alina/OneDrive/Рабочий стол/2 семестр/OOP/LR_OOP_THIRD_SEMESTER/src/test/java/com/example/alina",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.43908045",
@@ -92,6 +149,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\test\java\com\example\alina" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
@@ -103,7 +163,7 @@
       <recent name="io" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AlinaApplication">
+  <component name="RunManager" selected="JUnit.java in LR_OOP_THIRD_SEMESTER">
     <configuration name="AlinaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.alina.AlinaApplication" />
       <module name="LR_OOP_THIRD_SEMESTER" />
@@ -164,9 +224,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.java in LR_OOP_THIRD_SEMESTER" />
         <item itemvalue="Application.AlinaApplication" />
         <item itemvalue="Application.MainApplication" />
-        <item itemvalue="JUnit.java in LR_OOP_THIRD_SEMESTER" />
         <item itemvalue="JUnit.TabulatedFunctionDaoSearchTest" />
         <item itemvalue="JUnit.TabulatedFunctionDTOTest" />
       </list>
@@ -348,7 +408,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763758436433</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="continue repare">
+      <option name="closed" value="true" />
+      <created>1763981748474</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1763981748474</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -384,7 +452,8 @@
     <MESSAGE value="star_lab_6_Y" />
     <MESSAGE value="4taskstart_lab_6_Y" />
     <MESSAGE value="feat: add spring boot generated from initializer" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add spring boot generated from initializer" />
+    <MESSAGE value="continue repare" />
+    <option name="LAST_COMMIT_MESSAGE" value="continue repare" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -397,7 +466,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1762878952709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$java_in_LR_OOP_THIRD_SEMESTER.ic" NAME="java in LR_OOP_THIRD_SEMESTER Coverage Results" MODIFIED="1764224135018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/LR_OOP_THIRD_SEMESTER$TabulatedFunctionDTOTest.ic" NAME="TabulatedFunctionDTOTest Coverage Results" MODIFIED="1762876725000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>dto.*</FILTER>
     </SUITE>

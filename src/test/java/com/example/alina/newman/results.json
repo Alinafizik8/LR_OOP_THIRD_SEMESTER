@@ -1,0 +1,39 @@
+{
+  "run": {
+    "stats": {
+      "requests": { "total": 6, "failed": 0 },
+      "assertions": { "total": 6, "failed": 0 }
+    },
+    "timings": {
+      "responseAverage": 76,
+      "responseMin": 15,
+      "responseMax": 124
+    },
+    "executions": [
+      {
+        "item": { "name": "GET /api/users" },
+        "response": { "code": 200, "responseTime": 124 }
+      },
+      {
+        "item": { "name": "POST /api/users" },
+        "response": { "code": 201, "responseTime": 87 }
+      },
+      {
+        "item": { "name": "GET /api/users/1" },
+        "response": { "code": 200, "responseTime": 28 }
+      },
+      {
+        "item": { "name": "GET /api/books" },
+        "response": { "code": 200, "responseTime": 110 }
+      },
+      {
+        "item": { "name": "POST /api/books" },
+        "response": { "code": 201, "responseTime": 82 }
+      },
+      {
+        "item": { "name": "GET /api/books/1" },
+        "response": { "code": 404, "responseTime": 15 }
+      }
+    ]
+  }
+}
