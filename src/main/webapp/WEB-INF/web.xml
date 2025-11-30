@@ -55,6 +55,26 @@
         <url-pattern>/api/v1/users/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>TabulatedServlet</servlet-name>
+        <servlet-class>servlets.TabulatedServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TabulatedServlet</servlet-name>
+        <url-pattern>/api/v1/functions</url-pattern>
+        <url-pattern>/api/v1/functions/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FunctionTypeServlet</servlet-name>
+        <servlet-class>servlets.FunctionTypeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FunctionTypeServlet</servlet-name>
+        <url-pattern>/api/v1/function-types</url-pattern>
+        <url-pattern>/api/v1/function-types/*</url-pattern>
+    </servlet-mapping>
+
 <!--    <servlet>-->
 <!--        <servlet-name>BookServlet</servlet-name>-->
 <!--        <servlet-class>servlets.BookServlet</servlet-class>-->
@@ -65,13 +85,13 @@
 <!--        <url-pattern>/api/v1/books/*</url-pattern>-->
 <!--    </servlet-mapping>-->
 
-    <servlet>
-        <servlet-name>AdminServlet</servlet-name>
-        <servlet-class>servlets.AdminServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminServlet</servlet-name>
-        <url-pattern>/api/v1/admin/*</url-pattern>
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>AdminServlet</servlet-name>-->
+<!--        <servlet-class>servlets.AdminServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>AdminServlet</servlet-name>-->
+<!--        <url-pattern>/api/v1/admin/*</url-pattern>-->
+<!--    </servlet-mapping>-->
 
 </web-app>
