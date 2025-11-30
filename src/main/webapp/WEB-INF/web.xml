@@ -47,7 +47,7 @@
 
     <servlet>
         <servlet-name>UserServlet</servlet-name>
-        <servlet-class>servlet.UserServlet</servlet-class>
+        <servlet-class>servlets.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
@@ -55,19 +55,19 @@
         <url-pattern>/api/v1/users/*</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>BookServlet</servlet-name>
-        <servlet-class>servlet.BookServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>BookServlet</servlet-name>
-        <url-pattern>/api/v1/books</url-pattern>
-        <url-pattern>/api/v1/books/*</url-pattern>
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>BookServlet</servlet-name>-->
+<!--        <servlet-class>servlets.BookServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>BookServlet</servlet-name>-->
+<!--        <url-pattern>/api/v1/books</url-pattern>-->
+<!--        <url-pattern>/api/v1/books/*</url-pattern>-->
+<!--    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>AdminServlet</servlet-name>
-        <servlet-class>servlet.AdminServlet</servlet-class>
+        <servlet-class>servlets.AdminServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
