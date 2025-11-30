@@ -56,11 +56,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>TabulatedServlet</servlet-name>
-        <servlet-class>servlets.TabulatedServlet</servlet-class>
+        <servlet-name>TabulatedFunctionServlet</servlet-name>
+        <servlet-class>servlets.TabulatedFunctionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>TabulatedServlet</servlet-name>
+        <servlet-name>TabulatedFunctionServlet</servlet-name>
         <url-pattern>/api/v1/functions</url-pattern>
         <url-pattern>/api/v1/functions/*</url-pattern>
     </servlet-mapping>
