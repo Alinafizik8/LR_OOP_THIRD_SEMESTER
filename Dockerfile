@@ -1,11 +1,11 @@
 FROM tomcat:10.1-jdk17
 
-RUN rm -rf C:/Users/Alina/Downloads/apache-tomcat-11.0.14-windows-x64/apache-tomcat-11.0.14/webapps/*
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY target/api.war C:/Users/Alina/Downloads/apache-tomcat-11.0.14-windows-x64/apache-tomcat-11.0.14/webapps/api.war
+COPY api.war /usr/local/tomcat/webapps/api.war
+
+COPY tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
 
 EXPOSE 8080
-
-COPY tomcat-users.xml C:/Users/Alina/Downloads/apache-tomcat-11.0.14-windows-x64/apache-tomcat-11.0.14/conf/tomcat-users.xml
 
 CMD ["catalina.sh", "run"]
