@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue repare this IS PROJEST SH + del2" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue repare this IS PROJEST SH + del3">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -440,7 +443,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764533517046</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="continue repare this IS PROJEST SH + del3">
+      <option name="closed" value="true" />
+      <created>1764533709002</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1764533709002</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -455,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dead inside 1.21" />
     <MESSAGE value="still alive" />
     <MESSAGE value="pognali" />
     <MESSAGE value="pognali narod" />
@@ -480,7 +490,8 @@
     <MESSAGE value="continue repare this IS PROJEST SH" />
     <MESSAGE value="continue repare this IS PROJEST SH + del1" />
     <MESSAGE value="continue repare this IS PROJEST SH + del2" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue repare this IS PROJEST SH + del2" />
+    <MESSAGE value="continue repare this IS PROJEST SH + del3" />
+    <option name="LAST_COMMIT_MESSAGE" value="continue repare this IS PROJEST SH + del3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
