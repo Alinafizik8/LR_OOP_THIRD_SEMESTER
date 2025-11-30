@@ -75,23 +75,4 @@
         <url-pattern>/api/v1/function-types/*</url-pattern>
     </servlet-mapping>
 
-<!--    <servlet>-->
-<!--        <servlet-name>BookServlet</servlet-name>-->
-<!--        <servlet-class>servlets.BookServlet</servlet-class>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>BookServlet</servlet-name>-->
-<!--        <url-pattern>/api/v1/books</url-pattern>-->
-<!--        <url-pattern>/api/v1/books/*</url-pattern>-->
-<!--    </servlet-mapping>-->
-
-<!--    <servlet>-->
-<!--        <servlet-name>AdminServlet</servlet-name>-->
-<!--        <servlet-class>servlets.AdminServlet</servlet-class>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>AdminServlet</servlet-name>-->
-<!--        <url-pattern>/api/v1/admin/*</url-pattern>-->
-<!--    </servlet-mapping>-->
-
 </web-app>
