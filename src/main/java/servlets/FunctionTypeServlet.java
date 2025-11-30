@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.sql.DataSource;
 
-@WebServlet("/api/v1/function-types/*")
+//@WebServlet("/api/v1/function-types/*")
 public class FunctionTypeServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(FunctionTypeServlet.class);
     private final FunctionTypeDao functionTypeDao = new FunctionTypeDaoImpl(getDataSource());

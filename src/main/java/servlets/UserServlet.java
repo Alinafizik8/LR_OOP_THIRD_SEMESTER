@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.sql.DataSource;
 
-@WebServlet("/api/v1/users/*")
+//@WebServlet("/api/v1/users/*")
 public class UserServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(UserServlet.class);
     private final UserDao userDao = new UserDaoImpl(getDataSource());
