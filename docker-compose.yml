@@ -5,9 +5,9 @@ services:
     image: postgres:15
     container_name: lr-oop-db
     environment:
-      POSTGRES_DB: lr_oop_db       # ← имя БД (можно своё)
-      POSTGRES_USER: postgres_user  # ← логин (можно свой)
-      POSTGRES_PASSWORD: postgres_pass  # ← пароль (можно свой)
+      POSTGRES_DB: lr_oop_db
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_pass
     ports:
       - "5432:5432"
     volumes:
@@ -28,4 +28,4 @@ services:
       DB_PASS: postgres_pass
 
 volumes:
-  pg
+  pg:
