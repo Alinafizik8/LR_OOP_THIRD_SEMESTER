@@ -1,8 +1,8 @@
 package functions.factory;
 
-import functions.ArrayTabulatedFunction;
-import functions.LinkedListTabulatedFunction;
-import functions.TabulatedFunction;
+import com.example.alina.functions.ArrayTabulatedFunction;
+import com.example.alina.functions.LinkedListTabulatedFunction;
+import com.example.alina.functions.TabulatedFunction;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

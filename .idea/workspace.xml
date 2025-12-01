@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue repare">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/alina/AlinaApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/alina/AlinaApplicationTests.java" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="before all...">
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -365,7 +363,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763981748474</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="before all...">
+      <option name="closed" value="true" />
+      <created>1764578629288</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1764578629288</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -402,7 +408,8 @@
     <MESSAGE value="4taskstart_lab_6_Y" />
     <MESSAGE value="feat: add spring boot generated from initializer" />
     <MESSAGE value="continue repare" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue repare" />
+    <MESSAGE value="before all..." />
+    <option name="LAST_COMMIT_MESSAGE" value="before all..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

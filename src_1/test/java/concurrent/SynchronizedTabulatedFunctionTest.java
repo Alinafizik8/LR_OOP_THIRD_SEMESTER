@@ -1,6 +1,6 @@
 package concurrent;
 
-import functions.*;
+import com.example.alina.functions.*;
 import org.junit.jupiter.api.Test;
 import java.util.Iterator;
 import java.util.NoSuchElementException;

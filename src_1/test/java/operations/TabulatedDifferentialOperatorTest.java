@@ -1,8 +1,8 @@
 package operations;
 
 import concurrent.SynchronizedTabulatedFunction;
-import functions.*;
-import functions.factory.*;
+import com.example.alina.functions.*;
+import com.example.alina.functions.factory.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

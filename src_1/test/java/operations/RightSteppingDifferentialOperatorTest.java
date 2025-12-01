@@ -1,6 +1,6 @@
 package operations;
 
-import functions.MathFunction;
+import com.example.alina.functions.MathFunction;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

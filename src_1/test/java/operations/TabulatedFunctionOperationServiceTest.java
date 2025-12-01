@@ -1,8 +1,8 @@
 package operations;
 
-import exceptions.InconsistentFunctionsException;
-import functions.*;
-import functions.factory.*;
+import com.example.alina.exceptions.InconsistentFunctionsException;
+import com.example.alina.functions.*;
+import com.example.alina.functions.factory.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

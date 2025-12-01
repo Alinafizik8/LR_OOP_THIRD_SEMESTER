@@ -1,5 +1,5 @@
 package operations;
-import functions.*;
+import com.example.alina.functions.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

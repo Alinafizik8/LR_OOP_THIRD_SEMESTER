@@ -1,6 +1,6 @@
 package functions;
 
-import exceptions.*;
+import com.example.alina.exceptions.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
