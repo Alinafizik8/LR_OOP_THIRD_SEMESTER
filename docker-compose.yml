@@ -13,10 +13,11 @@ services:
     volumes:
       - pg:/var/lib/postgresql/data
       - ./src/main/resources/scripts/create_table.sql:/docker-entrypoint-initdb.d/create_table.sql
-
-  app:
-    build: .
-    container_name: lr-oop-app
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: lr-oop-backend
     ports:
       - "8080:8080"
     depends_on:
@@ -27,6 +28,29 @@ services:
       DB_NAME: lr_oop_db
       DB_USER: postgres_user
       DB_PASS: postgres_pass
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: lr-oop-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+#  app:
+#    build: .
+#    container_name: lr-oop-app
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - db
+#    environment:
+#      DB_HOST: db
+#      DB_PORT: 5432
+#      DB_NAME: lr_oop_db
+#      DB_USER: postgres_user
+#      DB_PASS: postgres_pass
 
 volumes:
   pg:
