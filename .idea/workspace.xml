@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="frotn_inprocces3_7lab">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="frotn_inprocces4_7lab" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -544,7 +542,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764596769777</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="frotn_inprocces4_7lab">
+      <option name="closed" value="true" />
+      <created>1764598819957</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1764598819957</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -559,7 +565,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="4taskstart_lab_6_Y" />
     <MESSAGE value="betweenpastandpresent_lab_6_Y" />
     <MESSAGE value="chinim_lab_6_Y" />
     <MESSAGE value="chinim0_lab_6_Y" />
@@ -584,7 +589,8 @@
     <MESSAGE value="frotn_inprocces1_7lab" />
     <MESSAGE value="frotn_inprocces2_7lab" />
     <MESSAGE value="frotn_inprocces3_7lab" />
-    <option name="LAST_COMMIT_MESSAGE" value="frotn_inprocces3_7lab" />
+    <MESSAGE value="frotn_inprocces4_7lab" />
+    <option name="LAST_COMMIT_MESSAGE" value="frotn_inprocces4_7lab" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
