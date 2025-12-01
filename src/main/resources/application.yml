@@ -3,22 +3,41 @@ spring:
     name: lr-oop-spring
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/lr_oop_db
+    url: jdbc:postgresql://postgres:5432/lr_oop_db
     username: lr_user
     password: lr_pass
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: validate  # или create-drop для тестов
+      ddl-auto: validate
     show-sql: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
 
+  security:
+    user:
+      name: admin
+      password: lr_secure_password321
+      roles: ADMIN, USER
+
   jackson:
     default-property-inclusion: non_null
+
+# Actuator — включаем эндпоинты
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env,beans,metrics
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    info:
+      enabled: true
 
 logging:
   level:
@@ -28,6 +47,38 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
   pattern:
     console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+
+#spring:
+#  application:
+#    name: lr-oop-spring
+#
+#  datasource:
+#    url: jdbc:postgresql://localhost:5433/lr_oop_db
+#    username: lr_user
+#    password: lr_pass
+#    driver-class-name: org.postgresql.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: validate  # или create-drop для тестов
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        format_sql: true
+#
+#  jackson:
+#    default-property-inclusion: non_null
+#
+#logging:
+#  level:
+#    com.example.lr: DEBUG
+#    org.springframework.jdbc: DEBUG
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#  pattern:
+#    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
 
 
 #spring:
