@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Операции — ЛР7</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
@@ -16,66 +17,63 @@
 
 <div class="container py-3">
     <div class="row g-3 mb-4">
-        <!-- Операнд A -->
         <div class="col-md-6">
             <div class="card bg-secondary h-100">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span>Функция A</span>
-                    <div>
-                        <button class="btn btn-sm btn-outline-primary" onclick="openCreate('A')">+ Создать</button>
-                        <button class="btn btn-sm btn-outline-success ms-1" onclick="loadFunction('A')">⏎ Загрузить</button>
-                    </div>
+                    <button class="btn btn-sm btn-outline-primary" onclick="openCreate('A')">+ Создать</button>
                 </div>
                 <div class="card-body">
-                    <select id="funcA" class="form-select bg-dark text-light mb-2" onchange="useSelected('A')">
-                        <option value="">Выберите из списка...</option>
+                    <select id="funcA" class="form-select bg-dark text-light mb-2" onchange="loadFunc('A')">
+                        <option value="">Выберите...</option>
                     </select>
-                    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                    <div class="table-responsive" style="max-height: 250px; overflow-y: auto;">
                         <table class="table table-dark point-table" id="tableA">
                             <thead><tr><th>x</th><th>y</th></tr></thead>
                             <tbody></tbody>
                         </table>
                     </div>
                     <div id="insertA" class="mt-2 d-none">
-                        <button class="btn btn-sm btn-warning" onclick="insertPoint('A')">➕ Вставить точку</button>
+                        <button class="btn btn-sm btn-warning" onclick="insertPoint('A')">➕ Вставить</button>
+                    </div>
+                    <div id="removeA" class="mt-1 d-none">
+                        <button class="btn btn-sm btn-danger" onclick="removePoint('A')">🗑️ Удалить</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Операнд B -->
         <div class="col-md-6">
             <div class="card bg-secondary h-100">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span>Функция B</span>
-                    <div>
-                        <button class="btn btn-sm btn-outline-primary" onclick="openCreate('B')">+ Создать</button>
-                        <button class="btn btn-sm btn-outline-success ms-1" onclick="loadFunction('B')">⏎ Загрузить</button>
-                    </div>
+                    <button class="btn btn-sm btn-outline-primary" onclick="openCreate('B')">+ Создать</button>
                 </div>
                 <div class="card-body">
-                    <select id="funcB" class="form-select bg-dark text-light mb-2" onchange="useSelected('B')">
-                        <option value="">Выберите из списка...</option>
+                    <select id="funcB" class="form-select bg-dark text-light mb-2" onchange="loadFunc('B')">
+                        <option value="">Выберите...</option>
                     </select>
-                    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                    <div class="table-responsive" style="max-height: 250px; overflow-y: auto;">
                         <table class="table table-dark point-table" id="tableB">
                             <thead><tr><th>x</th><th>y</th></tr></thead>
                             <tbody></tbody>
                         </table>
                     </div>
                     <div id="insertB" class="mt-2 d-none">
-                        <button class="btn btn-sm btn-warning" onclick="insertPoint('B')">➕ Вставить точку</button>
+                        <button class="btn btn-sm btn-warning" onclick="insertPoint('B')">➕ Вставить</button>
+                    </div>
+                    <div id="removeB" class="mt-1 d-none">
+                        <button class="btn btn-sm btn-danger" onclick="removePoint('B')">🗑️ Удалить</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Результат -->
-    <div class="card bg-secondary mb-3">
+    <div class="card bg-secondary">
         <div class="card-header">
             <span>Результат</span>
-            <button class="btn btn-sm btn-success float-end" onclick="saveResult()">💾 Сохранить</button>
+            <button class="btn btn-sm btn-success float-end" onclick="saveResult()" id="saveResultBtn" disabled>💾 Сохранить</button>
         </div>
         <div class="card-body">
             <div class="btn-group mb-3" role="group">
@@ -84,7 +82,7 @@
                 <button class="btn btn-outline-primary" onclick="applyOp('MULTIPLY')">✖️ Умножить</button>
                 <button class="btn btn-outline-primary" onclick="applyOp('DIVIDE')">➗ Разделить</button>
             </div>
-            <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+            <div class="table-responsive" style="max-height: 250px; overflow-y: auto;">
                 <table class="table table-dark point-table" id="tableResult">
                     <thead><tr><th>x</th><th>y</th></tr></thead>
                     <tbody></tbody>
@@ -100,8 +98,6 @@
 <script src="assets/js/utils.js"></script>
 <script src="assets/js/api.js"></script>
 <script>
-    if (!localStorage.getItem('token')) window.location.href = 'index.html';
-
     let funcA = null, funcB = null, result = null;
 
     async function loadFunctions() {
@@ -109,7 +105,7 @@
         const funcs = await api.getFunctions();
         ['funcA', 'funcB'].forEach(id => {
           const sel = document.getElementById(id);
-          sel.innerHTML = '<option value="">Выберите из списка...</option>';
+          sel.innerHTML = '<option value="">Выберите...</option>';
           funcs.forEach(f => {
             const opt = document.createElement('option');
             opt.value = f.id;
@@ -120,6 +116,20 @@
       } catch (err) { showError(err); }
     }
 
+    async function loadFunc(side) {
+      const id = document.getElementById(`func${side}`).value;
+      if (!id) return;
+      try {
+        const res = await fetch(`/api/v1/functions/${id}`);
+        if (!res.ok) throw { response: { status: res.status, data: await res.json() } };
+        const fn = await res.json();
+        if (side === 'A') funcA = fn;
+        else funcB = fn;
+        updateTable(`table${side}`, fn.points);
+        checkInterfaces(fn, side);
+      } catch (err) { showError(err); }
+    }
+
     function updateTable(tableId, points) {
       const tbody = document.querySelector(`#${tableId} tbody`);
       tbody.innerHTML = '';
@@ -127,7 +137,8 @@
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${p.x.toFixed(4)}</td>
-          <td contenteditable="true" oninput="updateY('${tableId}', ${p.x}, this.innerText)">${p.y.toFixed(4)}</td>
+          <td contenteditable="${tableId !== 'tableResult'}"
+              oninput="updateY('${tableId}', ${p.x}, this.innerText)">${p.y.toFixed(4)}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -136,43 +147,261 @@
     function updateY(tableId, x, yStr) {
       const y = parseFloat(yStr);
       if (isNaN(y)) return;
-      if (tableId === 'tableA') {
+      if (tableId === 'tableA' && funcA) {
         const point = funcA.points.find(p => p.x === x);
         if (point) point.y = y;
-      } else if (tableId === 'tableB') {
+      } else if (tableId === 'tableB' && funcB) {
         const point = funcB.points.find(p => p.x === x);
         if (point) point.y = y;
       }
     }
 
-    function useSelected(side) {
-      const id = document.getElementById(`func${side}`).value;
-      if (!id) return;
-      api.client.get(`/v1/functions/${id}`)
-        .then(r => r.json())
-        .then(fn => {
-          if (side === 'A') { funcA = fn; updateTable('tableA', fn.points); }
-          else { funcB = fn; updateTable('tableB', fn.points); }
-        })
-        .catch(showError);
+    function checkInterfaces(fn, side) {
+      // Эмуляция: если имя содержит "List" — поддерживает Insertable/Removable
+      const isInsertable = fn.name?.toLowerCase().includes('list');
+      const isRemovable  = fn.name?.toLowerCase().includes('list');
+
+      document.getElementById(`insert${side}`).classList.toggle('d-none', !isInsertable);
+      document.getElementById(`remove${side}`).classList.toggle('d-none', !isRemovable);
     }
 
     async function applyOp(op) {
       if (!funcA || !funcB) return showError({ response: { status: 400,  { message: 'Выберите обе функции' } } });
       try {
-        result = await api.applyOperation(op, funcA.id, funcB.id);
+        const res = await fetch('/api/v1/operations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ op, leftId: funcA.id, rightId: funcB.id })
+        });
+        if (!res.ok) throw { response: { status: res.status, data: await res.json() } };
+        result = await res.json();
         updateTable('tableResult', result.points);
+        document.getElementById('saveResultBtn').disabled = false;
         showSuccess(`✅ Операция ${op} выполнена`);
+      } catch (err) { showError(err); }
+    }
+
+    function insertPoint(side) {
+      const fn = side === 'A' ? funcA : funcB;
+      if (!fn) return;
+      const points = fn.points;
+      if (points.length < 2) return showError({ response: { status: 400,  { message: 'Нужно ≥2 точки' } } });
+      const mid = Math.floor(points.length / 2);
+      const x = (points[mid-1].x + points[mid].x) / 2;
+      const y = (points[mid-1].y + points[mid].y) / 2;
+      points.splice(mid, 0, { x, y });
+      updateTable(`table${side}`, points);
+      showSuccess(`➕ Точка вставлена`);
+    }
+
+    function removePoint(side) {
+      const fn = side === 'A' ? funcA : funcB;
+      if (!fn) return;
+      const points = fn.points;
+      if (points.length <= 2) return showError({ response: { status: 400,  { message: 'Минимум 2 точки' } } });
+      points.pop();
+      updateTable(`table${side}`, points);
+      showSuccess('🗑️ Последняя точка удалена');
+    }
+
+    async function saveResult() {
+      if (!result) return;
+      try {
+        const res = await fetch('/api/v1/functions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: `Результат (${op})`, points: result.points, type: 'TABULATED' })
+        });
+        if (!res.ok) throw { response: { status: res.status, data: await res.json() } };
+        showSuccess('✅ Результат сохранён');
+        setTimeout(() => location.reload(), 1500);
       } catch (err) { showError(err); }
     }
 
     function openCreate(side) {
       localStorage.setItem('opSide', side);
-      window.location.href = 'create.html?op=1';
+      location.href = 'create.html?from=ops';
     }
 
-    // Инициализация
     document.addEventListener('DOMContentLoaded', loadFunctions);
 </script>
 </body>
 </html>
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8" />-->
+<!--    <title>Операции — ЛР7</title>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link href="assets/css/style.css" rel="stylesheet">-->
+<!--</head>-->
+<!--<body class="bg-dark text-light">-->
+<!--<nav class="navbar navbar-dark bg-primary">-->
+<!--    <div class="container">-->
+<!--        <a href="main.html" class="navbar-brand">← Назад</a>-->
+<!--        <span>🧮 Операции</span>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--<div class="container py-3">-->
+<!--    <div class="row g-3 mb-4">-->
+<!--        &lt;!&ndash; Операнд A &ndash;&gt;-->
+<!--        <div class="col-md-6">-->
+<!--            <div class="card bg-secondary h-100">-->
+<!--                <div class="card-header d-flex justify-content-between align-items-center">-->
+<!--                    <span>Функция A</span>-->
+<!--                    <div>-->
+<!--                        <button class="btn btn-sm btn-outline-primary" onclick="openCreate('A')">+ Создать</button>-->
+<!--                        <button class="btn btn-sm btn-outline-success ms-1" onclick="loadFunction('A')">⏎ Загрузить</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <select id="funcA" class="form-select bg-dark text-light mb-2" onchange="useSelected('A')">-->
+<!--                        <option value="">Выберите из списка...</option>-->
+<!--                    </select>-->
+<!--                    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">-->
+<!--                        <table class="table table-dark point-table" id="tableA">-->
+<!--                            <thead><tr><th>x</th><th>y</th></tr></thead>-->
+<!--                            <tbody></tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                    <div id="insertA" class="mt-2 d-none">-->
+<!--                        <button class="btn btn-sm btn-warning" onclick="insertPoint('A')">➕ Вставить точку</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Операнд B &ndash;&gt;-->
+<!--        <div class="col-md-6">-->
+<!--            <div class="card bg-secondary h-100">-->
+<!--                <div class="card-header d-flex justify-content-between align-items-center">-->
+<!--                    <span>Функция B</span>-->
+<!--                    <div>-->
+<!--                        <button class="btn btn-sm btn-outline-primary" onclick="openCreate('B')">+ Создать</button>-->
+<!--                        <button class="btn btn-sm btn-outline-success ms-1" onclick="loadFunction('B')">⏎ Загрузить</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <select id="funcB" class="form-select bg-dark text-light mb-2" onchange="useSelected('B')">-->
+<!--                        <option value="">Выберите из списка...</option>-->
+<!--                    </select>-->
+<!--                    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">-->
+<!--                        <table class="table table-dark point-table" id="tableB">-->
+<!--                            <thead><tr><th>x</th><th>y</th></tr></thead>-->
+<!--                            <tbody></tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                    <div id="insertB" class="mt-2 d-none">-->
+<!--                        <button class="btn btn-sm btn-warning" onclick="insertPoint('B')">➕ Вставить точку</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Результат &ndash;&gt;-->
+<!--    <div class="card bg-secondary mb-3">-->
+<!--        <div class="card-header">-->
+<!--            <span>Результат</span>-->
+<!--            <button class="btn btn-sm btn-success float-end" onclick="saveResult()">💾 Сохранить</button>-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--            <div class="btn-group mb-3" role="group">-->
+<!--                <button class="btn btn-outline-primary" onclick="applyOp('ADD')">➕ Сложить</button>-->
+<!--                <button class="btn btn-outline-primary" onclick="applyOp('SUBTRACT')">➖ Вычесть</button>-->
+<!--                <button class="btn btn-outline-primary" onclick="applyOp('MULTIPLY')">✖️ Умножить</button>-->
+<!--                <button class="btn btn-outline-primary" onclick="applyOp('DIVIDE')">➗ Разделить</button>-->
+<!--            </div>-->
+<!--            <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">-->
+<!--                <table class="table table-dark point-table" id="tableResult">-->
+<!--                    <thead><tr><th>x</th><th>y</th></tr></thead>-->
+<!--                    <tbody></tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>-->
+
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--<script src="assets/js/utils.js"></script>-->
+<!--<script src="assets/js/api.js"></script>-->
+<!--<script>-->
+<!--    if (!localStorage.getItem('token')) window.location.href = 'index.html';-->
+
+<!--    let funcA = null, funcB = null, result = null;-->
+
+<!--    async function loadFunctions() {-->
+<!--      try {-->
+<!--        const funcs = await api.getFunctions();-->
+<!--        ['funcA', 'funcB'].forEach(id => {-->
+<!--          const sel = document.getElementById(id);-->
+<!--          sel.innerHTML = '<option value="">Выберите из списка...</option>';-->
+<!--          funcs.forEach(f => {-->
+<!--            const opt = document.createElement('option');-->
+<!--            opt.value = f.id;-->
+<!--            opt.textContent = f.name;-->
+<!--            sel.appendChild(opt);-->
+<!--          });-->
+<!--        });-->
+<!--      } catch (err) { showError(err); }-->
+<!--    }-->
+
+<!--    function updateTable(tableId, points) {-->
+<!--      const tbody = document.querySelector(`#${tableId} tbody`);-->
+<!--      tbody.innerHTML = '';-->
+<!--      points.forEach(p => {-->
+<!--        const tr = document.createElement('tr');-->
+<!--        tr.innerHTML = `-->
+<!--          <td>${p.x.toFixed(4)}</td>-->
+<!--          <td contenteditable="true" oninput="updateY('${tableId}', ${p.x}, this.innerText)">${p.y.toFixed(4)}</td>-->
+<!--        `;-->
+<!--        tbody.appendChild(tr);-->
+<!--      });-->
+<!--    }-->
+
+<!--    function updateY(tableId, x, yStr) {-->
+<!--      const y = parseFloat(yStr);-->
+<!--      if (isNaN(y)) return;-->
+<!--      if (tableId === 'tableA') {-->
+<!--        const point = funcA.points.find(p => p.x === x);-->
+<!--        if (point) point.y = y;-->
+<!--      } else if (tableId === 'tableB') {-->
+<!--        const point = funcB.points.find(p => p.x === x);-->
+<!--        if (point) point.y = y;-->
+<!--      }-->
+<!--    }-->
+
+<!--    function useSelected(side) {-->
+<!--      const id = document.getElementById(`func${side}`).value;-->
+<!--      if (!id) return;-->
+<!--      api.client.get(`/v1/functions/${id}`)-->
+<!--        .then(r => r.json())-->
+<!--        .then(fn => {-->
+<!--          if (side === 'A') { funcA = fn; updateTable('tableA', fn.points); }-->
+<!--          else { funcB = fn; updateTable('tableB', fn.points); }-->
+<!--        })-->
+<!--        .catch(showError);-->
+<!--    }-->
+
+<!--    async function applyOp(op) {-->
+<!--      if (!funcA || !funcB) return showError({ response: { status: 400,  { message: 'Выберите обе функции' } } });-->
+<!--      try {-->
+<!--        result = await api.applyOperation(op, funcA.id, funcB.id);-->
+<!--        updateTable('tableResult', result.points);-->
+<!--        showSuccess(`✅ Операция ${op} выполнена`);-->
+<!--      } catch (err) { showError(err); }-->
+<!--    }-->
+
+<!--    function openCreate(side) {-->
+<!--      localStorage.setItem('opSide', side);-->
+<!--      window.location.href = 'create.html?op=1';-->
+<!--    }-->
+
+<!--    // Инициализация-->
+<!--    document.addEventListener('DOMContentLoaded', loadFunctions);-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

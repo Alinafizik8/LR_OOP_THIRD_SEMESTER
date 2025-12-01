@@ -50,4 +50,25 @@ function showError(err) {
     msg = err.message || 'Неизвестная ошибка';
   }
   showNotification(msg, 'error');
+
+}
+
+function showError(err) {
+    let msg = 'Произошла ошибка';
+    if (err.response) {
+      const { status, data } = err.response;
+      if (status === 401) {
+        msg = 'Сессия истекла или неверный пароль. Обновите страницу.';
+        setTimeout(() => location.reload(), 3000);
+      } else {
+        // ... остальные статусы
+      }
+    }
+    showNotification(msg, 'error');
+    window.addEventListener('unhandledrejection', (event) => {
+        if (event.reason?.response?.status === 401) {
+          alert('Авторизация необходима. Введите логин/пароль.');
+          location.reload();
+        }
+    });
 }
