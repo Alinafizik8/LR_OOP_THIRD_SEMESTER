@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="doccombecbett1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/App.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/main.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/vite-env.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/vite.config.ts" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="frotn_start_7lab">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/pages/MainPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/pages/SettingsPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/pages/auth/LoginPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/pages/auth/RegisterPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/utils/handleApiError.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,6 +100,7 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\main\java\ui\src\pages\auth" />
       <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\main\java\ui\src" />
       <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER" />
     </key>
@@ -517,7 +516,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764574786311</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="frotn_start_7lab">
+      <option name="closed" value="true" />
+      <created>1764592856788</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1764592856788</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -532,7 +539,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fin" />
     <MESSAGE value="start_lab_6_Y" />
     <MESSAGE value="3task_lab_6_Y_" />
     <MESSAGE value="star_lab_6_Y" />
@@ -557,7 +563,8 @@
     <MESSAGE value="continue repare this IS PROJEST SH + del8(change context house)" />
     <MESSAGE value="doccombecbett" />
     <MESSAGE value="doccombecbett1" />
-    <option name="LAST_COMMIT_MESSAGE" value="doccombecbett1" />
+    <MESSAGE value="frotn_start_7lab" />
+    <option name="LAST_COMMIT_MESSAGE" value="frotn_start_7lab" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
