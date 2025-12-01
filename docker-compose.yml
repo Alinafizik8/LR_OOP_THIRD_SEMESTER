@@ -16,7 +16,7 @@ services:
 
   backend:
     build:
-      context: ./java/functions
+      context: .src/main/java/functions
       dockerfile: Dockerfile
     container_name: lr-oop-backend
     ports:
@@ -32,7 +32,7 @@ services:
 
   frontend:
     build:
-      context: ./java/ui
+      context: .src/main/java/ui
       dockerfile: Dockerfile
     container_name: lr-oop-frontend
     ports:
