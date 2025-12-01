@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="front_new1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/asset/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/asset/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/asset/js/chart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/asset/js/chart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/composite.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/composite.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/differentiate.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/differentiate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/graph.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/integral.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/integral.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/operations.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/operations.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/settings.html" afterDir="false" />
-    </list>
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="front_new_^2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -581,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764602157578</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="front_new_^2">
+      <option name="closed" value="true" />
+      <created>1764606482777</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1764606482777</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -596,7 +590,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="chinim0_lab_6_Y" />
     <MESSAGE value="chinim1_lab_6_Y" />
     <MESSAGE value="chinim2_lab_6_Y" />
     <MESSAGE value="chinim4_lab_6_Y" />
@@ -621,7 +614,8 @@
     <MESSAGE value="frotn_inprocces4_7lab" />
     <MESSAGE value="front_new" />
     <MESSAGE value="front_new1" />
-    <option name="LAST_COMMIT_MESSAGE" value="front_new1" />
+    <MESSAGE value="front_new_^2" />
+    <option name="LAST_COMMIT_MESSAGE" value="front_new_^2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
