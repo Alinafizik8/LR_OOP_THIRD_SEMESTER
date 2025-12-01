@@ -4,7 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="frotn_inprocces4_7lab" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="frotn_inprocces4_7lab">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/asset/js/chart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/asset/js/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/composite.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/differentiate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/graph.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/integral.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/operations.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/settings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/asset/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/api/auth.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/api/client.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/api/functions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/components/FunctionChart.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/components/FunctionTable.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/main.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/pages/CreateFunctionPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/pages/MainPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/pages/SettingsPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/pages/auth/LoginPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/pages/auth/RegisterPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/types/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/utils/handleApiError.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/src/vite-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/asset/js/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/vite.config.ts" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +51,7 @@
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="package-info" />
       </list>
     </option>
   </component>
