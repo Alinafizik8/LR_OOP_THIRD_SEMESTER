@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue repare this IS PROJEST SH + del5" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue repare this IS PROJEST SH + del6">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -464,7 +467,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764535850230</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="continue repare this IS PROJEST SH + del6">
+      <option name="closed" value="true" />
+      <created>1764535946693</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1764535946693</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,7 +490,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pognali narod" />
     <MESSAGE value="pognali narod vpered" />
     <MESSAGE value="almost final" />
     <MESSAGE value="almost final228" />
@@ -504,7 +514,8 @@
     <MESSAGE value="continue repare this IS PROJEST SH + del3" />
     <MESSAGE value="continue repare this IS PROJEST SH + del4" />
     <MESSAGE value="continue repare this IS PROJEST SH + del5" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue repare this IS PROJEST SH + del5" />
+    <MESSAGE value="continue repare this IS PROJEST SH + del6" />
+    <option name="LAST_COMMIT_MESSAGE" value="continue repare this IS PROJEST SH + del6" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
