@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="DONE1_continuewithdocc1">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="donerep" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -405,7 +400,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764580443014</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="donerep">
+      <option name="closed" value="true" />
+      <created>1764585296153</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1764585296153</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -420,7 +423,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="continue Y 4.0 lab" />
     <MESSAGE value="(" />
     <MESSAGE value="dead inside" />
     <MESSAGE value="dead inside 1.0" />
@@ -445,7 +447,8 @@
     <MESSAGE value="attention1" />
     <MESSAGE value="DONE1_continuewithdocc" />
     <MESSAGE value="DONE1_continuewithdocc1" />
-    <option name="LAST_COMMIT_MESSAGE" value="DONE1_continuewithdocc1" />
+    <MESSAGE value="donerep" />
+    <option name="LAST_COMMIT_MESSAGE" value="donerep" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
