@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="frotn_start_7lab">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/pages/MainPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/pages/SettingsPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/pages/auth/LoginPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/pages/auth/RegisterPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/utils/handleApiError.ts" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="frotn_inprocces2_7lab">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -524,7 +520,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764592856788</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="frotn_inprocces1_7lab">
+      <option name="closed" value="true" />
+      <created>1764593228661</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1764593228661</updated>
+    </task>
+    <task id="LOCAL-00043" summary="frotn_inprocces2_7lab">
+      <option name="closed" value="true" />
+      <created>1764593499200</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1764593499200</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -539,8 +551,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="start_lab_6_Y" />
-    <MESSAGE value="3task_lab_6_Y_" />
     <MESSAGE value="star_lab_6_Y" />
     <MESSAGE value="4taskstart_lab_6_Y" />
     <MESSAGE value="betweenpastandpresent_lab_6_Y" />
@@ -564,7 +574,9 @@
     <MESSAGE value="doccombecbett" />
     <MESSAGE value="doccombecbett1" />
     <MESSAGE value="frotn_start_7lab" />
-    <option name="LAST_COMMIT_MESSAGE" value="frotn_start_7lab" />
+    <MESSAGE value="frotn_inprocces1_7lab" />
+    <MESSAGE value="frotn_inprocces2_7lab" />
+    <option name="LAST_COMMIT_MESSAGE" value="frotn_inprocces2_7lab" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
