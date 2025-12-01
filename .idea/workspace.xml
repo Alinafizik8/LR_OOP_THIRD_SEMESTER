@@ -4,41 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="attention1">
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/main/java/MainApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/main/resources/logback.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/concurrent/SynchronizedTabulatedFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/exceptions/ArrayIsNotSortedExceptionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/exceptions/DifferentLengthOfArraysExceptionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/exceptions/InconsistentFunctionsExceptionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/exceptions/InterpolationExceptionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/AbstractTabulatedFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/ArrayTabulatedFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/BSplineTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/CombinedTabulatedFunctionsTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/CompositeFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/ConstantFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/IdentityFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/LinkedListTabulatedFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/MathFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/RungeKuttaFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/SqrFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/UnitFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/ZeroFunctionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/functions/factory/TabulatedFunctionFactoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/newman/api-tests.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/newman/results.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/operations/LeftSteppingDifferentialOperatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/operations/RightSteppingDifferentialOperatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/operations/TabulatedDifferentialOperatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/operations/TabulatedFunctionOperationServiceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/repository/FunctionTypeRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/repository/TabulatedFunctionRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_1/test/java/repository/UserRepositoryTest.java" beforeDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="DONE1_continuewithdocc">
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -419,7 +386,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764579648395</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="DONE1_continuewithdocc">
+      <option name="closed" value="true" />
+      <created>1764579967956</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1764579967956</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -434,7 +409,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="start Y 4.0 lab" />
     <MESSAGE value="continue start Y 4.0 lab" />
     <MESSAGE value="continue Y 4.0 lab" />
     <MESSAGE value="(" />
@@ -459,7 +433,8 @@
     <MESSAGE value="before all..." />
     <MESSAGE value="attention" />
     <MESSAGE value="attention1" />
-    <option name="LAST_COMMIT_MESSAGE" value="attention1" />
+    <MESSAGE value="DONE1_continuewithdocc" />
+    <option name="LAST_COMMIT_MESSAGE" value="DONE1_continuewithdocc" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

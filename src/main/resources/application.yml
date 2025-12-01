@@ -3,7 +3,7 @@ spring:
     name: lr-oop-spring
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/lr_oop_db
+    url: jdbc:postgresql://localhost:5433/lr_oop_db
     username: lr_user
     password: lr_pass
     driver-class-name: org.postgresql.Driver
