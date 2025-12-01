@@ -71,7 +71,6 @@ services:
     ports:
       - "3000:80"
     volumes:
-      # Монтируем ТОЛЬКО ui-папку (статику)
       - ./src/main/java/ui:/usr/share/nginx/html
     depends_on:
       - backend

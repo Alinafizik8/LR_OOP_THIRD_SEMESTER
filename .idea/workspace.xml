@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="cinuauth">
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="afterchecpoint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/asset/js/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/asset/js/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/asset/js/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/asset/js/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ui/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,14 +194,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760302845957</updated>
-    </task>
-    <task id="LOCAL-00002" summary="continue start Y 4.0 lab">
-      <option name="closed" value="true" />
-      <created>1760865616967</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1760865616967</updated>
     </task>
     <task id="LOCAL-00003" summary="continue Y 4.0 lab">
       <option name="closed" value="true" />
@@ -590,7 +579,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764615835956</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="afterchecpoint">
+      <option name="closed" value="true" />
+      <created>1764616438105</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1764616438105</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -605,7 +602,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="chinim4_lab_6_Y" />
     <MESSAGE value="continue repare this IS" />
     <MESSAGE value="continue repare this IS PROJEST" />
     <MESSAGE value="continue repare this IS PROJEST S" />
@@ -630,7 +626,8 @@
     <MESSAGE value="front_new_^2" />
     <MESSAGE value="auth" />
     <MESSAGE value="cinuauth" />
-    <option name="LAST_COMMIT_MESSAGE" value="cinuauth" />
+    <MESSAGE value="afterchecpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="afterchecpoint" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
