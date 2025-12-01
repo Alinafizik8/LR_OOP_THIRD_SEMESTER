@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="donerep" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="donerepexctl" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -408,7 +408,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764585296153</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="donerepexctl">
+      <option name="closed" value="true" />
+      <created>1764585810699</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1764585810699</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -423,7 +431,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="(" />
     <MESSAGE value="dead inside" />
     <MESSAGE value="dead inside 1.0" />
     <MESSAGE value="dead inside 1.2" />
@@ -448,7 +455,8 @@
     <MESSAGE value="DONE1_continuewithdocc" />
     <MESSAGE value="DONE1_continuewithdocc1" />
     <MESSAGE value="donerep" />
-    <option name="LAST_COMMIT_MESSAGE" value="donerep" />
+    <MESSAGE value="donerepexctl" />
+    <option name="LAST_COMMIT_MESSAGE" value="donerepexctl" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
