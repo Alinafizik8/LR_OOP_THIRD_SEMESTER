@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue repare this IS PROJEST SH + del8(change context house)">
-      <change beforePath="$PROJECT_DIR$/context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="doccombecbett">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -494,7 +493,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764573807276</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="doccombecbett">
+      <option name="closed" value="true" />
+      <created>1764574276074</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1764574276074</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -509,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="almost final228" />
     <MESSAGE value="LE SHANS FINAl" />
     <MESSAGE value="fin" />
     <MESSAGE value="start_lab_6_Y" />
@@ -534,7 +540,8 @@
     <MESSAGE value="continue repare this IS PROJEST SH + del6" />
     <MESSAGE value="continue repare this IS PROJEST SH + del7" />
     <MESSAGE value="continue repare this IS PROJEST SH + del8(change context house)" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue repare this IS PROJEST SH + del8(change context house)" />
+    <MESSAGE value="doccombecbett" />
+    <option name="LAST_COMMIT_MESSAGE" value="doccombecbett" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
