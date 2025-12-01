@@ -1,8 +1,4 @@
-CREATE TABLE IF NOT EXISTS users (...);
-CREATE TABLE IF NOT EXISTS function_types (...);
-CREATE TABLE IF NOT EXISTS tabulated_functions (...);
-
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id BIGSERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     username VARCHAR(100) UNIQUE NOT NULL,
@@ -12,7 +8,7 @@ CREATE TABLE users (
     updated_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE function_types (
+CREATE TABLE IF NOT EXISTS function_types (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL,
     localized_name VARCHAR(255) NOT NULL,
@@ -21,7 +17,7 @@ CREATE TABLE function_types (
     updated_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE tabulated_functions (
+CREATE TABLE IF NOT EXISTS tabulated_functions (
     id BIGSERIAL PRIMARY KEY,
     owner_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     function_type_id BIGINT NOT NULL REFERENCES function_types(id) ON DELETE CASCADE,
