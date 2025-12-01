@@ -1,4 +1,4 @@
-package com.example.alina.controller.api;
+package com.example.alina.controller;
 
 import com.example.alina.dto.function.FunctionTypeDto;
 import org.springframework.http.HttpStatus;

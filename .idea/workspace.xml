@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="donerepexctl" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="donerepexctl000" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,6 +101,9 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\main\java\com\example\alina" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.alina" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="concurrent" />
@@ -416,7 +419,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764585810699</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="donerepexctl000">
+      <option name="closed" value="true" />
+      <created>1764586271752</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1764586271752</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -431,7 +442,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dead inside" />
     <MESSAGE value="dead inside 1.0" />
     <MESSAGE value="dead inside 1.2" />
     <MESSAGE value="dead inside 1.21" />
@@ -456,7 +466,8 @@
     <MESSAGE value="DONE1_continuewithdocc1" />
     <MESSAGE value="donerep" />
     <MESSAGE value="donerepexctl" />
-    <option name="LAST_COMMIT_MESSAGE" value="donerepexctl" />
+    <MESSAGE value="donerepexctl000" />
+    <option name="LAST_COMMIT_MESSAGE" value="donerepexctl000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
