@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Composite — ЛР7</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+        <a href="main.html" class="navbar-brand">← Назад</a>
+        <span>📦 Composite</span>
+    </div>
+</nav>
+
+<div class="container py-3">
+    <div class="card bg-secondary">
+        <div class="card-body">
+            <h4>Конструктор сложных функций</h4>
+            <p class="text-muted">
+                Соберите функцию из простых и ранее созданных composite-функций.
+            </p>
+
+            <div class="mb-3">
+                <label class="form-label">Локализованное имя</label>
+                <input type="text" class="form-control bg-dark text-light" id="compName" placeholder="Пример: sin²(x) + cos(x)" />
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Доступные функции</label>
+                    <select id="availableFuncs" class="form-select bg-dark text-light" size="8">
+                        <option value="">Загрузка...</option>
+                    </select>
+                    <button class="btn btn-sm btn-primary mt-1" onclick="addToTree()">→ Добавить в дерево</button>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Дерево composite-функции</label>
+                    <div id="treeView" class="bg-dark p-2" style="min-height: 150px; border: 1px solid #444; border-radius: 0.25rem;">
+                        <em>Пусто</em>
+                    </div>
+                    <button class="btn btn-success mt-2" onclick="saveComposite()">✅ Сохранить composite-функцию</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/api.js"></script>
+<script>
+    if (!localStorage.getItem('token')) window.location.href = 'index.html';
+
+    let tree = [];
+
+    async function loadFunctions() {
+      try {
+        const simple = await api.getMathFunctions();
+        const composite = await api.getCompositeFunctions();
+
+        const sel = document.getElementById('availableFuncs');
+        sel.innerHTML = '';
+
+        // Простые функции
+        simple.forEach(f => {
+          const opt = document.createElement('option');
+          opt.value = `PRIMITIVE:${f.key}`;
+          opt.textContent = `🔹 ${f.localized}`;
+          sel.appendChild(opt);
+        });
+
+        // Composite-функции
+        if (composite.length > 0) {
+          const group = document.createElement('optgroup');
+          group.label = 'Сложные функции';
+          composite.forEach(f => {
+            const opt = document.createElement('option');
+            opt.value = `COMPOSITE:${f.id}`;
+            opt.textContent = `📦 ${f.name}`;
+            group.appendChild(opt);
+          });
+          sel.appendChild(group);
+        }
+      } catch (err) { showError(err); }
+    }
+
+    function addToTree() {
+      const sel = document.getElementById('availableFuncs');
+      const opt = sel.options[sel.selectedIndex];
+      if (!opt || !opt.value) return;
+
+      const [type, key] = opt.value.split(':');
+      const name = opt.textContent.replace(/^[🔹📦] /, '');
+
+      tree.push({ id: Date.now(), type, key, name });
+      renderTree();
+    }
+
+    function renderTree() {
+      const div = document.getElementById('treeView');
+      if (tree.length === 0) {
+        div.innerHTML = '<em>Пусто</em>';
+        return;
+      }
+
+      const items = tree.map((node, i) =>
+        `<div class="d-flex align-items-center mb-1">
+          <span class="badge bg-primary me-2">${i+1}</span>
+          <span>${node.name}</span>
+          <button class="btn btn-sm btn-danger ms-2" onclick="removeNode(${i})">×</button>
+        </div>`
+      ).join('');
+      div.innerHTML = items;
+    }
+
+    function removeNode(index) {
+      tree.splice(index, 1);
+      renderTree();
+    }
+
+    async function saveComposite() {
+      const name = document.getElementById('compName').value.trim();
+      if (!name) return showError({ response: { status: 400,  { message: 'Введите имя composite-функции' } } });
+      if (tree.length === 0) return showError({ response: { status: 400,  { message: 'Добавьте хотя бы одну функцию' } } });
+
+      // Формируем дерево
+      const root = { id: 'root', type: 'composite', name, children: tree.map(n => ({ ...n, children: [] })) };
+
+      try {
+        await api.client.post('/v1/composite', { name, root });
+        showSuccess(`✅ Composite-функция «${name}» сохранена`);
+        tree = [];
+        renderTree();
+        setTimeout(() => window.location.href = 'main.html', 1500);
+      } catch (err) { showError(err); }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadFunctions);
+</script>
+</body>
+</html>

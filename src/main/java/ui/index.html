@@ -10,10 +10,11 @@
 </head>
 <body class="bg-dark text-light">
 <div class="container d-flex align-items-center min-vh-100">
-    <div class="w-100" style="max-width: 400px;">
-        <div class="card bg-secondary text-white">
+    <div class="w-100" style="max-width: 420px;">
+        <!-- Вход -->
+        <div id="loginCard" class="card bg-secondary">
             <div class="card-body">
-                <h2 class="text-center mb-4">Вход</h2>
+                <h2 class="text-center mb-4">🔐 Вход</h2>
                 <form id="loginForm">
                     <div class="mb-3">
                         <label class="form-label">Логин</label>
@@ -21,41 +22,48 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Пароль</label>
-                        <input type="password" class="form-control bg-dark text-light" id="password" value="word" required />
+                        <input type="password" class="form-control bg-dark text-light" id="password" value="word" required minlength="3" />
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Войти</button>
                 </form>
-                <hr />
+                <hr class="my-3" />
                 <div class="text-center">
-                    <button class="btn btn-outline-light btn-sm" onclick="showRegister()">Регистрация</button>
+                    <button class="btn btn-outline-light btn-sm" onclick="toggleForm('register')">Регистрация</button>
                 </div>
             </div>
         </div>
 
-        <div id="registerForm" class="card bg-secondary text-white mt-3 d-none">
+        <!-- Регистрация -->
+        <div id="registerCard" class="card bg-secondary mt-3 d-none">
             <div class="card-body">
-                <h3 class="text-center mb-3">Регистрация</h3>
-                <form id="regForm" onsubmit="register(event)">
+                <h3 class="text-center mb-3">📝 Регистрация</h3>
+                <form id="regForm">
                     <div class="mb-3">
-                        <input type="text" class="form-control bg-dark text-light" id="regUsername" placeholder="Логин" required minlength="3" />
+                        <input type="text" class="form-control bg-dark text-light" id="regUsername" placeholder="Логин (≥3 символа)" required minlength="3" />
                     </div>
                     <div class="mb-3">
                         <input type="password" class="form-control bg-dark text-light" id="regPassword" placeholder="Пароль (≥4 символов)" required minlength="4" />
                     </div>
                     <button type="submit" class="btn btn-success w-100">Зарегистрироваться</button>
-                    <button type="button" class="btn btn-outline-light btn-sm mt-2 w-100" onclick="showLogin()">← Назад к входу</button>
+                    <button type="button" class="btn btn-outline-light btn-sm mt-2 w-100" onclick="toggleForm('login')">← Назад к входу</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
+<div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/utils.js"></script>
 <script src="assets/js/api.js"></script>
+<script src="assets/js/chart.js"></script>
 <script>
-    function showRegister() { document.getElementById('registerForm').classList.remove('d-none'); }
-    function showLogin() { document.getElementById('registerForm').classList.add('d-none'); }
+    function toggleForm(which) {
+      document.getElementById('loginCard').classList.toggle('d-none', which === 'register');
+      document.getElementById('registerCard').classList.toggle('d-none', which === 'login');
+    }
 
     document.getElementById('loginForm').onsubmit = async (e) => {
       e.preventDefault();
@@ -70,18 +78,18 @@
       }
     };
 
-    async function register(e) {
+    document.getElementById('regForm').onsubmit = async (e) => {
       e.preventDefault();
       const u = document.getElementById('regUsername').value;
       const p = document.getElementById('regPassword').value;
       try {
         await api.register(u, p);
-        showSuccess('Регистрация успешна. Войдите.');
-        showLogin();
+        showSuccess('✅ Регистрация успешна. Теперь войдите.');
+        toggleForm('login');
       } catch (err) {
         showError(err);
       }
-    }
+    };
 </script>
 </body>
 </html>

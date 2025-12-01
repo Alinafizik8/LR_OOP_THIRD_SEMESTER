@@ -9,32 +9,32 @@
 <body class="bg-dark text-light">
 <nav class="navbar navbar-dark bg-primary">
     <div class="container">
-        <a class="navbar-brand" href="main.html">📊 ЛР7 — Табулированные функции</a>
-        <button class="btn btn-outline-light btn-sm" onclick="logout()">Выйти</button>
+        <a href="main.html" class="navbar-brand">← Назад</a>
+        <span>📈 График функции</span>
     </div>
 </nav>
 
-<div class="container py-4">
-    <h2>📈 График функции</h2>
+<div class="container py-3">
     <div class="row">
-        <div class="col-md-8">
-            <div class="card bg-secondary">
+        <div class="col-lg-8">
+            <div class="card bg-secondary mb-3">
                 <div class="card-header">
-                    <h5>График</h5>
+                    <h5 class="mb-0">График</h5>
                 </div>
                 <div class="card-body">
-                    <canvas id="functionChart" class="chart-container"></canvas>
+                    <canvas id="chart" class="chart-container"></canvas>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+
+        <div class="col-lg-4">
             <div class="card bg-secondary mb-3">
                 <div class="card-header">Функция</div>
                 <div class="card-body">
-                    <select id="functionSelect" class="form-select bg-dark text-light mb-3" onchange="loadFunction()">
+                    <select id="funcSelect" class="form-select bg-dark text-light mb-2" onchange="loadFunction()">
                         <option value="">Выберите функцию...</option>
                     </select>
-                    <button class="btn btn-outline-primary w-100 mb-2" onclick="showCreateModal()">+ Создать</button>
+                    <button class="btn btn-outline-primary w-100 mb-2" onclick="location.href='create.html'">+ Создать</button>
                 </div>
             </div>
 
@@ -42,204 +42,344 @@
                 <div class="card-header">apply(x)</div>
                 <div class="card-body">
                     <div class="input-group mb-2">
-                        <input type="number" step="0.1" class="form-control bg-dark text-light" id="xInput" placeholder="x" value="0">
+                        <input type="number" step="0.01" class="form-control bg-dark text-light" id="xInput" placeholder="x" value="0">
                         <button class="btn btn-primary" onclick="applyX()">Вычислить</button>
                     </div>
-                    <div id="applyResult" class="alert alert-info d-none"></div>
+                    <div id="resultBox" class="alert alert-info d-none"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Модалка создания -->
-<div class="modal fade" id="createModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-secondary text-light">
-            <div class="modal-header">
-                <h5 class="modal-title">Создать функцию</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <ul class="nav nav-tabs" id="createTab">
-                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tabArrays">Из массивов</a></li>
-                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tabMath">Из MathFunction</a></li>
-                </ul>
-                <div class="tab-content mt-3">
-                    <div class="tab-pane active" id="tabArrays">
-                        <input type="text" class="form-control bg-dark text-light mb-2" id="arrName" placeholder="Имя функции">
-                        <input type="number" class="form-control bg-dark text-light mb-2" id="arrSize" placeholder="Количество точек" value="5" min="2" max="100">
-                        <table class="table table-dark point-table">
-                            <thead><tr><th>x</th><th>y</th></tr></thead>
-                            <tbody id="arrTable"></tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane" id="tabMath">
-                        <input type="text" class="form-control bg-dark text-light mb-2" id="mathName" placeholder="Имя функции">
-                        <select class="form-select bg-dark text-light mb-2" id="mathFunc">
-                            <option value="">Выберите функцию...</option>
-                        </select>
-                        <div class="row">
-                            <div class="col"><input type="number" step="0.1" class="form-control bg-dark text-light" id="mathFrom" placeholder="От" value="0"></div>
-                            <div class="col"><input type="number" step="0.1" class="form-control bg-dark text-light" id="mathTo" placeholder="До" value="1"></div>
-                            <div class="col"><input type="number" class="form-control bg-dark text-light" id="mathSteps" placeholder="Точек" value="10" min="2"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                <button type="button" class="btn btn-primary" onclick="createFunction()">Создать</button>
-            </div>
-        </div>
-    </div>
-</div>
+<div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
 
+<!--<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
 <script src="assets/js/utils.js"></script>
 <script src="assets/js/api.js"></script>
-<script>
-    let currentFunction = null;
-    let chart = null;
+<script src="assets/js/chart.js"></script>
+renderChart('chartId', points, 'f(x)');
+<!--<script>-->
+<!--    if (!localStorage.getItem('token')) window.location.href = 'index.html';-->
 
-    async function loadFunctions() {
-      try {
-        const functions = await api.getFunctions();
-        const sel = document.getElementById('functionSelect');
-        sel.innerHTML = '<option value="">Выберите функцию...</option>';
-        functions.forEach(f => {
-          const opt = document.createElement('option');
-          opt.value = f.id;
-          opt.textContent = f.name;
-          sel.appendChild(opt);
-        });
-      } catch (err) { showError(err); }
-    }
+<!--    let currentFunction = null;-->
+<!--    let chartInstance = null;-->
 
-    async function loadFunction() {
-      const id = document.getElementById('functionSelect').value;
-      if (!id) return;
-      try {
-        const res = await api.client.get(`/v1/functions/${id}`);
-        currentFunction = await res.json();
-        renderChart(currentFunction.points);
-      } catch (err) { showError(err); }
-    }
+<!--    async function loadFunctions() {-->
+<!--      try {-->
+<!--        const funcs = await api.getFunctions();-->
+<!--        const sel = document.getElementById('funcSelect');-->
+<!--        sel.innerHTML = '<option value="">Выберите функцию...</option>';-->
+<!--        funcs.forEach(f => {-->
+<!--          const opt = document.createElement('option');-->
+<!--          opt.value = f.id;-->
+<!--          opt.textContent = f.name;-->
+<!--          sel.appendChild(opt);-->
+<!--        });-->
+<!--      } catch (err) { showError(err); }-->
+<!--    }-->
 
-    function renderChart(points) {
-      const ctx = document.getElementById('functionChart').getContext('2d');
-      if (chart) chart.destroy();
-      chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          datasets: [{
-            label: currentFunction.name,
-            data: points.map(p => ({ x: p.x, y: p.y })),
-            borderColor: '#64b5f6',
-            backgroundColor: 'rgba(100, 181, 246, 0.1)',
-            borderWidth: 2,
-            pointRadius: 3,
-            fill: true,
-            tension: 0.3
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            x: { type: 'linear', position: 'bottom' },
-            y: { beginAtZero: false }
-          },
-          plugins: { legend: { display: false } }
-        }
-      });
-    }
+<!--    async function loadFunction() {-->
+<!--      const id = document.getElementById('funcSelect').value;-->
+<!--      if (!id) return;-->
+<!--      try {-->
+<!--        const res = await api.client.get(`/v1/functions/${id}`);-->
+<!--        currentFunction = await res.json();-->
+<!--        renderChart();-->
+<!--      } catch (err) { showError(err); }-->
+<!--    }-->
 
-    function showCreateModal() {
-      new bootstrap.Modal(document.getElementById('createModal')).show();
-      loadMathFunctions();
-      generateArrayTable();
-    }
+<!--    function renderChart() {-->
+<!--      const ctx = document.getElementById('chart').getContext('2d');-->
+<!--      if (chartInstance) chartInstance.destroy();-->
 
-    function generateArrayTable() {
-      const size = parseInt(document.getElementById('arrSize').value) || 5;
-      const tbody = document.getElementById('arrTable');
-      tbody.innerHTML = '';
-      for (let i = 0; i < size; i++) {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><input type="number" step="0.1" class="form-control bg-dark text-light" value="${i}" readonly></td>
-          <td><input type="number" step="0.1" class="form-control bg-dark text-light" value="0"></td>
-        `;
-        tbody.appendChild(tr);
-      }
-    }
+<!--      chartInstance = new Chart(ctx, {-->
+<!--        type: 'line',-->
+<!--         {-->
+<!--          datasets: [{-->
+<!--            label: currentFunction.name,-->
+<!--             currentFunction.points.map(p => ({ x: p.x, y: p.y })),-->
+<!--            borderColor: '#64b5f6',-->
+<!--            backgroundColor: 'rgba(100, 181, 246, 0.1)',-->
+<!--            borderWidth: 2,-->
+<!--            pointRadius: 3,-->
+<!--            fill: true,-->
+<!--            tension: 0.3-->
+<!--          }]-->
+<!--        },-->
+<!--        options: {-->
+<!--          responsive: true,-->
+<!--          maintainAspectRatio: false,-->
+<!--          scales: {-->
+<!--            x: { type: 'linear', position: 'bottom', grid: { color: '#333' } },-->
+<!--            y: { grid: { color: '#333' } }-->
+<!--          },-->
+<!--          plugins: { legend: { display: false } }-->
+<!--        }-->
+<!--      });-->
+<!--    }-->
 
-    async function loadMathFunctions() {
-      try {
-        const funcs = await api.getMathFunctions();
-        const sel = document.getElementById('mathFunc');
-        sel.innerHTML = '<option value="">Выберите функцию...</option>';
-        funcs.forEach(f => {
-          const opt = document.createElement('option');
-          opt.value = f.key;
-          opt.textContent = f.localized;
-          sel.appendChild(opt);
-        });
-      } catch (err) { showError(err); }
-    }
+<!--    async function applyX() {-->
+<!--      if (!currentFunction) return showError({ response: { status: 400,  { message: 'Выберите функцию' } } });-->
+<!--      const x = parseFloat(document.getElementById('xInput').value);-->
+<!--      try {-->
+<!--        const { value } = await api.apply(currentFunction.id, x);-->
+<!--        const box = document.getElementById('resultBox');-->
+<!--        box.textContent = `f(${x}) = ${value.toFixed(6)}`;-->
+<!--        box.classList.remove('d-none');-->
+<!--      } catch (err) { showError(err); }-->
+<!--    }-->
 
-    async function createFunction() {
-      const tab = document.querySelector('#createTab .active').getAttribute('href');
-      try {
-        if (tab === '#tabArrays') {
-          const name = document.getElementById('arrName').value.trim();
-          if (!name) throw { response: { status: 400, data: { message: 'Введите имя' } } };
-          const rows = document.querySelectorAll('#arrTable tr');
-          const points = Array.from(rows).map(tr => ({
-            x: parseFloat(tr.cells[0].querySelector('input').value),
-            y: parseFloat(tr.cells[1].querySelector('input').value)
-          }));
-          await api.createFunction({ name, points, type: 'TABULATED' });
-        } else {
-          const name = document.getElementById('mathName').value.trim();
-          const key = document.getElementById('mathFunc').value;
-          const from = parseFloat(document.getElementById('mathFrom').value);
-          const to = parseFloat(document.getElementById('mathTo').value);
-          const steps = parseInt(document.getElementById('mathSteps').value);
-          if (!name || !key) throw { response: { status: 400, data: { message: 'Заполните все поля' } } };
-          await api.createFromMath(name, key, from, to, steps);
-        }
-        showSuccess('Функция создана');
-        new bootstrap.Modal(document.getElementById('createModal')).hide();
-        loadFunctions();
-      } catch (err) { showError(err); }
-    }
-
-    async function applyX() {
-      if (!currentFunction) return showError({ response: { status: 400, data: { message: 'Выберите функцию' } } });
-      const x = parseFloat(document.getElementById('xInput').value);
-      try {
-        const res = await api.client.post(`/v1/functions/${currentFunction.id}/apply`, { x });
-        const result = await res.json();
-        const el = document.getElementById('applyResult');
-        el.textContent = `f(${x}) = ${result.value.toFixed(4)}`;
-        el.classList.remove('d-none');
-      } catch (err) { showError(err); }
-    }
-
-    function logout() {
-      localStorage.removeItem('token');
-      window.location.href = 'index.html';
-    }
-
-    // Инициализация
-    document.addEventListener('DOMContentLoaded', () => {
-      if (!localStorage.getItem('token')) window.location.href = 'index.html';
-      loadFunctions();
-      document.getElementById('arrSize').addEventListener('change', generateArrayTable);
-    });
-</script>
+<!--    // Инициализация-->
+<!--    document.addEventListener('DOMContentLoaded', loadFunctions);-->
+<!--</script>-->
 </body>
 </html>
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8" />-->
+<!--    <title>График — ЛР7</title>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link href="assets/css/style.css" rel="stylesheet">-->
+<!--</head>-->
+<!--<body class="bg-dark text-light">-->
+<!--<nav class="navbar navbar-dark bg-primary">-->
+<!--    <div class="container">-->
+<!--        <a class="navbar-brand" href="main.html">📊 ЛР7 — Табулированные функции</a>-->
+<!--        <button class="btn btn-outline-light btn-sm" onclick="logout()">Выйти</button>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--<div class="container py-4">-->
+<!--    <h2>📈 График функции</h2>-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-8">-->
+<!--            <div class="card bg-secondary">-->
+<!--                <div class="card-header">-->
+<!--                    <h5>График</h5>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <canvas id="functionChart" class="chart-container"></canvas>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-4">-->
+<!--            <div class="card bg-secondary mb-3">-->
+<!--                <div class="card-header">Функция</div>-->
+<!--                <div class="card-body">-->
+<!--                    <select id="functionSelect" class="form-select bg-dark text-light mb-3" onchange="loadFunction()">-->
+<!--                        <option value="">Выберите функцию...</option>-->
+<!--                    </select>-->
+<!--                    <button class="btn btn-outline-primary w-100 mb-2" onclick="showCreateModal()">+ Создать</button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="card bg-secondary">-->
+<!--                <div class="card-header">apply(x)</div>-->
+<!--                <div class="card-body">-->
+<!--                    <div class="input-group mb-2">-->
+<!--                        <input type="number" step="0.1" class="form-control bg-dark text-light" id="xInput" placeholder="x" value="0">-->
+<!--                        <button class="btn btn-primary" onclick="applyX()">Вычислить</button>-->
+<!--                    </div>-->
+<!--                    <div id="applyResult" class="alert alert-info d-none"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Модалка создания &ndash;&gt;-->
+<!--<div class="modal fade" id="createModal" tabindex="-1">-->
+<!--    <div class="modal-dialog modal-lg">-->
+<!--        <div class="modal-content bg-secondary text-light">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title">Создать функцию</h5>-->
+<!--                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <ul class="nav nav-tabs" id="createTab">-->
+<!--                    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tabArrays">Из массивов</a></li>-->
+<!--                    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tabMath">Из MathFunction</a></li>-->
+<!--                </ul>-->
+<!--                <div class="tab-content mt-3">-->
+<!--                    <div class="tab-pane active" id="tabArrays">-->
+<!--                        <input type="text" class="form-control bg-dark text-light mb-2" id="arrName" placeholder="Имя функции">-->
+<!--                        <input type="number" class="form-control bg-dark text-light mb-2" id="arrSize" placeholder="Количество точек" value="5" min="2" max="100">-->
+<!--                        <table class="table table-dark point-table">-->
+<!--                            <thead><tr><th>x</th><th>y</th></tr></thead>-->
+<!--                            <tbody id="arrTable"></tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                    <div class="tab-pane" id="tabMath">-->
+<!--                        <input type="text" class="form-control bg-dark text-light mb-2" id="mathName" placeholder="Имя функции">-->
+<!--                        <select class="form-select bg-dark text-light mb-2" id="mathFunc">-->
+<!--                            <option value="">Выберите функцию...</option>-->
+<!--                        </select>-->
+<!--                        <div class="row">-->
+<!--                            <div class="col"><input type="number" step="0.1" class="form-control bg-dark text-light" id="mathFrom" placeholder="От" value="0"></div>-->
+<!--                            <div class="col"><input type="number" step="0.1" class="form-control bg-dark text-light" id="mathTo" placeholder="До" value="1"></div>-->
+<!--                            <div class="col"><input type="number" class="form-control bg-dark text-light" id="mathSteps" placeholder="Точек" value="10" min="2"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>-->
+<!--                <button type="button" class="btn btn-primary" onclick="createFunction()">Создать</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+<!--<script src="assets/js/utils.js"></script>-->
+<!--<script src="assets/js/api.js"></script>-->
+<!--<script>-->
+<!--    let currentFunction = null;-->
+<!--    let chart = null;-->
+
+<!--    async function loadFunctions() {-->
+<!--      try {-->
+<!--        const functions = await api.getFunctions();-->
+<!--        const sel = document.getElementById('functionSelect');-->
+<!--        sel.innerHTML = '<option value="">Выберите функцию...</option>';-->
+<!--        functions.forEach(f => {-->
+<!--          const opt = document.createElement('option');-->
+<!--          opt.value = f.id;-->
+<!--          opt.textContent = f.name;-->
+<!--          sel.appendChild(opt);-->
+<!--        });-->
+<!--      } catch (err) { showError(err); }-->
+<!--    }-->
+
+<!--    async function loadFunction() {-->
+<!--      const id = document.getElementById('functionSelect').value;-->
+<!--      if (!id) return;-->
+<!--      try {-->
+<!--        const res = await api.client.get(`/v1/functions/${id}`);-->
+<!--        currentFunction = await res.json();-->
+<!--        renderChart(currentFunction.points);-->
+<!--      } catch (err) { showError(err); }-->
+<!--    }-->
+
+<!--    function renderChart(points) {-->
+<!--      const ctx = document.getElementById('functionChart').getContext('2d');-->
+<!--      if (chart) chart.destroy();-->
+<!--      chart = new Chart(ctx, {-->
+<!--        type: 'line',-->
+<!--        data: {-->
+<!--          datasets: [{-->
+<!--            label: currentFunction.name,-->
+<!--            data: points.map(p => ({ x: p.x, y: p.y })),-->
+<!--            borderColor: '#64b5f6',-->
+<!--            backgroundColor: 'rgba(100, 181, 246, 0.1)',-->
+<!--            borderWidth: 2,-->
+<!--            pointRadius: 3,-->
+<!--            fill: true,-->
+<!--            tension: 0.3-->
+<!--          }]-->
+<!--        },-->
+<!--        options: {-->
+<!--          responsive: true,-->
+<!--          maintainAspectRatio: false,-->
+<!--          scales: {-->
+<!--            x: { type: 'linear', position: 'bottom' },-->
+<!--            y: { beginAtZero: false }-->
+<!--          },-->
+<!--          plugins: { legend: { display: false } }-->
+<!--        }-->
+<!--      });-->
+<!--    }-->
+
+<!--    function showCreateModal() {-->
+<!--      new bootstrap.Modal(document.getElementById('createModal')).show();-->
+<!--      loadMathFunctions();-->
+<!--      generateArrayTable();-->
+<!--    }-->
+
+<!--    function generateArrayTable() {-->
+<!--      const size = parseInt(document.getElementById('arrSize').value) || 5;-->
+<!--      const tbody = document.getElementById('arrTable');-->
+<!--      tbody.innerHTML = '';-->
+<!--      for (let i = 0; i < size; i++) {-->
+<!--        const tr = document.createElement('tr');-->
+<!--        tr.innerHTML = `-->
+<!--          <td><input type="number" step="0.1" class="form-control bg-dark text-light" value="${i}" readonly></td>-->
+<!--          <td><input type="number" step="0.1" class="form-control bg-dark text-light" value="0"></td>-->
+<!--        `;-->
+<!--        tbody.appendChild(tr);-->
+<!--      }-->
+<!--    }-->
+
+<!--    async function loadMathFunctions() {-->
+<!--      try {-->
+<!--        const funcs = await api.getMathFunctions();-->
+<!--        const sel = document.getElementById('mathFunc');-->
+<!--        sel.innerHTML = '<option value="">Выберите функцию...</option>';-->
+<!--        funcs.forEach(f => {-->
+<!--          const opt = document.createElement('option');-->
+<!--          opt.value = f.key;-->
+<!--          opt.textContent = f.localized;-->
+<!--          sel.appendChild(opt);-->
+<!--        });-->
+<!--      } catch (err) { showError(err); }-->
+<!--    }-->
+
+<!--    async function createFunction() {-->
+<!--      const tab = document.querySelector('#createTab .active').getAttribute('href');-->
+<!--      try {-->
+<!--        if (tab === '#tabArrays') {-->
+<!--          const name = document.getElementById('arrName').value.trim();-->
+<!--          if (!name) throw { response: { status: 400, data: { message: 'Введите имя' } } };-->
+<!--          const rows = document.querySelectorAll('#arrTable tr');-->
+<!--          const points = Array.from(rows).map(tr => ({-->
+<!--            x: parseFloat(tr.cells[0].querySelector('input').value),-->
+<!--            y: parseFloat(tr.cells[1].querySelector('input').value)-->
+<!--          }));-->
+<!--          await api.createFunction({ name, points, type: 'TABULATED' });-->
+<!--        } else {-->
+<!--          const name = document.getElementById('mathName').value.trim();-->
+<!--          const key = document.getElementById('mathFunc').value;-->
+<!--          const from = parseFloat(document.getElementById('mathFrom').value);-->
+<!--          const to = parseFloat(document.getElementById('mathTo').value);-->
+<!--          const steps = parseInt(document.getElementById('mathSteps').value);-->
+<!--          if (!name || !key) throw { response: { status: 400, data: { message: 'Заполните все поля' } } };-->
+<!--          await api.createFromMath(name, key, from, to, steps);-->
+<!--        }-->
+<!--        showSuccess('Функция создана');-->
+<!--        new bootstrap.Modal(document.getElementById('createModal')).hide();-->
+<!--        loadFunctions();-->
+<!--      } catch (err) { showError(err); }-->
+<!--    }-->
+
+<!--    async function applyX() {-->
+<!--      if (!currentFunction) return showError({ response: { status: 400, data: { message: 'Выберите функцию' } } });-->
+<!--      const x = parseFloat(document.getElementById('xInput').value);-->
+<!--      try {-->
+<!--        const res = await api.client.post(`/v1/functions/${currentFunction.id}/apply`, { x });-->
+<!--        const result = await res.json();-->
+<!--        const el = document.getElementById('applyResult');-->
+<!--        el.textContent = `f(${x}) = ${result.value.toFixed(4)}`;-->
+<!--        el.classList.remove('d-none');-->
+<!--      } catch (err) { showError(err); }-->
+<!--    }-->
+
+<!--    function logout() {-->
+<!--      localStorage.removeItem('token');-->
+<!--      window.location.href = 'index.html';-->
+<!--    }-->
+
+<!--    // Инициализация-->
+<!--    document.addEventListener('DOMContentLoaded', () => {-->
+<!--      if (!localStorage.getItem('token')) window.location.href = 'index.html';-->
+<!--      loadFunctions();-->
+<!--      document.getElementById('arrSize').addEventListener('change', generateArrayTable);-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
