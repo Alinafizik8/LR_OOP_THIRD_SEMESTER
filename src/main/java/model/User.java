@@ -28,4 +28,10 @@ public class User {
     public void setEnabled(boolean enabled) { this.enabled = enabled; }
     public Set<Role> getRoles() { return roles; }
     public void setRoles(Set<Role> roles) { this.roles = roles; }
+    public String getRole() {
+        if (this.roles != null && !this.roles.isEmpty()) {
+            return this.roles.iterator().next().name();
+        }
+        return "USER";
+    }
 }

@@ -5,6 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="doccombecbett1">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/App.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/main.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/src/vite-env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/vite.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
