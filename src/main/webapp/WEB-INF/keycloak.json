@@ -1,0 +1,11 @@
+{
+  "realm": "lr7-realm",
+  "auth-server-url": "http://localhost:8080",
+  "ssl-required": "external",
+  "resource": "lr7-client",
+  "credentials": {
+    "secret": "your-client-secret-here"
+  },
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}

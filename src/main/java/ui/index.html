@@ -1,146 +1,24 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="ru">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8" />-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
-<!--    <title>ЛР7 — Табулированные функции</title>-->
-<!--    <div class="d-flex align-items-center">-->
-<!--        <span class="me-3 text-white">Пользователь: user</span>-->
-<!--        <button class="btn btn-outline-light btn-sm" onclick="logout()">Выйти</button>-->
-<!--    </div>-->
-<!--&lt;!&ndash;    <link rel="icon" href="favicon.ico" />&ndash;&gt;-->
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">-->
-<!--    <link href="assets/css/style.css" rel="stylesheet">-->
-<!--    <meta http-equiv="refresh" content="1;url=main.html">-->
-<!--</head>-->
-<!--<body class="bg-dark text-light">-->
-<!--<div class="container d-flex align-items-center min-vh-100">-->
-<!--    <div class="w-100" style="max-width: 420px;">-->
-<!--        &lt;!&ndash; Вход &ndash;&gt;-->
-<!--        <div id="loginCard" class="card bg-secondary">-->
-<!--            <div class="card-body">-->
-<!--                <h2 class="text-center mb-4">🔐 Вход</h2>-->
-<!--                <form id="loginForm">-->
-<!--                    <div class="mb-3">-->
-<!--                        <label class="form-label">Логин</label>-->
-<!--                        <input type="text" class="form-control bg-dark text-light" id="username" value="user" required />-->
-<!--                    </div>-->
-<!--                    <div class="mb-3">-->
-<!--                        <label class="form-label">Пароль</label>-->
-<!--                        <input type="password" class="form-control bg-dark text-light" id="password" value="word" required minlength="3" />-->
-<!--                    </div>-->
-<!--                    <button type="submit" class="btn btn-primary w-100">Войти</button>-->
-<!--                </form>-->
-<!--                <script>-->
-<!--                    document.getElementById('f').onsubmit = async (e) => {-->
-<!--                      e.preventDefault();-->
-<!--                      const u = document.getElementById('u').value;-->
-<!--                      const p = document.getElementById('p').value;-->
-
-<!--                      if ((u === 'user' && p === 'word') || (u === 'admin' && p === 'pass')) {-->
-<!--                        const token = btoa(JSON.stringify({ user: u, exp: Date.now() + 3600000 }));-->
-<!--                        localStorage.setItem('token', token);-->
-<!--                        alert('✅ Успешный вход!');-->
-<!--                        location.href = 'main.html';-->
-<!--                      } else {-->
-<!--                        alert('❌ Неверный логин или пароль');-->
-<!--                      }-->
-<!--                    };-->
-<!--                </script>-->
-<!--                <hr class="my-3" />-->
-<!--                <div class="text-center">-->
-<!--                    <button class="btn btn-outline-light btn-sm" onclick="toggleForm('register')">Регистрация</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; Регистрация &ndash;&gt;-->
-<!--        <div id="registerCard" class="card bg-secondary mt-3 d-none">-->
-<!--            <div class="card-body">-->
-<!--                <h3 class="text-center mb-3">📝 Регистрация</h3>-->
-<!--                <form id="regForm">-->
-<!--                    <div class="mb-3">-->
-<!--                        <input type="text" class="form-control bg-dark text-light" id="regUsername" placeholder="Логин (≥3 символа)" required minlength="3" />-->
-<!--                    </div>-->
-<!--                    <div class="mb-3">-->
-<!--                        <input type="password" class="form-control bg-dark text-light" id="regPassword" placeholder="Пароль (≥4 символов)" required minlength="4" />-->
-<!--                    </div>-->
-<!--                    <button type="submit" class="btn btn-success w-100">Зарегистрироваться</button>-->
-<!--                    <button type="button" class="btn btn-outline-light btn-sm mt-2 w-100" onclick="toggleForm('login')">← Назад к входу</button>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<div class="text-center w-100">-->
-<!--    <div class="spinner-border text-primary" role="status">-->
-<!--        <span class="visually-hidden">Загрузка...</span>-->
-<!--    </div>-->
-<!--    <p class="mt-3">Авторизация... (окно появится автоматически)</p>-->
-<!--    <p class="text-muted small">-->
-<!--        Логин: <code>user</code> / <code>admin</code><br>-->
-<!--        Пароль: <code>word</code> / <code>pass</code>-->
-<!--    </p>-->
-<!--</div>-->
-
-<!--<div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>-->
-
-<!--<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>-->
-<!--<script src="assets/js/utils.js"></script>-->
-<!--<script src="assets/js/api.js"></script>-->
-<!--<script src="assets/js/chart.js"></script>-->
-<!--<script>-->
-<!--    function toggleForm(which) {-->
-<!--      document.getElementById('loginCard').classList.toggle('d-none', which === 'register');-->
-<!--      document.getElementById('registerCard').classList.toggle('d-none', which === 'login');-->
-<!--    }-->
-
-<!--    document.getElementById('loginForm').onsubmit = async (e) => {-->
-<!--      e.preventDefault();-->
-<!--      const u = document.getElementById('username').value;-->
-<!--      const p = document.getElementById('password').value;-->
-<!--      try {-->
-<!--        const { token } = await api.login(u, p);-->
-<!--        localStorage.setItem('token', token);-->
-<!--        window.location.href = 'main.html';-->
-<!--      } catch (err) {-->
-<!--        showError(err);-->
-<!--      }-->
-<!--    };-->
-
-<!--    document.getElementById('regForm').onsubmit = async (e) => {-->
-<!--      e.preventDefault();-->
-<!--      const u = document.getElementById('regUsername').value;-->
-<!--      const p = document.getElementById('regPassword').value;-->
-<!--      try {-->
-<!--        await api.register(u, p);-->
-<!--        showSuccess('✅ Регистрация успешна. Теперь войдите.');-->
-<!--        toggleForm('login');-->
-<!--      } catch (err) {-->
-<!--        showError(err);-->
-<!--      }-->
-<!--    };-->
-<!--</script>-->
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ЛР7 — Табулированные функции</title>
-    <div class="d-flex align-items-center">
-        <span class="me-3 text-white">Пользователь: user</span>
-        <button class="btn btn-outline-light btn-sm" onclick="logout()">Выйти</button>
-    </div>
-<!--    <link rel="icon" href="favicon.ico" />-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
-    <meta http-equiv="refresh" content="1;url=main.html">
+    <!-- Убрано meta refresh -->
 </head>
 <body class="bg-dark text-light">
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+        <span class="navbar-brand">📊 ЛР7 — Табулированные функции</span>
+        <div class="d-flex align-items-center">
+            <span class="me-3 text-white">Пользователь: <span id="userName">Не авторизован</span></span>
+            <button class="btn btn-outline-light btn-sm" id="logoutBtn" onclick="logout()" disabled>Выйти</button>
+        </div>
+    </div>
+</nav>
+
 <div class="container d-flex align-items-center min-vh-100">
     <div class="w-100" style="max-width: 420px;">
         <!-- Вход -->
@@ -186,16 +64,34 @@
 
 <div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/utils.js"></script>
 <script src="assets/js/api.js"></script>
-<script src="assets/js/chart.js"></script>
 <script>
     function toggleForm(which) {
       document.getElementById('loginCard').classList.toggle('d-none', which === 'register');
       document.getElementById('registerCard').classList.toggle('d-none', which === 'login');
     }
+
+    // Проверка токена при загрузке
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        // Показываем имя пользователя
+        try {
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          document.getElementById('userName').textContent = payload.sub;
+          document.getElementById('logoutBtn').disabled = false;
+          // Автоматически перенаправляем на main.html
+          setTimeout(() => window.location.href = 'main.html', 500);
+        } catch (e) {
+          // Токен некорректен — очищаем
+          localStorage.removeItem('token');
+          document.getElementById('userName').textContent = 'Не авторизован';
+          document.getElementById('logoutBtn').disabled = true;
+        }
+      }
+    });
 
     document.getElementById('loginForm').onsubmit = async (e) => {
       e.preventDefault();
@@ -204,6 +100,8 @@
       try {
         const { token } = await api.login(u, p);
         localStorage.setItem('token', token);
+        showSuccess('✅ Успешный вход!');
+        // Перенаправляем на главную
         window.location.href = 'main.html';
       } catch (err) {
         showError(err);
@@ -222,6 +120,13 @@
         showError(err);
       }
     };
+
+    function logout() {
+      localStorage.removeItem('token');
+      document.getElementById('userName').textContent = 'Не авторизован';
+      document.getElementById('logoutBtn').disabled = true;
+      window.location.href = 'index.html';
+    }
 </script>
 </body>
 </html>

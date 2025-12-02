@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="index">
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="index_promez">
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/AuthServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/keycloak.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ui/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,14 +199,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760302845957</updated>
-    </task>
-    <task id="LOCAL-00004" summary="(">
-      <option name="closed" value="true" />
-      <created>1762760081800</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1762760081800</updated>
     </task>
     <task id="LOCAL-00005" summary="dead inside">
       <option name="closed" value="true" />
@@ -585,7 +584,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764617187562</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="index_promez">
+      <option name="closed" value="true" />
+      <created>1764617768635</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1764617768635</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -600,7 +607,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="continue repare this IS PROJEST" />
     <MESSAGE value="continue repare this IS PROJEST S" />
     <MESSAGE value="continue repare this IS PROJEST SH" />
     <MESSAGE value="continue repare this IS PROJEST SH + del1" />
@@ -625,7 +631,8 @@
     <MESSAGE value="cinuauth" />
     <MESSAGE value="afterchecpoint" />
     <MESSAGE value="index" />
-    <option name="LAST_COMMIT_MESSAGE" value="index" />
+    <MESSAGE value="index_promez" />
+    <option name="LAST_COMMIT_MESSAGE" value="index_promez" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
