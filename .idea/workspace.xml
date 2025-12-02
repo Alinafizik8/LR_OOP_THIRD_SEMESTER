@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="webint_1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/functions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/points.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/context/AuthContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/context/ThemeContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="webint_2">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/FunctionsPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/GraphViewerPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/LoginPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/OperationsPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/RegisterPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/SettingsPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -455,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764705872406</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="webint_2">
+      <option name="closed" value="true" />
+      <created>1764706340493</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1764706340493</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -482,7 +487,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dead inside 1.21" />
     <MESSAGE value="still alive" />
     <MESSAGE value="pognali" />
     <MESSAGE value="pognali narod" />
@@ -507,7 +511,8 @@
     <MESSAGE value="donerepexctl000" />
     <MESSAGE value="donerepexctl0001" />
     <MESSAGE value="webint_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="webint_1" />
+    <MESSAGE value="webint_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="webint_2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
