@@ -48,7 +48,7 @@ import java.util.Set;
 public class UserService {
     private final UserDAOPassword userDAO = new UserDAOPassword();
 
-    // ✅ Метод для регистрации — вызывается из AuthServlet
+    // Метод для регистрации — вызывается из AuthServlet
     public void register(String username, String rawPassword) {
         if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("Логин не может быть пустым");
@@ -75,7 +75,7 @@ public class UserService {
         userDAO.save(user); // ← ключевой метод: должен быть в UserDAOPassword
     }
 
-    // ✅ Метод для входа — уже почти правильный, но доработан
+    // Метод для входа — уже почти правильный, но доработан
     public User authenticate(String username, String rawPassword) {
         if (username == null || rawPassword == null) {
             return null;
@@ -90,7 +90,7 @@ public class UserService {
         return null;
     }
 
-    // 🔧 Вспомогательный метод (если нужен для тестов или админа)
+    // Вспомогательный метод (если нужен для тестов или админа)
     public void createAdmin(String username, String rawPassword) {
         Set<Role> roles = new HashSet<>();
         roles.add(Role.ADMIN);
