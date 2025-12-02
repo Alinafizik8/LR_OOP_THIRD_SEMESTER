@@ -96,4 +96,22 @@ public class UserDAOPassword {
 
     public void findByUsername(User user, String rawPassword) {
     }
+
+    // UserDAOPassword.java
+    public void save(User user) {
+        String sql = "INSERT INTO users (username, password_hash, role, enabled) VALUES (?, ?, ?, ?)";
+        try (Connection c = dataSource.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPasswordHash());
+            ps.setString(3, user.getRoles().stream().findFirst().orElse(Role.USER).name());
+            ps.setBoolean(4, user.isEnabled());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            if (e.getSQLState().equals("23505")) { // unique_violation
+                throw new RuntimeException("Пользователь уже существует", e);
+            }
+            throw new RuntimeException("Ошибка сохранения пользователя", e);
+        }
+    }
 }
