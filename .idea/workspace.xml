@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="doccombecbett1" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="cry" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -516,7 +516,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764699229425</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="cry">
+      <option name="closed" value="true" />
+      <created>1764699640812</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1764699640812</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -531,7 +539,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="start_lab_6_Y" />
     <MESSAGE value="3task_lab_6_Y_" />
     <MESSAGE value="star_lab_6_Y" />
     <MESSAGE value="4taskstart_lab_6_Y" />
@@ -556,7 +563,8 @@
     <MESSAGE value="doccombecbett" />
     <MESSAGE value="doccombecbett1" />
     <MESSAGE value="withbegining(cry)" />
-    <option name="LAST_COMMIT_MESSAGE" value="withbegining(cry)" />
+    <MESSAGE value="cry" />
+    <option name="LAST_COMMIT_MESSAGE" value="cry" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
