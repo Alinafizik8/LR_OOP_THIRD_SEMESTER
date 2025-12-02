@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-<!--    <Resource name="jdbc/lr-oop"-->
-<!--              auth="Container"-->
-<!--              type="javax.sql.DataSource"-->
-<!--              maxTotal="20"-->
-<!--              maxIdle="10"-->
-<!--              maxWaitMillis="10000"-->
-<!--              username="privet"-->
-<!--              password="M1r"-->
-<!--              driverClassName="org.postgresql.Driver"-->
-<!--              url="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL"/>-->
     <Resource name="jdbc/lr-oop"
               auth="Container"
               type="javax.sql.DataSource"
@@ -21,16 +11,3 @@
               driverClassName="org.postgresql.Driver"
               url="jdbc:postgresql://db:5432/lr_oop_db"/>
 </Context>
-<!--        <?xml version="1.0" encoding="UTF-8"?>-->
-<!--<Context>-->
-<!--<Resource name="jdbc/lr-oop"-->
-<!--          auth="Container"-->
-<!--          type="javax.sql.DataSource"-->
-<!--          maxTotal="100"-->
-<!--          maxIdle="30"-->
-<!--          maxWaitMillis="10000"-->
-<!--          username="your_db_username"-->
-<!--          password="your_db_password"-->
-<!--          driverClassName="org.postgresql.Driver"-->
-<!--          url="jdbc:postgresql://localhost:5432/your_database_name"/>-->
-<!--</Context>-->
