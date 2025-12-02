@@ -4,12 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue3">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue4">
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/asset/js/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/asset/js/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/2633d9f088c0c674b06a34c74771a655.ico.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/android-icon-144x144.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/android-icon-192x192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/android-icon-36x36.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/android-icon-48x48.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/android-icon-72x72.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/android-icon-96x96.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/apple-icon-114x114.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/apple-icon-120x120.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/apple-icon-144x144.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/apple-icon-152x152.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/apple-icon-180x180.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/apple-icon-57x57.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/apple-icon-60x60.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/apple-icon-72x72.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/apple-icon-76x76.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/apple-icon-precomposed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/apple-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/asset/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/asset/js/api.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/asset/js/chart.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/asset/js/utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/browserconfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/composite.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/create.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/differentiate.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/favicon-16x16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/favicon-32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/favicon-96x96.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/graph.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/integral.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/ms-icon-144x144.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/ms-icon-150x150.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/ms-icon-310x310.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/ms-icon-70x70.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/operations.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/settings.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,14 +233,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760302845957</updated>
-    </task>
-    <task id="LOCAL-00011" summary="pognali narod">
-      <option name="closed" value="true" />
-      <created>1762873720713</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1762873720713</updated>
     </task>
     <task id="LOCAL-00012" summary="pognali narod vpered">
       <option name="closed" value="true" />
@@ -589,7 +618,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764692942863</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="continue4">
+      <option name="closed" value="true" />
+      <created>1764693773884</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1764693773884</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -604,7 +641,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="continue repare this IS PROJEST SH + del5" />
     <MESSAGE value="continue repare this IS PROJEST SH + del6" />
     <MESSAGE value="continue repare this IS PROJEST SH + del7" />
     <MESSAGE value="continue repare this IS PROJEST SH + del8(change context house)" />
@@ -629,7 +665,8 @@
     <MESSAGE value="continue1" />
     <MESSAGE value="continue2" />
     <MESSAGE value="continue3" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue3" />
+    <MESSAGE value="continue4" />
+    <option name="LAST_COMMIT_MESSAGE" value="continue4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
