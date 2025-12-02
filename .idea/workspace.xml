@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -192,14 +190,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760302845957</updated>
-    </task>
-    <task id="LOCAL-00009" summary="still alive">
-      <option name="closed" value="true" />
-      <created>1762860658508</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1762860658508</updated>
     </task>
     <task id="LOCAL-00010" summary="pognali">
       <option name="closed" value="true" />
@@ -585,7 +575,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764691228495</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="continue2">
+      <option name="closed" value="true" />
+      <created>1764691808736</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1764691808736</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -600,7 +598,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="continue repare this IS PROJEST SH + del3" />
     <MESSAGE value="continue repare this IS PROJEST SH + del4" />
     <MESSAGE value="continue repare this IS PROJEST SH + del5" />
     <MESSAGE value="continue repare this IS PROJEST SH + del6" />
@@ -625,7 +622,8 @@
     <MESSAGE value="__" />
     <MESSAGE value="continue" />
     <MESSAGE value="continue1" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue1" />
+    <MESSAGE value="continue2" />
+    <option name="LAST_COMMIT_MESSAGE" value="continue2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
