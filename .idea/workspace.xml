@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="__">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="continue">
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,14 +192,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760302845957</updated>
-    </task>
-    <task id="LOCAL-00007" summary="dead inside 1.2">
-      <option name="closed" value="true" />
-      <created>1762792756774</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1762792756774</updated>
     </task>
     <task id="LOCAL-00008" summary="dead inside 1.21">
       <option name="closed" value="true" />
@@ -585,7 +577,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764687136458</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="continue">
+      <option name="closed" value="true" />
+      <created>1764690727583</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1764690727583</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -600,7 +600,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="continue repare this IS PROJEST SH + del1" />
     <MESSAGE value="continue repare this IS PROJEST SH + del2" />
     <MESSAGE value="continue repare this IS PROJEST SH + del3" />
     <MESSAGE value="continue repare this IS PROJEST SH + del4" />
@@ -625,7 +624,8 @@
     <MESSAGE value="index_promez" />
     <MESSAGE value="+keyloack" />
     <MESSAGE value="__" />
-    <option name="LAST_COMMIT_MESSAGE" value="__" />
+    <MESSAGE value="continue" />
+    <option name="LAST_COMMIT_MESSAGE" value="continue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
