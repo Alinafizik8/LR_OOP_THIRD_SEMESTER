@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="article2">
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="ns">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +86,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;git-widget-placeholder&quot;: &quot;framework&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Alina/OneDrive/Рабочий стол/2 семестр/OOP/LR_OOP_THIRD_SEMESTER/src/main/java/com/example/alina/ui/src&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Alina/OneDrive/Рабочий стол/2 семестр/OOP/LR_OOP_THIRD_SEMESTER/src/main/java/com/example/alina&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.43908045&quot;,
@@ -95,6 +95,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\main\java\com\example\alina" />
       <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\main\java\com\example\alina\ui\src" />
       <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\main\resources" />
       <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\test\java\com\example\alina" />
@@ -478,7 +479,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764931836933</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="ns">
+      <option name="closed" value="true" />
+      <created>1764946494058</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1764946494058</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -505,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pognali narod vpered" />
     <MESSAGE value="almost final" />
     <MESSAGE value="almost final228" />
     <MESSAGE value="LE SHANS FINAl" />
@@ -530,7 +538,8 @@
     <MESSAGE value="article" />
     <MESSAGE value="article1" />
     <MESSAGE value="article2" />
-    <option name="LAST_COMMIT_MESSAGE" value="article2" />
+    <MESSAGE value="ns" />
+    <option name="LAST_COMMIT_MESSAGE" value="ns" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
