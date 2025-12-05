@@ -4,8 +4,51 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="ns">
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="noth">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/themes/dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/themes/light.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/charts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/notifications.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/auth/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/auth/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/error/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/error/500.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/layout/main.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/user/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/api.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/auth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/functions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/points.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/components/Layout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/context/AuthContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/context/ThemeContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/CompositeFunctionsPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/DashboardPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/DifferentiationPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/FunctionEditorPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/FunctionsPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/GraphViewerPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/LoginPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/OperationsPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/RegisterPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/SettingsPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/reportWebVitals.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -487,7 +530,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764946494058</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="noth">
+      <option name="closed" value="true" />
+      <created>1764948556925</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1764948556925</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -514,7 +565,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="almost final" />
     <MESSAGE value="almost final228" />
     <MESSAGE value="LE SHANS FINAl" />
     <MESSAGE value="fin" />
@@ -539,7 +589,8 @@
     <MESSAGE value="article1" />
     <MESSAGE value="article2" />
     <MESSAGE value="ns" />
-    <option name="LAST_COMMIT_MESSAGE" value="ns" />
+    <MESSAGE value="noth" />
+    <option name="LAST_COMMIT_MESSAGE" value="noth" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
