@@ -4,36 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="donerepexctl0001">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/api.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/auth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/functions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/points.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/components/Layout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/context/AuthContext.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/context/ThemeContext.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/CompositeFunctionsPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/DashboardPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/DifferentiationPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/FunctionEditorPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/FunctionsPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/GraphViewerPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/LoginPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/OperationsPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/RegisterPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/pages/SettingsPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/reportWebVitals.js" beforeDir="false" />
-    </list>
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="article" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -481,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764706340493</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="article">
+      <option name="closed" value="true" />
+      <created>1764792667736</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1764792667736</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -508,7 +487,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="still alive" />
     <MESSAGE value="pognali" />
     <MESSAGE value="pognali narod" />
     <MESSAGE value="pognali narod vpered" />
@@ -533,7 +511,8 @@
     <MESSAGE value="donerepexctl0001" />
     <MESSAGE value="webint_1" />
     <MESSAGE value="webint_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="webint_2" />
+    <MESSAGE value="article" />
+    <option name="LAST_COMMIT_MESSAGE" value="article" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
