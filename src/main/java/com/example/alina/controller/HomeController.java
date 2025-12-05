@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
+    @GetMapping("/continue")
+    public String continueAfterLogin() {
+        return "redirect:/";  // или redirect:/user/dashboard
+    }
+
     @GetMapping("/")
     public String home() {
         return "index";
