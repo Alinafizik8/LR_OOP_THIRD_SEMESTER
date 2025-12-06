@@ -8,9 +8,11 @@ spring:
     password: lr_pass
     driver-class-name: org.postgresql.Driver
 
-  jpa:
-    hibernate:
-      ddl-auto: validate
+    jpa:
+      hibernate:
+        ddl-auto: create-drop   # для чистого старта при каждом запуске
+    # или
+    #      ddl-auto: update       # для сохранения данных между перезапусками
     show-sql: true
     properties:
       hibernate:
