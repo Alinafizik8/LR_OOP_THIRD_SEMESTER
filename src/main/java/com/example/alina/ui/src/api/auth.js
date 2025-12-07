@@ -1,45 +1,30 @@
 import api from './api';
 
 export const login = async (username, password) => {
-  // Кодируем учетные данные для Basic Auth
-  const token = btoa(`${username}:${password}`);
+  const credentials = btoa(`${username}:${password}`);
+  // Проверка: делаем запрос /function-types (публичный)
+  await api.get('/function-types', {
+    headers: { Authorization: `Basic ${credentials}` }
+  });
 
-  // Проверяем подключение с учетными данными
+  let user = { username, credentials };
   try {
-    const response = await api.get('/users/search/by-login/'+username, {
-      headers: {
-        'Authorization': `Basic ${token}`
-      }
-    });
-    console.log(response)
-    // Сохраняем токен и информацию о пользователе
-    const user = {
-      username,
-      token,
-      role: response.data.role || 'user',
-      id: response.data.id
-    };
-
-    localStorage.setItem('user', JSON.stringify(user));
-    return user;
-  } catch (error) {
-    throw new Error('Неверные учетные данные');
+    const profileRes = await api.get(`/users/by-username/${username}`);
+    user.id = profileRes.data.id;
+    user.role = profileRes.data.role;
+  } catch (err) {
+    console.warn('Не удалось получить профиль пользователя');
   }
-};
 
-export const register = async (userData) => {
-  try {
-    const response = await api.post('/users', userData);
-    return response.data;
-  } catch (error) {
-    throw new Error('Ошибка при регистрации');
-  }
-};
-
-export const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem('user'));
+  localStorage.setItem('user', JSON.stringify(user));
+  return user;
 };
 
 export const logout = () => {
   localStorage.removeItem('user');
+};
+
+export const getCurrentUser = () => {
+  const data = localStorage.getItem('user');
+  return data ? JSON.parse(data) : null;
 };

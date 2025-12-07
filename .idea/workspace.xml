@@ -4,23 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="cont with thyleaf">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/themes/dark.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/themes/light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/charts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/notifications.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/auth/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/auth/register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error/500.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/footer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/layout/main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/dashboard.html" beforeDir="false" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="START_AGAIN">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alina/ui/src/api/api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -543,7 +530,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765023415074</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="START_AGAIN">
+      <option name="closed" value="true" />
+      <created>1765041000149</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1765041000149</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -575,7 +570,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="3task_lab_6_Y_" />
     <MESSAGE value="star_lab_6_Y" />
     <MESSAGE value="4taskstart_lab_6_Y" />
     <MESSAGE value="feat: add spring boot generated from initializer" />
@@ -600,7 +594,8 @@
     <MESSAGE value="+continue in HomeController" />
     <MESSAGE value="+continue in HomeController1" />
     <MESSAGE value="cont with thyleaf" />
-    <option name="LAST_COMMIT_MESSAGE" value="cont with thyleaf" />
+    <MESSAGE value="START_AGAIN" />
+    <option name="LAST_COMMIT_MESSAGE" value="START_AGAIN" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -8,10 +8,8 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = getCurrentUser();
-    if (storedUser) {
-      setUser(storedUser);
-    }
+    const stored = getCurrentUser();
+    setUser(stored);
     setLoading(false);
   }, []);
 
@@ -26,16 +24,18 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   }, []);
 
-  const value = {
-    user,
-    loading,
-    signIn,
-    signOut,
-    isAuthenticated: !!user,
-    isAdmin: user?.role === 'admin'
-  };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{
+      user,
+      loading,
+      signIn,
+      signOut,
+      isAuthenticated: !!user,
+      isAdmin: user?.role === 'ADMIN'
+    }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => useContext(AuthContext);

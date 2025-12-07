@@ -9,21 +9,18 @@ const api = axios.create({
   },
 });
 
-// Добавление токена авторизации к каждому запросу
 api.interceptors.request.use(config => {
   const user = JSON.parse(localStorage.getItem('user'));
-  if (user && user.token) {
-    config.headers.Authorization = `Basic ${user.token}`;
+  if (user?.credentials) {
+    config.headers.Authorization = `Basic ${user.credentials}`;
   }
   return config;
 });
 
-// Обработка ошибок
 api.interceptors.response.use(
   response => response,
   error => {
-    if (error.response && error.response.status === 401) {
-      // Разлогиниваем пользователя при ошибке авторизации
+    if (error.response?.status === 401) {
       localStorage.removeItem('user');
       window.location.href = '/login';
     }

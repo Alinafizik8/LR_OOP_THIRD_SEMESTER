@@ -1,55 +1,88 @@
 import api from './api';
 
-export const getAllFunctions = async (sortField = 'id', ascending = true) => {
-  const params = { sortField, ascending };
-  const response = await api.get('/functions', { params });
-  return response.data;
+const getOwnerId = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (!user?.id) throw new Error('User ID not found');
+  return user.id;
+};
+
+export const getAllFunctions = async () => {
+  const ownerId = getOwnerId();
+  const res = await api.get('/tabulated-functions', {
+    headers: { 'X-User-Id': ownerId }
+  });
+  return res.data;
 };
 
 export const getFunctionById = async (id) => {
-  const response = await api.get(`/functions/${id}`);
-  return response.data;
+  const ownerId = getOwnerId();
+  const res = await api.get(`/tabulated-functions/${id}`, {
+    headers: { 'X-User-Id': ownerId }
+  });
+  return res.data;
 };
 
-export const createFunction = async (functionData) => {
-  const response = await api.post('/functions', functionData);
-  return response.data;
+export const createFunctionFromPoints = async ({ name, xValues, yValues }) => {
+  const ownerId = getOwnerId();
+  const dto = {
+    name,
+    xValues,
+    yValues,
+    ownerId
+  };
+  const res = await api.post('/tabulated-functions/from-points', dto, {
+    headers: { 'X-User-Id': ownerId }
+  });
+  return res.data;
 };
 
-export const updateFunction = async (id, functionData) => {
-  const response = await api.put(`/functions/${id}`, functionData);
-  return response.data;
+export const createFunctionFromMath = async ({ name, mathFunctionType, xFrom, xTo, count }) => {
+  const ownerId = getOwnerId();
+  const dto = {
+    name,
+    mathFunctionType,
+    xFrom,
+    xTo,
+    count,
+    ownerId
+  };
+  const res = await api.post('/tabulated-functions/from-math', dto, {
+    headers: { 'X-User-Id': ownerId }
+  });
+  return res.data;
+};
+
+export const updateFunctionName = async (id, name) => {
+  const ownerId = getOwnerId();
+  await api.patch(`/tabulated-functions/${id}/name`, { name }, {
+    headers: { 'X-User-Id': ownerId }
+  });
+};
+
+export const updateFunctionDataAndName = async (id, { xValues, yValues, name }) => {
+  const ownerId = getOwnerId();
+  // Сериализуем в JSON: { x: [...], y: [...] }
+  const data = new TextEncoder().encode(JSON.stringify({ x: xValues, y }));
+  await api.patch(`/tabulated-functions/${id}/data-and-name`, { name, data }, {
+    headers: { 'X-User-Id': ownerId }
+  });
 };
 
 export const deleteFunction = async (id) => {
-  await api.delete(`/functions/${id}`);
-};
-
-export const getFunctionsByUser = async (userId, sortField = 'id', ascending = true) => {
-  const params = { sortField, ascending };
-  const response = await api.get(`/functions/search/by-user/${userId}`, { params });
-  return response.data;
-};
-
-export const getFunctionCountForUser = async (userId) => {
-  const response = await api.get(`/functions/users/${userId}/count`);
-  return response.data.count;
-};
-
-
-export const performOperation = async (functionId1, functionId2, operation) => {
-  const response = await api.get(`/functions/operations/${functionId1}/${functionId2}/${operation}`);
-  return response.data;
-};
-
-export const deserializeFunction = async (serializedFunction) => {
-  const response = await api.post('/functions/deserialize', { serializedFunction });
-  return response.data;
-};
-
-export const serializeFunction = async (functionId) => {
-  const response = await api.get(`/functions/serialize/${functionId}`, {
-    responseType: 'text' // Important for non-JSON response
+  const ownerId = getOwnerId();
+  await api.delete(`/tabulated-functions/${id}`, {
+    headers: { 'X-User-Id': ownerId }
   });
-  return response.data;
+};
+
+export const differentiateFunction = async ({ functionId, resultName }) => {
+  const ownerId = getOwnerId();
+  const res = await api.post('/tabulated-functions/differentiate', {
+    functionId,
+    resultName,
+    ownerId
+  }, {
+    headers: { 'X-User-Id': ownerId }
+  });
+  return res.data;
 };
