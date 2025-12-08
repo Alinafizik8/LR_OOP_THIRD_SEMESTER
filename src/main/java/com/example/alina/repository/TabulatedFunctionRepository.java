@@ -42,8 +42,8 @@ public interface TabulatedFunctionRepository extends JpaRepository<TabulatedFunc
 
     // Удаление — только своего
     @Modifying
-    @Query("DELETE FROM TabulatedFunctionEntity f WHERE f.id = :id AND f.ownerId = :ownerId")
-    boolean deleteByIdAndOwnerId(Long id, Long ownerId);
+    @Query("DELETE FROM TabulatedFunctionEntity f WHERE f.id = :id AND f.owner.id = :ownerId")
+    boolean deleteByIdAndOwnerId(@Param("id") Long id, @Param("ownerId") Long ownerId);
 
     // Множественный поиск с сортировкой по имени
     List<TabulatedFunctionEntity> findByOwnerIdOrderByNameAsc(Long ownerId);

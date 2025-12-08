@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Grid, Card, CardContent, CardActions, Button, Alert } from '@mui/material';
-import { useAuth } from '../context/AuthContext';
-import { getFunctionsByUser, getFunctionCountForUser } from '../api/functions';
+import { useAuth } from '../../context/AuthContext';
+import { getFunctionsByUser, getFunctionCountForUser } from '../../api/functions';
 import { Link } from 'react-router-dom';
 
 const DashboardPage = () => {

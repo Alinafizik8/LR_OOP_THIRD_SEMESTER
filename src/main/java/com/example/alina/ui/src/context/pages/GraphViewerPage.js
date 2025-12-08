@@ -4,12 +4,12 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useAuth } from '../context/AuthContext';
-import { getFunctionById } from '../api/functions';
-import { getPointsByFunctionId } from '../api/points';
+import { useAuth } from '../../context/AuthContext';
+import { getFunctionById } from '../../api/functions';
+import { getPointsByFunctionId } from '../../api/points';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
 import { Grid } from '@mui/material';
-import { interpolatePoint } from '../api/points';
+import { interpolatePoint } from '../../api/points';
 
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);

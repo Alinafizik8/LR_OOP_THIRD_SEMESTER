@@ -1,18 +1,21 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api  # Это добавит префикс /api ко всем endpoint'ам
+
 spring:
   application:
     name: lr-oop-spring
 
   datasource:
-    url: jdbc:postgresql://postgres:5432/lr_oop_db
+    url: jdbc:postgresql://localhost:5432/lr_oop_db  # Измени postgres:5432 на localhost:5432
     username: lr_user
     password: lr_pass
     driver-class-name: org.postgresql.Driver
 
-    jpa:
-      hibernate:
-        ddl-auto: create-drop   # для чистого старта при каждом запуске
-    # или
-    #      ddl-auto: update       # для сохранения данных между перезапусками
+  jpa:
+    hibernate:
+      ddl-auto: validate
     show-sql: true
     properties:
       hibernate:
@@ -34,6 +37,7 @@ management:
     web:
       exposure:
         include: health,info,env,beans,metrics
+      base-path: /management  # Опционально
   endpoint:
     health:
       enabled: true
@@ -41,69 +45,20 @@ management:
     info:
       enabled: true
 
+# CORS configuration для фронтенда
+cors:
+  allowed-origins: http://localhost:3000
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  allowed-headers: "*"
+  allow-credentials: true
+
 logging:
   level:
     com.example.lr: DEBUG
     org.springframework.jdbc: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.web: DEBUG  # Добавь для отладки web запросов
+    org.springframework.security: DEBUG  # Добавь для отладки security
   pattern:
     console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
-
-
-#spring:
-#  application:
-#    name: lr-oop-spring
-#
-#  datasource:
-#    url: jdbc:postgresql://localhost:5433/lr_oop_db
-#    username: lr_user
-#    password: lr_pass
-#    driver-class-name: org.postgresql.Driver
-#
-#  jpa:
-#    hibernate:
-#      ddl-auto: validate  # или create-drop для тестов
-#    show-sql: true
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.PostgreSQLDialect
-#        format_sql: true
-#
-#  jackson:
-#    default-property-inclusion: non_null
-#
-#logging:
-#  level:
-#    com.example.lr: DEBUG
-#    org.springframework.jdbc: DEBUG
-#    org.hibernate.SQL: DEBUG
-#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-#  pattern:
-#    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
-
-
-#spring:
-#  application:
-#    name: lr-oop-spring
-#
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/lr_oop_db
-#    username: lr_user
-#    password: lr_pass
-#    driver-class-name: org.postgresql.Driver
-#
-#  sql:
-#    init:
-#      mode: always  # ????????? schema.sql ??? ??????
-#      # schema-locations: classpath:schema.sql  # ?? ?????????
-#
-#  jackson:
-#    default-property-inclusion: non_null
-#
-#logging:
-#  level:
-#    com.example.lr: DEBUG
-#    org.springframework.jdbc: DEBUG  # ?????????? SQL (???????????)
-#  pattern:
-#    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"

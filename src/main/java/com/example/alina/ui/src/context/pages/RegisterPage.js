@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, TextField, Button, Link, Paper } from '@mui/material';
 import { toast } from 'react-toastify';
-import { register } from '../api/auth';
+import { register } from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {

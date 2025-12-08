@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Box, Typography, Grid, Card, CardContent, CardActions, Button, Select, MenuItem, FormControl, InputLabel, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, LinearProgress, Alert, IconButton, Tooltip } from '@mui/material';
 import { Edit as EditIcon, Save as SaveIcon, Cancel as CancelIcon } from '@mui/icons-material';
-import { useAuth } from '../context/AuthContext';
-import { getFunctionsByUser, performOperation, deserializeFunction, serializeFunction } from '../api/functions';
-import { getPointsByFunctionId, updatePointsBatch } from '../api/points';
+import { useAuth } from '../../context/AuthContext';
+import { getFunctionsByUser, performOperation, deserializeFunction, serializeFunction } from '../../api/functions';
+import { getPointsByFunctionId, updatePointsBatch } from '../../api/points';
 import { toast } from 'react-toastify';
 
 const OperationsPage = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
-import { useAuth } from '../context/AuthContext';
-import { getFunctionsByUser, deleteFunction } from '../api/functions';
+import { useAuth } from '../../context/AuthContext';
+import { getFunctionsByUser, deleteFunction } from '../../api/functions';
 import { Delete as DeleteIcon, Add as AddIcon, Visibility as VisibilityIcon, Edit as EditIcon } from '@mui/icons-material';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';

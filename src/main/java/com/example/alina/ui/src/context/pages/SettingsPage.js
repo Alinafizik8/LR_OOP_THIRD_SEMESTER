@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, Card, CardContent, CardActions, Switch, FormControlLabel, Grid, TextField, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
-import { useAuth } from '../context/AuthContext';
-import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import { toast } from 'react-toastify';
 
 const SettingsPage = () => {

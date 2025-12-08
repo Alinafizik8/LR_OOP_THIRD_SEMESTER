@@ -5,15 +5,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import Layout from './components/Layout';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import DashboardPage from './pages/DashboardPage';
-import FunctionsPage from './pages/FunctionsPage';
-import FunctionEditorPage from './pages/FunctionEditorPage';
-import GraphViewerPage from './pages/GraphViewerPage';
-import OperationsPage from './pages/OperationsPage';
-import SettingsPage from './pages/SettingsPage';
-import DifferentiationPage from './pages/DifferentiationPage';
+import LoginPage from './context/pages/LoginPage';
+import RegisterPage from './context/pages/RegisterPage';
+import DashboardPage from './context/pages/DashboardPage';
+import FunctionsPage from './context/pages/FunctionsPage';
+import FunctionEditorPage from './context/pages/FunctionEditorPage';
+import GraphViewerPage from './context/pages/GraphViewerPage';
+import OperationsPage from './context/pages/OperationsPage';
+import SettingsPage from './context/pages/SettingsPage';
+import DifferentiationPage from './context/pages/DifferentiationPage';
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();

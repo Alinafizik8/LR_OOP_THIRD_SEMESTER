@@ -3,9 +3,9 @@ import { Box, Typography, Button, Tabs, Tab, Grid, TextField, Card, CardContent,
 import { Add as AddIcon, Delete as DeleteIcon, Save as SaveIcon, Cancel as CancelIcon, Edit as EditIcon, Visibility as VisibilityIcon } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useAuth } from '../context/AuthContext';
-import { getFunctionById, createFunction, updateFunction } from '../api/functions';
-import { getPointsByFunctionId, createPointsBatch, updatePoint, deletePoint, getPointsByFunctionName } from '../api/points';
+import { useAuth } from '../../context/AuthContext';
+import { getFunctionById, createFunction, updateFunction } from '../../api/functions';
+import { getPointsByFunctionId, createPointsBatch, updatePoint, deletePoint, getPointsByFunctionName } from '../../api/points';
 
 const FunctionEditorPage = () => {
   const { id } = useParams();

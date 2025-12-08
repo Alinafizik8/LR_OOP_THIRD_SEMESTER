@@ -15,15 +15,15 @@ import {
   Button,
   Stack
 } from '@mui/material';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import {
   getFunctionsByUser,
   getFunctionById
-} from '../api/functions';
+} from '../../api/functions';
 import {
   getPointsByFunctionId,
   getDifferentiatedPoints
-} from '../api/points';
+} from '../../api/points';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Link } from 'react-router-dom';
 

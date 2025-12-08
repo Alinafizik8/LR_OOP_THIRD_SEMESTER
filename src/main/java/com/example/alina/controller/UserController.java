@@ -15,7 +15,7 @@ import com.example.alina.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/users")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -28,28 +28,28 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // GET /api/v1/users
+    // GET /api/users
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserDto>> getAllUsers() {
         return ResponseEntity.ok(userService.findAll());
     }
 
-    // GET /api/v1/users/page?page=0&size=10&sort=createdAt,desc
+    // GET /api/users/page?page=0&size=10&sort=createdAt,desc
     @GetMapping("/page")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<UserDto>> getUsersPage(Pageable pageable) {
         return ResponseEntity.ok(userService.findAll(pageable));
     }
 
-    // GET /api/v1/users/sorted
+    // GET /api/users/sorted
     @GetMapping("/sorted")
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<UserDto>> getUsersSortedByCreatedAt() {
         return ResponseEntity.ok(userService.findAllSortedByCreatedAtDesc());
     }
 
-    // GET /api/v1/users/1
+    // GET /api/users/1
     @GetMapping("/{id}")
     @PreAuthorize("@userService.canAccessUser(authentication, #id)")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
@@ -58,7 +58,7 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // GET /api/v1/users/by-username/{username}
+    // GET /api/users/by-username/{username}
     @GetMapping("/by-username/{username}")
     @PreAuthorize("hasRole('ADMIN') or #username == authentication.principal.username")
     public ResponseEntity<UserDto> getUserByUsername(@PathVariable String username) {
