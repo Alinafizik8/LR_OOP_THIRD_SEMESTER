@@ -7,6 +7,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 });
 
 api.interceptors.request.use(config => {
@@ -14,6 +15,8 @@ api.interceptors.request.use(config => {
   if (user?.credentials) {
     config.headers.Authorization = `Basic ${user.credentials}`;
   }
+  config.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000';
+  config.headers['Access-Control-Allow-Credentials'] = 'true';
   return config;
 });
 

@@ -8,7 +8,7 @@ spring:
     name: lr-oop-spring
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/lr_oop_db  # Измени postgres:5432 на localhost:5432
+    url: jdbc:postgresql://localhost:5432/lr_oop_db
     username: lr_user
     password: lr_pass
     driver-class-name: org.postgresql.Driver
