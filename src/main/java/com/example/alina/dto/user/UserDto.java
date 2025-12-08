@@ -4,12 +4,12 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class UserDto {
+    private Long id;
+    private String username;
+    private String email;
+    private String role;
+    private Instant createdAt;
 
-    public Long id;
-    public String username;
-    public String email;
-    public String role;
-    public Instant createdAt;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
