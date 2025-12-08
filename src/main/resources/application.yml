@@ -1,21 +1,21 @@
 server:
   port: 8080
   servlet:
-    context-path: /api  # Это добавит префикс /api ко всем endpoint'ам
+    context-path: /api
 
 spring:
   application:
     name: lr-oop-spring
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/lr_oop_db
+    url: jdbc:postgresql://postgres:5432/lr_oop_db
     username: lr_user
     password: lr_pass
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:
@@ -31,13 +31,12 @@ spring:
   jackson:
     default-property-inclusion: non_null
 
-# Actuator — включаем эндпоинты
 management:
   endpoints:
     web:
       exposure:
         include: health,info,env,beans,metrics
-      base-path: /management  # Опционально
+      base-path: /management
   endpoint:
     health:
       enabled: true
@@ -45,7 +44,6 @@ management:
     info:
       enabled: true
 
-# CORS configuration для фронтенда
 cors:
   allowed-origins: http://localhost:3000
   allowed-methods: GET,POST,PUT,DELETE,OPTIONS
@@ -58,7 +56,7 @@ logging:
     org.springframework.jdbc: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-    org.springframework.web: DEBUG  # Добавь для отладки web запросов
-    org.springframework.security: DEBUG  # Добавь для отладки security
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
   pattern:
     console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"

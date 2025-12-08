@@ -7,49 +7,21 @@ const getOwnerId = () => {
 };
 
 export const getAllFunctions = async () => {
-  const ownerId = getOwnerId();
-  const res = await api.get('/tabulated-functions', {
-    headers: { 'X-User-Id': ownerId }
-  });
-  return res.data;
+  return await api.get('tabulated-functions');
 };
 
 export const getFunctionById = async (id) => {
-  const ownerId = getOwnerId();
-  const res = await api.get(`/tabulated-functions/${id}`, {
-    headers: { 'X-User-Id': ownerId }
-  });
-  return res.data;
+  return (await api.get(`tabulated-functions/${id}`)).data;
 };
 
 export const createFunctionFromPoints = async ({ name, xValues, yValues }) => {
-  const ownerId = getOwnerId();
-  const dto = {
-    name,
-    xValues,
-    yValues,
-    ownerId
-  };
-  const res = await api.post('/tabulated-functions/from-points', dto, {
-    headers: { 'X-User-Id': ownerId }
-  });
-  return res.data;
+  const dto = { name, xValues, yValues, ownerId: getOwnerId() };
+  return await api.post('tabulated-functions/from-points', dto);
 };
 
 export const createFunctionFromMath = async ({ name, mathFunctionType, xFrom, xTo, count }) => {
-  const ownerId = getOwnerId();
-  const dto = {
-    name,
-    mathFunctionType,
-    xFrom,
-    xTo,
-    count,
-    ownerId
-  };
-  const res = await api.post('/tabulated-functions/from-math', dto, {
-    headers: { 'X-User-Id': ownerId }
-  });
-  return res.data;
+  const dto = { name, mathFunctionType, xFrom, xTo, count, ownerId: getOwnerId() };
+  return (await api.post('tabulated-functions/from-math', dto)).data;
 };
 
 export const updateFunctionName = async (id, name) => {

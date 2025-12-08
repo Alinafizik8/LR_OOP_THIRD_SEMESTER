@@ -15,8 +15,9 @@ api.interceptors.request.use(config => {
   if (user?.credentials) {
     config.headers.Authorization = `Basic ${user.credentials}`;
   }
-  config.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000';
-  config.headers['Access-Control-Allow-Credentials'] = 'true';
+  if (user?.id) {
+      config.headers['X-User-Id'] = user.id;
+  }
   return config;
 });
 

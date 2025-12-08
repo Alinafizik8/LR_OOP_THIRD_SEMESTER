@@ -5,20 +5,25 @@ export const register = async (username, password, email = null) => {
     console.log('Registering user:', username);
 
     const userData = {
+      email: email || `${username}@example.com`,
       username,
-      password,
-      email: email || `${username}@example.com`
+      password
     };
 
-    // Используем endpoint из AuthController
-    const res = await api.post('/auth/register', userData);
-    console.log('Registration response:', res.data);
+    console.log('Sending registration data:', userData);
 
-    // После регистрации можно залогиниться
-    return login(username, password);
+    const res = await api.post('/api/auth/register', userData);
+    console.log('Registration successful:', res.data);
+
+    return res.data;
+
   } catch (error) {
-    console.error('Registration error:', error);
-    throw new Error(error.response?.data?.message || 'Registration failed');
+    console.error('Registration error:', error.response?.data || error.message);
+    throw new Error(
+      error.response?.data?.message ||
+      error.response?.data?.error ||
+      'Registration failed'
+    );
   }
 };
 
@@ -31,12 +36,15 @@ export const login = async (username, password) => {
       password
     };
 
-    // Используем endpoint из AuthController
-    const res = await api.post('/auth/login', loginData);
+    console.log('Sending login data:', loginData);
+
+    const res = await api.post('/api/auth/login', loginData);
     console.log('Login response:', res.data);
 
-    // Получаем информацию о пользователе
-    let user = { username, credentials: btoa(`${username}:${password}`) };
+    let user = {
+      username,
+      credentials: btoa(`${username}:${password}`)
+    };
 
     try {
       // Пытаемся получить профиль пользователя
@@ -45,7 +53,7 @@ export const login = async (username, password) => {
       user.role = profileRes.data.role;
       user.email = profileRes.data.email;
     } catch (err) {
-      console.warn('Не удалось получить профиль пользователя, используем временные данные');
+      console.warn('Could not fetch user profile, using temporary data');
       user.id = Date.now();
       user.role = 'USER';
       user.email = `${username}@example.com`;
@@ -55,8 +63,12 @@ export const login = async (username, password) => {
     return user;
 
   } catch (error) {
-    console.error('Login error:', error);
-    throw new Error(error.response?.data || 'Login failed');
+    console.error('Login error:', error.response?.data || error.message);
+    throw new Error(
+      error.response?.data?.message ||
+      error.response?.data?.error ||
+      'Login failed'
+    );
   }
 };
 

@@ -5,33 +5,58 @@ import { register } from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
-  const [login, setLogin] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('user');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (login.length < 3) {
-      toast.error('Логин должен содержать не менее 3 символов');
+
+    // ✅ Валидация совпадает с backend требованиями
+    if (!username || username.trim().length === 0) {
+      toast.error('Логин не может быть пустым');
       return;
     }
-    if (password.length < 8) {
-      toast.error('Пароль должен содержать не менее 8 символов');
+
+    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+      toast.error('Логин может содержать только буквы, цифры и нижнее подчеркивание');
+      return;
+    }
+
+    if (username.length > 50) {
+      toast.error('Логин не может превышать 50 символов');
+      return;
+    }
+
+    if (password.length < 6) {
+      toast.error('Пароль должен содержать не менее 6 символов');
+      return;
+    }
+
+    if (password.length > 100) {
+      toast.error('Пароль не может превышать 100 символов');
+      return;
+    }
+
+    if (!email || !email.includes('@')) {
+      toast.error('Введите корректный email');
       return;
     }
 
     setLoading(true);
     try {
-      await register({
-        login,
-        password,
-        role
-      });
+      // ✅ Вызываем register с правильными параметрами
+      await register(username, password, email);
+
       toast.success('Регистрация прошла успешно! Теперь вы можете войти в систему.');
+
+      // Переходим на страницу входа (пользователь должен залогиниться сам)
       navigate('/login');
+
     } catch (error) {
+      console.error('Registration error:', error);
       toast.error('Ошибка регистрации: ' + error.message);
     } finally {
       setLoading(false);
@@ -48,10 +73,22 @@ const RegisterPage = () => {
           <TextField
             fullWidth
             label="Логин"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             margin="normal"
             required
+            placeholder="username"
+            helperText="Только буквы, цифры и нижнее подчеркивание"
+          />
+          <TextField
+            fullWidth
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            margin="normal"
+            required
+            placeholder="example@mail.com"
           />
           <TextField
             fullWidth
@@ -61,6 +98,7 @@ const RegisterPage = () => {
             onChange={(e) => setPassword(e.target.value)}
             margin="normal"
             required
+            placeholder="Минимум 6 символов"
           />
           <Button
             type="submit"
