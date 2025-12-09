@@ -14,7 +14,7 @@ import com.example.alina.service.TabulatedFunctionService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/tabulated-functions")
+@RequestMapping("/api/tabulated-functions")
 public class TabulatedFunctionController {
 
     private static final Logger logger = LoggerFactory.getLogger(TabulatedFunctionController.class);
@@ -34,7 +34,7 @@ public class TabulatedFunctionController {
         return ownerId;
     }
 
-    // GET /api/v1/tabulated-functions
+    // GET /api/tabulated-functions
     @GetMapping
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<TabulatedFunctionDto>> getAll(
@@ -42,7 +42,7 @@ public class TabulatedFunctionController {
         return ResponseEntity.ok(service.findAllByOwner(ownerId));
     }
 
-    // GET /api/v1/tabulated-functions/page?page=0&size=10
+    // GET /api/tabulated-functions/page?page=0&size=10
     @GetMapping("/page")
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<Page<TabulatedFunctionDto>> getPage(
@@ -51,7 +51,7 @@ public class TabulatedFunctionController {
         return ResponseEntity.ok(service.findAllByOwner(ownerId, pageable));
     }
 
-    // GET /api/v1/tabulated-functions/sorted/name
+    // GET /api/tabulated-functions/sorted/name
     @GetMapping("/sorted/name")
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<TabulatedFunctionDto>> getAllSortedByName(
@@ -59,7 +59,7 @@ public class TabulatedFunctionController {
         return ResponseEntity.ok(service.findAllByOwnerSortedByNameAsc(ownerId));
     }
 
-    // GET /api/v1/tabulated-functions/sorted/created
+    // GET /api/tabulated-functions/sorted/created
     @GetMapping("/sorted/created")
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<TabulatedFunctionDto>> getAllSortedByCreatedAt(
@@ -67,7 +67,7 @@ public class TabulatedFunctionController {
         return ResponseEntity.ok(service.findAllByOwnerSortedByCreatedAtDesc(ownerId));
     }
 
-    // GET /api/v1/tabulated-functions/1
+    // GET /api/tabulated-functions/1
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<TabulatedFunctionDto> getById(
@@ -78,7 +78,7 @@ public class TabulatedFunctionController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // GET /api/v1/tabulated-functions/search?q=sin
+    // GET /api/tabulated-functions/search?q=sin
     @GetMapping("/search")
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<TabulatedFunctionDto>> search(
@@ -87,7 +87,7 @@ public class TabulatedFunctionController {
         return ResponseEntity.ok(service.searchByNameFragmentAndOwner(q, ownerId));
     }
 
-    // GET /api/v1/tabulated-functions/by-type/5
+    // GET /api/tabulated-functions/by-type/5
     @GetMapping("/by-type/{typeId}")
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<TabulatedFunctionDto>> getByFunctionType(
@@ -96,7 +96,7 @@ public class TabulatedFunctionController {
         return ResponseEntity.ok(service.findByFunctionTypeIdAndOwner(typeId, ownerId));
     }
 
-    // POST /api/v1/tabulated-functions
+    // POST /api/tabulated-functions
     @PostMapping
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<TabulatedFunctionDto> create(
@@ -107,7 +107,7 @@ public class TabulatedFunctionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    // PATCH /api/v1/tabulated-functions/1/name
+    // PATCH /api/tabulated-functions/1/name
     @PatchMapping("/{id}/name")
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<TabulatedFunctionDto> updateName(
@@ -119,7 +119,7 @@ public class TabulatedFunctionController {
         return ResponseEntity.ok(updated);
     }
 
-    // PATCH /api/v1/tabulated-functions/1/data-and-name
+    // PATCH /api/tabulated-functions/1/data-and-name
     @PatchMapping("/{id}/data-and-name")
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<TabulatedFunctionDto> updateDataAndName(
@@ -135,7 +135,7 @@ public class TabulatedFunctionController {
         return ResponseEntity.ok(updated);
     }
 
-    // DELETE /api/v1/tabulated-functions/1
+    // DELETE /api/tabulated-functions/1
     @DeleteMapping("/{id}")
     @PreAuthorize("@tabulatedFunctionService.canModify(authentication, #id)")
     public ResponseEntity<Void> delete(

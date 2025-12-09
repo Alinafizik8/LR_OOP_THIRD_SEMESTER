@@ -10,6 +10,7 @@ public class UserDto {
     public String email;
     public String role;
     public Instant createdAt;
+    private String credentials;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -25,4 +26,7 @@ public class UserDto {
 
     public Instant getCreatedAt() { return createdAt; }
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
+
+    public String getCredentials() { return credentials; }
+    public void setCredentials(String credentials) { this.credentials = credentials; }
 }

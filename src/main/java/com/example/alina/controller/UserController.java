@@ -67,7 +67,7 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // GET /api/v1/users/by-email/{email}
+    // GET /api/users/by-email/{email}
     @GetMapping("/by-email/{email}")
     @PreAuthorize("hasRole('ADMIN') or @userService.findByEmail(#email)?.get()?.username == authentication.principal.username")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable String email) {
@@ -76,7 +76,7 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // GET /api/v1/users/by-param/{param}
+    // GET /api/users/by-param/{param}
     @GetMapping("/by-param/{param}")
     @PreAuthorize("hasRole('ADMIN') or @userService.findByUsernameOrEmail(#param)?.get()?.username == authentication.principal.username")
     public ResponseEntity<UserDto> getUserByUsernameOrEmail(@PathVariable String param) {
@@ -85,21 +85,21 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // GET /api/v1/users/search?q=john
+    // GET /api/users/search?q=john
     @GetMapping("/search")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserDto>> searchUsers(@RequestParam String q) {
         return ResponseEntity.ok(userService.searchByUsernameFragment(q));
     }
 
-    // GET /api/v1/users/by-function-type/5
+    // GET /api/users/by-function-type/5
     @GetMapping("/by-function-type/{typeId}")
     @PreAuthorize("hasRole('ADMIN') or #ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<List<UserDto>> getUsersByFunctionType(@PathVariable Long typeId) {
         return ResponseEntity.ok(userService.findUsersByFunctionTypeId(typeId));
     }
 
-    // POST /api/v1/users
+    // POST /api/users
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody CreateUserRequest req) {
         if (userService.existsByUsername(req.username())) {
@@ -120,7 +120,7 @@ public class UserController {
         return ResponseEntity.status(201).body(created);
     }
 
-    // PUT /api/v1/users/1
+    // PUT /api/users/1
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or #id == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
     public ResponseEntity<UserDto> updateUser(
@@ -130,7 +130,7 @@ public class UserController {
         return ResponseEntity.ok(updated);
     }
 
-    // PATCH /api/v1/users/1/password
+    // PATCH /api/users/1/password
     @PatchMapping("/{id}/password")
     public ResponseEntity<Void> updatePassword(
             @PathVariable Long id,
@@ -140,7 +140,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    // PATCH /api/v1/users/1/role
+    // PATCH /api/users/1/role
     @PatchMapping("/{id}/role")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> updateRole(
@@ -151,7 +151,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    // DELETE /api/v1/users/1
+    // DELETE /api/users/1
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.id")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {

@@ -32,7 +32,7 @@ public class CustomUserDetailsService implements UserDetailsService, Serializabl
                             entity.getId(),
                             entity.getUsername(),
                             entity.getPasswordHash(),
-                            List.of(new SimpleGrantedAuthority("ROLE_" + entity.getRole().toUpperCase()))
+                            List.of(new SimpleGrantedAuthority("ROLE_" + entity.getRole()))
                     );
                 })
                 .orElseThrow(() -> {
