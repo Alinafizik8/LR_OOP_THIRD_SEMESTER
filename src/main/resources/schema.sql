@@ -19,6 +19,14 @@ CREATE TABLE IF NOT EXISTS function_types (
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Вставка базовых типов
+INSERT INTO function_types (name, localized_name, priority, created_at, updated_at)
+VALUES
+  ('TABULATED', 'Табулированная', 1, NOW(), NOW()),
+  ('SIN', 'Синус', 2, NOW(), NOW()),
+  ('COS', 'Косинус', 3, NOW(), NOW())
+ON CONFLICT (name) DO NOTHING;
+
 -- Создание таблицы табулированных функций (tabulated_functions)
 CREATE TABLE IF NOT EXISTS tabulated_functions (
     id BIGSERIAL PRIMARY KEY,

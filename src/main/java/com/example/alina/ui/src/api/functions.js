@@ -21,14 +21,14 @@ export const getFunctionById = async (id) => {
 export const createFunctionFromPoints = async ({ name, xValues, yValues }) => {
   console.log('Creating function from points...');
   const dto = { name, xValues, yValues, ownerId: getOwnerId() };
-  const response = await api.post('tabulated-functions/from-points', dto);
+  const response = await api.post('/tabulated-functions/from-points', dto);
   return response.data;
 };
 
 export const createFunctionFromMath = async ({ name, mathFunctionType, xFrom, xTo, count }) => {
   console.log('Creating math function...');
   const dto = { name, mathFunctionType, xFrom, xTo, count, ownerId: getOwnerId() };
-  const response = await api.post('tabulated-functions/from-math', dto);
+  const response = await api.post('/tabulated-functions/from-math', dto);
   return response.data;
 };
 
@@ -51,7 +51,7 @@ export const deleteFunction = async (id) => {
 export const differentiateFunction = async ({ functionId, resultName }) => {
   console.log(`Differentiating function ${functionId}...`);
   const dto = { functionId, resultName, ownerId: getOwnerId() };
-  const response = await api.post('tabulated-functions/differentiate', dto);
+  const response = await api.post('/tabulated-functions/differentiate', dto);
   return response.data;
 };
 

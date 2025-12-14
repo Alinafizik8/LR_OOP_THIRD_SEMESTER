@@ -1,8 +1,11 @@
 package com.example.alina.service;
 
+import com.example.alina.dto.function.CreateFunctionFromMathRequest;
+import com.example.alina.dto.function.CreateFunctionFromPointsRequest;
 import com.example.alina.dto.function.TabulatedFunctionDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +19,13 @@ public interface TabulatedFunctionService {
     List<TabulatedFunctionDto> findAllByOwnerSortedByCreatedAtDesc(Long ownerId);
 
     Optional<TabulatedFunctionDto> findByIdAndOwner(Long id, Long ownerId);
+
+    @Transactional
+    TabulatedFunctionDto createFromPoints(CreateFunctionFromPointsRequest request);
+
+    @Transactional
+    TabulatedFunctionDto createFromMath(CreateFunctionFromMathRequest request);
+
     TabulatedFunctionDto create(Long ownerId, TabulatedFunctionDto dto);
     TabulatedFunctionDto updateName(Long id, Long ownerId, String newName);
     TabulatedFunctionDto updateDataAndName(Long id, Long ownerId, byte[] serializedData, String newName);

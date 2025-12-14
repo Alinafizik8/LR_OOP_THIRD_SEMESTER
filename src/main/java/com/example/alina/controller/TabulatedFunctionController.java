@@ -1,13 +1,19 @@
 package com.example.alina.controller;
 
+import com.example.alina.dto.function.CreateFunctionFromMathRequest;
+import com.example.alina.dto.function.CreateFunctionFromPointsRequest;
 import com.example.alina.dto.function.TabulatedFunctionDto;
+import com.example.alina.service.CustomUserDetails;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import com.example.alina.service.TabulatedFunctionService;
 
@@ -144,6 +150,34 @@ public class TabulatedFunctionController {
         service.deleteByIdAndOwner(id, ownerId);
         logger.info("Deleted TabulatedFunction ID={} for user {}", id, ownerId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/from-points")
+    @PreAuthorize("hasRole('ADMIN') or #dto.ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
+    public ResponseEntity<TabulatedFunctionDto> createFromPoints(
+            @Valid @RequestBody CreateFunctionFromPointsRequest dto) {
+        // Убедимся, что ownerId совпадает с текущим пользователем (защита от подмены)
+        Long currentUserId = ((CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        if (dto.getOwnerId() == null) {
+            dto.setOwnerId(currentUserId);
+        } else if (!dto.getOwnerId().equals(currentUserId)) {
+            throw new AccessDeniedException("Cannot create function for another user");
+        }
+
+        TabulatedFunctionDto created = service.createFromPoints(dto);
+        logger.info("Created function from points: ID={}, owner={}", created.getId(), dto.getOwnerId());
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    }
+
+    // POST /api/tabulated-functions/from-math
+    @PostMapping("/from-math")
+    @PreAuthorize("hasRole('ADMIN') or #dto.ownerId == @userService.findUserEntityByUsername(authentication.principal.username)?.get()?.id")
+    public ResponseEntity<TabulatedFunctionDto> createFromMath(
+            @Valid @RequestBody CreateFunctionFromMathRequest dto) {
+
+        TabulatedFunctionDto created = service.createFromMath(dto);
+        logger.info("Created TabulatedFunction from math function '{}', ID={}", dto.getMathFunctionType(), created.getId());
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     // ─── DTO для частичных обновлений ─────────────────────────────

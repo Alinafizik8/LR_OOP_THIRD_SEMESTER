@@ -1,17 +1,24 @@
 package com.example.alina.service;
 
+import com.example.alina.dto.function.CreateFunctionFromMathRequest;
+import com.example.alina.dto.function.CreateFunctionFromPointsRequest;
 import com.example.alina.dto.function.TabulatedFunctionDto;
+import com.example.alina.entity.FunctionTypeEntity;
 import com.example.alina.entity.TabulatedFunctionEntity;
 import com.example.alina.entity.UserEntity;
+import com.example.alina.functions.*;
+import com.example.alina.io.FunctionsIO;
+import com.example.alina.repository.FunctionTypeRepository;
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.alina.repository.TabulatedFunctionRepository;
 import com.example.alina.repository.UserRepository;
-import com.example.alina.service.TabulatedFunctionService;
 
+import java.io.BufferedOutputStream;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -23,10 +30,12 @@ public class TabulatedFunctionServiceImpl implements TabulatedFunctionService {
 
     private final TabulatedFunctionRepository repository;
     private final UserRepository userRepository;
+    private final FunctionTypeRepository functionTypeRepository;
 
-    public TabulatedFunctionServiceImpl(TabulatedFunctionRepository repository, UserRepository userRepository) {
+    public TabulatedFunctionServiceImpl(TabulatedFunctionRepository repository, UserRepository userRepository, FunctionTypeRepository functionTypeRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
+        this.functionTypeRepository = functionTypeRepository;
     }
 
     public boolean canModify(org.springframework.security.core.Authentication authentication, Long functionId) {
@@ -117,16 +126,104 @@ public class TabulatedFunctionServiceImpl implements TabulatedFunctionService {
 
     // ─── CREATE ─────────────────────────────────────────────────────
 
-//    @Transactional
-//    @Override
-//    public TabulatedFunctionDto create(Long ownerId, TabulatedFunctionDto dto) {
-//        TabulatedFunctionEntity entity = toEntity(dto);
-//        entity.setOwner(ownerId);
-//        entity.setCreatedAt(Instant.now());
-//        entity.setUpdatedAt(Instant.now());
-//        TabulatedFunctionEntity saved = repository.save(entity);
-//        return toDto(saved);
-//    }
+    @Transactional
+    @Override
+    public TabulatedFunctionDto createFromPoints(CreateFunctionFromPointsRequest request) {
+        // 1. Валидация
+        if (request.getXValues() == null || request.getYValues() == null) {
+            throw new IllegalArgumentException("xValues and yValues must not be null");
+        }
+        if (request.getXValues().size() < 2 || request.getYValues().size() < 2) {
+            throw new IllegalArgumentException("At least 2 points required");
+        }
+        if (request.getXValues().size() != request.getYValues().size()) {
+            throw new IllegalArgumentException("xValues and yValues must have same length");
+        }
+
+        // 2. Создаём TabulatedFunction (например, ArrayTabulatedFunction)
+        double[] x = request.getXValues().stream().mapToDouble(Double::doubleValue).toArray();
+        double[] y = request.getYValues().stream().mapToDouble(Double::doubleValue).toArray();
+        TabulatedFunction func = new ArrayTabulatedFunction(x, y);
+
+        // 3. Сериализуем в байты
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try (BufferedOutputStream bos = new BufferedOutputStream(baos)) {
+            FunctionsIO.serialize(bos, func);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to serialize function", e);
+        }
+        byte[] serializedData = baos.toByteArray();
+
+        // 4. Сохраняем в БД
+        TabulatedFunctionEntity entity = new TabulatedFunctionEntity();
+        entity.setName(request.getName());
+        entity.setSerializedData(serializedData);
+
+        // Найдём владельца
+        UserEntity owner = userRepository.findById(request.getOwnerId())
+                .orElseThrow(() -> new IllegalArgumentException("Owner not found: " + request.getOwnerId()));
+        entity.setOwner(owner);
+
+        // Найдём тип функции (например, "TABULATED")
+        FunctionTypeEntity type = functionTypeRepository.findByName("TABULATED")
+                .orElseThrow(() -> new IllegalStateException("FunctionType 'TABULATED' not found"));
+        entity.setFunctionType(type);
+
+        entity.setCreatedAt(Instant.now());
+        entity.setUpdatedAt(Instant.now());
+
+        TabulatedFunctionEntity saved = repository.save(entity);
+        return toDto(saved);
+    }
+    @Transactional
+    @Override
+    public TabulatedFunctionDto createFromMath(CreateFunctionFromMathRequest request) {
+        // 1. Определяем MathFunction по имени
+        MathFunction mathFunc = switch (request.getMathFunctionType().toLowerCase()) {
+            case "identity", "identityfunction" -> new IdentityFunction();
+            case "sqr", "sqrfunction" -> new SqrFunction();
+            case "constant", "constantfunction" -> new ConstantFunction(1.0);
+            case "zero", "zerofunction" -> new ZeroFunction();
+            case "unit", "unitfunction" -> new UnitFunction();
+            default -> throw new IllegalArgumentException("Unknown math function: " + request.getMathFunctionType());
+        };
+
+        // 2. Создаём табулированную функцию
+        TabulatedFunction tabFunc = new ArrayTabulatedFunction(
+                mathFunc,
+                request.getXFrom(),
+                request.getXTo(),
+                request.getCount()
+        );
+
+        // 3. Сериализуем
+        byte[] serialized;
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+             BufferedOutputStream bos = new BufferedOutputStream(baos)) {
+            FunctionsIO.serialize(bos, tabFunc);
+            serialized = baos.toByteArray();
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to serialize function", e);
+        }
+
+        // 4. Владелец и тип
+        UserEntity owner = userRepository.findById(request.getOwnerId())
+                .orElseThrow(() -> new IllegalArgumentException("Owner not found: " + request.getOwnerId()));
+        FunctionTypeEntity type = functionTypeRepository.findByName("TABULATED")
+                .orElseThrow(() -> new IllegalStateException("Function type 'TABULATED' not found in DB"));
+
+        // 5. Сохраняем
+        TabulatedFunctionEntity entity = new TabulatedFunctionEntity();
+        entity.setName(request.getName());
+        entity.setOwner(owner);
+        entity.setFunctionType(type);
+        entity.setSerializedData(serialized);
+        entity.setCreatedAt(Instant.now());
+        entity.setUpdatedAt(Instant.now());
+
+        TabulatedFunctionEntity saved = repository.save(entity);
+        return toDto(saved);
+    }
 
     @Transactional
     @Override

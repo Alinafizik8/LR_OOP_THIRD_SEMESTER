@@ -14,7 +14,7 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Валидация совпадает с backend требованиями
+    // Валидация совпадает с backend требованиями
     if (!username || username.trim().length === 0) {
       toast.error('Логин не может быть пустым');
       return;
@@ -47,7 +47,7 @@ const RegisterPage = () => {
 
     setLoading(true);
     try {
-      // ✅ Вызываем register с правильными параметрами
+      // Вызываем register с правильными параметрами
       await register(username, password, email);
 
       toast.success('Регистрация прошла успешно! Теперь вы можете войти в систему.');

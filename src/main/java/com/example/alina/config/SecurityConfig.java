@@ -46,14 +46,16 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/management/**").permitAll()
                         .requestMatchers("/error").permitAll()
-                        .requestMatchers("/api/**").authenticated()
+
+                        .requestMatchers("/api/tabulated-functions/**").authenticated()
+                        .requestMatchers("/api/users/**").authenticated()
+
                         .anyRequest().authenticated()
                 )
                 .httpBasic(basic -> basic
                         .realmName("API")
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 );
-
         return http.build();
     }
 
