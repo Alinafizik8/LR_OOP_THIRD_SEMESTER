@@ -48,4 +48,10 @@ api.interceptors.response.use(
   }
 );
 
+const user = JSON.parse(localStorage.getItem('user'));
+if (user?.id) {
+  config.headers['X-User-Id'] = user.id;
+}
+
+
 export default api;

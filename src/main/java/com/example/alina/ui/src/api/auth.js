@@ -48,7 +48,7 @@ export const login = async (username, password) => {
 
     try {
       // Пытаемся получить профиль пользователя
-      const profileRes = await api.get(`/users/by-username/${username}`);
+      const profileRes = await api.get(`/api/users/by-username/${loginRequest.getUsernameOrEmail()}`);
       user.id = profileRes.data.id;
       user.role = profileRes.data.role;
       user.email = profileRes.data.email;

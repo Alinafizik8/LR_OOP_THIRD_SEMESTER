@@ -8,50 +8,50 @@ const getOwnerId = () => {
 
 export const getAllFunctions = async () => {
   console.log('Getting all functions...');
-  const response = await api.get('tabulated-functions');
+  'const response = await api.get(/api/tabulated-functions');
   return response.data;
 };
 
 export const getFunctionById = async (id) => {
   console.log(`Getting function ${id}...`);
-  const response = await api.get(`tabulated-functions/${id}`);
+  const response = await api.get(`/api/tabulated-functions/${id}`);
   return response.data;
 };
 
 export const createFunctionFromPoints = async ({ name, xValues, yValues }) => {
   console.log('Creating function from points...');
   const dto = { name, xValues, yValues, ownerId: getOwnerId() };
-  const response = await api.post('/tabulated-functions/from-points', dto);
+  const response = await api.post('/api/tabulated-functions/from-points', dto);
   return response.data;
 };
 
 export const createFunctionFromMath = async ({ name, mathFunctionType, xFrom, xTo, count }) => {
   console.log('Creating math function...');
   const dto = { name, mathFunctionType, xFrom, xTo, count, ownerId: getOwnerId() };
-  const response = await api.post('/tabulated-functions/from-math', dto);
+  const response = await api.post('/api/tabulated-functions/from-math', dto);
   return response.data;
 };
 
 export const updateFunctionName = async (id, name) => {
   console.log(`Updating name for function ${id}...`);
-  await api.patch(`tabulated-functions/${id}/name`, { name });
+  await api.patch(`/api/tabulated-functions/${id}/name`, { name });
 };
 
 export const updateFunctionDataAndName = async (id, { xValues, yValues, name }) => {
   console.log(`Updating data for function ${id}...`);
   const data = new TextEncoder().encode(JSON.stringify({ x: xValues, y: yValues }));
-  await api.patch(`tabulated-functions/${id}/data-and-name`, { name, data });
+  await api.patch(`/api/tabulated-functions/${id}/data-and-name`, { name, data });
 };
 
 export const deleteFunction = async (id) => {
   console.log(`Deleting function ${id}...`);
-  await api.delete(`tabulated-functions/${id}`);
+  await api.delete(`/api/tabulated-functions/${id}`);
 };
 
 export const differentiateFunction = async ({ functionId, resultName }) => {
   console.log(`Differentiating function ${functionId}...`);
   const dto = { functionId, resultName, ownerId: getOwnerId() };
-  const response = await api.post('/tabulated-functions/differentiate', dto);
+  const response = await api.post('/api/tabulated-functions/differentiate', dto);
   return response.data;
 };
 
