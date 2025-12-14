@@ -7,10 +7,10 @@ const getOwnerId = () => {
 };
 
 export const getAllFunctions = async () => {
-  console.log('Getting all functions...');
-  'const response = await api.get(/api/tabulated-functions');
+  const response = await api.get('/api/tabulated-functions');
   return response.data;
 };
+
 
 export const getFunctionById = async (id) => {
   console.log(`Getting function ${id}...`);
