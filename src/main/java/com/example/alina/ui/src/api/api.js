@@ -1,6 +1,7 @@
+// ✓ ПРАВИЛЬНО
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'http://localhost:8080';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -10,18 +11,15 @@ const api = axios.create({
   withCredentials: true,
 });
 
-//  Автоматическая аутентификация для ВСЕХ запросов
+// Интерцептор REQUEST
 api.interceptors.request.use((config) => {
-  console.log(`Request: ${config.method?.toUpperCase()} ${config.url}`);
-
   const user = JSON.parse(localStorage.getItem('user'));
-  if (user?.credentials) {
-    config.headers.Authorization = `Basic ${user.credentials}`;
-    console.log(' Added Basic Auth');
-  }
+
   if (user?.id) {
     config.headers['X-User-Id'] = user.id;
-    console.log(' Added X-User-Id:', user.id);
+  }
+  if (user?.credentials) {
+    config.headers['Authorization'] = `Basic ${user.credentials}`;
   }
 
   return config;
@@ -47,11 +45,5 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-const user = JSON.parse(localStorage.getItem('user'));
-if (user?.id) {
-  config.headers['X-User-Id'] = user.id;
-}
-
 
 export default api;

@@ -55,7 +55,6 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<UserDto> loginUser(@Valid @RequestBody LoginRequest loginRequest) {
         try {
-            // Аутентификация через Spring Security
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             loginRequest.getUsernameOrEmail(),
@@ -64,25 +63,14 @@ public class AuthController {
             );
 
             if (authentication.isAuthenticated()) {
-                // Получаем данные пользователя
                 UserDto user = userService.findByUsernameOrEmail(loginRequest.getUsernameOrEmail())
                         .orElseThrow(() -> new RuntimeException("User not found after authentication"));
 
-                // Создаем Basic Auth токен для фронтенда
-                String credentials = java.util.Base64.getEncoder().encodeToString(
+                user.setCredentials(java.util.Base64.getEncoder().encodeToString(
                         (loginRequest.getUsernameOrEmail() + ":" + loginRequest.getPassword()).getBytes()
-                );
+                ));
 
-                // Устанавливаем credentials для фронтенда
-                user.setCredentials(credentials);
-
-                // Возвращаем с Authorization header
-                HttpHeaders headers = new HttpHeaders();
-                headers.add(HttpHeaders.AUTHORIZATION, "Basic " + credentials);
-
-                return ResponseEntity.ok()
-                        .headers(headers)
-                        .body(user);
+                return ResponseEntity.ok(user);
             }
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -93,6 +81,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
 
     @GetMapping("/profile")
     public ResponseEntity<UserDto> getCurrentUser(Authentication authentication) {
