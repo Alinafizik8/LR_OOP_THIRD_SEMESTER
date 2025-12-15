@@ -28,3 +28,11 @@ logging:
   level:
     com.example.alina: DEBUG
     org.springframework.security: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always

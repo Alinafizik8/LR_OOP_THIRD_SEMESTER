@@ -184,15 +184,6 @@ public class UserServiceImpl implements UserService {
         return dto;
     }
 
-    private static UserEntity toEntity(UserDto dto) {
-        UserEntity e = new UserEntity();
-        e.setUsername(dto.getUsername());
-        e.setEmail(dto.getEmail());
-        e.setRole(dto.getRole());
-        // createdAt будет проставлен в create()
-        return e;
-    }
-
     @Override
     public Optional<UserEntity> findUserEntityByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -201,15 +192,27 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public UserDto createWithPassword(UserDto dto, String passwordHash) {
-        // валидация
-        UserEntity entity = new UserEntity(
-                dto.getEmail(),
-                dto.getUsername(),
-                passwordHash,
-                dto.getRole() != null ? dto.getRole() : "USER"
-        );
+        if (userRepository.existsByUsername(dto.getUsername())) {
+            throw new IllegalArgumentException("Username " + dto.getUsername() + " is already taken");
+        }
+        if (userRepository.existsByEmail(dto.getEmail())) {
+            throw new IllegalArgumentException("Email " + dto.getEmail() + " is already registered");
+        }
+
+        UserEntity entity = toEntity(dto);
+        entity.setPasswordHash(passwordHash);
         entity.setCreatedAt(Instant.now());
+
         UserEntity saved = userRepository.save(entity);
         return toDto(saved);
     }
+
+    private UserEntity toEntity(UserDto dto) {
+        UserEntity entity = new UserEntity();
+        entity.setUsername(dto.getUsername());
+        entity.setEmail(dto.getEmail());
+        entity.setRole(dto.getRole() != null ? dto.getRole() : "USER");
+        return entity;
+    }
+
 }
