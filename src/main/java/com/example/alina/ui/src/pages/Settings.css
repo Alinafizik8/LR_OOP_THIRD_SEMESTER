@@ -1,0 +1,107 @@
+.settings-page {
+  min-height: calc(100vh - 60px);
+  padding: 2rem;
+  background: #1a1a1a;
+}
+
+.settings-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.settings-container h1 {
+  color: #fff;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.settings-section {
+  background: #2a2a2a;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.settings-section h2 {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.settings-description {
+  color: #b0b0b0;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.factory-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.factory-option {
+  display: flex;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: #1a1a1a;
+  border: 2px solid #444;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.factory-option:hover {
+  border-color: #667eea;
+}
+
+.factory-option input[type="radio"] {
+  margin-right: 1rem;
+  margin-top: 0.25rem;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  accent-color: #667eea;
+}
+
+.factory-option input[type="radio"]:checked + .option-content {
+  color: #667eea;
+}
+
+.option-content h3 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.option-content p {
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.factory-option input[type="radio"]:checked ~ .option-content h3 {
+  color: #667eea;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}

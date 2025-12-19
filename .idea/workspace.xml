@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="del_dubl_in_pom" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="new_branch_started">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="d3286350710124f84c18c5e75e5a4a6f5a678dd6" />
+        <entry key="$PROJECT_DIR$" value="fix-api-imports_AlinasBranch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,6 +62,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.AlinaApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
     &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.MultiplyingTaskExecutor.executor&quot;: &quot;Run&quot;,
     &quot;Application.ReadWriteTaskExecutor.executor&quot;: &quot;Run&quot;,
@@ -80,6 +84,7 @@
     &quot;Maven.alina [package].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
@@ -103,6 +108,8 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Java\LR_OOP_THIRD_SEMESTER\src\main\resources\templates" />
+      <recent name="D:\Java\LR_OOP_THIRD_SEMESTER\src\main\templates\resources" />
       <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\main\java\com\example\alina" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -534,31 +541,23 @@
       <option name="project" value="LOCAL" />
       <updated>1765041000149</updated>
     </task>
-    <task id="LOCAL-00044" summary="bec_adapt">
+    <task id="LOCAL-00044" summary="work">
       <option name="closed" value="true" />
-      <created>1765119742576</created>
+      <created>1765182120676</created>
       <option name="number" value="00044" />
       <option name="presentableId" value="LOCAL-00044" />
       <option name="project" value="LOCAL" />
-      <updated>1765119742576</updated>
+      <updated>1765182120676</updated>
     </task>
-    <task id="LOCAL-00045" summary="apd appl and docker">
+    <task id="LOCAL-00045" summary="new_branch_started">
       <option name="closed" value="true" />
-      <created>1765177481899</created>
+      <created>1765193641228</created>
       <option name="number" value="00045" />
       <option name="presentableId" value="LOCAL-00045" />
       <option name="project" value="LOCAL" />
-      <updated>1765177481899</updated>
+      <updated>1765193641228</updated>
     </task>
-    <task id="LOCAL-00046" summary="del_dubl_in_pom">
-      <option name="closed" value="true" />
-      <created>1765179390173</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1765179390173</updated>
-    </task>
-    <option name="localTasksCounter" value="47" />
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -572,17 +571,6 @@
                   <entry key="Show.Git.Branches" value="true" />
                 </map>
               </option>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="framework" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
             </State>
           </value>
         </entry>
@@ -590,6 +578,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: add spring boot generated from initializer" />
     <MESSAGE value="continue repare" />
     <MESSAGE value="before all..." />
     <MESSAGE value="attention" />
@@ -612,10 +601,9 @@
     <MESSAGE value="+continue in HomeController1" />
     <MESSAGE value="cont with thyleaf" />
     <MESSAGE value="START_AGAIN" />
-    <MESSAGE value="bec_adapt" />
-    <MESSAGE value="apd appl and docker" />
-    <MESSAGE value="del_dubl_in_pom" />
-    <option name="LAST_COMMIT_MESSAGE" value="del_dubl_in_pom" />
+    <MESSAGE value="work" />
+    <MESSAGE value="new_branch_started" />
+    <option name="LAST_COMMIT_MESSAGE" value="new_branch_started" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
