@@ -58,7 +58,10 @@ public class FunctionService {
     }
 
     private MathFunction getMathFunction(String type, Double constantValue) {
-        return switch (type.toUpperCase()) {
+        String key = type
+                .replace("Function", "")
+                .toUpperCase();
+        return switch (key) {
             case "SQR" -> new SqrFunction();
             case "IDENTITY" -> new IdentityFunction();
             case "UNIT" -> new UnitFunction();
