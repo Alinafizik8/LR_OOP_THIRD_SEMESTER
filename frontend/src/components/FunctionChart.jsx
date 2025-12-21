@@ -45,7 +45,7 @@ const FunctionChart = ({ functionData, data: propData }) => {
           />
           <Legend />
           <Line
-            type="monotone"
+            type="linear"
             dataKey="yValue"
             stroke="#667eea"
             strokeWidth={2}
