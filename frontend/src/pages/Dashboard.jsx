@@ -395,6 +395,15 @@ const Dashboard = () => {
                     Добавить точку
                   </button>
                 </div>
+
+                <div className="button-group">
+                  <button onClick={() => setEditMode(false)} className="btn-secondary">
+                    Отмена
+                  </button>
+                  <button onClick={handleSaveEdit} className="btn-primary">
+                    Сохранить
+                  </button>
+                </div>
                 <div className="form-group">
                   <label>Система координат</label>
                   <select
@@ -408,16 +417,6 @@ const Dashboard = () => {
                     <option value="spherical">Сферическая</option>
                   </select>
                 </div>
-
-                <div className="button-group">
-                  <button onClick={() => setEditMode(false)} className="btn-secondary">
-                    Отмена
-                  </button>
-                  <button onClick={handleSaveEdit} className="btn-primary">
-                    Сохранить
-                  </button>
-                </div>
-
                 <FunctionChart2 functionData={editData} coordinateSystem={coordinateSystem} />
               </div>
             ) : (
@@ -446,6 +445,19 @@ const Dashboard = () => {
                       ))}
                     </tbody>
                   </table>
+                </div>
+                <div className="form-group">
+                  <label>Система координат</label>
+                  <select
+                    value={coordinateSystem}
+                    onChange={(e) => setCoordinateSystem(e.target.value)}
+                    style={{ width: '100%', padding: '6px', background: '#2a2a2a', border: '1px solid #444', color: '#fff' }}
+                  >
+                    <option value="cartesian">Декартова</option>
+                    <option value="polar">Полярная</option>
+                    <option value="cylindrical">Цилиндрическая</option>
+                    <option value="spherical">Сферическая</option>
+                  </select>
                 </div>
 
                 <FunctionChart2 functionData={selectedFunction} coordinateSystem={coordinateSystem} />
