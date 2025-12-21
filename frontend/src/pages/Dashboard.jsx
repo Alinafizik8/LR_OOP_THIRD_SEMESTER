@@ -6,7 +6,7 @@ import { functions } from '../services/api';
 import Navbar from '../components/Navbar';
 import CreateFunctionFromArrays from '../components/CreateFunctionFromArrays';
 import CreateFunctionFromMath from '../components/CreateFunctionFromMath';
-import FunctionChart from '../components/FunctionChart';
+import FunctionChart2 from '../components/FunctionChart2';
 import Alert from '../components/Alert';
 import './Dashboard.css';
 
@@ -19,6 +19,7 @@ const Dashboard = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
+  const [coordinateSystem, setCoordinateSystem] = useState('cartesian');
   const { user, logout } = useAuth();
   const { factoryType } = useFactory();
   const navigate = useNavigate();
@@ -394,6 +395,19 @@ const Dashboard = () => {
                     Добавить точку
                   </button>
                 </div>
+                <div className="form-group">
+                  <label>Система координат</label>
+                  <select
+                    value={coordinateSystem}
+                    onChange={(e) => setCoordinateSystem(e.target.value)}
+                    style={{ width: '100%', padding: '6px', background: '#2a2a2a', border: '1px solid #444', color: '#fff' }}
+                  >
+                    <option value="cartesian">Декартова</option>
+                    <option value="polar">Полярная</option>
+                    <option value="cylindrical">Цилиндрическая</option>
+                    <option value="spherical">Сферическая</option>
+                  </select>
+                </div>
 
                 <div className="button-group">
                   <button onClick={() => setEditMode(false)} className="btn-secondary">
@@ -404,7 +418,7 @@ const Dashboard = () => {
                   </button>
                 </div>
 
-                <FunctionChart functionData={editData} />
+                <FunctionChart2 functionData={editData} coordinateSystem={coordinateSystem} />
               </div>
             ) : (
               <div className="view-function">
@@ -434,7 +448,7 @@ const Dashboard = () => {
                   </table>
                 </div>
 
-                <FunctionChart functionData={selectedFunction} />
+                <FunctionChart2 functionData={selectedFunction} coordinateSystem={coordinateSystem} />
               </div>
             )}
           </div>

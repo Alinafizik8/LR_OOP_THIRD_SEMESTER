@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import FunctionChart from '../components/FunctionChart';
+import FunctionChart2 from '../components/FunctionChart2';
 import { useFactory } from '../context/FactoryContext';
 import { functions } from '../services/api';
 import './FunctionExplorer.css';
@@ -18,6 +18,7 @@ const FunctionExplorer = () => {
   const [insertX, setInsertX] = useState('');
   const [insertY, setInsertY] = useState('');
   const [showInsertForm, setShowInsertForm] = useState(false);
+  const [coordinateSystem, setCoordinateSystem] = useState('cartesian');
 
   useEffect(() => {
     loadFunctions();
@@ -182,6 +183,21 @@ const FunctionExplorer = () => {
                 ))}
               </select>
             </div>
+            {selectedFunction && (
+              <div className="control-group">
+                <label>Система координат</label>
+                <select
+                  value={coordinateSystem}
+                  onChange={(e) => setCoordinateSystem(e.target.value)}
+                  className="function-select"
+                >
+                  <option value="cartesian">Декартова</option>
+                  <option value="polar">Полярная</option>
+                  <option value="cylindrical">Цилиндрическая</option>
+                  <option value="spherical">Сферическая</option>
+                </select>
+              </div>
+            )}
 
             {selectedFunction && (
               <div className="apply-section">
@@ -313,7 +329,7 @@ const FunctionExplorer = () => {
 
                 <div className="function-chart-wrapper">
                   <h3>График функции</h3>
-                  <FunctionChart data={getChartData()} />
+                  <FunctionChart2 data={getChartData()} coordinateSystem={coordinateSystem} />
                 </div>
               </div>
             </div>

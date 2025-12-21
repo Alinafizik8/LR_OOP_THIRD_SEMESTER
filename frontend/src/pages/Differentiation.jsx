@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import FunctionChart from '../components/FunctionChart';
+import FunctionChart2 from '../components/FunctionChart2';
 import { useFactory } from '../context/FactoryContext';
 import { functions } from '../services/api';
 import './Differentiation.css';
@@ -13,6 +13,7 @@ const Differentiation = () => {
   const [derivedFunction, setDerivedFunction] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [coordinateSystem, setCoordinateSystem] = useState('cartesian');
 
   useEffect(() => {
     loadFunctions();
@@ -108,6 +109,19 @@ const Differentiation = () => {
             >
               {loading ? 'Вычисление...' : 'Вычислить производную'}
             </button>
+            <div className="control-group">
+              <label>Система координат</label>
+              <select
+                value={coordinateSystem}
+                onChange={(e) => setCoordinateSystem(e.target.value)}
+                className="function-select"
+              >
+                <option value="cartesian">Декартова</option>
+                <option value="polar">Полярная</option>
+                <option value="cylindrical">Цилиндрическая</option>
+                <option value="spherical">Сферическая</option>
+              </select>
+            </div>
           </div>
 
           {sourceFunction && (
@@ -133,7 +147,7 @@ const Differentiation = () => {
                   </table>
                 </div>
                 <div className="function-chart-wrapper">
-                  <FunctionChart data={sourceFunction} />
+                  <FunctionChart2 data={sourceFunction} coordinateSystem={coordinateSystem}/>
                 </div>
               </div>
             </div>
@@ -162,7 +176,7 @@ const Differentiation = () => {
                   </table>
                 </div>
                 <div className="function-chart-wrapper">
-                  <FunctionChart data={derivedFunction} />
+                  <FunctionChart2 data={derivedFunction} coordinateSystem={coordinateSystem} />
                 </div>
               </div>
             </div>

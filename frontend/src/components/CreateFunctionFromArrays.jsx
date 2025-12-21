@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { functions } from '../services/api';
 import Alert from './Alert';
-import FunctionChart from './FunctionChart';
+import FunctionChart2 from './FunctionChart2';
 import './CreateFunction.css';
 
 const CreateFunctionFromArrays = ({ onSuccess }) => {
@@ -14,6 +14,7 @@ const CreateFunctionFromArrays = ({ onSuccess }) => {
   const [loading, setLoading] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [previewData, setPreviewData] = useState(null);
+  const [coordinateSystem, setCoordinateSystem] = useState('cartesian');
 
   const handlePointCountSubmit = () => {
     const count = parseInt(pointCount);
@@ -185,10 +186,27 @@ const CreateFunctionFromArrays = ({ onSuccess }) => {
               {loading ? 'Создание...' : 'Создать функцию'}
             </button>
           </div>
+          <div className="form-group">
+            <label>Система координат</label>
+            <select
+              value={coordinateSystem}
+              onChange={(e) => setCoordinateSystem(e.target.value)}
+            >
+              <option value="cartesian">Декартова</option>
+              <option value="polar">Полярная</option>
+              <option value="cylindrical">Цилиндрическая</option>
+              <option value="spherical">Сферическая</option>
+            </select>
+          </div>
         </form>
       )}
 
-      {previewData && <FunctionChart functionData={previewData} />}
+      {previewData && (
+        <FunctionChart2
+          functionData={previewData}
+          coordinateSystem={coordinateSystem}
+        />
+      )}
 
       <Alert message={error} type="error" onClose={() => setError('')} />
       <Alert message={success} type="success" onClose={() => setSuccess('')} />

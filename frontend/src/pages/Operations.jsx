@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import FunctionChart from '../components/FunctionChart';
+import FunctionChart2 from '../components/FunctionChart2';
 import { useFactory } from '../context/FactoryContext';
 import { functions } from '../services/api';
 import './Operations.css';
@@ -16,6 +16,7 @@ const Operations = () => {
   const [selectedOperation, setSelectedOperation] = useState('PLUS');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [coordinateSystem, setCoordinateSystem] = useState('cartesian');
 
   useEffect(() => {
     loadFunctions();
@@ -188,6 +189,19 @@ const Operations = () => {
                 </button>
               </div>
             </div>
+            <div className="selector-group">
+              <label>Система координат</label>
+              <select
+                value={coordinateSystem}
+                onChange={(e) => setCoordinateSystem(e.target.value)}
+                className="function-select"
+              >
+                <option value="cartesian">Декартова</option>
+                <option value="polar">Полярная</option>
+                <option value="cylindrical">Цилиндрическая</option>
+                <option value="spherical">Сферическая</option>
+              </select>
+            </div>
           </div>
 
           <div className="functions-display">
@@ -214,7 +228,7 @@ const Operations = () => {
                     </table>
                   </div>
                   <div className="function-chart-wrapper">
-                    <FunctionChart data={firstFunction} />
+                    <FunctionChart2 data={firstFunction} coordinateSystem={coordinateSystem}/>
                   </div>
                 </div>
               </div>
@@ -243,7 +257,7 @@ const Operations = () => {
                     </table>
                   </div>
                   <div className="function-chart-wrapper">
-                    <FunctionChart data={secondFunction} />
+                    <FunctionChart2 data={secondFunction} coordinateSystem={coordinateSystem} />
                   </div>
                 </div>
               </div>
@@ -274,7 +288,7 @@ const Operations = () => {
                     </table>
                   </div>
                   <div className="function-chart-wrapper">
-                    <FunctionChart data={resultFunction} />
+                    <FunctionChart2 data={resultFunction} coordinateSystem={coordinateSystem} />
                   </div>
                 </div>
               </div>
