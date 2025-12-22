@@ -102,6 +102,8 @@ const CreateFunctionFromMath = ({ onSuccess }) => {
 
     if (!count || isNaN(parseInt(count)) || parseInt(count) < 2) {
       errors.push('Количество точек должно быть не менее 2');
+    } else if (parseInt(count) > 10000) {
+      errors.push('Максимальное количество точек — 10 000');
     }
 
     return errors;

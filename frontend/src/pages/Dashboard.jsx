@@ -24,6 +24,8 @@ const Dashboard = () => {
   const { factoryType } = useFactory();
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
+  const debouncedPreviewRef = useRef(null);
+  const debouncedSubmitRef = useRef(null);
 
   useEffect(() => {
     loadFunctions();
@@ -75,12 +77,26 @@ const Dashboard = () => {
   };
 
   const handleSaveEdit = async () => {
+    // валидация перед отправкой
+    const xValues = editData.xValues;
+    if (xValues.some(isNaN)) {
+      setError('Все значения X должны быть числами');
+      return;
+    }
+    for (let i = 0; i < xValues.length - 1; i++) {
+      if (xValues[i] >= xValues[i + 1]) {
+        setError('Значения X должны быть строго возрастающими');
+        return;
+      }
+    }
+
     try {
       await functions.update(selectedFunction.id, editData);
       setSuccess('Функция успешно обновлена');
       setEditMode(false);
       loadFunctions();
       setSelectedFunction({ ...selectedFunction, ...editData });
+      setError('');
     } catch (err) {
       setError(err.response?.data?.message || 'Ошибка при обновлении функции');
     }
@@ -88,12 +104,49 @@ const Dashboard = () => {
 
   const handlePointChange = (index, field, value) => {
     const newData = { ...editData };
+    const numValue = value === '' ? NaN : parseFloat(value);
+
     if (field === 'x') {
-      newData.xValues[index] = parseFloat(value);
+      newData.xValues[index] = numValue;
     } else {
-      newData.yValues[index] = parseFloat(value);
+      newData.yValues[index] = numValue;
     }
-    setEditData(newData);
+
+    // Валидация: X-значения должны быть числами и строго возрастать
+    const xValues = newData.xValues.map(x => x); // copy
+    let hasError = false;
+
+    if (xValues.some(isNaN)) {
+      setError('Все значения X должны быть заполнены числами');
+      hasError = true;
+    } else {
+      for (let i = 0; i < xValues.length - 1; i++) {
+        if (xValues[i] >= xValues[i + 1]) {
+          setError('Значения X должны быть строго возрастающими');
+          hasError = true;
+          break;
+        }
+      }
+    }
+
+    // Обновляем состояние в любом случае, но с/без ошибки
+    setEditData(prev => {
+        const xValues = [...prev.xValues];  // глубокая копия массива
+        const yValues = [...prev.yValues];
+
+        const numValue = value === '' ? NaN : parseFloat(value);
+
+        if (field === 'x') {
+          xValues[index] = numValue;
+        } else {
+          yValues[index] = numValue;
+        }
+
+        return { ...prev, xValues, yValues };
+      });
+    if (!hasError) {
+      setError('');
+    }
   };
 
   const handleAddPoint = () => {
@@ -360,7 +413,17 @@ const Dashboard = () => {
                     </thead>
                     <tbody>
                       {editData.xValues.map((x, index) => (
-                        <tr key={index}>
+                        <tr
+                          key={index}
+                          style={{
+                            backgroundColor:
+                              !isNaN(editData.xValues[index]) &&
+                              (index === 0 || editData.xValues[index - 1] < editData.xValues[index]) &&
+                              (index === editData.xValues.length - 1 || editData.xValues[index] < editData.xValues[index + 1])
+                                ? 'inherit'
+                                : '#442222',
+                          }}
+                        >
                           <td>{index + 1}</td>
                           <td>
                             <input
