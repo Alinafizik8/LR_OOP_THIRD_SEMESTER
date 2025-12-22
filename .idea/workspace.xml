@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="new_branch_started">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/functions_db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/functions_db.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/functions_db.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/functions_db.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-    </list>
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="окак" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -559,7 +554,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765193641228</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="окак">
+      <option name="closed" value="true" />
+      <created>1766404504152</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1766404504152</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -580,7 +583,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add spring boot generated from initializer" />
     <MESSAGE value="continue repare" />
     <MESSAGE value="before all..." />
     <MESSAGE value="attention" />
@@ -605,7 +607,8 @@
     <MESSAGE value="START_AGAIN" />
     <MESSAGE value="work" />
     <MESSAGE value="new_branch_started" />
-    <option name="LAST_COMMIT_MESSAGE" value="new_branch_started" />
+    <MESSAGE value="окак" />
+    <option name="LAST_COMMIT_MESSAGE" value="окак" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
