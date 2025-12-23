@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="никак" />
+    <list default="true" id="9d963179-3ba6-4afc-88be-04d8c54cf60e" name="Changes" comment="окак">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/functions_db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/functions_db.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/assets/react.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/react.svg" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +91,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;git-widget-placeholder&quot;: &quot;framework&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Alina/OneDrive/Рабочий стол/2 семестр/OOP/LR_OOP_THIRD_SEMESTER/src/main/java/com/example/alina&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Alina/OneDrive/Рабочий стол/2 семестр/OOP/LR_OOP_THIRD_SEMESTER/frontend/src/assets&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.43908045&quot;,
@@ -96,6 +100,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\frontend\src\assets" />
       <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\main\java\com\example\alina" />
       <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\main\java\com\example\alina\ui\src" />
       <recent name="C:\Users\Alina\OneDrive\Рабочий стол\2 семестр\OOP\LR_OOP_THIRD_SEMESTER\src\main\resources" />
@@ -570,7 +575,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766404824651</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="окак">
+      <option name="closed" value="true" />
+      <created>1766480794090</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1766480794090</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -614,9 +627,9 @@
     <MESSAGE value="START_AGAIN" />
     <MESSAGE value="work" />
     <MESSAGE value="new_branch_started" />
-    <MESSAGE value="окак" />
     <MESSAGE value="никак" />
-    <option name="LAST_COMMIT_MESSAGE" value="никак" />
+    <MESSAGE value="окак" />
+    <option name="LAST_COMMIT_MESSAGE" value="окак" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
