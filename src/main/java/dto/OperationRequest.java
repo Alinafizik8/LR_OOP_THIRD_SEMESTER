@@ -25,4 +25,7 @@ public class OperationRequest {
 
     @JsonProperty("functionType")
     private String functionType;
+
+    @JsonProperty("resultName")
+    private String resultName; // может быть null — тогда генерируем как "f1 + f2"
 }

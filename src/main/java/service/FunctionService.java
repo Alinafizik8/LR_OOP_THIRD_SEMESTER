@@ -368,10 +368,14 @@ public class FunctionService {
                 resultYValues[i] = point.y;
                 i++;
             }
+            String resultName = request.getResultName() != null && !request.getResultName().isBlank()
+                    ? request.getResultName()
+                    : firstEntity.getName() + " " + operationName + " " + secondEntity.getName();
+
 
             return new FunctionDTO(
                     null,
-                    firstEntity.getName() + " " + operationName + " " + secondEntity.getName(),
+                    resultName,
                     request.getFunctionType() != null ? request.getFunctionType() : firstEntity.getFunctionType(),
                     resultXValues,
                     resultYValues,
@@ -700,5 +704,27 @@ public class FunctionService {
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to deserialize function values", e);
         }
+    }
+
+    @Transactional
+    public FunctionDTO saveResultFunction(FunctionDTO result, String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        FunctionEntity entity = new FunctionEntity();
+        entity.setName(result.getName());
+        entity.setFunctionType(result.getFunctionType());
+        entity.setCount(result.getCount());
+        entity.setUser(user);
+
+        try {
+            entity.setXValues(objectMapper.writeValueAsString(result.getXValues()));
+            entity.setYValues(objectMapper.writeValueAsString(result.getYValues()));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to serialize function values", e);
+        }
+
+        entity = functionRepository.save(entity);
+        return entityToDTO(entity);
     }
 }

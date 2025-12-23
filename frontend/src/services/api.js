@@ -31,6 +31,8 @@ export const auth = {
 };
 
 export const functions = {
+  operateAndSave: (data) => api.post('/functions/operate-and-save', data),
+
   getAll: () => api.get('/functions'),
 
   getById: (id) => api.get(`/functions/${id}`),

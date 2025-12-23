@@ -4,6 +4,7 @@ import FunctionChart2 from '../components/FunctionChart2';
 import { useFactory } from '../context/FactoryContext';
 import { functions } from '../services/api';
 import './Operations.css';
+import Alert from '../components/Alert';
 
 const Operations = () => {
   const { factoryType } = useFactory();
@@ -16,6 +17,9 @@ const Operations = () => {
   const [selectedOperation, setSelectedOperation] = useState('PLUS');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [saveLoading, setSaveLoading] = useState(false);
+  const [saveError, setSaveError] = useState('');
+  const [saveSuccess, setSaveSuccess] = useState('');
   const [coordinateSystem, setCoordinateSystem] = useState('cartesian');
 
   useEffect(() => {
@@ -67,6 +71,56 @@ const Operations = () => {
       }
     } else {
       setSecondFunction(null);
+    }
+  };
+
+  const handleSaveResult = async () => {
+    if (!resultFunction) {
+      setSaveError('Нет результата для сохранения');
+      return;
+    }
+
+    let resultName = prompt(
+      'Введите название для сохранённой функции:',
+      resultFunction.name || 'Результат операции'
+    );
+
+    // Если пользователь отменил — выходим
+    if (resultName === null) {
+      return;
+    }
+
+    resultName = resultName.trim();
+    if (resultName === '') {
+      setSaveError('Название не может быть пустым');
+      return;
+    }
+
+    setSaveLoading(true);
+    setSaveError('');
+    setSaveSuccess('');
+
+    try {
+      // Формируем тот же request, что и для операции + resultName
+      const request = {
+        firstFunctionId: parseInt(firstFunctionId),
+        secondFunctionId: parseInt(secondFunctionId),
+        operation: selectedOperation,
+        functionType: factoryType,
+        resultName: resultName,
+      };
+
+      const response = await functions.operateAndSave(request);
+      setSaveSuccess(`Результат сохранён как "${response.data.name}"`);
+
+      loadFunctions();
+
+    } catch (err) {
+      console.error('Ошибка сохранения:', err);
+      const msg = err.response?.data?.message || 'Неизвестная ошибка при сохранении';
+      setSaveError(msg);
+    } finally {
+      setSaveLoading(false);
     }
   };
 
@@ -291,6 +345,16 @@ const Operations = () => {
                     <FunctionChart2 data={resultFunction} coordinateSystem={coordinateSystem} />
                   </div>
                 </div>
+                <button
+                        onClick={handleSaveResult}
+                        disabled={saveLoading}
+                        className="btn-primary"
+                        style={{ marginTop: '1rem' }}
+                      >
+                        {saveLoading ? 'Сохранение...' : '💾 Сохранить результат'}
+                      </button>
+                      {saveSuccess && <div className="alert alert-success">{saveSuccess}</div>}
+                      {saveError && <div className="alert alert-error">{saveError}</div>}
               </div>
             </div>
           )}
@@ -299,5 +363,4 @@ const Operations = () => {
     </>
   );
 };
-
 export default Operations;

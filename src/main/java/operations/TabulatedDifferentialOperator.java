@@ -34,33 +34,46 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
             throw new IllegalArgumentException("Function must not be null");
         }
 
-        Point[] points = TabulatedFunctionOperationService.asPoints(function);
-        int n = points.length;
+        int n = function.getCount();
+        if (n < 2) {
+            throw new IllegalArgumentException("Function must have at least 2 points");
+        }
 
         double[] xValues = new double[n];
         double[] yValues = new double[n];
 
-        // Копируем x (они не меняются)
+        // Копируем x
         for (int i = 0; i < n; i++) {
-            xValues[i] = points[i].x;
+            xValues[i] = function.getX(i);
         }
 
-        /* Численное дифференцирование:
-         - первая точка: правая разностная производная
-         - последняя точка: левая разностная производная
-         - остальные: центральная разностная производная
-        */
-        // Первая точка (правая производная)
-        yValues[0] = (points[1].y - points[0].y) / (points[1].x - points[0].x);
+        // Производные: используем среднюю производную в узле
+        // f'(x_i) ≈ (f'_left + f'_right) / 2
+        for (int i = 0; i < n; i++) {
+            double leftDerivative = Double.NaN;
+            double rightDerivative = Double.NaN;
 
-        // Внутренние точки (центральная производная)
-        for (int i = 1; i < n - 1; i++) {
-            // Простая центральная разность
-            yValues[i] = (points[i + 1].y - points[i - 1].y) / (points[i + 1].x - points[i - 1].x);
+            // Производная слева (если есть слева)
+            if (i > 0) {
+                double hLeft = xValues[i] - xValues[i - 1];
+                leftDerivative = (function.getY(i) - function.getY(i - 1)) / hLeft;
+            }
+
+            // Производная справа (если есть справа)
+            if (i < n - 1) {
+                double hRight = xValues[i + 1] - xValues[i];
+                rightDerivative = (function.getY(i + 1) - function.getY(i)) / hRight;
+            }
+
+            // Среднее (внутренние точки), или крайние значения
+            if (i == 0) {
+                yValues[i] = rightDerivative;  // первая точка — правая производная
+            } else if (i == n - 1) {
+                yValues[i] = leftDerivative;   // последняя — левая
+            } else {
+                yValues[i] = (leftDerivative + rightDerivative) / 2.0;
+            }
         }
-
-        // Последняя точка (левая производная, т.е. значение такое же, как и предпоследнее)
-        yValues[n - 1] = yValues[n - 2];
 
         return factory.create(xValues, yValues);
     }

@@ -284,4 +284,20 @@ public class FunctionController {
             return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
         }
     }
+
+    @PostMapping("/operate-and-save")
+    public ResponseEntity<?> operateAndSave(
+            @Valid @RequestBody OperationRequest request,
+            Authentication authentication) {
+        try {
+            FunctionDTO result = functionService.performOperation(request, authentication.getName());
+            FunctionDTO saved = functionService.saveResultFunction(result, authentication.getName());
+            return ResponseEntity.ok(saved);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(Map.of(
+                    "message", e.getMessage() != null ? e.getMessage() : "Unknown error"
+            ));
+        }
+    }
 }
